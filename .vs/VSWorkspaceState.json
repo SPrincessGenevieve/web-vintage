@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\auth",
+    "\\app\\auth\\forgot-password"
+  ],
+  "SelectedNode": "\\app\\auth\\forgot-password\\page.tsx",
+  "PreviewInSolutionExplorer": false
+}
