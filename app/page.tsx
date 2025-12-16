@@ -9,17 +9,22 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import LandingHeader from "@/components/landing/LandingHeader";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Check, CheckCircle, CircleCheck } from "lucide-react";
 import { useUserContext } from "@/context/UserContext";
 import { Spinner } from "@/components/ui/spinner";
 import ForgotPasswordDialog from "@/components/forgot-password/ForgotPasswordDialog";
 import RegisterSuccessDialog from "@/components/auth/RegisterSuccessDialog";
+import { Form } from "@/components/ui/form";
+import z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { InputFormField } from "@/components/ui/InputFormField";
+
+const formSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  password: z.string().min(2, { message: "This field is required." }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export default function Login() {
   const router = useRouter();
@@ -27,6 +32,14 @@ export default function Login() {
   const [open, setOpen] = useState(register_success);
   const [registerLoad, setRegisterLoad] = useState(false);
   const [loginLoad, setLoginLoad] = useState(false);
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema), // ✅ Connect Zod schema
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   const handleForgotPass = () => {
     router.push("/auth/forgot-password");
@@ -37,7 +50,7 @@ export default function Login() {
     router.push("/auth/register/email");
   };
 
-  const handleLogin = () => {
+  const handleLogin = (data: FormValues) => {
     setLoginLoad(true);
     router.push("/vintage/dashboard");
   };
@@ -58,41 +71,62 @@ export default function Login() {
         <div className="absolute w-full h-full bg-primary-gray-400/30"></div>
         <video className="" src="/cellar.mp4" autoPlay muted loop playsInline />
       </div>
-      <div  className="bg-primary-gray-600 landing-form-cont max-w-[65vh] gap-4 p-4 py-8 flex flex-col items-center justify-center z-20 w-full bg-primary-gray-400 h-full">
+      <div className="bg-primary-gray-600 landing-form-cont max-w-[65vh] gap-4 p-4 py-8 flex flex-col items-center justify-center z-20 w-full bg-primary-gray-400 h-full">
         <LandingHeader></LandingHeader>
         <div className="flex flex-col w-full items-center">
           <div className="w-full max-w-[50vh] flex flex-col gap-4">
             <div className=" flex flex-col gap-4">
-              <Input label="Email Address"></Input>
-              <Input securityOff label="Password" type="password"></Input>
-            </div>
-            <div className="w-full flex items-center justify-between">
-              <Button variant={"ghost"} className="p-0">
-                <Checkbox
-                  id={"remember_me"}
-                  className="cursor-pointer"
-                ></Checkbox>
-                <Label htmlFor="remember_me">Remember me?</Label>
-              </Button>
-              <Button
-                onClick={handleForgotPass}
-                className="p-0 underline"
-                variant={"link"}
-              >
-                Forgot Password?
-              </Button>
-            </div>
-            <div className="w-full flex flex-col gap-4">
-              <Button className="w-full" onClick={handleLogin}>
-                {loginLoad ? <Spinner></Spinner> : "Login"}
-              </Button>
-              <Button
-                onClick={handleRegister}
-                className="w-full"
-                variant={"outline"}
-              >
-                {registerLoad ? <Spinner></Spinner> : "Apply for Membership"}
-              </Button>
+              <Form {...form}>
+                <form
+                  className="flex flex-col gap-4"
+                  onSubmit={form.handleSubmit(handleLogin)}
+                >
+                  <InputFormField
+                    control={form.control}
+                    name="email"
+                    label="Email"
+                    placeholder="johndoe@gmail.com"
+                  ></InputFormField>
+                  <InputFormField
+                    control={form.control}
+                    name="password"
+                    label="Password"
+                    placeholder="********"
+                  ></InputFormField>
+
+                  <div className="w-full flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Checkbox id="remember_me" />
+                      <Label htmlFor="remember_me">Remember me?</Label>
+                    </div>
+                    <Button
+                      onClick={handleForgotPass}
+                      className="p-0 underline"
+                      variant={"link"}
+                      type="button"
+                    >
+                      Forgot Password?
+                    </Button>
+                  </div>
+                  <div className="w-full flex flex-col gap-4">
+                    <Button type={"submit"} className="w-full">
+                      {loginLoad ? <Spinner></Spinner> : "Login"}
+                    </Button>
+                    <Button
+                      onClick={handleRegister}
+                      className="w-full"
+                      variant={"outline"}
+                      type="button"
+                    >
+                      {registerLoad ? (
+                        <Spinner></Spinner>
+                      ) : (
+                        "Apply for Membership"
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
             </div>
           </div>
         </div>

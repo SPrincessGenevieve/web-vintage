@@ -14,7 +14,7 @@ const variantClasses: Record<Variant, string> = {
   default: "text-sm font-normal",
   h1: "text-xl font-semibold text-white",
   h2: "text-base font-medium",
-  p: "text-sm font-extralight",
+  p: "text-[12px] text-white/70 font-extralight",
 };
 
 function Label({ className, variant = "default", ...props }: LabelProps) {

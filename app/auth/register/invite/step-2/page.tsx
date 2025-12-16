@@ -55,7 +55,7 @@ const formSchema = z
     phoneNumber: z.string().min(2, { message: "This field is required." }),
     email: z.string().email({ message: "Invalid email address" }),
     password1: passwordSchema,
-    password2: z.string(), // Still validated inside refine
+    password2: z.string().min(2, { message: "This field is required." }),
   })
   .refine((data) => data.password1 === data.password2, {
     message: "Passwords do not match",

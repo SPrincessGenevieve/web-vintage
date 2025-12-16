@@ -1,7 +1,11 @@
+import activitiesIcon from "@/public/activitiesIcon";
+import insightsIcon from "@/public/insightsIcon";
 import mywinecellar from "@/public/myPortfolio";
 import myportfolio from "@/public/myPortfolio";
+import storageIcon from "@/public/storageIcon";
 import {
   Briefcase,
+  ChartSpline,
   CircleAlert,
   Clock,
   ConciergeBell,
@@ -1133,5 +1137,60 @@ export const menu_list = [
     value: "cellar",
     icon: mywinecellar,
     link: "/vintage/cellar",
+  },
+  {
+    label: "Insights",
+    value: "insights",
+    icon: insightsIcon,
+    link: "/vintage/insights",
+  },
+  {
+    label: "Indicies",
+    value: "indicies",
+    icon: ChartSpline,
+    link: "/vintage/indicies",
+  },
+  {
+    label: "Storage",
+    value: "storage",
+    icon: storageIcon,
+    link: "/vintage/storage",
+  },
+  {
+    label: "Activities",
+    value: "activities",
+    icon: activitiesIcon,
+    link: "/vintage/activities",
+  },
+];
+
+export const concierge_list = [
+  {
+    title: "Special Request",
+    desc: "Instantly source any wine you desire, from everyday favourites to the rarest vintages, delivered directly through your concierge.",
+    image:
+      "https://staging.vintage-associates.com/assets/assets/concierge/request.e77764d7dc2b6d6a55b62bcc13621c6b.jpg",
+    link: "",
+  },
+  {
+    title: "Sporting Events",
+    desc: "Indulge in curated, once-in-a-lifetime events with Vintage Associates. From private golf days and elite sports events to exclusive yacht adventures and dinners at the world's finest châteaux, we create unforgettable moments tailored just for you.",
+    image:
+      "/concierge/sport.jpg",
+    link: "",
+  },
+  {
+    title: "Special Request",
+    desc: "Planning an event? Elevate every celebration with our bespoke wine service. From lavish weddings to private yacht soirées, our concierge sources and delivers exceptional vintages, creating unforgettable moments for you and your guests.",
+    image:
+      "/concierge/entertainment.jpg",
+    link: "",
+  },
+  {
+    title: "Wine Events",
+    desc: "Associates. From private tastings and château visits to exclusive pre-release wine experiences, our curated events offer unparalleled access to the finest vintages and expert guidance.",
+    image:
+      "/concierge/main-event.jpg",
+    link: "",
   },
 ];

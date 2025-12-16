@@ -15,7 +15,7 @@ export default function SidebarWeb() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const path = pathname.split("/vintage/")[1]
+  const path = pathname.split("/vintage/")[1];
 
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
@@ -27,11 +27,9 @@ export default function SidebarWeb() {
     router.push("/");
   };
 
-  useEffect(() =>{
-    if(activeTab === ""){
-      setActiveTab(path)
-    }
-  }, [path])
+  useEffect(() => {
+    setActiveTab(path);
+  }, [path]);
 
   return (
     <Card className="w-full max-w-65 h-full p-4">
@@ -39,13 +37,21 @@ export default function SidebarWeb() {
         <div className="flex flex-col w-full">
           {menu_list.map((item, index) => (
             <Button
+              key={index}
               variant={item.value === activeTab ? "default" : "ghost"}
               onClick={() => handleTabs(item.value, item.link)}
               className="justify-start hover:bg-primary-brown/30"
             >
-              <item.icon
-                color={item.value === activeTab ? "black" : "white"}
-              ></item.icon>
+              {item.value === "activities" ? (
+                <item.icon
+                  fill={"transparent"}
+                  color={item.value === activeTab ? "black" : "white"}
+                ></item.icon>
+              ) : (
+                <item.icon
+                  color={item.value === activeTab ? "black" : "white"}
+                ></item.icon>
+              )}
               {item.label}
             </Button>
           ))}

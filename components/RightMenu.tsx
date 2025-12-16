@@ -43,7 +43,7 @@ export default function RightMenu() {
           )}
         </div>
       ))}
-      <Avatar>
+      <Avatar className="">
         <AvatarImage />
         <AvatarFallback>P</AvatarFallback>
       </Avatar>
