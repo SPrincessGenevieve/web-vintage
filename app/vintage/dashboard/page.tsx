@@ -39,18 +39,18 @@ const chartConfig = {
 
 export default function Dashboard() {
   return (
-    <div className="flex h-full gap-4">
+    <div className="flex h-full gap-4 dashboard-main-cont">
       <div className="w-full h-full flex flex-col gap-4">
-        <div className="h-[16%]">
+        <div className="h-[16%] min-h-30">
           <CollectionPL></CollectionPL>
         </div>
         <div className="h-[10%]">
           <TotalDepositCases></TotalDepositCases>
         </div>
-        <div className="h-[37%]">
+        <div className="h-[37%] min-h-70">
           <PortfolioChart></PortfolioChart>
         </div>
-        <div className="h-[37%]">
+        <div className="h-[37%] min-h-70">
           <AssetsByRegion></AssetsByRegion>
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function Dashboard() {
         <div className="h-[63%]">
           <TopWines></TopWines>
         </div>
-        <div className="h-[37%]">
+        <div className="h-[37%] min-h-70">
           <DeliveryHistoryTable></DeliveryHistoryTable>
         </div>
       </div>

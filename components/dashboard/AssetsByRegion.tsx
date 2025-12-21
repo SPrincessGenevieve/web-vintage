@@ -2,7 +2,7 @@
 
 import { Dot, TrendingUp } from "lucide-react";
 import { Pie, PieChart } from "recharts";
-
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -47,17 +47,36 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
+function useInnerRadius() {
+  const [innerRadius, setInnerRadius] = useState(55);
+
+  useEffect(() => {
+    const updateRadius = () => {
+      setInnerRadius(window.innerWidth <= 600 ? 40 : 55);
+    };
+
+    updateRadius(); // run once
+    window.addEventListener("resize", updateRadius);
+    return () => window.removeEventListener("resize", updateRadius);
+  }, []);
+
+  return innerRadius;
+}
+
 export function AssetsByRegion() {
+  const innerRadius = useInnerRadius();
+
   return (
     <Card className="flex flex-col h-full w-full">
       <CardContent className="rounded-2xl h-full flex flex-col">
         <Label className="text-white" variant="h2">
           Assets by Region
         </Label>
-        <div className="flex relative w-full h-full items-center justify-center">
+        <div className="region-cont flex relative w-full h-full items-center justify-center">
+          <div className="decoy-cont w-[295px] h-full"></div>
           <ChartContainer
             config={chartConfig}
-            className="flex absolute left-0 h-full rounded-2xl items-center justify-center"
+            className="flex max-w-50 p-0 region-chart absolute left-0 h-full rounded-2xl items-center justify-center"
           >
             <PieChart>
               <ChartTooltip
@@ -68,12 +87,12 @@ export function AssetsByRegion() {
                 data={chartData}
                 dataKey="value"
                 nameKey="browser"
-                innerRadius={65}
+                innerRadius={innerRadius}
               />
             </PieChart>
           </ChartContainer>
           <div className="w-full flex flex-col items-end">
-            <div className="max-w-70 w-full flex flex-col gap-1">
+            <div className="max-w-70 legend-cont w-full flex flex-col gap-1">
               {chartData.map((item, index) => (
                 <div className="flex items-center gap-4">
                   <div

@@ -225,7 +225,7 @@ export const vintex = [
     id: 11,
     name: "Chateau d'Yquem Superieur, Sauternes",
     wine_images: [
-      "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_d_yquem.png",
+      "https://millesimes.com/img/photo/66335.png",
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_d_yquem_1.png",
     ],
     is_very_special: false,

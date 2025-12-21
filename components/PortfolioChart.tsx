@@ -42,7 +42,7 @@ export function PortfolioChart() {
     <Card className="h-full w-full pb-2">
       <CardContent className="w-full rounded-2xl pb-0 py-0 my-0  h-full justify-between flex flex-col">
         <Text variant="h2">Portfolio Value</Text>
-        <div className="flex w-full bg-black/20 p-2 rounded-2xl">
+        <div className="flex w-full bg-black/20 p-2 mb-4 rounded-2xl">
           {filterBtn.map((item, index) => (
             <Button
               variant={selectedFilter === item ? "default" : "ghost"}
@@ -53,54 +53,56 @@ export function PortfolioChart() {
             </Button>
           ))}
         </div>
-        <ChartContainer className="w-full h-[20vh]" config={chartConfig}>
-          <AreaChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <YAxis
-              dataKey="value"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-            />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <defs>
-              <linearGradient id="fillvalue" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-value)"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-value)"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-            </defs>
-            <Area
-              dataKey="value"
-              type="natural"
-              fill="url(#fillvalue)"
-              fillOpacity={0.4}
-              stroke="var(--color-value)"
-              stackId="a"
-            />
-          </AreaChart>
-        </ChartContainer>
+        <div className="overflow-y-auto max-w-screen">
+          <ChartContainer className="portfolio-dash-chart w-full h-[20vh]" config={chartConfig}>
+            <AreaChart
+              accessibilityLayer
+              data={chartData}
+              margin={{
+                left: 12,
+                right: 12,
+              }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <YAxis
+                dataKey="value"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+              />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+              <defs>
+                <linearGradient id="fillvalue" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor="var(--color-value)"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--color-value)"
+                    stopOpacity={0.1}
+                  />
+                </linearGradient>
+              </defs>
+              <Area
+                dataKey="value"
+                type="natural"
+                fill="url(#fillvalue)"
+                fillOpacity={0.4}
+                stroke="var(--color-value)"
+                stackId="a"
+              />
+            </AreaChart>
+          </ChartContainer>
+        </div>
       </CardContent>
     </Card>
   );

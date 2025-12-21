@@ -1164,6 +1164,39 @@ export const menu_list = [
   },
 ];
 
+export const menu_list_mobile = [
+  {
+    label: "Dashboard",
+    value: "dashboard",
+    icon: LayoutDashboard,
+    link: "/vintage/dashboard",
+  },
+  {
+    label: "Concierge",
+    value: "concierge",
+    icon: ConciergeBell,
+    link: "/vintage/concierge",
+  },
+  {
+    label: "Marketplace",
+    value: "marketplace",
+    icon: Store,
+    link: "/vintage/marketplace",
+  },
+  {
+    label: "My Portfolio",
+    value: "portfolio",
+    icon: Briefcase,
+    link: "/vintage/portfolio",
+  },
+  {
+    label: "My Wine Cellar",
+    value: "cellar",
+    icon: mywinecellar,
+    link: "/vintage/cellar",
+  },
+];
+
 export const concierge_list = [
   {
     title: "Special Request",
@@ -1175,22 +1208,19 @@ export const concierge_list = [
   {
     title: "Sporting Events",
     desc: "Indulge in curated, once-in-a-lifetime events with Vintage Associates. From private golf days and elite sports events to exclusive yacht adventures and dinners at the world's finest châteaux, we create unforgettable moments tailored just for you.",
-    image:
-      "/concierge/sport.jpg",
+    image: "/concierge/sport.jpg",
     link: "",
   },
   {
     title: "Special Request",
     desc: "Planning an event? Elevate every celebration with our bespoke wine service. From lavish weddings to private yacht soirées, our concierge sources and delivers exceptional vintages, creating unforgettable moments for you and your guests.",
-    image:
-      "/concierge/entertainment.jpg",
+    image: "/concierge/entertainment.jpg",
     link: "",
   },
   {
     title: "Wine Events",
     desc: "Associates. From private tastings and château visits to exclusive pre-release wine experiences, our curated events offer unparalleled access to the finest vintages and expert guidance.",
-    image:
-      "/concierge/main-event.jpg",
+    image: "/concierge/main-event.jpg",
     link: "",
   },
 ];

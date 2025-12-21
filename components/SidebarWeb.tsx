@@ -9,13 +9,14 @@ import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 import { Spinner } from "./ui/spinner";
 import { usePathname } from "next/navigation";
-
+import { useCart } from "@/context/CartContext";
 export default function SidebarWeb() {
   const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const path = pathname.split("/vintage/")[1];
+  const { clearCart } = useCart();
 
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
@@ -24,6 +25,7 @@ export default function SidebarWeb() {
 
   const handleLogout = () => {
     setLoading(true);
+    clearCart();
     router.push("/");
   };
 

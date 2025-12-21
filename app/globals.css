@@ -137,6 +137,54 @@
   overflow-y: auto;
 }
 
+@media (max-width: 1885px) {
+  .marketplace-card {
+    max-width: 33.3%;
+  }
+}
+
+@media (max-width: 1515px) {
+  .marketplace-card {
+    max-width: 33.3%;
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 1465px) {
+  .marketplace-card {
+    max-width: 33.3%;
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 1315px) {
+  .marketplace-card{
+    max-width: 100%;
+    min-width: 300px;
+  }
+  .marketplace-cont {
+    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 950px){
+   .marketplace-cont {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 1540px) {
+  .card-cont {
+    width: auto;
+  }
+  .card-inner-cont {
+    width: 35vh;
+  }
+}
+
 @media (max-width: 1100px) {
   .landing-cont {
     display: flex;
@@ -156,41 +204,126 @@
     overflow-y: hidden;
     height: 100%;
   }
+  .dashboard-main-cont {
+    flex-direction: column;
+  }
+}
+@media (max-width: 795px) {
+  .region-cont {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+  }
+  .decoy-cont {
+    height: 150px;
+  }
+  .region-chart {
+    top: 0;
+    height: 150px;
+    max-width: 100%;
+    width: 100%;
+  }
+  .legend-cont {
+    width: 100%;
+    max-width: 100%;
+  }
+  .top-wine-left {
+    flex-direction: column;
+    justify-content: start;
+    gap: 4;
+  }
+  .top-percent-cont {
+    justify-content: start;
+  }
+  .web-cont-sidebar {
+    display: none;
+  }
+  .mobile-cont-bottombar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+  }
+  .vintage-children {
+    margin-bottom: 50px;
+  }
+  .concierge-top {
+    height: 45vh;
+  }
+  .concierge-bottom {
+    height: 55vh;
+  }
+  .vintage-sub-count {
+    height: 94%;
+    flex-direction: column;
+  }
+  .vintage-layout-main {
+    justify-content: start;
+  }
+  .portfolio-dash-chart {
+    height: 100%;
+  }
+}
+
+@media (max-width: 415px) {
+  .concierge-cont {
+    height: auto;
+  }
+  .concierge-top {
+    height: 40vh;
+  }
+  .concierge-bottom {
+    height: 50vh;
+  }
+  .vintage-sub-count {
+    height: 91%;
+  }
+  .dashboard-main-cont {
+    height: auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .concierge-cont {
+    height: auto;
+  }
+  .concierge-top {
+    height: 55vh;
+  }
+  .concierge-bottom {
+    height: 65vh;
+  }
 }
 
 /* ============================
    CUSTOM BEAUTIFUL SCROLLBAR
    ============================ */
 
-.scroll-area::-webkit-scrollbar {
+/* WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
   width: 8px;
 }
 
-.scroll-area::-webkit-scrollbar-track {
-  background: transparent; /* or rgba(0,0,0,0.05) */
+::-webkit-scrollbar-track {
+  background: transparent;
   border-radius: 10px;
 }
 
-.scroll-area::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   transition: background-color 0.3s;
 }
 
-.scroll-area::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.35);
-}
-
-/* Firefox support */
-.scroll-area {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--primary-gray-300) var(--primary-gray-500);
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
 
 .dark ::-webkit-scrollbar-track {
@@ -203,7 +336,6 @@
     var(--primary-gray-300),
     var(--primary-gray-400)
   );
-  border-color: var(--primary-gray-400);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
@@ -214,25 +346,7 @@
   );
 }
 
-/* --- shadcn Select Scrollbar --- */
-.radix-select-content,
-[data-radix-popper-content-wrapper] {
-  scrollbar-width: thin;
-}
-
-/* Webkit */
-.radix-select-content::-webkit-scrollbar,
-[data-radix-popper-content-wrapper]::-webkit-scrollbar {
-  width: 8px;
-}
-
-.radix-select-content::-webkit-scrollbar-track,
-[data-radix-popper-content-wrapper]::-webkit-scrollbar-track {
-  background: var(--primary-gray-500);
-}
-
-.radix-select-content::-webkit-scrollbar-thumb,
-[data-radix-popper-content-wrapper]::-webkit-scrollbar-thumb {
-  background: var(--primary-gray-300);
-  border-radius: 10px;
+/* Firefox dark */
+.dark * {
+  scrollbar-color: var(--primary-gray-300) var(--primary-gray-500);
 }

@@ -5,6 +5,7 @@ import {
   StepThreeInviteType,
   StepThreeRegisterType,
   StepTwoRegisterType,
+  CartItemT,
 } from "@/lib/types";
 // import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import {
@@ -29,6 +30,10 @@ type UserContextType = {
   register_step_three: StepThreeRegisterType | null;
   invite_step_two: StepTwoInviteType | null;
   invite_step_three: StepThreeInviteType | null;
+  vintage_table_detail: boolean;
+  selected_index_vintage: number | null;
+  cart_items: CartItemT[]
+  filter_market: string;
   setUserDetails: (details: Partial<UserContextType>) => void;
 };
 
@@ -46,6 +51,10 @@ const defaultUserContext: UserContextType = {
   invite_step_three: null,
   register_success: false,
   forgot_pass_success: false,
+  vintage_table_detail: false,
+  selected_index_vintage: null,
+  cart_items: [],
+  filter_market: "vint-ex",
   setUserDetails: () => {},
 };
 

@@ -1,23 +1,24 @@
 export const special_bundle = [
   {
-    id: 1,
-    name: "The Italian Job",
+    id: 3,
+    name: "The Bordeaux Legends",
     vintage: null,
     quantity: 1,
-    market_value: 7815.95,
+    market_value: 43098.0,
     case_size: 6,
     winery:
-      "A celebration of Italy’s most iconic wines, The Italian Job basket brings together five legendary bottles that embody the artistry and heritage of Tuscan winemaking. Inside you’ll discover Sassicaia, Solaia, Tignanello, Ornellaia, and Masseto – a line-up often referred to as the crown jewels of Italy.\r\n\r\nEach wine is a masterpiece in its own right: Sassicaia with its elegant structure, Solaia’s bold intensity, Tignanello’s pioneering spirit, Ornellaia’s refined complexity, and the rare, velvet-textured Masseto. Together, they offer an extraordinary journey through the very best of Super Tuscan excellence.\r\n\r\nThis basket is not just a gift – it is a statement of prestige, passion, and pure Italian style.",
+      "The Bordeaux Classic Collection brings together seven of the most iconic and historically significant wines from the Bordeaux region. Each estate represents a pinnacle of Old World winemaking, and together they form a distinguished, diversified bundle that blends prestige, rarity and long-term investment potential.\r\n\r\nThis collection includes Pétrus, Le Pin, Lafite Rothschild, Mouton Rothschild, Margaux, Latour and Haut-Brion – a line-up of estates whose reputations are built on centuries of excellence, critical acclaim, and enduring collector demand.\r\n\r\nBy acquiring these wines as a set, collectors secure exposure to multiple legendary producers whose track records for performance and value appreciation are unmatched. It is a portfolio built on heritage, scarcity, and timeless appeal.",
     region:
-      "The wines in The Italian Job basket hail from the rolling hills and coastal plains of Tuscany, one of the most celebrated wine regions in the world.\r\n\r\nSassicaia → Produced in Bolgheri, on the Tuscan coast, it was the pioneer of the “Super Tuscan” movement, proving that international grapes like Cabernet Sauvignon could thrive in Italian soil.\r\n\r\nOrnellaia & Masseto → Also from Bolgheri, these wines reflect the maritime climate: Ornellaia with Bordeaux-inspired blends, and Masseto as one of the world’s greatest Merlots.\r\n\r\nTignanello & Solaia → Born in the Chianti Classico heartland, these Antinori masterpieces blend tradition with innovation, using Sangiovese alongside Cabernet to create bold, modern classics.\r\n\r\nTogether, these wines showcase Tuscany’s dual identity: the heritage of Chianti’s historic hills and the innovation of Bolgheri’s coastal estates.",
-    grapes: "Cabernet - Sangiovese",
+      "Bordeaux is one of the world’s most prestigious wine regions, renowned for producing complex, age-worthy wines with structure, elegance, and remarkable longevity. Within the region, each estate occupies a distinct terroir that contributes to its unique character.\r\n\r\nPétrus, Pomerol - Located in Pomerol, famous for clay-rich soils that produce plush, powerful Merlot-driven wines.\r\n\r\nLe Pin, Pomerol - Also in Pomerol, offering tiny production, velvety textures, and exceptional rarity.\r\n\r\nLafite Rothschild, Pauillac - In Pauillac, known for gravelly soils that give structured, long-lived Cabernet Sauvignon blends.\r\n\r\nMouton Rothschild, Pauillac - Also in Pauillac, producing Cabernet Sauvignon-led wines with power, depth, and elegance.\r\n\r\nMargaux, Margaux - Set in Margaux, celebrated for silky, aromatic Cabernet Sauvignon-based blends.\r\n\r\nLatour, Pauillac -  Pauillac estate with concentrated, structured wines renowned for ageing.\r\n\r\nHaut-Brion, Pessac-Léognan - Based in Pessac-Léognan, producing refined, smoky blends of Cabernet Sauvignon and Merlot with distinctive character.",
+    grapes: "Bordeaux Blend Red",
     grape_variety:
-      "The basket brings together the best of Tuscan Sangiovese tradition with the richness of international Bordeaux grapes – Cabernet, Merlot, and Franc – showcasing why these wines are known as the legendary Super Tuscans.\r\n\r\nSassicaia – Predominantly Cabernet Sauvignon, with a touch of Cabernet Franc for elegance.\r\n\r\nOrnellaia – A Bordeaux-style blend of Cabernet Sauvignon, Merlot, Cabernet Franc, and Petit Verdot.\r\n\r\nMasseto – 100% Merlot, considered one of the finest expressions of this grape anywhere in the world.\r\n\r\nTignanello – Mainly Sangiovese, blended with Cabernet Sauvignon and Cabernet Franc.\r\n\r\nSolaia – Mostly Cabernet Sauvignon, with Cabernet Franc and Sangiovese adding depth and Italian character.",
-    fromm: "Italy",
-    image: "https://d18vt6ndh4jzvp.cloudfront.net/media/Italy3_0.jpg",
+      "Pétrus – 100% Merlot, celebrated for its plush texture, richness, and incredible ageing potential.\r\n\r\nLe Pin – Predominantly Merlot, offering velvety, opulent wines with intense aromatic depth and rare scarcity.\r\n\r\nLafite Rothschild – Cabernet Sauvignon-led blend with Merlot, Cabernet Franc, and Petit Verdot, renowned for elegance, structure, and longevity.\r\n\r\nMouton Rothschild – Cabernet Sauvignon-dominant blend, combining power, depth, and a unique expression of Bordeaux artistry.\r\n\r\nMargaux – Cabernet Sauvignon-based blend with Merlot and Cabernet Franc, prized for its silky texture, aromatic complexity, and graceful finesse.\r\nLatour – Cabernet Sauvignon-driven blend, known for concentration, tannic strength, and extraordinary ageing potential.\r\n\r\nHaut-Brion – Blend of Cabernet Sauvignon, Merlot, and Cabernet Franc, offering profound depth, smoky elegance, and a distinctive Bordeaux signature.",
+    fromm: "Bordeaux",
+    image:
+      "https://d18vt6ndh4jzvp.cloudfront.net/media/ChatGPT_Image_Dec_17_2025_09_20_19_PM.png",
     special_id: null,
     is_assortment: false,
-    sub_header: "Legendary Super Tuscan Icons United in One Basket",
+    sub_header: "The Pinnacle Collection of Bordeaux’s Most Iconic Estates",
   },
   {
     id: 4,
@@ -34,7 +35,8 @@ export const special_bundle = [
     grape_variety:
       "The Champagne Supernova Collection:\r\n\r\nDom Pérignon – Predominantly Chardonnay and Pinot Noir, offering balance, creaminess, and complex aromatic depth.\r\n\r\nSalon Le Mesnil – 100% Chardonnay, producing precise, elegant, and age-worthy Blanc de Blancs.\r\n\r\nKrug Vintage Brut – Blend of Pinot Noir, Chardonnay, and Pinot Meunier, renowned for richness, depth, and multi-layered complexity.\r\n\r\nPol Roger Sir Winston Churchill – Pinot Noir-dominant blend with Chardonnay, powerful yet refined with exceptional longevity.\r\n\r\nTaittinger Comtes de Champagne – 100% Chardonnay, expressing finesse, minerality, and elegance typical of vintage Blanc de Blancs.\r\n\r\nLouis Roederer Cristal – Balanced blend of Chardonnay and Pinot Noir, celebrated for richness, precision, and exceptional ageing potential",
     fromm: "Champagne",
-    image: "https://d18vt6ndh4jzvp.cloudfront.net/media/Champagne2_0.jpg",
+    image:
+      "https://d18vt6ndh4jzvp.cloudfront.net/media/ChatGPT_Image_Dec_17_2025_09_22_52_PM.png",
     special_id: null,
     is_assortment: false,
     sub_header: "Champagne Supernova: The Finest Prestige Cuvées United",
@@ -54,30 +56,11 @@ export const special_bundle = [
     grape_variety:
       "Domaine de la Romanée-Conti Collection:\r\n\r\nRomanée-Conti – 100% Pinot Noir, exhibiting supreme elegance, depth, and legendary ageing potential.\r\n\r\nLa Tâche – 100% Pinot Noir, rich, powerful, and complex, representing some of Burgundy’s finest expressions.\r\n\r\nRichebourg – 100% Pinot Noir, concentrated and structured with remarkable longevity.\r\n\r\nRomanée Saint-Vivant – 100% Pinot Noir, balanced and refined with aromatic intensity.\r\n\r\nÉchézeaux – 100% Pinot Noir, offering expressive, age-worthy wines with finesse.\r\n\r\nGrands Échézeaux – 100% Pinot Noir, dense, structured, and highly collectible.\r\n\r\nMontrachet – 100% Chardonnay, producing rich, precise, and timeless white Burgundy.",
     fromm: "Burgundy",
-    image: "https://d18vt6ndh4jzvp.cloudfront.net/media/Burgundy2_0.jpg",
+    image:
+      "https://d18vt6ndh4jzvp.cloudfront.net/media/ChatGPT_Image_Dec_17_2025_09_24_35_PM.png",
     special_id: null,
     is_assortment: false,
     sub_header: "The Iconic Domaine de la Romanée-Conti Grand Cru Collection",
-  },
-  {
-    id: 3,
-    name: "The Bordeaux Legends",
-    vintage: null,
-    quantity: 1,
-    market_value: 43098.0,
-    case_size: 6,
-    winery:
-      "The Bordeaux Classic Collection brings together seven of the most iconic and historically significant wines from the Bordeaux region. Each estate represents a pinnacle of Old World winemaking, and together they form a distinguished, diversified bundle that blends prestige, rarity and long-term investment potential.\r\n\r\nThis collection includes Pétrus, Le Pin, Lafite Rothschild, Mouton Rothschild, Margaux, Latour and Haut-Brion – a line-up of estates whose reputations are built on centuries of excellence, critical acclaim, and enduring collector demand.\r\n\r\nBy acquiring these wines as a set, collectors secure exposure to multiple legendary producers whose track records for performance and value appreciation are unmatched. It is a portfolio built on heritage, scarcity, and timeless appeal.",
-    region:
-      "Bordeaux is one of the world’s most prestigious wine regions, renowned for producing complex, age-worthy wines with structure, elegance, and remarkable longevity. Within the region, each estate occupies a distinct terroir that contributes to its unique character.\r\n\r\nPétrus, Pomerol - Located in Pomerol, famous for clay-rich soils that produce plush, powerful Merlot-driven wines.\r\n\r\nLe Pin, Pomerol - Also in Pomerol, offering tiny production, velvety textures, and exceptional rarity.\r\n\r\nLafite Rothschild, Pauillac - In Pauillac, known for gravelly soils that give structured, long-lived Cabernet Sauvignon blends.\r\n\r\nMouton Rothschild, Pauillac - Also in Pauillac, producing Cabernet Sauvignon-led wines with power, depth, and elegance.\r\n\r\nMargaux, Margaux - Set in Margaux, celebrated for silky, aromatic Cabernet Sauvignon-based blends.\r\n\r\nLatour, Pauillac -  Pauillac estate with concentrated, structured wines renowned for ageing.\r\n\r\nHaut-Brion, Pessac-Léognan - Based in Pessac-Léognan, producing refined, smoky blends of Cabernet Sauvignon and Merlot with distinctive character.",
-    grapes: "Bordeaux Blend Red",
-    grape_variety:
-      "Pétrus – 100% Merlot, celebrated for its plush texture, richness, and incredible ageing potential.\r\n\r\nLe Pin – Predominantly Merlot, offering velvety, opulent wines with intense aromatic depth and rare scarcity.\r\n\r\nLafite Rothschild – Cabernet Sauvignon-led blend with Merlot, Cabernet Franc, and Petit Verdot, renowned for elegance, structure, and longevity.\r\n\r\nMouton Rothschild – Cabernet Sauvignon-dominant blend, combining power, depth, and a unique expression of Bordeaux artistry.\r\n\r\nMargaux – Cabernet Sauvignon-based blend with Merlot and Cabernet Franc, prized for its silky texture, aromatic complexity, and graceful finesse.\r\nLatour – Cabernet Sauvignon-driven blend, known for concentration, tannic strength, and extraordinary ageing potential.\r\n\r\nHaut-Brion – Blend of Cabernet Sauvignon, Merlot, and Cabernet Franc, offering profound depth, smoky elegance, and a distinctive Bordeaux signature.",
-    fromm: "Bordeaux",
-    image: "https://d18vt6ndh4jzvp.cloudfront.net/media/Bordeaux2.jpg",
-    special_id: null,
-    is_assortment: false,
-    sub_header: "The Pinnacle Collection of Bordeaux’s Most Iconic Estates",
   },
   {
     id: 2,
@@ -94,10 +77,32 @@ export const special_bundle = [
     grape_variety:
       "Each wine in this collection showcases the best of Napa Valley Cabernet Sauvignon, while expressing the unique character of its estate.\r\n\r\nScreaming Eagle, Oakville - Primarily Cabernet Sauvignon, producing luxurious, silky, and powerful wines with remarkable depth.\r\n\r\nOpus One, Oakville - A Bordeaux-style blend dominated by Cabernet Sauvignon, balanced with Merlot, Cabernet Franc and Petit Verdot for elegance and harmony.\r\n\r\nHarlan Estate, Oakville (Hillside), - Predominantly Cabernet Sauvignon, offering intense, concentrated flavours with extraordinary ageing potential.\r\n\r\nDominus, Yountville -  Cabernet Sauvignon-led blend with Cabernet Franc and Petit Verdot, known for structure, finesse, and a classical Bordeaux influence.\r\n\r\nScarecrow, Rutherford - Mainly Cabernet Sauvignon, showcasing rich fruit, fine tannins, and the signature “Rutherford dust” that gives depth and complexity.",
     fromm: "California",
-    image: "https://d18vt6ndh4jzvp.cloudfront.net/media/USA.jpg",
+    image:
+      "https://d18vt6ndh4jzvp.cloudfront.net/media/ChatGPT_Image_Dec_17_2025_09_18_16_PM.png",
     special_id: null,
     is_assortment: false,
     sub_header: "Napa Valley’s Most Iconic Cabernet Estates in One Collection",
+  },
+  {
+    id: 1,
+    name: "The Italian Job",
+    vintage: null,
+    quantity: 1,
+    market_value: 7815.95,
+    case_size: 6,
+    winery:
+      "A celebration of Italy’s most iconic wines, The Italian Job basket brings together five legendary bottles that embody the artistry and heritage of Tuscan winemaking. Inside you’ll discover Sassicaia, Solaia, Tignanello, Ornellaia, and Masseto – a line-up often referred to as the crown jewels of Italy.\r\n\r\nEach wine is a masterpiece in its own right: Sassicaia with its elegant structure, Solaia’s bold intensity, Tignanello’s pioneering spirit, Ornellaia’s refined complexity, and the rare, velvet-textured Masseto. Together, they offer an extraordinary journey through the very best of Super Tuscan excellence.\r\n\r\nThis basket is not just a gift – it is a statement of prestige, passion, and pure Italian style.",
+    region:
+      "The wines in The Italian Job basket hail from the rolling hills and coastal plains of Tuscany, one of the most celebrated wine regions in the world.\r\n\r\nSassicaia → Produced in Bolgheri, on the Tuscan coast, it was the pioneer of the “Super Tuscan” movement, proving that international grapes like Cabernet Sauvignon could thrive in Italian soil.\r\n\r\nOrnellaia & Masseto → Also from Bolgheri, these wines reflect the maritime climate: Ornellaia with Bordeaux-inspired blends, and Masseto as one of the world’s greatest Merlots.\r\n\r\nTignanello & Solaia → Born in the Chianti Classico heartland, these Antinori masterpieces blend tradition with innovation, using Sangiovese alongside Cabernet to create bold, modern classics.\r\n\r\nTogether, these wines showcase Tuscany’s dual identity: the heritage of Chianti’s historic hills and the innovation of Bolgheri’s coastal estates.",
+    grapes: "Cabernet - Sangiovese",
+    grape_variety:
+      "The basket brings together the best of Tuscan Sangiovese tradition with the richness of international Bordeaux grapes – Cabernet, Merlot, and Franc – showcasing why these wines are known as the legendary Super Tuscans.\r\n\r\nSassicaia – Predominantly Cabernet Sauvignon, with a touch of Cabernet Franc for elegance.\r\n\r\nOrnellaia – A Bordeaux-style blend of Cabernet Sauvignon, Merlot, Cabernet Franc, and Petit Verdot.\r\n\r\nMasseto – 100% Merlot, considered one of the finest expressions of this grape anywhere in the world.\r\n\r\nTignanello – Mainly Sangiovese, blended with Cabernet Sauvignon and Cabernet Franc.\r\n\r\nSolaia – Mostly Cabernet Sauvignon, with Cabernet Franc and Sangiovese adding depth and Italian character.",
+    fromm: "Italy",
+    image:
+      "https://d18vt6ndh4jzvp.cloudfront.net/media/Dec_17_2025_09_15_55_PM.png",
+    special_id: null,
+    is_assortment: false,
+    sub_header: "Legendary Super Tuscan Icons United in One Basket",
   },
   {
     id: 6,
@@ -114,7 +119,8 @@ export const special_bundle = [
     grape_variety:
       "Cabernet Sauvignon Blends – Screaming Eagle, Opus One, Harlan Estate, Dominus, Scarecrow, Lafite Rothschild, Mouton Rothschild, Margaux, Latour, Haut-Brion, Pétrus (Merlot-led), Le Pin (Merlot-led): Powerful, structured, and age-worthy reds with global collector appeal.\r\n\r\nPinot Noir – Romanée-Conti, La Tâche, Richebourg, Romanée Saint-Vivant, Échézeaux, Grands Échézeaux: Silky, elegant, terroir-driven reds with exceptional complexity and longevity.\r\n\r\nChardonnay – Montrachet, Dom Pérignon, Salon Le Mesnil, Taittinger Comtes de Champagne, Louis Roederer Cristal: Rich, precise whites and sparkling wines with finesse, balance, and ageing potential.\r\n\r\nOther Bordeaux Reds – Pétrus, Le Pin: Merlot-led masterpieces offering plush texture, depth, and rarity.\r\n\r\nChampagne Blends – Krug Vintage Brut, Pol Roger Sir Winston Churchill: Pinot Noir and Chardonnay blends delivering layered complexity, richness, and exceptional collectibility.\r\n\r\nThis assortment is designed for discerning collectors seeking the ultimate diversification across styles, regions, and grape varieties, providing both prestige and long-term investment potential.",
     fromm: "California",
-    image: "https://d18vt6ndh4jzvp.cloudfront.net/media/France_2_0.jpg",
+    image:
+      "https://d18vt6ndh4jzvp.cloudfront.net/media/ChatGPT_Image_Dec_17_2025_10_20_24_PM.png",
     special_id: null,
     is_assortment: false,
     sub_header:

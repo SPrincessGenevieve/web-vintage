@@ -9,15 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "font-poppins cursor-pointer bg-primary-brown text-black hover:bg-primary-brown/90",
+        default: "font-poppins text-[12px] cursor-pointer bg-primary-brown text-black hover:bg-primary-brown/90",
         destructive:
-          "font-poppins cursor-pointer bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "font-poppins cursor-pointer text-[12px] bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "font-poppins cursor-pointer border border-primary-brown text-primary-brown bg-transparent shadow-xs hover:bg-primary-brown hover:text-black dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "font-poppins cursor-pointer text-[12px] border border-primary-brown text-primary-brown bg-transparent shadow-xs hover:bg-primary-brown hover:text-white dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
           "font-poppins bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
-          "font-poppins font-normal cursor-pointer p-0 m-0 text-white/70",
+          "font-poppins font-normal cursor-pointer text-[12px] p-0 m-0 text-white/70",
         link: "font-poppins text-white/70 cursor-pointer p-0 m-0 font-normal font-poppins underline-offset-4 hover:underline",
       },
       size: {

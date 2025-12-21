@@ -4,6 +4,7 @@ import "./globals.css";
 import { UserProvider } from "@/context/UserContext";
 import { Toaster } from "@/components/ui/sonner";
 import "flag-icons/css/flag-icons.min.css";
+import { CartProvider } from "@/context/CartContext";
 
 const poppins = Poppins({
   variable: "--font-poppins-sans",
@@ -24,7 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased bg-primary-gray-600`}>
-        <UserProvider>{children}</UserProvider>
+        <UserProvider>
+          <CartProvider>
+            {children}
+          </CartProvider>
+        </UserProvider>
         <Toaster></Toaster>
       </body>
     </html>
