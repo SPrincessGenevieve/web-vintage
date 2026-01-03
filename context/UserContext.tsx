@@ -34,6 +34,8 @@ type UserContextType = {
   selected_index_vintage: number | null;
   cart_items: CartItemT[]
   filter_market: string;
+  cart_total: number;
+  current_investment: number;
   setUserDetails: (details: Partial<UserContextType>) => void;
 };
 
@@ -55,6 +57,8 @@ const defaultUserContext: UserContextType = {
   selected_index_vintage: null,
   cart_items: [],
   filter_market: "vint-ex",
+  cart_total: 0,
+  current_investment: 500,
   setUserDetails: () => {},
 };
 

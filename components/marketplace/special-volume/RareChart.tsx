@@ -1,25 +1,23 @@
 "use client";
 import React, { useState } from "react";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import { useUserContext } from "@/context/UserContext";
-import { VintExCardT, VintexDetailsT, VintexResultsT } from "@/lib/types";
-import { PortfolioChart } from "../PortfolioChart";
-import { Button } from "../ui/button";
+import { WineRareResultsT, WineResultDetailT } from "@/lib/types";
+import { Button } from "@/components/ui/button";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../ui/chart";
+} from "@/components/ui/chart";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { data_points } from "@/lib/wine_data/data_points";
 
-interface MarketplaceChartT {
+interface RareChartT {
   lifetime_performance: string;
   lwin11: string;
   release_price: number;
-  data: VintexDetailsT;
-  result: VintexResultsT[];
+  data: WineRareResultsT;
 }
 
 const chartData = [
@@ -38,18 +36,15 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function MarketplaceChart({
+export default function RareChart({
   lifetime_performance,
   lwin11,
   data,
-  result,
   release_price,
-}: MarketplaceChartT) {
+}: RareChartT) {
   const { setUserDetails, selected_index_vintage } = useUserContext();
-  const item = result[selected_index_vintage || 0];
-  const ParentWineName = data.wine_details.name;
-  const bottle_size = data.default_vintage.wine_vintage.bottle_size;
-  const case_size = data.default_vintage.case_size;
+  const bottle_size = data.wine_vintage_details?.bottle_size;
+  const case_size = data.case_size;
   const bottle =
     bottle_size === "0750"
       ? 75
@@ -64,6 +59,7 @@ export default function MarketplaceChart({
   const [selectedFilter, setSelectedFilter] = useState("Max");
   const lwin11Data = data_points.find((item) => item.lwin11 === lwin11)?.data;
   console.log(lwin11Data);
+  console.log("LWIN11: ", lwin11);
 
   const processedChartData = React.useMemo(() => {
     if (!lwin11Data) return [];
@@ -73,10 +69,16 @@ export default function MarketplaceChart({
 
     switch (selectedFilter) {
       case "YTD":
-        // Filter monthly data for the current year
+        const latestYear = Math.max(
+          ...lwin11Data.monthly.map((d) => new Date(d.date).getFullYear())
+        );
+
         return lwin11Data.monthly
-          .filter((d) => new Date(d.date).getFullYear() === currentYear)
-          .map((d) => ({ date: d.date, value: parseFloat(d.value) }));
+          .filter((d) => new Date(d.date).getFullYear() === latestYear)
+          .map((d) => ({
+            date: d.date,
+            value: parseFloat(d.value),
+          }));
 
       case "6m":
         // Filter monthly data for the last 6 months
@@ -113,7 +115,10 @@ export default function MarketplaceChart({
   return (
     <div className="p-4 flex flex-col gap-4">
       <Label variant="h1">
-        {ParentWineName}, {item?.vintage}, {case_size}x{bottle}cl
+        {data.basket_details
+          ? data.basket_details.name
+          : data.wine_vintage_details?.name}
+        {`, ${data.wine_vintage_details?.vintage}, ${case_size}x${bottle}cl`}
       </Label>
       <div className="flex w-full bg-black/20 p-2 mb-4 rounded-2xl">
         {filterBtn.map((item, index) => (

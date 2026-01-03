@@ -31,17 +31,23 @@ export default function CardWine({ item, type }: vintageT) {
   }, [item]);
 
   const handleNext = (id: number) => {
+    let url = "";
+
     if (type === "vint-ex") {
-      router.push(`/vintage/marketplace/vint-ex/${id}`);
+      url = `/vintage/marketplace/vint-ex/${id}`;
     }
     if (type === "special-bundle") {
-      router.push(`/vintage/marketplace/special-bundle/${id}`);
+      url = `/vintage/marketplace/special-bundle/${id}`;
     }
     if (type === "special-volumes") {
-      router.push(`/vintage/marketplace/special-volumes/${id}`);
+      url = `/vintage/marketplace/special-volumes/${id}`;
     }
     if (type === "rare") {
-      router.push(`/vintage/marketplace/rare/${id}`);
+      url = `/vintage/marketplace/rare/${id}`;
+    }
+
+    if (url) {
+      window.open(url, "_blank");
     }
   };
 
@@ -57,6 +63,7 @@ export default function CardWine({ item, type }: vintageT) {
         {data.length > 0 ? (
           data.map((rawItem: any, index: number) => {
             const wine = rawItem.wine_vintage_details || rawItem;
+            console.log("RAW: ", rawItem)
 
             return (
               <Card
@@ -64,7 +71,7 @@ export default function CardWine({ item, type }: vintageT) {
                 className="bg-transparent  hover:bg-primary-brown/10 transition ease-in-out relative py-2 rounded-none shadow-none border-0 marketplace-card w-full max-w-[400px] min-w-[25%] min-h-[200px]"
               >
                 <CardContent
-                  onClick={() => handleNext(rawItem.id)}
+                  onClick={() => handleNext(type === "rare" ? rawItem.investment_id : rawItem.id)}
                   className="bg-transparent rounded-none h-full flex items-center justify-center"
                 >
                   <div className="w-[90%] h-px bg-primary-brown/30 top-0 absolute"></div>
@@ -99,11 +106,17 @@ export default function CardWine({ item, type }: vintageT) {
                       <div className="mt-2 w-[95%]">
                         <div className="w-full flex">
                           <div className="w-1/2">
-                            <Label>Years</Label>
+                            <Label>
+                              {type === "special-bundle"
+                                ? "Case Size"
+                                : "Vintage"}
+                            </Label>
                           </div>
                           <div className="w-1/2 flex justify-end">
                             <Label className="font-medium text-white text-right">
-                              {wine.vintage_range || wine.vintage}
+                              {type === "special-bundle"
+                                ? wine.case_size
+                                : wine.vintage_range || wine.vintage}
                             </Label>
                           </div>
                         </div>

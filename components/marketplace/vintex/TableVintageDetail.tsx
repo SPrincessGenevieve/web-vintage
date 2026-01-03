@@ -39,16 +39,16 @@ export default function TableVintageDetail() {
   const id = pathname.split("/").pop() || "";
   const data = wineVintex[id];
 
-  const item = data.results[selected_index_vintage ?? 0];
+  const item = data?.results?.[selected_index_vintage ?? 0];
 
-  const [open, setOpen] = useState(item.is_unavailable ? true : false);
+  const [open, setOpen] = useState(item?.is_unavailable ?? false);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedVintage, setSelectedVintage] = useState(item.vintage);
+  const [selectedVintage, setSelectedVintage] = useState(item?.vintage ?? 0);
   const formattedReleasePrice =
-    item.release_price && !isNaN(Number(item.release_price))
-      ? Number(item.release_price) > 0
-        ? `+${item.release_price}%`
-        : `${item.release_price}%`
+    item?.release_price && !isNaN(Number(item?.release_price))
+      ? Number(item?.release_price) > 0
+        ? `+${item?.release_price}%`
+        : `${item?.release_price}%`
       : "";
 
   const handleNotify = () => {
@@ -61,6 +61,7 @@ export default function TableVintageDetail() {
     <div className="flex  flex-col gap-4 h-full">
       <div className=" flex">
         <Button
+          className="p-0 m-0 px-0 mx-0"
           variant={"ghost"}
           onClick={() => setUserDetails({ vintage_table_detail: false })}
         >
@@ -73,7 +74,7 @@ export default function TableVintageDetail() {
         <Card className="relative p-0">
           <CardContent className="p-0">
             <div className="flex items-center p-2">
-              {item.is_unavailable && (
+              {item?.is_unavailable && (
                 <>
                   <div className="absolute bg-red-800/50 p-2 w-full flex items-center justify-center">
                     <Label className="font-bold">UNAVAILABLE</Label>
@@ -91,7 +92,7 @@ export default function TableVintageDetail() {
                 alt=""
                 width={400}
                 height={400}
-                src={data.wine_details.wine_images[0]}
+                src={data?.wine_details.wine_images[0]}
                 onLoadingComplete={(img) => {
                   const ratio = img.naturalWidth / img.naturalHeight;
 
@@ -110,11 +111,11 @@ export default function TableVintageDetail() {
         <Card className="w-full">
           <CardContent className="p-4 flex flex-col justify-between h-full">
             <DetailsTableCard
-              name={item.name}
-              drinking_window={item.drinking_window}
-              annual_production={data.wine_details.annual_production}
-              cretic_score={item.rp_score}
-              reviewed_by={item.rp_reviewer}
+              name={item?.name}
+              drinking_window={item?.drinking_window}
+              annual_production={data?.wine_details.annual_production}
+              cretic_score={item?.rp_score}
+              reviewed_by={item?.rp_reviewer}
             ></DetailsTableCard>
           </CardContent>
         </Card>
@@ -143,9 +144,9 @@ export default function TableVintageDetail() {
             <div className="w-full h-full flex flex-col items-center justify-center">
               <Label
                 className={`text-[18px] md:text-lg font-poppins-medium ${
-                  Number(item.release_price) > 0
+                  Number(item?.release_price) > 0
                     ? "text-green-500"
-                    : Number(item.release_price) < 0
+                    : Number(item?.release_price) < 0
                     ? "text-red-500"
                     : "text-gray-400"
                 }`}
@@ -170,19 +171,19 @@ export default function TableVintageDetail() {
                     <ChevronDown size={20} color="black"></ChevronDown>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    {data.results.map((item, index) => (
+                    {data?.results.map((item, index) => (
                       <DropdownMenuItem
                         onClick={() => {
-                          setSelectedVintage(item.vintage);
+                          setSelectedVintage(item?.vintage);
                           setSelectedIndex(index);
                           setUserDetails({ selected_index_vintage: index });
                         }}
                         className="flex justify-between"
                         key={index}
                       >
-                        {item.vintage}
-                        {item.is_very_special && <Star></Star>}
-                        {item.is_unavailable && <WineOff></WineOff>}
+                        {item?.vintage}
+                        {item?.is_very_special && <Star></Star>}
+                        {item?.is_unavailable && <WineOff></WineOff>}
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenuContent>
@@ -191,7 +192,7 @@ export default function TableVintageDetail() {
                   type={"vint-ex"}
                   trigger={
                     <Button
-                      disabled={item.is_unavailable && true}
+                      disabled={item?.is_unavailable && true}
                       className="bg-primary-gray-500 text-primary-brown hover:text-black border-2 border-transparent h-10 hover:border-black"
                     >
                       <ShoppingBasket /> Buy this vintage
@@ -199,10 +200,10 @@ export default function TableVintageDetail() {
                   }
                   parent_data={data}
                   result={item}
-                  result_data={data.results}
-                  bottle_size={data.default_vintage.wine_vintage.bottle_size}
+                  result_data={data?.results}
+                  bottle_size={data?.default_vintage.wine_vintage.bottle_size}
                   default_case_size_list={
-                    data.default_vintage.wine_vintage.available_case_size
+                    data?.default_vintage.wine_vintage.available_case_size
                   }
                 ></DrawerBuy>
               </div>
@@ -215,7 +216,7 @@ export default function TableVintageDetail() {
                   variant="h1"
                   className="text-black text-[25px] font-bold"
                 >
-                  £{Number(item.market_value).toLocaleString()}
+                  £{Number(item?.market_value).toLocaleString()}
                 </Label>
               </div>
             </div>
@@ -226,23 +227,23 @@ export default function TableVintageDetail() {
         <CardContent className="h-full overflow-y-auto">
           {activeTab === "Performance" && (
             <MarketplaceChart
-              release_price={Number(item.release_price)}
-              lwin11={item.lwin11}
+              release_price={Number(item?.release_price)}
+              lwin11={item?.lwin11}
               lifetime_performance={formattedReleasePrice}
               data={data}
-              result={data.results}
+              result={data?.results}
             ></MarketplaceChart>
           )}
           {activeTab === "Overview" && (
             <TabDeatils
               title="Overflow"
-              desc={data.wine_details.winery}
+              desc={data?.wine_details.winery}
             ></TabDeatils>
           )}
           {activeTab === "Tasting Note" && (
             <TabDeatils
               title="Tasting Note"
-              desc={item.rp_tasting_notes}
+              desc={item?.rp_tasting_notes}
             ></TabDeatils>
           )}
         </CardContent>

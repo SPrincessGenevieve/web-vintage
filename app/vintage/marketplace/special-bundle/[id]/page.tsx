@@ -12,6 +12,7 @@ import Image from "next/image";
 import DetailsCard from "@/components/marketplace/DetailsCard";
 import TabDeatils from "@/components/marketplace/TabDetails";
 import { WineImage } from "@/components/marketplace/WineImage";
+import BuyBundleBtn from "@/components/BuyBundleBtn";
 
 export default function SpecialBundleDetail() {
   const pathname = usePathname();
@@ -28,24 +29,34 @@ export default function SpecialBundleDetail() {
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto justify-between">
       <div className=" flex">
-        <Button variant={"ghost"} onClick={() => router.back()}>
+        <Button
+          className="p-0 m-0 px-0 mx-0"
+          variant={"ghost"}
+          onClick={() => router.push("/vintage/marketplace")}
+        >
           <ChevronLeft></ChevronLeft>Back
         </Button>
       </div>
       <div className="flex gap-4 min-h-[32%]">
         <Card className="">
-          <CardContent className="flex items-center justify-center">
+          <CardContent className="flex h-full items-center justify-center">
             <Image
               alt=""
               width={400}
               height={400}
               src={details.image}
-              className={`h-auto w-[400px] rounded-xl max-w-[600px] transition-all duration-300 object-contain`}
+              className={`h-full w-auto rounded-xl max-w-[600px] transition-all duration-300 object-contain`}
             ></Image>
           </CardContent>
         </Card>
         <Card className="w-full">
           <CardContent className="p-4 flex flex-col justify-between h-full">
+            <Label
+              variant="h1"
+              className="text-primary-brown pb-2 w-full border-b-2 border-primary-brown/30"
+            >
+              {data.basket_details.name}
+            </Label>
             <div className="flex items-center justify-between">
               {tabs.map((item, index) => (
                 <div key={index} className="flex w-full">
@@ -76,6 +87,7 @@ export default function SpecialBundleDetail() {
             </div>
           </CardContent>
         </Card>
+        <BuyBundleBtn data={data}></BuyBundleBtn>
       </div>
       <div className="w-full h-[58%]">
         <Card className="w-full h-full overflow-x-auto">
@@ -101,7 +113,8 @@ export default function SpecialBundleDetail() {
                     <div className="flex justify-between items-center">
                       <Label>Bottle Size:</Label>
                       <Label className="text-white">
-                        {item.case_size}x{item.basket_bottle_size === "0750"
+                        {item.case_size}x
+                        {item.basket_bottle_size === "0750"
                           ? 75
                           : item.basket_bottle_size === "1500"
                           ? 150
@@ -109,13 +122,15 @@ export default function SpecialBundleDetail() {
                           ? 300
                           : item.basket_bottle_size === "6000"
                           ? 600
-                          : 0}cl
+                          : 0}
+                        cl
                       </Label>
                     </div>
                     <div className="flex justify-between items-center">
                       <Label>Market Value:</Label>
                       <Label className="text-white">
-                        £ {Number(
+                        £{" "}
+                        {Number(
                           item.wine_vintage.market_value
                         ).toLocaleString()}
                       </Label>

@@ -45,6 +45,7 @@ export function PortfolioChart() {
         <div className="flex w-full bg-black/20 p-2 mb-4 rounded-2xl">
           {filterBtn.map((item, index) => (
             <Button
+              key={index}
               variant={selectedFilter === item ? "default" : "ghost"}
               onClick={() => setSelectedFilter(item)}
               className="w-[20%] h-7"
@@ -54,7 +55,10 @@ export function PortfolioChart() {
           ))}
         </div>
         <div className="overflow-y-auto max-w-screen">
-          <ChartContainer className="portfolio-dash-chart w-full h-[20vh]" config={chartConfig}>
+          <ChartContainer
+            className="portfolio-dash-chart w-full h-[20vh]"
+            config={chartConfig}
+          >
             <AreaChart
               accessibilityLayer
               data={chartData}

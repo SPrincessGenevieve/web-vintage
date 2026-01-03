@@ -22,6 +22,7 @@ import {
   FunnelX,
   SortAsc,
   SortDesc,
+  X,
 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
@@ -78,13 +79,23 @@ const category = [
 ];
 
 const sort = [{}];
+type CardType = "vint-ex" | "special-volumes" | "special-bundle" | "rare";
 
 export default function Marketplace() {
   const { filter_market, setUserDetails } = useUserContext();
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState(filter_market);
+  const [selectedCategory, setSelectedCategory] = useState<CardType>("vint-ex");
+
   const [search, setSearch] = useState("");
   const [count, setCount] = useState(0);
+
+  const handleClearFilter = (type: string) => {
+    if (type === "category") {
+      setSelectedCategory("vint-ex");
+    } else {
+      setSelectedFilter("all");
+    }
+  };
 
   // 1. New Sort State: "none", "asc", or "desc"
   const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
@@ -194,7 +205,7 @@ export default function Marketplace() {
               {category.map((item, index) => (
                 <DropdownMenuCheckboxItem
                   onCheckedChange={() => {
-                    setSelectedCategory(item.value);
+                    setSelectedCategory(item.value as CardType);
                     setUserDetails({ filter_market: item.value });
                   }}
                   checked={item.value === selectedCategory}
@@ -241,10 +252,42 @@ export default function Marketplace() {
           </Button>
         </div>
         <Button>
-          <Label className="text-white text-[12px]">
+          <Label className="text-black text-[12px]">
             <ChartPie></ChartPie>Build Portfolio
           </Label>
         </Button>
+      </div>
+      <div className="flex gap-2">
+        {selectedCategory !== "vint-ex" && (
+          <div className="flex">
+            <Label className="bg-primary-brown justify-between capitalize px-2 py-1 font-semibold text-black rounded-[5px]">
+              {selectedCategory === "rare"
+                ? "Trending Wines"
+                : selectedCategory}
+              <Button
+                onClick={() => handleClearFilter("category")}
+                variant={"ghost"}
+                className="w-4 h-5 text-black"
+              >
+                <X></X>
+              </Button>
+            </Label>
+          </div>
+        )}
+        {selectedFilter !== "all" && (
+          <div className="flex">
+            <Label className="bg-primary-brown flex justify-between capitalize px-2 font-semibold text-black rounded-[5px]">
+              {selectedFilter}
+              <Button
+                onClick={() => handleClearFilter("filter")}
+                variant={"ghost"}
+                className="w-4 h-5 text-black"
+              >
+                <X></X>
+              </Button>
+            </Label>
+          </div>
+        )}
       </div>
       <CardWine item={currentData} type={selectedCategory} />
     </div>

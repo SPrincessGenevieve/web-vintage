@@ -48,7 +48,10 @@ export default function VintExDetail() {
       {!vintage_table_detail ? (
         <>
           <div className=" flex">
-            <Button variant={"ghost"} onClick={() => router.back()}>
+            <Button className="p-0 m-0 px-0 mx-0" 
+              variant={"ghost"}
+              onClick={() => router.push("/vintage/marketplace")}
+            >
               <ChevronLeft></ChevronLeft>Back
             </Button>
           </div>

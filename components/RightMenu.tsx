@@ -45,7 +45,6 @@ export default function RightMenu() {
     });
   };
 
-  console.log(cart.length);
 
   return (
     <div className="flex gap-4">

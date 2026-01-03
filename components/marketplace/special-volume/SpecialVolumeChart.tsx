@@ -118,6 +118,7 @@ export default function SpecialVolumeChart({
       <div className="flex w-full bg-black/20 p-2 mb-4 rounded-2xl">
         {filterBtn.map((item, index) => (
           <Button
+            key={index}
             variant={selectedFilter === item ? "default" : "ghost"}
             onClick={() => setSelectedFilter(item)}
             className="w-[20%] h-7"

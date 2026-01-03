@@ -3,7 +3,7 @@ import * as WineSpecialBundleList from "./special-bundle";
 
 export const wineSpecialBundle: Record<string, SpecialBundleT> =
   Object.fromEntries(
-    Array.from({ length: 80 }, (_, i) => {
+    Array.from({ length: 8000 }, (_, i) => {
       const index = i + 1;
       return [
         index.toString(),

@@ -3,7 +3,7 @@ import * as WineSpecialVolList from "./special-volumes";
 
 export const wineSpecialVolume: Record<string, SpecialVolumeT> =
   Object.fromEntries(
-    Array.from({ length: 80 }, (_, i) => {
+    Array.from({ length: 8000 }, (_, i) => {
       const index = i + 1;
       return [
         index.toString(),

@@ -48,7 +48,7 @@ export default function SpecialVolDetail() {
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto">
       <div className=" flex">
-        <Button variant={"ghost"} onClick={() => router.back()}>
+        <Button className="p-0 m-0 px-0 mx-0"  variant={"ghost"} onClick={() => router.push("/vintage/marketplace")}>
           <ChevronLeft></ChevronLeft>Back
         </Button>
       </div>

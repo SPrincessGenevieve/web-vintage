@@ -60,7 +60,7 @@ export default function DrawerBuySpecialVol({
       ? 600
       : 0;
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedVintage, setSelectedVintage] = useState(result.vintage);
+  const [selectedVintage, setSelectedVintage] = useState(result?.vintage);
   const [quantityData, setQuantityData] = useState(1);
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     result.available_case_size.length > 0
@@ -133,7 +133,7 @@ export default function DrawerBuySpecialVol({
         null,
 
       user_investment_wine_vintage:
-        type === "special-volume" || type === "rare" ? ({} as any) : null,
+        type === "special-volume" ? ({} as any) : null,
     };
 
     addToCart(newItem);
