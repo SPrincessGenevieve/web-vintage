@@ -62,14 +62,14 @@ export default function DrawerBuy({
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     result?.available_case_size.length > 0
       ? `${result?.available_case_size[0]}x${bottle}cl`
-      : `${default_case_size_list[0]}x${bottle}cl`
+      : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
   );
   const parent = parent_data.wine_details;
 
   const [caseSize, setCaseSize] = useState(
     result?.available_case_size.length > 0
       ? result?.available_case_size[0]
-      : default_case_size_list[0]
+      : default_case_size_list?.[0] ?? 1
   );
   const total = Number(result?.market_value) * caseSize * quantityData;
 
@@ -77,12 +77,12 @@ export default function DrawerBuy({
     setSelectedCaseSize(
       result?.available_case_size.length > 0
         ? `${result?.available_case_size[0]}x${bottle}cl`
-        : `${default_case_size_list[0]}x${bottle}cl`
+        : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
     );
     setCaseSize(
       result?.available_case_size.length > 0
         ? result?.available_case_size[0]
-        : default_case_size_list[0]
+        : default_case_size_list?.[0] ?? 1
     );
   }, [selectedVintage]);
 
@@ -117,6 +117,7 @@ export default function DrawerBuy({
 
     addToCart(newItem);
     toast.success("Wine added to cart")
+    location.reload();
   };
 
   return (
@@ -181,7 +182,7 @@ export default function DrawerBuy({
                         {item}x{bottle}cl
                       </DropdownMenuCheckboxItem>
                     ))
-                  : default_case_size_list.map((item, index) => (
+                  : default_case_size_list ?? [].map((item, index) => (
                       <DropdownMenuCheckboxItem
                         onClick={() =>
                           setSelectedCaseSize(`${item}x${bottle}cl`)

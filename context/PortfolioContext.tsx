@@ -1,11 +1,11 @@
 "use client";
 
-import { PortfolioDataT } from "@/lib/types";
+import { CartItemT } from "@/lib/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface PortfolioContextType {
-  portfolio: PortfolioDataT[];
-  addToPortfolio: (item: PortfolioDataT) => void;
+  portfolio: CartItemT[];
+  addToPortfolio: (item: CartItemT) => void;
   removeFromPortfolio: (id: string | number) => void;
   clearPortfolio: () => void;
 }
@@ -15,7 +15,7 @@ const PortfolioContext = createContext<PortfolioContextType | undefined>(
 );
 
 export function PortfolioProvider({ children }: { children: React.ReactNode }) {
-  const [portfolio, setPortfolio] = useState<PortfolioDataT[]>(() => {
+  const [portfolio, setPortfolio] = useState<CartItemT[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("my_portfolio");
       if (saved) return JSON.parse(saved);
@@ -28,11 +28,20 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("my_portfolio", JSON.stringify(portfolio));
   }, [portfolio]);
 
-  const addToPortfolio = (newItem: PortfolioDataT) => {
+  const addToPortfolio = (newItem: CartItemT) => {
     setPortfolio((prev) => {
-      const exists = prev.find((item) => item.id === newItem.id);
-      if (exists) return prev; // avoid duplicates
-      return [...prev, newItem];
+      const current = Array.isArray(prev) ? prev : [];
+
+      const index = current.findIndex((item) => item.id === newItem.id);
+
+      // ✅ Replace existing item with fresh data
+      if (index !== -1) {
+        const updated = [...current];
+        updated[index] = newItem;
+        return updated;
+      }
+
+      return [...current, newItem];
     });
   };
 

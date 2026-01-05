@@ -112,6 +112,7 @@ export default function DrawerBundleBuy({
     addToCart(newItem);
     console.log("DATA RSULT: ", newItem)
     toast.success("Wine added to cart");
+    location.reload()
   };
 
   return (

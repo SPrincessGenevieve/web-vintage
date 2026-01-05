@@ -74,9 +74,9 @@ export default function Cart() {
     }
     return total;
   }, 0);
-  console.log("TOTAL VALUE: ", total_market_value);
 
   const handleCheckout = () => {
+    clearCartSummary();
     cart.forEach((item) => {
       if (checkedItems[item.id.toString()]) {
         const data_list =
@@ -86,19 +86,30 @@ export default function Cart() {
             ? { basket: item.basket, basket_items: item.basket_items ?? [] }
             : null);
 
-        let marketValue = 0;
-        if (data_list && "market_value" in data_list) {
-          marketValue = Number(data_list.market_value ?? 0);
-        }
+        const stock = item.basket === null && item.stock_wine_vintage;
+        const basket = item.basket !== null && item.basket;
+        const basket_items = item.basket_items !== null && item.basket_items;
+        const image = item.basket !== null ? item.basket.image : item.images;
+        const quantity = quantityData[item.id.toString()] || item.quantity || 1;
 
-        const quantity = quantityData[item.id.toString()] ?? item.quantity;
-        const itemTotal =
-          marketValue * item.case_size * quantity +
-          (item.photo_request ? PHOTO_REQUEST_FEE : 0);
-        addToCartSummary(item); // ✅ correct per-item total
-        setUserDetails({
-          cart_total: total_market_value,
-        });
+        addToCartSummary({
+          id: item.id,
+          case_size: item.case_size,
+          quantity: Number(quantity),
+          stock_wine_vintage: stock || null,
+          user_investment_wine_vintage: null,
+          short_description: item.short_description,
+          images: image,
+          is_special_volumes: false,
+          basket: basket || null,
+          basket_items: basket_items || null,
+          is_available: true,
+          photo_request: item.photo_request,
+          wine_name: item.wine_name,
+        }), // ✅ correct per-item total
+          setUserDetails({
+            cart_total: total_market_value,
+          });
       }
     });
 
@@ -183,11 +194,13 @@ export default function Cart() {
                 quantityData[item.id.toString()] ?? item.quantity;
 
               // ✅ only read market_value when it exists
-              let marketValue = 0;
+              const marketValue = Number(
+                item.basket !== null
+                  ? item.basket.market_value
+                  : item.stock_wine_vintage?.market_value ?? 0
+              );
 
-              if (data_list && "market_value" in data_list) {
-                marketValue = Number(data_list.market_value ?? 0);
-              }
+              console.log("MARKET VALUE: ", marketValue);
 
               const total_wine =
                 marketValue * item.case_size * quantity +
@@ -195,8 +208,7 @@ export default function Cart() {
 
               const vintage =
                 (data_list as UserInvestmentWineVintage)?.vintage ??
-                (data_list as StockWineVintageT)?.wine_vintage_details
-                  ?.vintage ??
+                (data_list as StockWineVintageT)?.vintage ??
                 (data_list as any)?.basket?.vintage ??
                 null;
 
@@ -252,10 +264,13 @@ export default function Cart() {
                         </div>
 
                         <div className="flex items-center">
-                          <Label>
-                            {item.basket === null ? vintage : "---"}
-                          </Label>
-                          <Dot className="text-white" />
+                          {item.basket === null && (
+                            <>
+                              <Label>{item.basket === null && vintage}</Label>
+                              <Dot className="text-white" />
+                            </>
+                          )}
+
                           <Label>
                             {item.case_size}x{bottle}
                           </Label>
@@ -306,7 +321,7 @@ export default function Cart() {
                           </Button>
                         </div>
                       </div>
-                      <div className="h-full flex items-baseline-last">
+                      <div className="h-full  justify-end w-1/2 flex items-baseline-last">
                         <Label className="flex" variant="h1">
                           £ {Number(total_wine).toLocaleString()}
                         </Label>

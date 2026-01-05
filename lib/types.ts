@@ -347,7 +347,7 @@ export interface CartItemT {
   images: string | string[];
   is_special_volumes: boolean;
   basket: CartBasketT | null;
-  basket_items: BasketItemsT[] | null
+  basket_items: BasketItemsT[] | null;
   is_available: boolean;
   photo_request: boolean;
   wine_name: string;
@@ -355,7 +355,7 @@ export interface CartItemT {
 
 export interface BasketT {
   basket: CartBasketT | null;
-  basket_items: BasketItemsT[] | null
+  basket_items: BasketItemsT[] | null;
 }
 
 export interface PortfolioBasketDetailsT {
@@ -467,30 +467,27 @@ export interface StockWineVintageT {
   quantity: number;
   market_value: number;
   is_owner: boolean;
-  wine_vintage_details: {
-    id: number;
-    name: string;
-    lwin11: string;
-    vintage: number;
-    rp_score: string;
-    release_price: string;
-    rp_released: string;
-    rp_tasting_notes: string;
-    rp_reviewer: string;
-    holding_years: string;
-    liv_ex_value: number;
-    is_listed: boolean;
-    size: string;
-    status: string;
-    drinking_window: string;
-    market_value: string;
-    tags: string;
-    processed_case: number;
-    bottle_size: string;
-    mean: number;
-    median: number;
-    is_user_investment: boolean;
-  };
+  id: number;
+  name: string;
+  lwin11: string;
+  vintage: number;
+  rp_score: string;
+  release_price: string;
+  rp_released: string;
+  rp_tasting_notes: string;
+  rp_reviewer: string;
+  holding_years: string;
+  liv_ex_value: number;
+  is_listed: boolean;
+  size: string;
+  status: string;
+  drinking_window: string;
+  tags: string;
+  processed_case: number;
+  bottle_size: string;
+  mean: number;
+  median: number;
+  is_user_investment: boolean;
 }
 
 export interface PortfolioT {
@@ -648,4 +645,12 @@ export interface SpecialBundleParentT {
 export interface SpecialBundleT {
   results: PortfolioBasketItemT[];
   basket_details: SpecialBundleParentT;
+}
+
+export interface PaymentMethodT {
+  last_code: string;
+  exp: string;
+  img: string;
+  card_type: string;
+  is_default: boolean;
 }

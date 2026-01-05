@@ -24,7 +24,7 @@ import { VintageT } from "@/app/vintage/marketplace/vint-ex/[id]/page";
 import { VintexResultsT } from "@/lib/types";
 
 export interface DrawerVintageT {
-  result_data: VintexResultsT[]
+  result_data: VintexResultsT[];
   bottle_size: string;
   default_case_size_list: number[];
   trigger: React.ReactNode;
@@ -52,12 +52,12 @@ export default function DrawerVintage({
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     result_data[selectedIndex].available_case_size.length > 0
       ? `${result_data[selectedIndex].available_case_size[0]}x${bottle}cl`
-      : `${default_case_size_list[0]}x${bottle}cl`
+      : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
   );
   const [caseSize, setCaseSize] = useState(
     result_data[selectedIndex].available_case_size.length > 0
       ? result_data[selectedIndex].available_case_size[0]
-      : default_case_size_list[0]
+      : default_case_size_list?.[0] ?? 1
   );
   const total =
     Number(result_data[selectedIndex].market_value) * caseSize * quantityData;
@@ -66,20 +66,18 @@ export default function DrawerVintage({
     setSelectedCaseSize(
       result_data[selectedIndex].available_case_size.length > 0
         ? `${result_data[selectedIndex].available_case_size[0]}x${bottle}cl`
-        : `${default_case_size_list[0]}x${bottle}cl`
+        : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
     );
     setCaseSize(
       result_data[selectedIndex].available_case_size.length > 0
         ? result_data[selectedIndex].available_case_size[0]
-        : default_case_size_list[0]
+        : default_case_size_list?.[0] ?? 1
     );
   }, [selectedVintage]);
 
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        {trigger}
-      </SheetTrigger>
+      <SheetTrigger asChild>{trigger}</SheetTrigger>
       {/* The "side" prop handles the direction */}
       <SheetContent side="right">
         <SheetHeader className="">
@@ -141,13 +139,12 @@ export default function DrawerVintage({
                         </DropdownMenuCheckboxItem>
                       )
                     )
-                  : default_case_size_list.map((item, index) => (
+                  : (default_case_size_list ?? []).map((item, index) => (
                       <DropdownMenuCheckboxItem
+                        key={index}
                         onClick={() =>
                           setSelectedCaseSize(`${item}x${bottle}cl`)
                         }
-                        key={index}
-                        checked={item === caseSize ? true : false}
                       >
                         {item}x{bottle}cl
                       </DropdownMenuCheckboxItem>

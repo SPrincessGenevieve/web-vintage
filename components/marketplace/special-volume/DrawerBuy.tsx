@@ -65,7 +65,7 @@ export default function DrawerBuySpecialVol({
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     result.available_case_size.length > 0
       ? `${result.available_case_size[0]}x${bottle}cl`
-      : `${default_case_size_list[0]}x${bottle}cl`
+      : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
   );
   const parent = parent_data.wine_details;
 
@@ -80,12 +80,12 @@ export default function DrawerBuySpecialVol({
     setSelectedCaseSize(
       result.available_case_size.length > 0
         ? `${result.available_case_size[0]}x${bottle}cl`
-        : `${default_case_size_list[0]}x${bottle}cl`
+        : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
     );
     setCaseSize(
       result.available_case_size.length > 0
         ? result.available_case_size[0]
-        : default_case_size_list[0]
+        : default_case_size_list?.[0] ?? 1
     );
   }, [selectedVintage]);
 
@@ -131,13 +131,14 @@ export default function DrawerBuySpecialVol({
         //     }
         //   :
         null,
-
+      basket_items: null,
       user_investment_wine_vintage:
         type === "special-volume" ? ({} as any) : null,
     };
 
     addToCart(newItem);
     toast.success("Wine added to cart");
+    location.reload();
   };
 
   return (

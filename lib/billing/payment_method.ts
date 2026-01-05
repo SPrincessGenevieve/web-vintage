@@ -1,0 +1,1154 @@
+export const card_list = [
+  {
+    id: "ach",
+    type: "online",
+    name: "ACH",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ach/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ach/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ach/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "afterpay",
+    type: "online",
+    name: "Afterpay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/afterpay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/afterpay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/afterpay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "alipay",
+    type: "online",
+    name: "Alipay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/alipay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/alipay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/alipay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "american_express",
+    type: "card",
+    name: "American Express",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/american_express/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/american_express/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/american_express/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: ["credit"],
+  },
+  {
+    id: "apple_pay",
+    type: "online",
+    name: "Apple Pay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/apple_pay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/apple_pay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/apple_pay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "bancontact",
+    type: "online",
+    name: "Bancontact",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bancontact/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bancontact/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bancontact/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "bankTransfer_IBAN",
+    type: "online",
+    name: "International Bank Transfer (IBAN)",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bankTransfer_IBAN/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bankTransfer_IBAN/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bankTransfer_IBAN/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "bitcoin",
+    type: "online",
+    name: "Bitcoin",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bitcoin/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bitcoin/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bitcoin/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "bitpay",
+    type: "online",
+    name: "BitPay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bitpay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bitpay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/bitpay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "cartes_bancaires",
+    type: "card",
+    name: "Cartes Bancaires",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cartes_bancaires/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cartes_bancaires/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cartes_bancaires/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["fra"],
+    capabilities: ["credit"],
+  },
+  {
+    id: "cash_on_delivery",
+    type: "online",
+    name: "Cash on Delivery",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cash_on_delivery/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cash_on_delivery/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cash_on_delivery/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "china_union_pay",
+    type: "card",
+    name: "China Union Pay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/china_union_pay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/china_union_pay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/china_union_pay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["chn"],
+    capabilities: ["credit", "debit"],
+  },
+  {
+    id: "cryptocom_pay",
+    type: "online",
+    name: "Crypto.com Pay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cryptocom_pay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cryptocom_pay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/cryptocom_pay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "dankort",
+    type: "card",
+    name: "Dankort",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dankort/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dankort/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dankort/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["europe"],
+    capabilities: ["debit"],
+  },
+  {
+    id: "diners_club",
+    type: "card",
+    name: "Diners Club",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/diners_club/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/diners_club/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/diners_club/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["europe", "north-america"],
+    capabilities: ["credit"],
+  },
+  {
+    id: "directEbanking",
+    type: "online",
+    name: "Sofortüberweisung",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/directEbanking/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/directEbanking/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/directEbanking/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "discover",
+    type: "card",
+    name: "Discover",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/discover/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/discover/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/discover/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["europe", "north-america"],
+    capabilities: ["credit"],
+  },
+  {
+    id: "dotpay",
+    type: "online",
+    name: "Dotpay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dotpay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dotpay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dotpay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "dragonpay_ebanking",
+    type: "online",
+    name: "Dragonpay eBanking",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_ebanking/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_ebanking/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_ebanking/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "dragonpay_gcash",
+    type: "online",
+    name: "GCash via Dragonpay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_gcash/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_gcash/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_gcash/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "dragonpay_otc_banking",
+    type: "online",
+    name: "Dragonpay OTC",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_otc_banking/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_otc_banking/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/dragonpay_otc_banking/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "ebanking_FI",
+    type: "online",
+    name: "Finnish E-Banking",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ebanking_FI/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ebanking_FI/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ebanking_FI/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "giropay",
+    type: "online",
+    name: "GiroPay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/giropay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/giropay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/giropay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "google_pay",
+    type: "online",
+    name: "Google Pay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/google_pay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/google_pay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/google_pay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "grabpay",
+    type: "online",
+    name: "GrabPay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/grabpay/30/original.png",
+        width: 40,
+        height: 26,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/grabpay/60/original.png",
+        width: 77,
+        height: 50,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/grabpay/120/original.png",
+        width: 154,
+        height: 100,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "ideal",
+    type: "online",
+    name: "iDEAL",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ideal/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ideal/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/ideal/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "interac",
+    type: "online",
+    name: "Interac Online",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/interac/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/interac/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/interac/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "jcb",
+    type: "card",
+    name: "Jcb",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/jcb/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/jcb/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/jcb/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["jpn"],
+    capabilities: ["credit", "debit"],
+  },
+  {
+    id: "kcp_banktransfer",
+    type: "online",
+    name: "Bank Transfer via KCP",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_banktransfer/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_banktransfer/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_banktransfer/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "kcp_creditcard",
+    type: "online",
+    name: "Credit Card via KCP",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_creditcard/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_creditcard/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_creditcard/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "kcp_payco",
+    type: "online",
+    name: "PayCo",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_payco/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_payco/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/kcp_payco/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "klarna",
+    type: "online",
+    name: "Klarna",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/klarna/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/klarna/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/klarna/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "maestro",
+    type: "card",
+    name: "Maestro",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/maestro/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/maestro/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/maestro/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["europe", "north-america"],
+    capabilities: ["debit"],
+  },
+  {
+    id: "mastercard",
+    type: "card",
+    name: "Mastercard",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/mastercard/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/mastercard/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/mastercard/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: ["credit", "debit"],
+  },
+  {
+    id: "mobilepay",
+    type: "online",
+    name: "MobilePay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/mobilepay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/mobilepay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/mobilepay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "molpay_points",
+    type: "online",
+    name: "MOLPoints via MOLPay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/molpay_points/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/molpay_points/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/molpay_points/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "multibanco",
+    type: "online",
+    name: "Multibanco",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/multibanco/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/multibanco/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/multibanco/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "paypal",
+    type: "online",
+    name: "PayPal",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/paypal/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/paypal/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/paypal/120/original.png",
+        width: 180,
+        height: 60,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "przelewy24",
+    type: "online",
+    name: "Przelewy24",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/przelewy24/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/przelewy24/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/przelewy24/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "qiwiwallet",
+    type: "online",
+    name: "Qiwi Wallet",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/qiwiwallet/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/qiwiwallet/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/qiwiwallet/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "sepadirectdebit",
+    type: "online",
+    name: "SEPA Direct Debit",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/sepadirectdebit/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/sepadirectdebit/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/sepadirectdebit/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "trustly",
+    type: "online",
+    name: "Trustly",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/trustly/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/trustly/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/trustly/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "trustpay",
+    type: "online",
+    name: "TrustPay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/trustpay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/trustpay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/trustpay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "twint",
+    type: "online",
+    name: "Twint",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/twint/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/twint/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/twint/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "unionpay",
+    type: "online",
+    name: "UnionPay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/unionpay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/unionpay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/unionpay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "vipps",
+    type: "online",
+    name: "Vipps",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/vipps/30/original.png",
+        width: 40,
+        height: 26,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/vipps/60/original.png",
+        width: 77,
+        height: 50,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/vipps/120/original.png",
+        width: 154,
+        height: 100,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+  {
+    id: "visa",
+    type: "card",
+    name: "VISA",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/visa/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/visa/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/visa/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: ["credit", "debit"],
+  },
+  {
+    id: "wechatpay",
+    type: "online",
+    name: "WeChat Pay",
+    images: {
+      small: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/wechatpay/30/original.png",
+        width: 65,
+        height: 41,
+      },
+      medium: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/wechatpay/60/original.png",
+        width: 100,
+        height: 60,
+      },
+      large: {
+        url: "https://cdn.flow.io/util/logos/payment-methods/wechatpay/120/original.png",
+        width: 256,
+        height: 256,
+      },
+    },
+    regions: ["world"],
+    capabilities: [],
+  },
+];

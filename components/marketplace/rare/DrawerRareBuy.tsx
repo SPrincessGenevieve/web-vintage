@@ -115,6 +115,7 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
     console.log("DATA CART: ", newItem);
     addToCart(newItem);
     toast.success("Wine added to cart");
+    location.reload()
   };
 
   return (

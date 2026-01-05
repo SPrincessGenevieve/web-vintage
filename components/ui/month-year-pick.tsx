@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { CalendarIcon, ChevronDownIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -12,24 +12,21 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-interface DropdownCalendarProps {
+interface MonthYearPickerProps {
   label?: string;
   placeholder?: string;
-  // Calendar props you want to forward
   selected?: Date;
-  onSelect?: (date: Date | undefined) => void;
-  captionLayout?: "dropdown" | "buttons";
+  onSelect?: (value: string) => void; // returns YY/MM
   className?: string;
 }
 
-export function DropdownCalendar({
+export function MonthYearPicker({
   label,
-  placeholder = "Select date",
+  placeholder = "YY/MM",
   selected,
   onSelect,
-  captionLayout = "dropdown",
   className,
-}: DropdownCalendarProps) {
+}: MonthYearPickerProps) {
   const [open, setOpen] = React.useState(false);
   const [internalDate, setInternalDate] = React.useState<Date | undefined>(
     selected
@@ -38,36 +35,45 @@ export function DropdownCalendar({
   const handleSelect = (date: Date | undefined) => {
     setInternalDate(date);
     setOpen(false);
-    onSelect?.(date);
+    if (date) {
+      const yy = date.getFullYear().toString().slice(2);
+      const mm = (date.getMonth() + 1).toString().padStart(2, "0");
+      onSelect?.(`${yy}/${mm}`);
+    }
   };
 
   return (
     <div className="flex flex-col gap-2 w-full">
-      {label && (
-        <Label htmlFor="date" className="">
-          {label}
-        </Label>
-      )}
+      {label && <Label htmlFor="month-year">{label}</Label>}
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild className="w-full">
+        <PopoverTrigger asChild>
           <Button
+            id="month-year"
             variant="ghost"
-            id="date"
-            className={`w-full border ${
+            className={`w-full border border-white/30 justify-between font-normal text-left ${
               internalDate ? "text-white" : "text-white/30"
-            } border-white/30 justify-between font-normal`}
+            }`}
           >
-            {internalDate ? internalDate.toLocaleDateString() : placeholder}
+            {internalDate
+              ? `${internalDate.getFullYear().toString().slice(2)}/${(
+                  internalDate.getMonth() + 1
+                )
+                  .toString()
+                  .padStart(2, "0")}`
+              : placeholder}
             <CalendarIcon />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+        <PopoverContent
+          className="w-auto overflow-hidden p-0 rounded-2xl" // fully stylable radius
+          align="start"
+        >
           <Calendar
             mode="single"
             selected={internalDate}
-            captionLayout="dropdown"
             onSelect={handleSelect}
             className={className}
+            defaultView="year" // shows year first for easy month selection
           />
         </PopoverContent>
       </Popover>

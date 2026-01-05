@@ -2,10 +2,17 @@
 import BottombarMobile from "@/components/BottmobarMobile";
 import SidebarWeb from "@/components/SidebarWeb";
 import Taskbar from "@/components/Taskbar";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { useCartSummary } from "@/context/CartSummary";
 import { useUserContext } from "@/context/UserContext";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function VintageLayout({
   children,
@@ -13,7 +20,9 @@ export default function VintageLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const { setUserDetails } = useUserContext();
+  const { setUserDetails, alertDialog } = useUserContext();
+  const { clearCartSummary } = useCartSummary();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (pathname.includes("marketplace")) {
@@ -23,8 +32,38 @@ export default function VintageLayout({
     }
   }, [pathname]);
 
+  useEffect(() => {
+    setOpen(alertDialog);
+  }, [alertDialog]);
+
+  useEffect(() => {
+    setUserDetails({
+      alertDialog: open,
+    });
+  }, [open]);
+
+  const pathSummarry = ["/vintage/cart/review", "/vintage/cart/success"];
+
+  useEffect(() => {
+    if (!pathSummarry.some((path) => pathname.includes(path))) {
+      clearCartSummary();
+    }
+  }, [pathname]);
+
   return (
     <div className="h-screen vintage-layout-main relative flex justify-between flex-col">
+      <Dialog open={alertDialog} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              <Label>
+                You can only have 5 payment methods. Please delete one before
+                adding.
+              </Label>
+            </DialogTitle>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
       <div className="bg-green-400">
         <Taskbar></Taskbar>
       </div>
