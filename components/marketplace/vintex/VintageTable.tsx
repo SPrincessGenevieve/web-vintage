@@ -1,3 +1,5 @@
+"use client";
+
 import { Label } from "@/components/ui/label";
 import {
   Table,
@@ -9,20 +11,26 @@ import {
 import { useUserContext } from "@/context/UserContext";
 import { VintexResultsT } from "@/lib/types";
 import { ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 interface VintageTableT {
   data: VintexResultsT[];
   case_size: number;
   bottle_size: string;
+  id: string;
+  parent_wine_name: string;
 }
 
 export default function VintageTable({
   data,
   case_size,
   bottle_size,
+  id,
+  parent_wine_name,
 }: VintageTableT) {
   const { vintage_table_detail, setUserDetails } = useUserContext();
+  const router = useRouter();
 
   const bottle =
     bottle_size === "0750"
@@ -34,6 +42,11 @@ export default function VintageTable({
       : bottle_size === "6000"
       ? 600
       : 75;
+
+  const handleVintageDetail = ( wine_id: number, vintage: number) => {
+    console.log("VINTAGE: ", wine_id)
+    router.push(`/vintage/marketplace/vint-ex/${id}/${wine_id}/${vintage}`);
+  };
 
   const header = ["Vintage", "Score", `£ (${case_size}x${bottle}cl)`, "Perf."];
   return (
@@ -51,12 +64,7 @@ export default function VintageTable({
         <TableBody>
           {data.map((item, index) => (
             <TableRow
-              onClick={() =>
-                setUserDetails({
-                  vintage_table_detail: true,
-                  selected_index_vintage: index,
-                })
-              }
+              onClick={() => handleVintageDetail(item.id, item.vintage)}
               key={index}
               className={`border-b border-primary-brown/30 ${
                 item.is_unavailable && "opacity-30"

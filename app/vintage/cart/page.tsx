@@ -76,6 +76,9 @@ export default function Cart() {
   }, 0);
 
   const handleCheckout = () => {
+    if (total_market_value === 0) {
+      return;
+    }
     clearCartSummary();
     cart.forEach((item) => {
       if (checkedItems[item.id.toString()]) {
@@ -91,6 +94,13 @@ export default function Cart() {
         const basket_items = item.basket_items !== null && item.basket_items;
         const image = item.basket !== null ? item.basket.image : item.images;
         const quantity = quantityData[item.id.toString()] || item.quantity || 1;
+        const market_val =
+          item.basket !== null
+            ? item.basket.market_value
+            : item.stock_wine_vintage?.market_value;
+        const case_size = item.case_size;
+        const total = Number(market_val) * case_size * quantity;
+        const today = new Date().toISOString().split("T")[0];
 
         addToCartSummary({
           id: item.id,
@@ -106,6 +116,22 @@ export default function Cart() {
           is_available: true,
           photo_request: item.photo_request,
           wine_name: item.wine_name,
+          fromm: item.fromm,
+          purchase_date: today,
+          purchase_price: total,
+          status: "Buy Request",
+          sub_account: "",
+          location: "portfolio",
+          bottle_size: item.bottle_size,
+          vintage: item.vintage,
+          alcohol_abv: item.alcohol_abv,
+          blend: item.blend,
+          grapes: item.grapes,
+          ownership: item.ownership,
+          winery: item.winery,
+          region: item.region,
+          grape_variety: item.grape_variety,
+          rp_tasting_notes: item.rp_tasting_notes,
         }), // ✅ correct per-item total
           setUserDetails({
             cart_total: total_market_value,
@@ -115,6 +141,8 @@ export default function Cart() {
 
     router.push("/vintage/cart/review");
   };
+
+  console.log("CART: ", cart);
 
   return (
     <div className="w-full h-full flex flex-col justify-between">
@@ -179,14 +207,16 @@ export default function Cart() {
                 };
               }
 
+              const bottle_raw = item.bottle_size;
+
               const bottle =
-                (data_list as any)?.bottle_size === "0750"
+                bottle_raw === "0750"
                   ? 75
-                  : (data_list as any)?.bottle_size === "1500"
+                  : bottle_raw === "1500"
                   ? 150
-                  : (data_list as any)?.bottle_size === "3000"
+                  : bottle_raw === "3000"
                   ? 300
-                  : (data_list as any)?.bottle_size === "6000"
+                  : bottle_raw === "6000"
                   ? 600
                   : 0;
 
@@ -200,17 +230,13 @@ export default function Cart() {
                   : item.stock_wine_vintage?.market_value ?? 0
               );
 
-              console.log("MARKET VALUE: ", marketValue);
-
               const total_wine =
                 marketValue * item.case_size * quantity +
                 (item.photo_request ? PHOTO_REQUEST_FEE : 0);
 
-              const vintage =
-                (data_list as UserInvestmentWineVintage)?.vintage ??
-                (data_list as StockWineVintageT)?.vintage ??
-                (data_list as any)?.basket?.vintage ??
-                null;
+              const vintage = item.vintage;
+
+              console.log("VINTAGE: ", item);
 
               return (
                 <div

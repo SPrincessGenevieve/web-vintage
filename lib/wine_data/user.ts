@@ -536,7 +536,7 @@ export const user_data = {
         wine_name: "Super Tuscan Bundle",
         vintage: "-",
         wine_images: [
-          "https://djw65t2ftdvi9.cloudfront.net/media/basket_wine_BWU8ccd.png",
+          "https://d18vt6ndh4jzvp.cloudfront.net/media/basket_wine_BWU8ccd.png",
         ],
         wines_investment_value: 7414.67,
         held: "October 2025",
@@ -568,7 +568,7 @@ export const user_data = {
         wine_name: "Bollinger, La Grande Annee",
         vintage: 1997,
         wine_images: [
-          "https://djw65t2ftdvi9.cloudfront.net/media/Bollinger_-_wine4.png",
+          "https://d18vt6ndh4jzvp.cloudfront.net/media/Bollinger_-_wine4.png",
         ],
         wines_investment_value: -1060.98,
         held: "October 2025",

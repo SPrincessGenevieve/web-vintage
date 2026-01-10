@@ -45,6 +45,10 @@ export default function RightMenu() {
     });
   };
 
+  const handleSettings = () =>{
+    router.push("/vintage/settings/profile")
+  }
+
 
   return (
     <div className="flex gap-4">
@@ -71,9 +75,9 @@ export default function RightMenu() {
           )}
         </div>
       ))}
-      <Avatar className="">
-        <AvatarImage />
-        <AvatarFallback>P</AvatarFallback>
+      <Avatar onClick={handleSettings} className="cursor-pointer">
+        <AvatarImage className="object-cover" src={"/profile.jpg"} />
+        <AvatarFallback>R</AvatarFallback>
       </Avatar>
     </div>
   );

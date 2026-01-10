@@ -27,6 +27,7 @@ import {
 import { useCart } from "@/context/CartContext";
 import { CartItemT } from "@/lib/types";
 import { toast } from "sonner";
+import { useSubAccount } from "@/context/SubAccountContext";
 
 export interface DrawerVintageT {
   result: WineResultDetailT;
@@ -48,7 +49,7 @@ export default function DrawerBuySpecialVol({
   type,
 }: DrawerVintageT) {
   const { addToCart } = useCart(); // Access the global add function
-
+  const { subAccounts } = useSubAccount()
   const bottle =
     bottle_size === "0750"
       ? 75
@@ -103,37 +104,32 @@ export default function DrawerBuySpecialVol({
       id: buildCartItemId(type, result, selectedVintage, caseSize),
       case_size: caseSize,
       quantity: quantityData,
+      location: "portfolio",
       wine_name: result.name,
       short_description: "",
       images: parent.wine_images,
       is_special_volumes: type === "special-volume" || type === "rare",
       is_available: false,
       photo_request: false,
-      stock_wine_vintage: type === "vint-ex" ? (result as any) : null,
-      basket:
-        // type === "special-bundle"
-        //   ? {
-        //       id: result.id,
-        //       name: result.name,
-        //       vintage: selectedVintage,
-        //       quantity: quantityData,
-        //       market_value: Number(result.market_value),
-        //       case_size: caseSize,
-        //       winery: parent.winery ?? "",
-        //       region: parent.region ?? "",
-        //       grapes: parent.grapes ?? "",
-        //       grape_variety: parent.grape_variety ?? "",
-        //       fromm: "",
-        //       image: result.images?.[0] ?? "",
-        //       special_id: null,
-        //       is_assortment: true,
-        //       sub_header: result.sub_header ?? "",
-        //     }
-        //   :
-        null,
+      stock_wine_vintage: type !== "special-bundle" ? (result as any) : null,
+      basket: null,
       basket_items: null,
-      user_investment_wine_vintage:
-        type === "special-volume" ? ({} as any) : null,
+      fromm: parent_data.wine_details.fromm,
+      user_investment_wine_vintage: null,
+      purchase_price: 0,
+      purchase_date: "",
+      status: "",
+      sub_account: subAccounts[0],
+      bottle_size: bottle_size,
+      vintage: result.vintage,
+      alcohol_abv: parent_data.wine_details.alcohol_abv,
+      blend: parent_data.wine_details.blend,
+      grapes: parent_data.wine_details.grapes,
+      ownership: parent_data.wine_details.ownership,
+      winery: parent_data.wine_details.winery,
+      region: parent_data.wine_details.region,
+      grape_variety: parent_data.wine_details.grape_variety,
+      rp_tasting_notes: result.rp_tasting_notes,
     };
 
     addToCart(newItem);

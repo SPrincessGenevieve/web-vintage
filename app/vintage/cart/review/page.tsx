@@ -116,6 +116,22 @@ export default function Review() {
             is_available: true,
             photo_request: item.photo_request,
             wine_name: item.wine_name,
+            fromm: item.fromm,
+            purchase_date: item.purchase_date,
+            purchase_price: item.purchase_price,
+            status: item.status,
+            sub_account: item.sub_account,
+            bottle_size: item.bottle_size,
+            vintage: item.vintage,
+            location: item.location,
+            alcohol_abv: item.alcohol_abv,
+            blend: item.blend,
+            grapes: item.grapes,
+            ownership: item.ownership,
+            winery: item.winery,
+            region: item.region,
+            grape_variety: item.grape_variety,
+            rp_tasting_notes: item.rp_tasting_notes
           });
         }
         removeFromCart(item.id);

@@ -22,16 +22,19 @@ import { WineRareResultsT, WineResultDetailT } from "@/lib/types";
 import { useCart } from "@/context/CartContext";
 import { CartItemT } from "@/lib/types";
 import { toast } from "sonner";
+import { useSubAccount } from "@/context/SubAccountContext";
 
 export interface DrawerRareT {
   result: WineRareResultsT;
   trigger: React.ReactNode;
   type: string;
+  parent: WineRareResultsT;
 }
 
 export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
   const { addToCart, cart } = useCart(); // Access the global add function
-  const bottle_size = result.wine_vintage_details?.bottle_size;
+  const { subAccounts } = useSubAccount()
+  const bottle_size = result.wine_vintage_details?.bottle_size ?? "";
   const bottle =
     bottle_size === "0750"
       ? 75
@@ -43,7 +46,6 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
       ? 600
       : 0;
   const case_size = result.case_size;
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedVintage, setSelectedVintage] = useState(
     result.wine_vintage_details?.vintage
   );
@@ -83,8 +85,8 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
       is_special_volumes: type === "special-volume" || type === "rare",
       is_available: true,
       photo_request: false,
-      stock_wine_vintage:
-        type === "vint-ex" || type === "rare" ? (result as any) : null,
+      bottle_size: bottle_size,
+      stock_wine_vintage: type !== "special-bundle" ? (result as any) : null,
       basket:
         result.basket_details !== null
           ? {
@@ -105,17 +107,35 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
               image: result.basket_details.image ?? "",
               special_id: null,
               is_assortment: true,
+              bottle_size: bottle_size,
               sub_header: "",
             }
           : null,
       basket_items: result.basket_details !== null ? result.basket_items : null,
-      user_investment_wine_vintage:
-        type === "special-volume" || type === "rare" ? ({} as any) : null,
+      fromm: result.wine_parent?.fromm,
+      user_investment_wine_vintage: null,
+      purchase_price: 0,
+      purchase_date: "",
+      status: "",
+      location: "portfolio",
+      sub_account: subAccounts[0],
+      vintage:
+        result.basket_details !== null
+          ? 0
+          : result.wine_vintage_details?.vintage ?? 0,
+      alcohol_abv: String(result.wine_parent?.alcohol_abv),
+      blend: String(result.wine_parent?.blend),
+      grapes: String(result.wine_parent?.grapes),
+      ownership: String(result.wine_parent?.ownership),
+      winery: result.wine_parent?.winery ?? "",
+      region: result.wine_parent?.region ?? "",
+      grape_variety: result.wine_parent?.grape_variety ?? "",
+      rp_tasting_notes: result.wine_vintage_details?.rp_tasting_notes ?? "",
     };
     console.log("DATA CART: ", newItem);
     addToCart(newItem);
     toast.success("Wine added to cart");
-    location.reload()
+    // location.reload();
   };
 
   return (

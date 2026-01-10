@@ -97,15 +97,12 @@ export default function Marketplace() {
     }
   };
 
-  // 1. New Sort State: "none", "asc", or "desc"
   const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
 
-  // 2. Clear sort when category changes
   useEffect(() => {
     setSortOrder("none");
   }, [selectedCategory]);
 
-  // Update filter count logic
   useEffect(() => {
     setCount(
       (selectedFilter !== "all" ? 1 : 0) +
@@ -114,7 +111,6 @@ export default function Marketplace() {
   }, [selectedCategory, selectedFilter]);
 
   const currentData = React.useMemo(() => {
-    // 1. Pick the data source (same as before)
     const source =
       selectedCategory === "vint-ex"
         ? vintex
@@ -124,18 +120,13 @@ export default function Marketplace() {
         ? special_bundle
         : rare;
 
-    // 2. Filter the source
     const filtered = source.filter((wine: any) => {
       const wineData = wine.wine_vintage_details || wine;
       const wineName = wineData.name || "";
 
-      // SAFE REGION EXTRACTION
-      // We check three places for the region and default to "" if not found
       const rawRegion =
         wine.fromm || wine.wine_parent?.fromm || wineData.fromm || "";
 
-      // NORMALIZATION
-      // Turn both the data and the filter to lowercase so they match
       const wineRegionLower = rawRegion.toLowerCase().trim();
       const filterValueLower = selectedFilter.toLowerCase().trim();
 
@@ -149,7 +140,6 @@ export default function Marketplace() {
       return matchesSearch && matchesRegion;
     });
 
-    // 3. Sort (A-Z logic remains the same)
     if (sortOrder === "none") return filtered;
     return [...filtered].sort((a: any, b: any) => {
       const nameA = (
@@ -168,7 +158,6 @@ export default function Marketplace() {
     });
   }, [search, selectedCategory, selectedFilter, sortOrder]);
 
-  // Helper to cycle through sort states: none -> A-Z -> Z-A -> none
   const toggleSort = () => {
     if (sortOrder === "none") setSortOrder("asc");
     else if (sortOrder === "asc") setSortOrder("desc");

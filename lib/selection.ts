@@ -4,12 +4,17 @@ import mywinecellar from "@/public/myPortfolio";
 import myportfolio from "@/public/myPortfolio";
 import storageIcon from "@/public/storageIcon";
 import {
+  BadgePoundSterlingIcon,
   Briefcase,
   ChartSpline,
   CircleAlert,
   Clock,
   ConciergeBell,
+  KeyIcon,
   LayoutDashboard,
+  SettingsIcon,
+  ShieldAlert,
+  ShieldCheck,
   Store,
   TrendingDown,
 } from "lucide-react";
@@ -1107,6 +1112,39 @@ export const agreement_list_2 = [
   },
 ];
 
+export const settings_menu_list = [
+  {
+    label: "Profile",
+    value: "profile",
+    icon: SettingsIcon,
+    link: "/vintage/settings/profile",
+  },
+  {
+    label: "Password",
+    value: "password",
+    icon: KeyIcon,
+    link: "/vintage/settings/password",
+  },
+  {
+    label: "Security",
+    value: "security",
+    icon: ShieldCheck,
+    link: "/vintage/settings/security",
+  },
+  {
+    label: "Billing",
+    value: "billing",
+    icon: BadgePoundSterlingIcon,
+    link: "/vintage/settings/billing",
+  },
+  {
+    label: "Risk Warning",
+    value: "risk-warning",
+    icon: ShieldAlert,
+    link: "/vintage/settings/risk-warning",
+  },
+];
+
 export const menu_list = [
   {
     label: "Dashboard",
@@ -1212,7 +1250,7 @@ export const concierge_list = [
     link: "",
   },
   {
-    title: "Special Request",
+    title: "Entertainment",
     desc: "Planning an event? Elevate every celebration with our bespoke wine service. From lavish weddings to private yacht soirées, our concierge sources and delivers exceptional vintages, creating unforgettable moments for you and your guests.",
     image: "/concierge/entertainment.jpg",
     link: "",

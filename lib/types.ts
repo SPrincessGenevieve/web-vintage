@@ -1,3 +1,12 @@
+export interface SubAccountType {
+  id: string;
+  first_name: string;
+  last_name: string;
+  relationship: string;
+  image: string;
+  birth_date: string;
+}
+
 export interface StepOneRegisterType {
   email: string;
   fullname: string;
@@ -351,6 +360,22 @@ export interface CartItemT {
   is_available: boolean;
   photo_request: boolean;
   wine_name: string;
+  fromm?: string;
+  purchase_price: number;
+  purchase_date: string;
+  status: string;
+  sub_account: SubAccountType;
+  location: string;
+  bottle_size: string;
+  vintage: number;
+  alcohol_abv: string;
+  blend: string;
+  grapes: string;
+  ownership: string;
+  winery: string;
+  region: string;
+  grape_variety: string
+  rp_tasting_notes: string;
 }
 
 export interface BasketT {
@@ -407,6 +432,7 @@ export interface CartBasketT {
   special_id: number | null;
   is_assortment: boolean;
   sub_header: string;
+  bottle_size: string;
 }
 
 export interface UserInvestmentWineVintage {
@@ -468,6 +494,7 @@ export interface StockWineVintageT {
   market_value: number;
   is_owner: boolean;
   id: number;
+  wine: number;
   name: string;
   lwin11: string;
   vintage: number;
@@ -479,8 +506,13 @@ export interface StockWineVintageT {
   holding_years: string;
   liv_ex_value: number;
   is_listed: boolean;
+  oldest_vintage: number;
+  is_very_special: boolean;
   size: string;
   status: string;
+  is_unavailable: boolean;
+  get_notified: boolean;
+  available_case_size: number[];
   drinking_window: string;
   tags: string;
   processed_case: number;

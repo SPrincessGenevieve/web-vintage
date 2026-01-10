@@ -28,6 +28,7 @@ import {
 import { useCart } from "@/context/CartContext";
 import { CartItemT } from "@/lib/types";
 import { toast } from "sonner";
+import { useSubAccount } from "@/context/SubAccountContext";
 
 export interface DrawerBundleT {
   data: SpecialBundleT;
@@ -49,7 +50,7 @@ export default function DrawerBundleBuy({
   type,
 }: DrawerBundleT) {
   const { addToCart } = useCart(); // Access the global add function
-
+  const { subAccounts } = useSubAccount()
   const bottle =
     bottle_size === "0750"
       ? 75
@@ -87,6 +88,7 @@ export default function DrawerBundleBuy({
       is_special_volumes: type === "special-volume" || type === "rare",
       is_available: true,
       photo_request: false,
+      location: "portfolio",
       stock_wine_vintage: null,
       basket: {
         id: data.basket_details.id,
@@ -99,20 +101,36 @@ export default function DrawerBundleBuy({
         region: data.basket_details.region ?? "",
         grapes: data.basket_details.grapes ?? "",
         grape_variety: data.basket_details.grape_variety ?? "",
-        fromm: "",
+        fromm: parent_data.fromm,
         image: data.basket_details.image ?? "",
         special_id: null,
         is_assortment: true,
         sub_header: data.basket_details.sub_header ?? "",
+        bottle_size: bottle_size,
       },
       basket_items: data.results,
-      user_investment_wine_vintage: null
+      user_investment_wine_vintage: null,
+      fromm: parent_data.fromm,
+      purchase_price: 0,
+      purchase_date: "",
+      status: "",
+      sub_account: subAccounts[0],
+      bottle_size: bottle_size,
+      vintage: 0,
+      alcohol_abv: "",
+      blend: "",
+      grapes: "",
+      ownership: "",
+      winery: parent_data.winery,
+      region: parent_data.region,
+      grape_variety: parent_data.grape_variety,
+      rp_tasting_notes: "",
     };
 
     addToCart(newItem);
-    console.log("DATA RSULT: ", newItem)
+    console.log("DATA RSULT: ", newItem);
     toast.success("Wine added to cart");
-    location.reload()
+    location.reload();
   };
 
   return (

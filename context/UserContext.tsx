@@ -8,6 +8,7 @@ import {
   StepTwoRegisterType,
   CartItemT,
   PaymentMethodT,
+  SubAccountType,
 } from "@/lib/types";
 import {
   createContext,
@@ -19,6 +20,8 @@ import {
 
 type UserContextType = {
   token: string;
+  sub_account_portfolio: SubAccountType;
+  sub_account_wine_cellar: SubAccountType;
   register_success: boolean;
   forgot_pass_success: boolean;
   register_email: string;
@@ -73,6 +76,22 @@ const defaultUserContext: UserContextType = {
   cart_total: 0,
   current_investment: 500,
   payment_method: card_list,
+  sub_account_portfolio: {
+    id: "",
+    first_name: "",
+    last_name: "",
+    relationship: "",
+    image: "",
+    birth_date: "",
+  },
+  sub_account_wine_cellar: {
+    id: "",
+    first_name: "",
+    last_name: "",
+    relationship: "",
+    image: "",
+    birth_date: "",
+  },
   setUserDetails: () => {},
   addPaymentMethod: () => {},
   updateInvestment: () => {},

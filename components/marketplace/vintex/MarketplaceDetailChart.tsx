@@ -1,23 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import { useUserContext } from "@/context/UserContext";
 import { VintExCardT, VintexDetailsT, VintexResultsT } from "@/lib/types";
-import { PortfolioChart } from "../PortfolioChart";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "../ui/chart";
+} from "@/components/ui/chart";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { data_points } from "@/lib/wine_data/data_points";
 
 interface MarketplaceChartT {
-  lifetime_performance: string;
   lwin11: string;
-  release_price: number;
+  lifetime_performance: string;
   data: VintexDetailsT;
   result: VintexResultsT[];
 }
@@ -38,12 +36,11 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export default function MarketplaceChart({
-  lifetime_performance,
+export default function MarketplaceDetailChart({
   lwin11,
+  lifetime_performance,
   data,
   result,
-  release_price,
 }: MarketplaceChartT) {
   const { setUserDetails, selected_index_vintage } = useUserContext();
   const item = result[selected_index_vintage || 0];
@@ -63,7 +60,6 @@ export default function MarketplaceChart({
 
   const [selectedFilter, setSelectedFilter] = useState("Max");
   const lwin11Data = data_points.find((item) => item.lwin11 === lwin11)?.data;
-  console.log(lwin11Data);
 
   const processedChartData = React.useMemo(() => {
     if (!lwin11Data) return [];
@@ -113,7 +109,7 @@ export default function MarketplaceChart({
   return (
     <div className="p-4 flex flex-col gap-4">
       <Label variant="h1">
-        {ParentWineName}, {item?.vintage}, {case_size}x{bottle}cl
+        {ParentWineName}, {item.vintage}, {case_size}x{bottle}cl
       </Label>
       <div className="flex w-full bg-black/20 p-2 mb-4 rounded-2xl">
         {filterBtn.map((item, index) => (

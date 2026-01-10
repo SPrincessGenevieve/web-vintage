@@ -13,7 +13,7 @@ import {
   WineOff,
 } from "lucide-react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import DetailsTableCard from "../DetailsTableCard";
 import { Label } from "@/components/ui/label";
@@ -26,23 +26,83 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import TabDeatils from "../TabDetails";
-import MarketplaceChart from "../MarketplaceChart";
+import MarketplaceDetailChart from "./MarketplaceDetailChart";
 import DrawerBuy from "./DrawerBuy";
+import { VintexDetailsT, VintexResultsT } from "@/lib/types";
+import {
+  emptyDefaultVintage,
+  emptyVintexParent,
+  emptyVintexResult,
+  emptyVintexWineDetail,
+} from "@/lib/empty";
 
 export default function TableVintageDetail() {
-  const { setUserDetails, selected_index_vintage } = useUserContext();
+  const { setUserDetails } = useUserContext();
+  const router = useRouter();
   const [useContain, setUseContain] = useState(false);
   const tabs = ["Performance", "Overview", "Tasting Note"];
   const [activeTab, setActiveTab] = useState("Performance");
 
   const pathname = usePathname();
-  const id = pathname.split("/").pop() || "";
-  const data = wineVintex[id];
 
-  const item = data?.results?.[selected_index_vintage ?? 0];
+  const params = useParams();
+
+  // destructure the URL parts
+  const wineFromUrl = params.id as string; // {wine}
+  const idFromUrl = params.wine_id as string; // {id}
+  const vintageFromUrl = params.vintage as string; // {vintage}
+
+  const data = React.useMemo(() => {
+    const wineItem = wineVintex[wineFromUrl];
+
+    const hasVintage = wineItem?.results?.some(
+      (r) => r.vintage.toString() === vintageFromUrl
+    );
+
+    if (wineItem && hasVintage) {
+      return {
+        results: wineItem.results,
+        wine_details: wineItem.wine_details,
+        default_vintage: wineItem.default_vintage,
+      };
+    }
+
+    // fallback if no match
+    return {
+      results: [],
+      wine_details: {
+        wine_images: ["/placeholder.png"],
+        annual_production: 0,
+        winery: "",
+      },
+      default_vintage: {
+        wine_vintage: { bottle_size: "", available_case_size: [] },
+      },
+    };
+  }, [wineFromUrl, vintageFromUrl]);
+
+  const vintageNumber = Number(vintageFromUrl);
+
+  const item = React.useMemo(
+    () =>
+      data.results.find((r) => r.vintage === vintageNumber) ?? {
+        vintage: 0,
+        release_price: 0,
+        market_value: 0,
+        is_unavailable: false,
+        rp_score: "",
+        rp_reviewer: "",
+        rp_tasting_notes: "",
+        lwin11: "",
+        name: "",
+        drinking_window: "",
+      },
+    [data, vintageFromUrl]
+  );
 
   const [open, setOpen] = useState(item?.is_unavailable ?? false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const segments = pathname.split("/");
+  const trimmedPath = segments.slice(0, 6).join("/") + "/";
   const [selectedVintage, setSelectedVintage] = useState(item?.vintage ?? 0);
   const formattedReleasePrice =
     item?.release_price && !isNaN(Number(item?.release_price))
@@ -57,13 +117,18 @@ export default function TableVintageDetail() {
     });
   };
 
+  const handleVintageDetail = (vintage: number) => {
+    console.log("VINTAGE: ", vintage);
+    router.push(`${trimmedPath}/${vintage}`);
+  };
+
   return (
     <div className="flex  flex-col gap-4 h-full">
       <div className=" flex">
         <Button
           className="p-0 m-0 px-0 mx-0"
           variant={"ghost"}
-          onClick={() => setUserDetails({ vintage_table_detail: false })}
+          onClick={() => router.back()}
         >
           <ChevronLeft></ChevronLeft>Back
         </Button>
@@ -174,8 +239,8 @@ export default function TableVintageDetail() {
                     {data?.results.map((item, index) => (
                       <DropdownMenuItem
                         onClick={() => {
+                          handleVintageDetail(item?.vintage);
                           setSelectedVintage(item?.vintage);
-                          setSelectedIndex(index);
                           setUserDetails({ selected_index_vintage: index });
                         }}
                         className="flex justify-between"
@@ -198,8 +263,8 @@ export default function TableVintageDetail() {
                       <ShoppingBasket /> Buy this vintage
                     </Button>
                   }
-                  parent_data={data}
-                  result={item}
+                  parent_data={(data as VintexDetailsT) ?? emptyVintexParent}
+                  result={(item as VintexResultsT) ?? emptyVintexResult}
                   result_data={data?.results}
                   bottle_size={data?.default_vintage.wine_vintage.bottle_size}
                   default_case_size_list={
@@ -226,13 +291,12 @@ export default function TableVintageDetail() {
       <Card className="h-full w-full">
         <CardContent className="h-full overflow-y-auto">
           {activeTab === "Performance" && (
-            <MarketplaceChart
-              release_price={Number(item?.release_price)}
+            <MarketplaceDetailChart
               lwin11={item?.lwin11}
               lifetime_performance={formattedReleasePrice}
-              data={data}
+              data={data as VintexDetailsT}
               result={data?.results}
-            ></MarketplaceChart>
+            ></MarketplaceDetailChart>
           )}
           {activeTab === "Overview" && (
             <TabDeatils

@@ -1,6 +1,7 @@
 "use client";
 import BottombarMobile from "@/components/BottmobarMobile";
 import SidebarWeb from "@/components/SidebarWeb";
+import SidebarSettings from "@/components/SidebaSettings";
 import Taskbar from "@/components/Taskbar";
 import {
   Dialog,
@@ -23,6 +24,7 @@ export default function VintageLayout({
   const { setUserDetails, alertDialog } = useUserContext();
   const { clearCartSummary } = useCartSummary();
   const [open, setOpen] = useState(false);
+  const [isSettings, setIsSettings] = useState(false);
 
   useEffect(() => {
     if (pathname.includes("marketplace")) {
@@ -50,6 +52,15 @@ export default function VintageLayout({
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (pathname.includes("settings")) {
+      console.log("PATH IS SETTINGS");
+      setIsSettings(true);
+    } else {
+      setIsSettings(false);
+    }
+  }, [pathname]);
+
   return (
     <div className="h-screen vintage-layout-main relative flex justify-between flex-col">
       <Dialog open={alertDialog} onOpenChange={setOpen}>
@@ -69,7 +80,11 @@ export default function VintageLayout({
       </div>
       <div className="vintage-sub-count flex h-[94%] p-4 gap-4">
         <div className="web-cont-sidebar">
-          <SidebarWeb></SidebarWeb>
+          {isSettings ? (
+            <SidebarSettings></SidebarSettings>
+          ) : (
+            <SidebarWeb></SidebarWeb>
+          )}
         </div>
         <div className="w-full h-full overflow-y-auto vintage-children">
           {children}

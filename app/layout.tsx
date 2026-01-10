@@ -7,6 +7,8 @@ import "flag-icons/css/flag-icons.min.css";
 import { CartProvider } from "@/context/CartContext";
 import { PortfolioProvider } from "@/context/PortfolioContext";
 import { CartSummaryProvider } from "@/context/CartSummary";
+import { WineCellarProvider } from "@/context/WineCellarContext";
+import { SubAccountProvider } from "@/context/SubAccountContext";
 
 const poppins = Poppins({
   variable: "--font-poppins-sans",
@@ -32,11 +34,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${fleur.variable} antialiased bg-primary-gray-600`}>
+      <body
+        className={`${poppins.variable} ${fleur.variable} antialiased bg-primary-gray-600`}
+      >
         <UserProvider>
           <CartProvider>
             <CartSummaryProvider>
-              <PortfolioProvider>{children}</PortfolioProvider>
+              <PortfolioProvider>
+                <SubAccountProvider>
+                  <WineCellarProvider>{children}</WineCellarProvider>
+                </SubAccountProvider>
+              </PortfolioProvider>
             </CartSummaryProvider>
           </CartProvider>
         </UserProvider>

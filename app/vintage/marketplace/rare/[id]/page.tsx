@@ -4,21 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { wineRareData } from "@/lib/wine_data/rare/index";
 import {
-  ChevronDown,
   ChevronLeft,
   ShoppingBasket,
-  Star,
-  WineOff,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import DetailsCard from "@/components/marketplace/DetailsCard";
-import DrawerBuySpecialVol from "@/components/marketplace/special-volume/DrawerBuy";
-import MarketplaceChart from "@/components/marketplace/MarketplaceChart";
 import TabDeatils from "@/components/marketplace/TabDetails";
-import SpecialVolumeChart from "@/components/marketplace/special-volume/SpecialVolumeChart";
 import DrawerBuyRare from "@/components/marketplace/rare/DrawerRareBuy";
 import RareChart from "@/components/marketplace/special-volume/RareChart";
 
@@ -62,7 +56,11 @@ export default function RareDetail() {
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto">
       <div className=" flex">
-        <Button className="p-0 m-0 px-0 mx-0"  variant={"ghost"} onClick={() => router.push("/vintage/marketplace")}>
+        <Button
+          className="p-0 m-0 px-0 mx-0"
+          variant={"ghost"}
+          onClick={() => router.push("/vintage/marketplace")}
+        >
           <ChevronLeft></ChevronLeft>Back
         </Button>
       </div>
@@ -163,6 +161,7 @@ export default function RareDetail() {
                   </Label>
                 </div>
                 <DrawerBuyRare
+                  parent={data}
                   type="rare"
                   trigger={
                     <Button className="bg-primary-gray-500 text-primary-brown hover:text-black border-2 border-transparent h-10 hover:border-black">

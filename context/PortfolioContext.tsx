@@ -6,6 +6,10 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 interface PortfolioContextType {
   portfolio: CartItemT[];
   addToPortfolio: (item: CartItemT) => void;
+  updatePortfolioItem: (
+    id: string | number,
+    updates: Partial<CartItemT>
+  ) => void;
   removeFromPortfolio: (id: string | number) => void;
   clearPortfolio: () => void;
 }
@@ -54,9 +58,31 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("my_portfolio");
   };
 
+  const updatePortfolioItem = (
+    id: string | number,
+    updates: Partial<CartItemT>
+  ) => {
+    setPortfolio((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              ...updates, // ✅ only override provided fields
+            }
+          : item
+      )
+    );
+  };
+
   return (
     <PortfolioContext.Provider
-      value={{ portfolio, addToPortfolio, removeFromPortfolio, clearPortfolio }}
+      value={{
+        portfolio,
+        addToPortfolio,
+        removeFromPortfolio,
+        clearPortfolio,
+        updatePortfolioItem,
+      }}
     >
       {children}
     </PortfolioContext.Provider>

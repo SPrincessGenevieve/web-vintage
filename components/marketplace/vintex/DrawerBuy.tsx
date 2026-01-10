@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useEffect, useState } from "react";
 import {
   Sheet,
@@ -24,6 +23,7 @@ import { VintexDetailsT, VintexResultsT } from "@/lib/types";
 import { useCart } from "@/context/CartContext";
 import { CartItemT } from "@/lib/types";
 import { toast } from "sonner";
+import { useSubAccount } from "@/context/SubAccountContext";
 
 export interface DrawerVintageT {
   result: VintexResultsT;
@@ -45,7 +45,7 @@ export default function DrawerBuy({
   type,
 }: DrawerVintageT) {
   const { addToCart } = useCart(); // Access the global add function
-
+  const { subAccounts } = useSubAccount()
   const bottle =
     bottle_size === "0750"
       ? 75
@@ -60,15 +60,15 @@ export default function DrawerBuy({
   const [selectedVintage, setSelectedVintage] = useState(result?.vintage);
   const [quantityData, setQuantityData] = useState(1);
   const [selectedCaseSize, setSelectedCaseSize] = useState(
-    result?.available_case_size.length > 0
-      ? `${result?.available_case_size[0]}x${bottle}cl`
+    result?.available_case_size?.length
+      ? `${result.available_case_size[0]}x${bottle}cl`
       : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
   );
   const parent = parent_data.wine_details;
 
   const [caseSize, setCaseSize] = useState(
-    result?.available_case_size.length > 0
-      ? result?.available_case_size[0]
+    result?.available_case_size?.length > 0
+      ? result.available_case_size[0]
       : default_case_size_list?.[0] ?? 1
   );
   const total = Number(result?.market_value) * caseSize * quantityData;
@@ -86,37 +86,44 @@ export default function DrawerBuy({
     );
   }, [selectedVintage]);
 
-  const buildCartItemId = (
-    type: string,
-    result: VintexResultsT,
-    selectedVintage: number,
-    caseSize: number
-  ) => {
-    return `${type}-${result?.id}-${selectedVintage}-${caseSize}`;
-  };
-
+  const buildCartItemId = () => crypto.randomUUID();
   const handleAddToBasket = () => {
     if (result?.is_unavailable) return;
 
     const newItem: CartItemT = {
-      id: buildCartItemId(type, result, selectedVintage, caseSize),
+      id: buildCartItemId(),
       case_size: caseSize,
       quantity: quantityData,
       wine_name: result?.name,
+      location: "portfolio",
       short_description: "",
       images: parent.wine_images,
       is_special_volumes: type === "special-volume" || type === "rare",
       is_available: !result?.is_unavailable,
       photo_request: false,
-      stock_wine_vintage: type === "vint-ex" ? (result as any) : null,
+      stock_wine_vintage: type !== "special-volume" ? (result as any) : null,
       basket: null,
       basket_items: null,
-      user_investment_wine_vintage:
-        type === "special-volume" || type === "rare" ? ({} as any) : null,
+      fromm: parent_data.wine_details.fromm,
+      user_investment_wine_vintage: null,
+      purchase_price: 0,
+      purchase_date: "",
+      status: "",
+      sub_account: subAccounts[0],
+      bottle_size: bottle_size,
+      vintage: result.vintage,
+      alcohol_abv: parent_data.wine_details.alcohol_abv,
+      blend: parent_data.wine_details.blend,
+      grapes: parent_data.wine_details.grapes,
+      ownership: parent_data.wine_details.ownership,
+      winery: parent.winery,
+      region: parent.region,
+      grape_variety: parent.grape_variety,
+      rp_tasting_notes: result.rp_tasting_notes,
     };
 
     addToCart(newItem);
-    toast.success("Wine added to cart")
+    toast.success("Wine added to cart");
     location.reload();
   };
 
@@ -182,7 +189,8 @@ export default function DrawerBuy({
                         {item}x{bottle}cl
                       </DropdownMenuCheckboxItem>
                     ))
-                  : default_case_size_list ?? [].map((item, index) => (
+                  : default_case_size_list ??
+                    [].map((item, index) => (
                       <DropdownMenuCheckboxItem
                         onClick={() =>
                           setSelectedCaseSize(`${item}x${bottle}cl`)
