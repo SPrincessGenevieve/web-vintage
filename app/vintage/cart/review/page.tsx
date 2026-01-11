@@ -24,6 +24,7 @@ import { usePortfolio } from "@/context/PortfolioContext";
 import { usePathname, useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
 import { v4 as uuidv4 } from "uuid";
+import { useRare } from "@/context/RareContext";
 
 export default function Review() {
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function Review() {
     setUserDetails,
   } = useUserContext();
   const { cart, checkedItems, removeFromCart } = useCart();
+  const { removeFromRare } = useRare();
   const { portfolio, addToPortfolio } = usePortfolio();
   const [photoReq, setPhotoReq] = useState(0);
   const pathname = usePathname();
@@ -89,7 +91,7 @@ export default function Review() {
 
   const handleCheckout = () => {
     setLoading(true);
-    console.log("CLICKED SUMMARY: ", cart_summary[0].id);
+    console.log("CLICKED SUMMARY: ", cart_summary[0].investment_id);
     try {
       cart_summary.forEach((item) => {
         const isChecked = checkedItems[item.id?.toString()] ?? true; // default true if undefined
@@ -141,6 +143,7 @@ export default function Review() {
         console.log("CART BASKET ITEMS: ", dataEntry);
         addToPortfolio(dataEntry);
         removeFromCart(item.id);
+        removeFromRare(Number(item.investment_id));
         delete checkedItems[item.id];
       });
 

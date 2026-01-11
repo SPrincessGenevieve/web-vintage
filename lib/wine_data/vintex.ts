@@ -2,7 +2,7 @@ export const vintex = [
   {
     id: 77,
     name: "Bollinger 'James Bond 007' Millesime",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/jamesbond.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/jamesbond.png"],
     is_very_special: true,
     vintage_range: "2011",
     price_range: "£882.00",
@@ -16,7 +16,7 @@ export const vintex = [
   {
     id: 4,
     name: "Bollinger, La Grande Annee",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/BollingerGrandeAnnee.png",
     ],
     is_very_special: false,
@@ -32,7 +32,7 @@ export const vintex = [
   {
     id: 56,
     name: "Bollinger Vieilles Vignes Francaises",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Bollinger_Vignes.png",
     ],
     is_very_special: false,
@@ -48,7 +48,7 @@ export const vintex = [
   {
     id: 66,
     name: "Bouchard Pere & Fils Montrachet",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/bouchard_G3SKiiN.png",
     ],
     is_very_special: false,
@@ -64,7 +64,7 @@ export const vintex = [
   {
     id: 6,
     name: "Bruno Giacosa, Barolo, Falletto",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Barolo_Falletto_white.png",
     ],
     is_very_special: false,
@@ -80,7 +80,7 @@ export const vintex = [
   {
     id: 78,
     name: "Ceretto, Barolo, Brunate",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/barolo-brunate-docg-bio_11381_zoom.png",
     ],
     is_very_special: false,
@@ -96,7 +96,7 @@ export const vintex = [
   {
     id: 79,
     name: "Chateau Berliquet Grand Cru Classe",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/20221007039_Chateau-Berliquet_Ch-Berliquet-St-Emilion_2022_01.png",
     ],
     is_very_special: false,
@@ -112,7 +112,7 @@ export const vintex = [
   {
     id: 10,
     name: "Chateau Cheval Blanc",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/chateau_Blanc.png",
     ],
     is_very_special: false,
@@ -128,7 +128,7 @@ export const vintex = [
   {
     id: 11,
     name: "Chateau d'Yquem Superieur, Sauternes",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_d_yquem.png",
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_d_yquem_1.png",
     ],
@@ -145,7 +145,7 @@ export const vintex = [
   {
     id: 64,
     name: "Chateau Figeac",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/figac-sm_vDl28FJ.png",
     ],
     is_very_special: false,
@@ -161,7 +161,7 @@ export const vintex = [
   {
     id: 13,
     name: "Chateau Lafite Rothschild",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Lafite_Rothschild.png",
     ],
     is_very_special: false,
@@ -177,7 +177,7 @@ export const vintex = [
   {
     id: 15,
     name: "Chateau Latour",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Latour_1.png",
     ],
     is_very_special: false,
@@ -193,7 +193,7 @@ export const vintex = [
   {
     id: 17,
     name: "Chateau Mouton Rothschild",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Mouton_Rothschild.png",
     ],
     is_very_special: false,
@@ -209,7 +209,7 @@ export const vintex = [
   {
     id: 85,
     name: "Chateau Pichon Baron",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/20158008769_Chateau-Pichon-Longueville-Baron_Ch-Pichon-Longueville-BaronPauillac_2015_01.png",
     ],
     is_very_special: false,
@@ -225,7 +225,7 @@ export const vintex = [
   {
     id: 20,
     name: "Cos d'Estournel 2eme Cru Classe, Saint-Estephe",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Cos_D_estournel.png",
     ],
     is_very_special: false,
@@ -241,7 +241,7 @@ export const vintex = [
   {
     id: 61,
     name: "Domaie Fontaine-Gagnard, Chassagne-Montrachet",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Fontaine-Gagnard.png",
     ],
     is_very_special: true,
@@ -257,7 +257,7 @@ export const vintex = [
   {
     id: 21,
     name: "Dom Perignon",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Dom_Perignon_2012.png",
     ],
     is_very_special: false,
@@ -273,7 +273,7 @@ export const vintex = [
   {
     id: 68,
     name: "DRC, Corton Grand Cru (Romanee)",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/romanee-conti-corton-2018.png",
     ],
     is_very_special: false,
@@ -289,7 +289,7 @@ export const vintex = [
   {
     id: 28,
     name: "DRC, Richebourg Grand Cru (Romanee)",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Richebourg.png",
     ],
     is_very_special: false,
@@ -305,7 +305,7 @@ export const vintex = [
   {
     id: 29,
     name: "DRC, Romanee-Conti Grand Cru",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_Conti.png",
     ],
     is_very_special: false,
@@ -321,7 +321,7 @@ export const vintex = [
   {
     id: 60,
     name: "Edivo, Navis Mysterium Undersea Amphora",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/edivo.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/edivo.png"],
     is_very_special: true,
     vintage_range: "2012",
     price_range: "£1,800.00",
@@ -335,7 +335,7 @@ export const vintex = [
   {
     id: 35,
     name: "Flaccianello della Pieve",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Flaccoanello_Della_Pieve.png",
     ],
     is_very_special: false,
@@ -351,7 +351,7 @@ export const vintex = [
   {
     id: 37,
     name: "Giacomo Conterno, Barolo, Monfortino Riserva",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Barolo_Monfortino.png",
     ],
     is_very_special: false,
@@ -367,7 +367,7 @@ export const vintex = [
   {
     id: 55,
     name: "Giuseppe Rinaldi",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Rinaldi_Barolo.webp",
     ],
     is_very_special: false,
@@ -383,7 +383,7 @@ export const vintex = [
   {
     id: 38,
     name: "Harlan Estate, Napa Valley",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/HarlanEstate.png",
     ],
     is_very_special: false,

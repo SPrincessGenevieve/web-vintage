@@ -673,7 +673,7 @@ export const Wine3 = {
       'Barolo is a prestigious DOCG wine from Piedmont, Italy, crafted exclusively from Nebbiolo grapes. Known for its "tar and roses" aroma, firm tannins, and high acidity, Barolo develops complex flavors of truffles and dark chocolate with age. Key subregions like La Morra and Serralunga d\'Alba produce distinct styles, from aromatic to robust. Barolo must age at least 38 months (62 for Riserva). Modernists favor fruitier, earlier-drinking styles, sparking the ongoing "Barolo Wars" between tradition and innovation.',
     winery:
       'Bartolo Mascarello is a prestigious Barolo producer in Piedmont, Italy, founded in 1918. The estate gained global recognition under Bartolo Mascarello, a staunch traditionalist who opposed modern winemaking trends like French oak barriques and single-vineyard bottlings. His iconic "No Barrique, No Berlusconi" label highlighted his political views and commitment to tradition. Now led by his daughter Maria-Teresa Mascarello, the estate blends grapes from Cannubi, San Lorenzo, Rué, and Rocche dell\'Annunziata. Wines are elegant, aged in Slavonian oak botti, with annual Barolo production around 1,250 cases.',
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Barolo_-_Wine_3.png",
     ],
     oldest_vintage: 2000,
@@ -1326,7 +1326,7 @@ export const Wine4 = {
       'Champagne Brut is a dry sparkling wine from France\'s Champagne region, made primarily from Chardonnay, Pinot Noir, and Pinot Meunier. The term "Brut" means minimal added sugar, with less than 12–15 grams per liter. Brut Champagne can be white or rosé, vintage or non-vintage, Blanc de Noirs, or Blanc de Blancs. Popularized by Perrier-Jouët in 1846 for the British market, Brut is now the most common Champagne style. Sweeter styles include Extra Dry, Sec, Demi-Sec, and Doux.',
     winery:
       "Champagne Bollinger, founded in 1829 in Aÿ, France, is renowned for its robust, Pinot Noir-dominant style. The house remains independently owned by Société Jacques Bollinger. Pinot Noir comprises at least 60% of its blends, with no Blanc de Blancs produced. Bollinger manages 169 hectares of premier and grand cru vineyards, with two-thirds estate-grown grapes. Known for barrel aging and cork-sealed reserve wines, Bollinger's notable cuvées include La Grande Année, RD, and Vieilles Vignes Françaises. Bollinger is famously James Bond's preferred Champagne.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/BollingerGrandeAnnee.png",
     ],
     oldest_vintage: 1995,
@@ -1706,7 +1706,7 @@ export const Wine5 = {
       "Champagne Extra Brut is one of the driest Champagne styles, allowing no more than 6 grams of residual sugar per liter. It overlaps with Brut Nature (0–3g/L) for the driest expressions. Extra Brut reflects the modern trend toward drier wines and has gained popularity, especially among smaller growers producing more terroir-driven Champagnes. It sits between Brut (0–12g/L) and Brut Nature in sweetness levels. This style highlights purity, crisp acidity, and the natural expression of the Champagne’s grapes and terroir.",
     winery:
       "Champagne Bollinger, founded in 1829 in Aÿ, France, is renowned for its robust, Pinot Noir-dominant style. The house remains independently owned by Société Jacques Bollinger. Pinot Noir comprises at least 60% of its blends, with no Blanc de Blancs produced. Bollinger manages 169 hectares of premier and grand cru vineyards, with two-thirds estate-grown grapes. Known for barrel aging and cork-sealed reserve wines, Bollinger's notable cuvées include La Grande Année, RD, and Vieilles Vignes Françaises. Bollinger is famously James Bond's preferred Champagne.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Champagne_Bollinger_RD.png",
     ],
     oldest_vintage: 1990,
@@ -2362,7 +2362,7 @@ export const Wine6 = {
       'Barolo is a prestigious DOCG wine from Piedmont, Italy, crafted exclusively from Nebbiolo grapes. Known for its "tar and roses" aroma, firm tannins, and high acidity, Barolo develops complex flavors of truffles and dark chocolate with age. Key subregions like La Morra and Serralunga d\'Alba produce distinct styles, from aromatic to robust. Barolo must age at least 38 months (62 for Riserva). Modernists favor fruitier, earlier-drinking styles, sparking the ongoing "Barolo Wars" between tradition and innovation.',
     winery:
       "Bruno Giacosa was a legendary Piedmont winemaker, renowned for his exceptional Barolo and Barbaresco wines crafted from Nebbiolo. He pioneered single-vineyard bottlings in 1964 with the Santo Stefano cru. Giacosa's wines are celebrated for their elegance, structure, and longevity. His estate vineyards, notably Falletto in Serralunga d'Alba, produce wines labeled Azienda Agricola Falletto, while grower-sourced wines bear Casa Vinicola. Aged in large French oak botti, Riserva wines feature iconic red labels. Giacosa passed away in 2018, leaving a lasting legacy.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Barolo_Falletto_white.png",
     ],
     oldest_vintage: 1999,
@@ -2464,7 +2464,7 @@ export const Wine79 = {
       "Saint-Émilion is a prominent Bordeaux Right Bank appellation known for its Merlot-based red wines, producing over 250,000hl annually. The region's vineyards, dating back to Roman times, are divided into three main areas: a limestone plateau housing most prestigious estates, a southern alluvial plain, and a northwestern gravelly terrace. Unlike Médoc's Cabernet Sauvignon focus, Saint-Émilion favours Merlot and Cabernet Franc due to its cooler, clay-chalk soils. The area features four satellite regions and operates a controversial classification system, from which several top estates recently withdrew.",
     winery:
       "Château Berliquet, a Grand Cru Classé in Saint-Émilion, Bordeaux, was founded in 1768 and is among the region’s oldest estates. It pioneered selling wine under its own name. The 7.5-hectare vineyard is planted mainly to Merlot (70%) with the rest in Cabernet Franc, thriving on limestone slopes overlooking the Dordogne. Neighbouring Château Canon, it shares ownership with Maison Chanel, which acquired it in 2017. Berliquet’s wines are known for their refined, racy style shaped by their distinctive terroir.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/20221007039_Chateau-Berliquet_Ch-Berliquet-St-Emilion_2022_01.png",
     ],
     oldest_vintage: 2018,
@@ -2815,7 +2815,7 @@ export const Wine7 = {
       'Barolo is a prestigious DOCG wine from Piedmont, Italy, crafted exclusively from Nebbiolo grapes. Known for its "tar and roses" aroma, firm tannins, and high acidity, Barolo develops complex flavors of truffles and dark chocolate with age. Key subregions like La Morra and Serralunga d\'Alba produce distinct styles, from aromatic to robust. Barolo must age at least 38 months (62 for Riserva). Modernists favor fruitier, earlier-drinking styles, sparking the ongoing "Barolo Wars" between tradition and innovation.',
     winery:
       "Bruno Giacosa was a legendary Piedmont winemaker, renowned for his exceptional Barolo and Barbaresco wines crafted from Nebbiolo. He pioneered single-vineyard bottlings in 1964 with the Santo Stefano cru. Giacosa's wines are celebrated for their elegance, structure, and longevity. His estate vineyards, notably Falletto in Serralunga d'Alba, produce wines labeled Azienda Agricola Falletto, while grower-sourced wines bear Casa Vinicola. Aged in large French oak botti, Riserva wines feature iconic red labels. Giacosa passed away in 2018, leaving a lasting legacy.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Barolo_Falletto_1.png",
     ],
     oldest_vintage: 2000,
@@ -2917,7 +2917,7 @@ export const Wine85 = {
       "Pauillac, a prestigious appellation on Bordeaux’s Médoc peninsula, is renowned for producing some of the world’s finest red wines, predominantly from Cabernet Sauvignon. Home to three First Growth estates—Lafite Rothschild, Mouton Rothschild, and Château Latour—Pauillac wines are known for their full-bodied, rich style with cassis and cedarwood aromas. The region’s 1,200 hectares of vineyards benefit from varied terroir, creating wines with powerful tannins and exceptional ageing potential. Merlot, Cabernet Franc, and Petit Verdot also feature in blends, adding complexity.",
     winery:
       "Château Pichon-Longueville Baron, a Pauillac second growth, produces age-worthy Cabernet Sauvignon-led wines of power, finesse, and elegance. Its 75-hectare vineyard, bordering Saint-Julien and neighbouring Latour, is planted mainly to Cabernet Sauvignon and Merlot, with some Cabernet Franc and Petit Verdot. The grand vin ages 18–20 months in oak (70% new), alongside second wine Les Tourelles de Longueville and the softer Les Griffons de Pichon. Once part of a larger estate split in 1850, Pichon Baron has been owned by AXA since 1987.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/20158008769_Chateau-Pichon-Longueville-Baron_Ch-Pichon-Longueville-BaronPauillac_2015_01.png",
     ],
     oldest_vintage: 2016,
@@ -3671,7 +3671,7 @@ export const Wine8 = {
       "Saint-Émilion Grand Cru wines operate under stricter production rules than standard Saint-Émilion wines, though these restrictions are considered relatively modest. The key differences include lower vineyard yields, higher grape sugar content requirements (except for Merlot), slightly higher minimum alcohol content, and longer storage requirements. Importantly, Saint-Émilion Grand Cru shouldn't be confused with Saint-Émilion Grand Cru Classé, which represents the region's top-tier wines through a separate classification system that is periodically reviewed and updated.",
     winery:
       "Château Angélus is a prestigious Saint-Émilion wine estate known for its exceptional Merlot-Cabernet Franc blend. Named for nearby church bells, the estate has been owned by the de Boüard family since 1920. Under Hubert de Boüard's leadership, it modernised practices and achieved Premier Grand Cru Classé A status in 2012, though later withdrew from the classification system. The 39-hectare estate produces about 100,000 bottles annually across several wines, including their flagship grand vin, Le Carillon d'Angélus, and Tempo d'Angélus. The château has gained additional recognition through James Bond film appearances.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Angelus_1.png",
     ],
     oldest_vintage: 2000,
@@ -4424,7 +4424,7 @@ export const Wine9 = {
       "Saint-Émilion is a prominent Bordeaux Right Bank appellation known for its Merlot-based red wines, producing over 250,000hl annually. The region's vineyards, dating back to Roman times, are divided into three main areas: a limestone plateau housing most prestigious estates, a southern alluvial plain, and a northwestern gravelly terrace. Unlike Médoc's Cabernet Sauvignon focus, Saint-Émilion favours Merlot and Cabernet Franc due to its cooler, clay-chalk soils. The area features four satellite regions and operates a controversial classification system, from which several top estates recently withdrew.",
     winery:
       "Château Ausone is a prestigious Saint-Émilion estate named after a 4th-century Roman poet. Despite its small size of seven hectares, it's considered one of Bordeaux's finest producers. Located on a steep, southeast-facing slope near Saint-Émilion town, the vineyard primarily grows Cabernet Franc and Merlot. Though it withdrew from the Saint-Émilion classification in 2022, it remains highly regarded. With limited production of under 2,000 cases annually and consistent critical acclaim since the 1990s, Ausone is among Saint-Émilion's most expensive and sought-after wines.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Ausone.png",
     ],
     oldest_vintage: 2000,
@@ -5208,7 +5208,7 @@ export const Wine10 = {
       "Saint-Émilion is a prominent Bordeaux Right Bank appellation known for its Merlot-based red wines, producing over 250,000hl annually. The region's vineyards, dating back to Roman times, are divided into three main areas: a limestone plateau housing most prestigious estates, a southern alluvial plain, and a northwestern gravelly terrace. Unlike Médoc's Cabernet Sauvignon focus, Saint-Émilion favours Merlot and Cabernet Franc due to its cooler, clay-chalk soils. The area features four satellite regions and operates a controversial classification system, from which several top estates recently withdrew.",
     winery:
       "Château Cheval Blanc is a prestigious Saint-Émilion estate renowned for producing the world's most famous Cabernet Franc-based wine. Its 39-hectare vineyard, bordering Pomerol, features a unique patchwork of clay and gravel soils, supporting an unusual planting ratio of 52% Cabernet Franc, 43% Merlot, and 5% Cabernet Sauvignon. Though it withdrew from the Saint-Émilion classification in 2022, it remains one of Bordeaux's most celebrated wines. The estate produces 80,000 bottles annually, with wines known for their longevity and requiring significant ageing.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/chateau_Blanc.png",
     ],
     oldest_vintage: 2000,
@@ -5961,7 +5961,7 @@ export const Wine11 = {
       "Sauternes, located 65 km south of Bordeaux, is renowned for its luxurious sweet wines, notably Château d'Yquem. Produced mainly from Sémillon and Sauvignon Blanc grapes affected by noble rot (Botrytis cinerea), Sauternes wines are rich, honeyed, and balanced by fresh acidity. Ideal conditions—morning mists from the Ciron River followed by warm afternoons—allow the grapes to slowly dry, concentrating sugars. Labor-intensive harvesting, low yields, and extensive oak aging contribute to high production costs, making Sauternes wines prestigious and often expensive.",
     winery:
       "Château d'Yquem, located in Bordeaux's Sauternes district, is renowned for producing the world’s most prestigious dessert wine. Rated as the only Premier Cru Supérieur in the 1855 Classification, it commands premium prices. The 103-hectare vineyard, planted with 75% Sémillon and 25% Sauvignon Blanc, benefits from ideal conditions for noble rot. Harvested by hand in multiple passes, its low yields result in intensely sweet, complex wines that age gracefully for decades. Yquem also produces a dry white wine, Y (\"Ygrek\"), blending Sauvignon Blanc and Sémillon.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/wine11.webp",
       "https://d18vt6ndh4jzvp.cloudfront.net/media/wine11_80XPrVD.webp",
     ],
@@ -6715,7 +6715,7 @@ export const Wine12 = {
       "Pessac-Léognan’s vineyards blend with Bordeaux’s southern edges and are surrounded by pine forests and housing. Its red wines, primarily from Cabernet Sauvignon and Cabernet Franc, thrive in gravelly soils, while white wines from Sauvignon Blanc and Sémillon are oak-aged for complexity and longevity. Prestigious estates include Haut-Brion, La Mission Haut-Brion, and Pape Clément. The region, encompassing Pessac, Léognan, and Martillac, is renowned for its elite châteaux, exceptional drainage, and fine age-worthy wines, both red and white.",
     winery:
       'Château Haut-Brion, the oldest of Bordeaux\'s five first growths, is located in Pessac-Léognan, distinct from its Médoc counterparts. Its 51-hectare vineyard mainly grows Merlot, Cabernet Sauvignon, Cabernet Franc, and Petit Verdot, producing softer, more rounded wines with an empyreumatic bouquet. The estate also produces white wine, "Haut-Brion blanc." Established in the 1530s, it has notable historical admirers like King Charles II and Thomas Jefferson. Owned by the Dillon family since 1935, it remains a prestigious Bordeaux estate.',
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Haut_Brion.png",
     ],
     oldest_vintage: 2000,
@@ -7499,7 +7499,7 @@ export const Wine13 = {
       "Pauillac, a prestigious appellation on Bordeaux’s Médoc peninsula, is renowned for producing some of the world’s finest red wines, predominantly from Cabernet Sauvignon. Home to three First Growth estates—Lafite Rothschild, Mouton Rothschild, and Château Latour—Pauillac wines are known for their full-bodied, rich style with cassis and cedarwood aromas. The region’s 1,200 hectares of vineyards benefit from varied terroir, creating wines with powerful tannins and exceptional ageing potential. Merlot, Cabernet Franc, and Petit Verdot also feature in blends, adding complexity.",
     winery:
       "Château Lafite Rothschild, located in Pauillac, is one of the world’s most prestigious wine estates, renowned for its elegant, harmonious red wines. Its grand vin primarily features 80–95% Cabernet Sauvignon with Merlot, aged up to 20 months in new oak. The second wine, Carruades de Lafite, contains more Merlot. The 112-hectare vineyard benefits from gravelly soils, producing wines that can age over 50 years. Owned by the Rothschild family since 1868, Lafite has a rich history and global acclaim.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Lafite_Rothschild.png",
     ],
     oldest_vintage: 2000,
@@ -8252,7 +8252,7 @@ export const Wine14 = {
       "Pomerol, a prestigious Bordeaux appellation, stands out for its lack of a formal classification system, yet produces some of the world’s most sought-after wines, including Pétrus, Lafleur, and Le Pin. Dominated by Merlot, with Cabernet Franc adding structure, Pomerol wines are rich, smooth, and capable of long ageing. Its 792-hectare vineyard features diverse soils—gravel, sand, and clay—especially in the eastern, clay-rich areas near Saint-Émilion, where the finest wines are crafted. Limited production drives high global demand.",
     winery:
       "Château Lafleur is a small, family-run estate in Pomerol, Bordeaux, spanning 4.5 hectares. Its grand vin, a 50/50 blend of Merlot and Cabernet Franc (Bouchet), is renowned for its richness, creamy texture, and ageing potential, lasting up to 50 years in top vintages. Founded in 1872, it remains under the Guinaudeau family. Lafleur also produces Pensées de Lafleur, Château Grand Village (red and white), Les Perrières, and Les Champs Libres, showcasing diverse terroirs and meticulous winemaking across Bordeaux.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/laFleur_Pomerol.png",
     ],
     oldest_vintage: 2000,
@@ -8850,7 +8850,7 @@ export const Wine15 = {
       "Pauillac, a prestigious appellation on Bordeaux’s Médoc peninsula, is renowned for producing some of the world’s finest red wines, predominantly from Cabernet Sauvignon. Home to three First Growth estates—Lafite Rothschild, Mouton Rothschild, and Château Latour—Pauillac wines are known for their full-bodied, rich style with cassis and cedarwood aromas. The region’s 1,200 hectares of vineyards benefit from varied terroir, creating wines with powerful tannins and exceptional ageing potential. Merlot, Cabernet Franc, and Petit Verdot also feature in blends, adding complexity.",
     winery:
       "Château Latour, a prestigious First Growth estate in Pauillac, Bordeaux, is renowned for its powerful, long-ageing Cabernet Sauvignon-dominant wines. Established in 1331, it gained prominence under the de Ségur family from 1670. Since 1993, it has been owned by French billionaire François Pinault’s Groupe Artemis. The 80% Cabernet Sauvignon vineyards surround the château, producing the grand vin, while Les Forts de Latour and Pauillac de Latour come from younger vines. In 2012, Latour controversially exited Bordeaux’s En Primeur sales system.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Latour_1.png",
     ],
     oldest_vintage: 2000,
@@ -9634,7 +9634,7 @@ export const Wine16 = {
       "Margaux, a key appellation in Bordeaux’s Haut-Médoc, is renowned for elegant, perfumed red wines dominated by Cabernet Sauvignon, supported by Merlot, Cabernet Franc, Petit Verdot, Carmenère, and Malbec. Spanning 1,530 hectares, it holds more classified growths (21) than any other Left Bank appellation, including First Growth Château Margaux and esteemed estates like Château Palmer. Its gravel-rich soils promote deep-rooted vines, enhancing wine complexity. However, Margaux wines can appear light in cooler vintages due to these well-drained, nutrient-poor soils.",
     winery:
       "Château Margaux, a prestigious First Growth estate in Bordeaux’s Médoc, is renowned for its elegance and consistently ranks among the world’s most expensive wines. Its Cabernet Sauvignon-dominant blend is complemented by Merlot, Petit Verdot, and Cabernet Franc. The estate spans 265 hectares, with gravel-rich soils ideal for viticulture. Founded in the 1570s, it gained acclaim by the 18th century. Since 1977, under André Mentzepoulos and later his daughter Corinne, significant investments have restored Margaux's global prestige, bolstered by exceptional vintages.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Margaux_1.png",
     ],
     oldest_vintage: 2000,
@@ -10387,7 +10387,7 @@ export const Wine17 = {
       "Pauillac, a prestigious appellation on Bordeaux’s Médoc peninsula, is renowned for producing some of the world’s finest red wines, predominantly from Cabernet Sauvignon. Home to three First Growth estates—Lafite Rothschild, Mouton Rothschild, and Château Latour—Pauillac wines are known for their full-bodied, rich style with cassis and cedarwood aromas. The region’s 1,200 hectares of vineyards benefit from varied terroir, creating wines with powerful tannins and exceptional ageing potential. Merlot, Cabernet Franc, and Petit Verdot also feature in blends, adding complexity.",
     winery:
       "Château Mouton Rothschild, located in Pauillac, Bordeaux, is renowned for producing one of the world’s most powerful and prestigious wines. Originally ranked as a Second Growth in 1855, it was elevated to First Growth status in 1973, a milestone achieved under Baron Philippe de Rothschild. The 84-hectare vineyard is dominated by Cabernet Sauvignon (80%), with Merlot, Cabernet Franc, and Petit Verdot. Mouton also produces Le Petit Mouton (second wine) and the rare Aile d'Argent (white wine), highlighting its global influence in fine winemaking.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Mouton_Rothschild.png",
     ],
     oldest_vintage: 2000,
@@ -11140,7 +11140,7 @@ export const Wine18 = {
       "Clos de Tart is a prestigious Grand Cru vineyard in Morey-Saint-Denis, Côte de Nuits, Burgundy. Established in the 12th century, it has been a monopole since its inception, now owned by François Pinault since 2017. The 7.5-hectare vineyard is planted entirely with Pinot Noir, divided into six distinct blocks with limestone and marl soils, offering southeast exposure. Clos de Tart wines are renowned for their balance of power and elegance, while lesser wines are declassified as La Forge Premier Cru.",
     winery:
       "Clos de Tart, a prestigious grand cru monopole in Morey-Saint-Denis, Côte de Nuits, Burgundy, exclusively produces two acclaimed Pinot Noir wines: Clos de Tart Grand Cru and La Forge de Tart Premier Cru. Founded in the 12th century by Cistercian nuns, it has remained a monopole since. Covering 7.5 hectares, the vineyard's southeast-facing slopes are divided into six parcels, each vinified separately to highlight microclimates. Acquired by François Pinault’s Artemis Group in 2017, Clos de Tart continues to produce elegant, complex wines, solidifying its place among Burgundy’s elite estates.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Clos_De_Tart.png",
     ],
     oldest_vintage: 2000,
@@ -11893,7 +11893,7 @@ export const Wine19 = {
       "Meursault, in Burgundy’s Côte de Beaune, spans 5 km with 381 hectares of village-level vineyards and 107 hectares of premier cru sites. Renowned for rich, full-bodied Chardonnay, Meursault wines feature flavors of butter, almonds, hazelnuts, citrus, and minerality. Notable premier cru vineyards include Charmes, Perrières, and Genevrières. Less than 5% of its vineyards grow Pinot Noir. The limestone-rich terroir, especially Comblanchian limestone, enhances Chardonnay’s minerality, contributing to Meursault's reputation for elegant, age-worthy white wines.",
     winery:
       "Domaine Coche-Dury, based in Meursault, Burgundy, is renowned for its exceptional Chardonnay wines, notably the Corton-Charlemagne Grand Cru, consistently ranked among the world's most expensive wines. Founded in 1973 by Jean-François Coche and Odile Dury, the domaine spans over nine hectares, with significant holdings in Meursault and other prestigious Burgundy vineyards. Coche-Dury uses traditional winemaking methods, aging white wines up to 22 months in oak barrels. Since 2010, the estate has been managed by Raphaël and Charline Coche.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Meursault_Coche_Dury.png",
     ],
     oldest_vintage: 2000,
@@ -12646,7 +12646,7 @@ export const Wine20 = {
       "Saint-Estèphe is a prominent Left Bank Bordeaux appellation, occupying 1,229 hectares at the northern end of Haut-Médoc. Unlike its southern neighbours, the region's terroir features less gravel but more clay and limestone, leading to increased use of Merlot alongside Cabernet Sauvignon. The area's wines are known for their richness, deep colour and longevity. While most production falls under Cru Bourgeois, the appellation's reputation is upheld by its classified growths, notably the second growths Cos d'Estournel and Montrose.",
     winery:
       "Cos d'Estournel is a prestigious second growth estate in Saint-Estèphe, bordering Lafite Rothschild. The 91-hectare south-facing vineyard, planted predominantly to Cabernet Sauvignon with Merlot, sits on gravelly, clay-limestone soils. Known for its distinctive Eastern-influenced architecture and dark, long-lived wines, the estate produces multiple labels, including Les Pagodes de Cos and two white wines. The estate pioneered direct sales in Bordeaux, with India being a key early market. Current annual production ranges from 200,000 to 380,000 bottles.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Cos_D_estournel.png",
     ],
     oldest_vintage: 2000,
@@ -13243,7 +13243,7 @@ export const Wine21 = {
       'Champagne Brut is a dry, sparkling wine from France\'s Champagne region. It can be white or rosé and is typically made from the classic blend of Chardonnay, Pinot Noir, and Pinot Meunier, though it may also include lesser-known varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. The term "Brut" means "raw," indicating minimal added sugar (dosage) during production. By law, Brut Champagne contains less than 15g/L of sugar. Drier styles include Brut Nature (0–3g/L) and Extra Brut (0–6g/L). Introduced by Perrier-Jouët in  1846 for the British market, Brut has become the most popular Champagne style today, surpassing sweeter versions like Sec, Demi-Sec, and Doux.',
     winery:
       "Dom Pérignon, owned by Moët & Chandon under LVMH, is a prestigious Champagne brand named after Dom Pierre Pérignon, a 17th-century monk credited with advancing Champagne production. First released in 1937, Dom Pérignon is a vintage-only Champagne, blending Chardonnay and Pinot Noir from the best vineyards. Its maturation follows the Plénitude concept: Vintage (9 years), P2 (12–15 years), and P3 (25+ years). Dom Pérignon also produces rare Rosé vintages, reflecting elegance and aging potential.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Dom_Perignon_2012.png",
     ],
     oldest_vintage: 1995,
@@ -14027,7 +14027,7 @@ export const Wine22 = {
       "Chambertin is one of Burgundy's most prestigious Grand Cru vineyards, famed for its rich, ruby-colored Pinot Noir wines with aromas of plums, cherries, earth, and sweet spice. Napoleon famously drank Chambertin daily, even during campaigns. The 13.5-hectare (37-acre) vineyard in Gevrey-Chambertin shares its name with the village, reflecting its prestige. Key producers include Domaine Armand Rousseau and Domaine Leroy. Its well-drained, stony soils and continental climate contribute to wines of exceptional balance, though spring frosts and hailstorms pose risks.",
     winery:
       "Domaine Armand Rousseau, based in Gevrey-Chambertin, is one of Burgundy’s most prestigious family-run estates. Founded in the early 20th century, it expanded under Charles and later Eric Rousseau, with Cyrielle Rousseau now involved. The domaine owns top grand cru vineyards, including Le Chambertin, Chambertin-Clos de Bèze, Mazis-, Ruchottes-, and Charmes-Chambertin, plus premier cru plots like Clos Saint-Jacques. Rousseau produces elegant, age-worthy Pinot Noir wines that emphasize terroir with minimal oak, showcasing purity and balance.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/chambertin.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/chambertin.png"],
     oldest_vintage: 1998,
     maximum_price: 25750.0,
     annual_production: 600,
@@ -14778,7 +14778,7 @@ export const Wine23 = {
       "Corton-Charlemagne is a prestigious Grand Cru appellation in Burgundy's Côte de Beaune, renowned for exceptional Chardonnay wines. Covering 52 hectares (130 acres) on the Montagne de Corton, its vineyards span Aloxe-Corton, Pernand-Vergelesses, and Ladoix communes. The limestone-marl soils and ideal southeast to southwest slopes yield wines with rich fruit flavors—figs and baked pears—balanced by a distinctive flinty minerality. Emperor Charlemagne historically influenced the vineyard’s white grape cultivation. Today, Corton-Charlemagne wines are highly prized for their complexity, aging potential, and elegance, ranking among Burgundy’s finest whites.",
     winery:
       "Domaine Bonneau du Martray, located in Pernand-Vergelesses in Burgundy's Côte de Beaune, exclusively produces Grand Cru wines from the Corton hill. It owns 9.5 hectares of Chardonnay in Corton-Charlemagne, renowned for exceptional white wines, and 1.5 hectares of Pinot Noir for Corton. Fermentations use natural yeasts, with up to 30% new oak aging. Founded post-French Revolution by the Bonneau family, the vineyards have ancient roots, dating back to Roman times and Emperor Charlemagne's admiration for its wines.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/20018119937_Bonneau-Du-Martray_Corton-Charlemagne-Grand-CruDomaine-Bonneau-du-Martray_2001_01.png",
     ],
     oldest_vintage: 2000,
@@ -15531,7 +15531,7 @@ export const Wine24 = {
       'Musigny is a prestigious Grand Cru vineyard in Chambolle-Musigny, Burgundy\'s Côte de Nuits, officially classified in 1936. One of only two Grand Crus producing both Pinot Noir and Chardonnay (alongside Corton), Musigny spans 10.8 hectares of limestone-rich, well-drained slopes. Its Pinot Noir wines are renowned for elegance and power, often described as "an iron fist in a velvet glove," showcasing red cherry, licorice, and forest floor notes. Domaine Comte Georges de Vogüé exclusively produces the rare Musigny Blanc, enhancing the vineyard’s esteemed reputation.',
     winery:
       "Domaine Comte Georges de Vogüé, located in Chambolle-Musigny, Burgundy, is a historic and prestigious estate renowned for its exceptional Pinot Noir wines. With roots dating back to the 15th century, it is the largest owner of the Musigny Grand Cru vineyard, holding 7.2 hectares, including Petit Musigny. The estate also cultivates Bonnes-Mares Grand Cru and Les Amoureuses Premier Cru. Known for elegant, age-worthy wines with floral and berry notes, de Vogüé also produces the rare and highly prized Musigny Blanc from Chardonnay.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/musigny.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/musigny.png"],
     oldest_vintage: 2000,
     maximum_price: 6109.0,
     annual_production: 1000,
@@ -16282,7 +16282,7 @@ export const Wine25 = {
       "Échezeaux is a prestigious Grand Cru vineyard in Burgundy's Côte de Nuits, located in the commune of Flagey-Échezeaux. Spanning 37.7 hectares, it produces full-bodied Pinot Noir wines known for red fruit, spice, and earthy notes. The vineyard’s diverse terroir, with clay-heavy lower slopes and well-drained upper plots, leads to varying wine quality. Notable producers include Domaine de la Romanée-Conti and Emmanuel Rouget. Key lieux-dits like Échezeaux du Dessus and Les Poulaillères are highly regarded for their superior quality.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Echezeaux.png",
     ],
     oldest_vintage: 2000,
@@ -17035,7 +17035,7 @@ export const Wine26 = {
       "Grands-Échezeaux is a prestigious Grand Cru vineyard in Burgundy's Côte de Nuits, located between Échezeaux and Clos de Vougeot in Flagey-Échezeaux. Covering 9.1 hectares, it produces rich, structured Pinot Noir wines that typically surpass Échezeaux in quality and price. Its consistent terroir features well-drained, pebbly limestone soils with clay, promoting deep vine roots and concentrated fruit. Domaine de la Romanée-Conti owns the largest share, while other notable producers include Joseph Drouhin and Domaine d'Eugénie, contributing to the vineyard’s esteemed reputation.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Grands_Echezeaux.png",
     ],
     oldest_vintage: 2000,
@@ -17819,7 +17819,7 @@ export const Wine27 = {
       "La Tâche is a prestigious Grand Cru monopole vineyard in Vosne-Romanée, exclusively owned by Domaine de la Romanée-Conti (DRC) since 1933. Covering 6.06 hectares, it is over three times larger than Romanée-Conti. Its terroir features pebbly limestone soils, with thinner, free-draining soils on higher slopes and more clay at the base, allowing for complex, structured Pinot Noir wines. Known for power and elegance, La Tâche is farmed organically and produces wines celebrated for their depth, aging potential, and remarkable balance.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRCLaTacheGrandCruRedWine.png",
     ],
     oldest_vintage: 1994,
@@ -18602,7 +18602,7 @@ export const Wine28 = {
       "Richebourg is a prestigious Grand Cru vineyard in Vosne-Romanée, producing some of Burgundy’s most opulent Pinot Noir wines, known for dense fruit, earthy complexity, and exceptional ageing potential. Covering 8 hectares, it consists of two lieux-dits: Les Richebourgs (warmer, denser wines) and Les Véroilles (cooler, more mineral-driven wines). Its well-drained pebbly clay and limestone soils contribute to rich, structured wines. Domaine de la Romanée-Conti is the largest owner, alongside Domaine Leroy and Anne Gros. Henri Jayer’s rare Richebourg wines remain highly prized.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Richebourg.png",
     ],
     oldest_vintage: 1992,
@@ -19354,7 +19354,7 @@ export const Wine29 = {
       "Romanée-Conti, a Grand Cru vineyard in Vosne-Romanée, is one of the world’s most prestigious and exclusive wine estates. Owned solely by Domaine de la Romanée-Conti (DRC), its 1.81 hectares produce fewer than 500 cases annually of exceptional Pinot Noir, famed for elegance, depth, and ageing potential. Its ideal terroir—limestone-rich soils and an easterly slope—yields highly sought-after wines, commanding tens of thousands of dollars per bottle. Romanée-Conti’s rarity and prestige make it both the most coveted and counterfeited wine globally.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_Conti.png",
     ],
     oldest_vintage: 2000,
@@ -20107,7 +20107,7 @@ export const Wine30 = {
       "Romanée-Saint-Vivant is a prestigious Grand Cru vineyard in Vosne-Romanée, covering 9.4 hectares, making it the village's largest Grand Cru. Known for producing elegant, aromatic Pinot Noir, its wines are lighter and more delicate than other Vosne-Romanée grands crus. The vineyard's clay-rich, deeper soils on the lower Côte d'Or slopes contribute to this refined style. Domaine de la Romanée-Conti is the largest owner, alongside Domaine Leroy, Louis Latour, and Jean-Jacques Confuron. Romanée-Saint-Vivant wines are highly regarded for their finesse and subtle complexity.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_St_Vivant.png",
     ],
     oldest_vintage: 2000,
@@ -20860,7 +20860,7 @@ export const Wine31 = {
       "Clos des Lambrays is a prestigious grand cru vineyard in Burgundy's Morey-Saint-Denis appellation, covering 8 hectares (21 acres). Renowned for producing elegant, rich Pinot Noir wines with a lush palate and refined structure, it contrasts with the more robust wines of neighboring Gevrey-Chambertin. Promoted to grand cru in 1981, Clos des Lambrays is now nearly a monopole of Domaine des Lambrays, except for a small plot owned by Domaine Taupenot-Merme. Its diverse terroir, divided into three sub-climats, imparts distinct styles to the wine.",
     winery:
       "Domaine des Lambrays, based in Morey-Saint-Denis in Burgundy's Côte de Nuits, is renowned for its Clos des Lambrays Grand Cru Pinot Noir. Owning 8.66 of the vineyard's 8.84 hectares, it nearly holds a monopole. The wine is celebrated for its elegance, complexity, and aging potential. The domaine also produces Morey-Saint-Denis Premier Cru Les Loups, village-level Morey-Saint-Denis, Bourgogne Rosé, and Puligny-Montrachet Premier Cru whites. Acquired by LVMH in 2014, the estate combines tradition and meticulous winemaking, solidifying its prestigious reputation.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Clos_Des_Lambrays.png",
     ],
     oldest_vintage: 2000,
@@ -21613,7 +21613,7 @@ export const Wine32 = {
       'Bonnes-Mares is a 15-hectare (37-acre) Grand Cru vineyard in Chambolle-Musigny, bordering Clos de Tart to the north. Known for its fragmented ownership, around 19 producers make Bonnes-Mares wines. Soil variations within the vineyard create distinct styles: richer, deeper soils near Morey-Saint-Denis yield weightier wines, while finer, limestone-rich soils near Chambolle produce more elegant, perfumed wines. The name likely derives from the Cistercian "Bonnes Meres" of Notre Dame de Tart Abbey, reflecting its historical connection to nearby Clos de Tart.',
     winery:
       "Domaine Georges Roumier, based in Chambolle-Musigny in Burgundy's Côte de Nuits, is renowned for producing some of the region's most prestigious and sought-after Pinot Noir wines. Established in 1924 by Georges Roumier through marriage into the Quanquin family vineyards, the domaine expanded via the métayage system. Key holdings include 1.6 hectares in Bonnes Mares Grand Cru and 0.4 hectares in Chambolle-Musigny Premier Cru Les Amoureuses. Now led by Christophe Roumier, the domaine emphasizes terroir expression with minimal new oak and low-temperature fermentation, crafting wines known for their elegance and complexity.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Bonnes_Mares.png",
     ],
     oldest_vintage: 2000,
@@ -22366,7 +22366,7 @@ export const Wine33 = {
       'Chevalier-Montrachet is a prestigious Grand Cru vineyard in Puligny-Montrachet, Côte de Beaune, renowned for producing exceptional Chardonnay wines. Covering 7.3 hectares on the southeast-facing mid-slope of Mont-Rachet hill, it sits above Montrachet and Bâtard-Montrachet. Its thin, limestone-rich soils with high marl content and excellent drainage yield intense, mineral-driven wines with great aging potential. Granted Grand Cru status in 1937, its name stems from a local legend involving the Seigneur de Puligny, who divided his land among his children, including his "chevalier" (knight) son.',
     winery:
       "Domaine Leflaive, located in Puligny-Montrachet, is a leading Burgundy producer renowned for its exceptional Chardonnay wines. Founded in 1905 by Joseph Leflaive, the estate expanded under his sons Vincent and Jo, gaining a prestigious reputation. Anne Claude Leflaive pioneered biodynamic farming in the 1990s, a legacy continued by her nephew Brice de la Morandiere. The domaine produces acclaimed Grand Cru wines from Montrachet, Chevalier-Montrachet, Bâtard-Montrachet, and Bienvenues-Bâtard-Montrachet, alongside notable Premier Crus like Les Clavoillon and a red Blagny Sous le Dos d'Ane.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Chevalier_Montrachet_Domaine_Leflave.png",
     ],
     oldest_vintage: 2000,
@@ -23119,7 +23119,7 @@ export const Wine34 = {
       "Napa Valley is one of the world’s most prestigious wine regions, stretching 35 miles between the Vacas and Mayacamas mountain ranges. Its global acclaim stems from its ideal terroir—notably its climate and soils—for cultivating premium Cabernet Sauvignon. The region's proximity to San Francisco attracts millions of wine tourists annually. Napa's reputation was solidified by its victory over French wines in the 1976 Paris Judgment. Pioneers like George C. Yount, Charles Krug, and Robert Mondavi shaped its modern wine industry. While Cabernet Sauvignon dominates, varieties like Merlot, Zinfandel, Chardonnay, and Sauvignon Blanc also thrive.",
     winery:
       "Dominus Estate is a prestigious Napa Valley winery located in northern Yountville, known for producing critically acclaimed, Bordeaux-style wines. Established in 1982 by Christian Moueix, a Bordeaux vintner famous for his work with Pétrus, the estate centers on the historic Napanook Vineyard, first planted by George Yount in 1838. Dominus' flagship wine blends Cabernet Sauvignon with Petit Verdot and Cabernet Franc, reflecting the vineyard’s plantings. The estate also produces the mid-tier Napanook and entry-level Othello wines. Dominus is dry-farmed, with a focus on low yields and quality, and features a distinctive, stone-filled gabion winery designed for natural temperature control.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Dominus_Napa_Valley.png",
     ],
     oldest_vintage: 2000,
@@ -23871,7 +23871,7 @@ export const Wine35 = {
       "Colli della Toscana Centrale IGT covers the hills of central Tuscany, producing red, white, and rosé wines. While Chardonnay and Vernaccia dominate whites, most wines are dry reds featuring Sangiovese, often blended with Cabernet Sauvignon, Merlot, or Syrah. This IGT allows winemakers greater flexibility than the stricter Chianti DOCG, encouraging experimentation. The region spans five Tuscan provinces with classic rolling hills and a warm climate. Wine quality and pricing vary, from affordable options to premium bottles exceeding $100.",
     winery:
       "Fontodi is a renowned wine producer in Tuscany's Chianti Classico region, famed for its Super Tuscan wine, Flaccianello della Pieve, a bold, full-bodied Sangiovese. Located in the sun-drenched Conca d'Oro valley near Panzano, its 70-hectare vineyard benefits from warm days, cool nights, and chalky, clay, and schist soils. Fontodi also produces Chianti Classico Riserva Vigna del Sorbo (Sangiovese and Cabernet Sauvignon) and varietals like Syrah, Pinot Nero, and Sauvignon Blanc, with French oak aging enhancing quality.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Flaccoanello_Della_Pieve.png",
     ],
     oldest_vintage: 2000,
@@ -24623,7 +24623,7 @@ export const Wine36 = {
       "Barbaresco is a prestigious red wine from Italy's Piedmont region, made exclusively from Nebbiolo grapes. It was granted DOCG status in 1980. Barbaresco's vineyards lie on limestone-rich marl soils in the communes of Barbaresco, Neive, Treiso, and part of San Rocco Senodelvio. The wine is known for its rich, spicy flavors, floral aromas, and more approachable, elegant style compared to Barolo. Barbaresco must age at least 26 months, while Riserva requires 50 months, both with 9 months in oak.",
     winery:
       "Gaja is a prestigious Italian wine producer, renowned for its Nebbiolo-based wines from Barbaresco and its expanded ventures in Tuscany. Founded in 1859 by Giovanni Gaja, the estate flourished under Angelo Gaja from 1970, introducing iconic single-vineyard wines like Sorì San Lorenzo, Sorì Tildìn, and Costa Russi. Gaja modernized Piedmont winemaking while blending Barbera into Barbaresco, sparking controversy. The estate also produces acclaimed wines from Sperss (Barolo), Pieve Santa Restituta (Montalcino), and Ca' Marcanda (Bolgheri).",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/gaja.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/gaja.png"],
     oldest_vintage: 2000,
     maximum_price: 5000.0,
     annual_production: 4000,
@@ -25364,7 +25364,7 @@ export const Wine37 = {
       'Barolo is a prestigious DOCG wine from Piedmont, Italy, crafted exclusively from Nebbiolo grapes. Known for its "tar and roses" aroma, firm tannins, and high acidity, Barolo develops complex flavors of truffles and dark chocolate with age. Key subregions like La Morra and Serralunga d\'Alba produce distinct styles, from aromatic to robust. Barolo must age at least 38 months (62 for Riserva). Modernists favor fruitier, earlier-drinking styles, sparking the ongoing "Barolo Wars" between tradition and innovation.',
     winery:
       "Giacomo Conterno is a prestigious Barolo producer in Monforte d'Alba, Piedmont. Renowned for its Monfortino Riserva and Cascina Francia Barolo, the estate emphasizes traditional winemaking, aging wines in large Slovenian oak casks. Founded in 1908 by Giovanni Conterno, the estate gained acclaim after acquiring the Cascina Francia vineyard in 1974. Under Roberto Conterno, it expanded with the Ceretta and Arione vineyards. Monfortino Riserva is produced only in top vintages, making around 7,000 bottles, while Barbera and Cascina Francia yield about 20,000 bottles annually.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Barolo_Monfortino.png",
     ],
     oldest_vintage: 2000,
@@ -26116,7 +26116,7 @@ export const Wine38 = {
       "Napa Valley is one of the world’s most prestigious wine regions, stretching 35 miles between the Vacas and Mayacamas mountain ranges. Its global acclaim stems from its ideal terroir—notably its climate and soils—for cultivating premium Cabernet Sauvignon. The region's proximity to San Francisco attracts millions of wine tourists annually. Napa's reputation was solidified by its victory over French wines in the 1976 Paris Judgment. Pioneers like George C. Yount, Charles Krug, and Robert Mondavi shaped its modern wine industry. While Cabernet Sauvignon dominates, varieties like Merlot, Zinfandel, Chardonnay, and Sauvignon Blanc also thrive.",
     winery:
       "Harlan Estate is a prestigious Napa Valley winery located in the Oakville AVA, renowned for its Cabernet Sauvignon-based wines. Founded in 1984 by Bill Harlan, the estate spans 240 acres, with 40 acres under vine, primarily Cabernet Sauvignon with Merlot, Cabernet Franc, and Petit Verdot. Its flagship wine debuted in 1990, gaining global acclaim with multiple 100-point scores from critics. Harlan Estate’s second wine, The Maiden, offers a more approachable expression. Winemaking emphasizes gentle extraction and aging in French oak for 24–26 months.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/HarlanEstate.png",
     ],
     oldest_vintage: 2000,
@@ -26865,7 +26865,7 @@ export const Wine39 = {
       "Le Montrachet is a prestigious Grand Cru vineyard in Burgundy’s Côte de Beaune, spanning 7.99 hectares between Puligny- and Chassagne-Montrachet. Renowned for producing some of the world’s finest Chardonnay, its wines are rich, structured, and highly collectible. The limestone-marl slope, with ideal sun exposure, contributes to its exceptional terroir. Neighboring Grand Crus include Chevalier-Montrachet, Bâtard-Montrachet, Bienvenues-Bâtard-Montrachet, and Criots-Bâtard-Montrachet. Notable producers include Domaine Leflaive, Joseph Drouhin, Bouchard Père et Fils, and Domaine de la Romanée-Conti.",
     winery:
       "Joseph Drouhin, founded in Beaune in 1880, is a leading Burgundy wine producer with vineyards across Chablis, Côte de Nuits, Côte de Beaune, and Côte Chalonnaise. The domaine produces wines from village-level cuvées to prestigious grand cru and premier cru wines made from Pinot Noir and Chardonnay. Notable holdings include Clos des Mouches, Musigny, Corton-Charlemagne, and Montrachet. In 1988, Drouhin expanded to Oregon. The estate combines estate-grown grapes with those sourced from local growers to create its diverse wine portfolio.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/JDMontrachet.png",
     ],
     oldest_vintage: 2000,
@@ -27276,7 +27276,7 @@ export const Wine40 = {
       'Champagne Brut is a dry, sparkling wine from France’s Champagne region, made primarily from Chardonnay, Pinot Noir, and Pinot Meunier. It can also include rare varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. "Brut" means "raw," indicating minimal added sugar (less than 12g/L), although small amounts are added during disgorgement. Brut Champagne can be white, rosé, vintage, or non-vintage. Pioneered by Perrier-Jouët in 1846 for the English market, Brut is now the most popular Champagne style, surpassing sweeter versions like Sec and Demi-Sec.',
     winery:
       "Krug is one of Champagne's most prestigious houses, renowned for producing some of the most collectible and expensive wines in the region. Founded in 1843 by Joseph Krug, the house emphasizes crafting the best possible Champagne every year, rejecting traditional hierarchies. Its flagship wine, Grande Cuvée, blends around 120 wines from over 10 vintages, aged for six years for rich complexity. Krug also produces a vintage Champagne, a non-vintage rosé, and the rare, single-vineyard Clos du Mesnil (Chardonnay) and Clos d'Ambonnay (Pinot Noir). Now part of Moët Hennessy, Krug remains a symbol of luxury.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/krug.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/krug.png"],
     oldest_vintage: 1990,
     maximum_price: 4063.5,
     annual_production: 15000,
@@ -27965,7 +27965,7 @@ export const Wine41 = {
       "Pomerol, an unclassified yet esteemed Bordeaux appellation, stands apart for its Merlot-dominated wines, known for their richness and early approachability. Located near Saint-Émilion, its 792-hectare vineyard features diverse soils, with the finest wines produced on the clay-rich eastern plateau. Iconic producers like Pétrus, Lafleur, and Le Pin elevate Pomerol’s prestige. Though small and lacking a formal classification system, its limited production and growing global demand ensure Pomerol's prominence in the wine world.",
     winery:
       "Le Pin is a prestigious 2.7-hectare estate in Pomerol, Bordeaux, renowned for producing one of the world’s most expensive wines. Founded in 1979 by the Thienpont family, its 100% Merlot wine is intensely concentrated, lush, and best enjoyed after a decade of ageing. Grown on well-drained gravel and sand soils, yields are exceptionally low, resulting in just 600–700 cases annually. Aged in new oak barrels, Le Pin’s exclusivity and quality make it highly coveted among collectors.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
     oldest_vintage: 2000,
     maximum_price: 25223.04,
     annual_production: 500,
@@ -28654,7 +28654,7 @@ export const Wine42 = {
       "Pomerol, an unclassified yet esteemed Bordeaux appellation, stands apart for its Merlot-dominated wines, known for their richness and early approachability. Located near Saint-Émilion, its 792-hectare vineyard features diverse soils, with the finest wines produced on the clay-rich eastern plateau. Iconic producers like Pétrus, Lafleur, and Le Pin elevate Pomerol’s prestige. Though small and lacking a formal classification system, its limited production and growing global demand ensure Pomerol's prominence in the wine world.",
     winery:
       "Le Pin is a prestigious 2.7-hectare estate in Pomerol, Bordeaux, renowned for producing one of the world’s most expensive wines. Founded in 1979 by the Thienpont family, its 100% Merlot wine is intensely concentrated, lush, and best enjoyed after a decade of ageing. Grown on well-drained gravel and sand soils, yields are exceptionally low, resulting in just 600–700 cases annually. Aged in new oak barrels, Le Pin’s exclusivity and quality make it highly coveted among collectors.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
     oldest_vintage: 2000,
     maximum_price: 25223.04,
     annual_production: 500,
@@ -29405,7 +29405,7 @@ export const Wine43 = {
       "Indicazione Geografica Tipica (IGT) is a flexible wine classification in Tuscany, introduced in 1992 to bridge the gap between strict DOCG/DOC regulations and basic Vino da Tavola wines. IGT wines can range from dry whites to sweet reds and sparkling rosés, offering producers creative freedom. The rise of Super Tuscan wines in the 1960s, blending Sangiovese with Cabernet Sauvignon and Merlot, led to the IGT’s creation. In 2020, Tuscany had 13,388 hectares of IGT vineyards, producing 65 million liters annually, catering to both modern tastes and export markets.",
     winery:
       "Masseto is a prestigious Super Tuscan wine from Bolgheri, Tuscany, made exclusively from Merlot. Known for its aromatic complexity, opulent fruit, and firm tannic structure, it ranks among the world’s most sought-after wines. First produced in 1984, Masseto now yields around 35,000 bottles annually, with a second wine, Massetino, introduced in 2017. The 6.6-hectare vineyard, rich in compact clay, was identified for Merlot by André Tchelistcheff. Winemaking involves meticulous plot-by-plot harvesting, oak aging, and blending, overseen by consultant Michel Rolland since 1994.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Masetto.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Masetto.png"],
     oldest_vintage: 2000,
     maximum_price: 8653.42,
     annual_production: 4000,
@@ -30126,7 +30126,7 @@ export const Wine44 = {
       "Napa Valley is one of the world’s most prestigious wine regions, stretching 35 miles between the Vacas and Mayacamas mountain ranges. Its global acclaim stems from its ideal terroir—notably its climate and soils—for cultivating premium Cabernet Sauvignon. The region's proximity to San Francisco attracts millions of wine tourists annually. Napa's reputation was solidified by its victory over French wines in the 1976 Paris Judgment. Pioneers like George C. Yount, Charles Krug, and Robert Mondavi shaped its modern wine industry. While Cabernet Sauvignon dominates, varieties like Merlot, Zinfandel, Chardonnay, and Sauvignon Blanc also thrive.",
     winery:
       "Opus One is one of Napa Valley's most prestigious and expensive wines, renowned for its Bordeaux-style blend dominated by Cabernet Sauvignon with additions of Merlot, Cabernet Franc, Petit Verdot, and Malbec. Founded in 1979 as a partnership between Baron Philippe de Rothschild of Château Mouton Rothschild and Robert Mondavi, it was Napa’s first premium wine sold in Europe. Opus One is crafted from estate vineyards in Oakville, aged in new French oak for 18 months, and released after further bottle aging. The second wine, Overture, debuted in 1993.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/OpusOne.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/OpusOne.png"],
     oldest_vintage: 2000,
     maximum_price: 3776.22,
     annual_production: 30000,
@@ -30877,7 +30877,7 @@ export const Wine45 = {
       "The Bolgheri wine region in Tuscany gained international acclaim after the 1978 Decanter tasting, where Sassicaia 1972 outperformed top Bordeaux wines. Founded by Marchese Mario Incisa della Rocchetta at Tenuta San Guido, Sassicaia pioneered planting Cabernet Sauvignon and Cabernet Franc, inspired by Bordeaux’s Graves soils. Bolgheri’s DOC status in 1994 formalized blends of Bordeaux varieties with Syrah and Sangiovese. In 2013, Bolgheri Sassicaia DOC was created. The region also produces fresh Bolgheri Bianco wines, mainly from Vermentino, Sauvignon Blanc, and Trebbiano Toscano.",
     winery:
       "Ornellaia is a leading wine producer in the Bolgheri appellation on Tuscany’s coast, renowned for its prestigious Super Tuscan Bordeaux-style blend. The flagship Ornellaia wine features Cabernet Sauvignon, Merlot, Cabernet Franc, and Petit Verdot. Grapes from younger vines are used for the second wine, Le Serre Nuove dell'Ornellaia. The estate also produces Ornellaia Bianco (Sauvignon Blanc), Le Volte (Merlot-based), and Ornus dell'Ornellaia (Petit Manseng). Founded in 1981 by Lodovico Antinori, Ornellaia is now fully owned by the Frescobaldi family.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Ornellaia.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Ornellaia.png"],
     oldest_vintage: 2000,
     maximum_price: 1836.04,
     annual_production: 14000,
@@ -31628,7 +31628,7 @@ export const Wine46 = {
       "Pomerol, an unclassified yet esteemed Bordeaux appellation, stands apart for its Merlot-dominated wines, known for their richness and early approachability. Located near Saint-Émilion, its 792-hectare vineyard features diverse soils, with the finest wines produced on the clay-rich eastern plateau. Iconic producers like Pétrus, Lafleur, and Le Pin elevate Pomerol’s prestige. Though small and lacking a formal classification system, its limited production and growing global demand ensure Pomerol's prominence in the wine world.",
     winery:
       "Petrus is Pomerol’s most prestigious estate and one of Bordeaux's most iconic wines. Its 11.4-hectare vineyard, dominated by Merlot, produces rich, powerful wines with notes of chocolate, spice, and black fruit. The vineyard’s unique blue clay soils enhance the wine’s soft yet abundant tannins. Owned by the Moueix family since 1962, Petrus commands some of the highest global prices. Grapes are meticulously hand-harvested, fermented in concrete vats, and aged 18–20 months in 50% new oak before unfiltered bottling.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
     oldest_vintage: 2000,
     maximum_price: 22000.0,
     annual_production: 3000,
@@ -32280,7 +32280,7 @@ export const Wine47 = {
       'Champagne Brut is a dry, sparkling wine from France\'s Champagne region. It can be white or rosé and is typically made from the classic blend of Chardonnay, Pinot Noir, and Pinot Meunier, though it may also include lesser-known varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. The term "Brut" means "raw," indicating minimal added sugar (dosage) during production. By law, Brut Champagne contains less than 15g/L of sugar. Drier styles include Brut Nature (0–3g/L) and Extra Brut (0–6g/L). Introduced by Perrier-Jouët in 1846 for the British market, Brut has become the most popular Champagne style today, surpassing sweeter versions like Sec, Demi-Sec, and Doux.',
     winery:
       "Champagne Pol Roger, founded in 1849 in Épernay, is renowned for its elegant, balanced style crafted from equal parts Chardonnay, Pinot Noir, and Pinot Meunier. Its portfolio includes Brut Réserve, Vintage Brut, Demi-Sec, Brut Nature, Rosé, and Blanc de Blancs. The prestigious Cuvée Sir Winston Churchill, launched in 1975, features a Pinot Noir-dominant blend with Chardonnay. Pol Roger owns 89 hectares of vineyards and produces around 1.8 million bottles annually, emphasizing handcrafting and deep cellar aging.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Pol_Roger.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Pol_Roger.png"],
     oldest_vintage: 1995,
     maximum_price: 1915.0,
     annual_production: 6000,
@@ -33031,7 +33031,7 @@ export const Wine48 = {
       "The Santa Cruz Mountains AVA, established in 1981, spans parts of Santa Cruz, San Mateo, and Santa Clara counties. Recognized for its high-altitude vineyards, it features diverse mesoclimates shaped by Pacific Ocean winds and varying slopes. Western vineyards are cooler due to ocean breezes, while eastern slopes are warmer. Thin, infertile soils—clay, Franciscan shale, and decomposing limestone—produce low yields of concentrated grapes. The AVA excels with Cabernet Sauvignon (California's coldest region for it), Pinot Noir, and Chardonnay, yielding structured, vibrant wines with rich varietal character.",
     winery:
       "Ridge Vineyards, founded in 1962, is a renowned California winery celebrated for its Monte Bello Cabernet Sauvignon-dominated Bordeaux blend, known for combining Bordeaux-like complexity with California fruit richness. Based in the Santa Cruz Mountains, Ridge also excels with its Zinfandel wines, notably the Geyserville and Lytton Springs cuvées. The estate also produces Petite Sirah, Carignan, and limited Chardonnay. Winemaking emphasizes traditional methods—native yeasts, no filtration, and minimal intervention. Legendary winemaker Paul Draper led Ridge from 1969, earning global acclaim for his innovative yet classic winemaking approach.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Ridge_Monte_Bello.png",
     ],
     oldest_vintage: 2000,
@@ -33473,7 +33473,7 @@ export const Wine49 = {
       "The Côte des Blancs is the heart of Blanc de Blancs Champagne production, located south of Épernay. Its chalky soils are ideal for growing Chardonnay, which makes up 96% of plantings. Blanc de Blancs Champagnes, made exclusively from white grapes, are generally more citrusy, crisp, and dry, making them perfect for aperitifs and seafood pairings. Notable Grand Cru villages include Le Mesnil-sur-Oger, Cramant, Avize, and Oger. Prestigious examples are Salon and Krug Clos du Mesnil, known for their elegance and aging potential.",
     winery:
       "Salon is one of Champagne's most prestigious houses, renowned for producing only a single, exclusive Blanc de Blancs prestige cuvée made entirely from Chardonnay sourced from Le Mesnil-sur-Oger, a Grand Cru village. Founded in 1911 by Eugène-Aimé Salon, the house was established to create a lighter, more elegant Champagne in contrast to Pinot Noir-dominated styles. Salon Champagne is produced only in exceptional vintages. In lesser years, its grapes are redirected to Champagne Delamotte. The wine ages in the cellar for up to 10 years, enhancing its complexity and longevity.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/salon.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/salon.png"],
     oldest_vintage: 1995,
     maximum_price: 8306.07,
     annual_production: 10000,
@@ -34255,7 +34255,7 @@ export const Wine50 = {
       "Bolgheri is a prestigious yet young Italian appellation in Tuscany’s Maremma, famed for its deep, ageworthy red wines primarily made from Bordeaux varieties like Cabernet Sauvignon and Cabernet Franc. Once dismissed as swampy, the region gained renown after Sassicaia’s 1978 Decanter tasting win. Today, Bolgheri produces notable reds—including Bolgheri Rosso and the Sassicaia DOC subzone—as well as crisp whites such as Bolgheri Bianco, while wine tourism thrives with attractions like the World Wine Town.",
     winery:
       "Tenuta San Guido, in Tuscany’s Maremma, is best known for its flagship wine, Sassicaia—a pioneering Super Tuscan. Created in the 1940s by Marchese Mario Incisa to rival Bordeaux, Sassicaia blends primarily Cabernet Sauvignon with a hint of Cabernet Franc, offering elegance, perfume, and a supple texture. The grapes are picked early, fermented in stainless steel, and aged 24 months in French oak. The estate also produces Guidalberto and Le Difese, further highlighting its innovative winemaking.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/sassicaia.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/sassicaia.png"],
     oldest_vintage: 2000,
     maximum_price: 4664.02,
     annual_production: 20000,
@@ -35002,7 +35002,7 @@ export const Wine51 = {
       "Napa Valley is one of the world’s most prestigious wine regions, stretching 35 miles between the Vacas and Mayacamas mountain ranges. Its global acclaim stems from its ideal terroir—notably its climate and soils—for cultivating premium Cabernet Sauvignon. The region's proximity to San Francisco attracts millions of wine tourists annually. Napa's reputation was solidified by its victory over French wines in the 1976 Paris Judgment. Pioneers like George C. Yount, Charles Krug, and Robert Mondavi shaped its modern wine industry. While Cabernet Sauvignon dominates, varieties like Merlot, Zinfandel, Chardonnay, and Sauvignon Blanc also thrive.",
     winery:
       "Screaming Eagle is Napa Valley's most iconic and expensive wine. Founded in 1986 by Jean Phillips, the winery gained cult status after its 1992 debut vintage received a 99-point rating from critic Robert Parker. Its Cabernet Sauvignon-based wine is produced in tiny quantities from a vineyard in the Oakville AVA. The winery also produces a second wine, Second Flight, and a rare Sauvignon Blanc. In 2006, Stanley Kroenke acquired full ownership, solidifying Screaming Eagle's reputation as America's most exclusive wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Screaming_eagle.png",
     ],
     oldest_vintage: 2000,
@@ -35754,7 +35754,7 @@ export const Wine52 = {
       "The Indicazione Geografica Tipica (IGT) classification in Tuscany allows winemakers flexibility beyond the stricter DOCG and DOC rules, covering diverse styles from dry whites to sweet reds and sparkling rosés. Introduced in 1992, IGT aimed to legitimize high-quality wines, notably Super Tuscans, which previously bore the low-ranking Vino da Tavola label. Predominantly made from Sangiovese, along with Cabernet Sauvignon, Merlot, and Cabernet Franc, IGT wines now span 13,388 hectares with annual production around 65 million liters, driving Tuscany’s modern wine evolution.",
     winery:
       'Solaia, an iconic Super Tuscan from Antinori, is a blend of Cabernet Sauvignon, Sangiovese, and Cabernet Franc, known for its intense fruit, spice, and tobacco notes, velvety texture and long finish. It is considered a "gold standard" of Super Tuscans. Antinori is a prestigious Tuscan wine company and one of Italy\'s largest producers, with a history dating back to the 14th Century. Known for pioneering innovation in winemaking, Antinori produces around 20 million bottles annually across 150 labels. Its flagship wines include Tignanello, the first to blend Sangiovese with Cabernet Sauvignon and Cabernet Franc, and Solaia, a bold Bordeaux-style blend. Antinori also owns estates like Badia a Passignano, Pian delle Vigne in Montalcino, and Castello della Sala in Umbria.',
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Solaia.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Solaia.png"],
     oldest_vintage: 2000,
     maximum_price: 2235.91,
     annual_production: 8000,
@@ -36495,7 +36495,7 @@ export const Wine53 = {
       "The Côte des Blancs is the heart of Blanc de Blancs Champagne production, located south of Épernay. Its chalky soils are ideal for growing Chardonnay, which makes up 96% of plantings. Blanc de Blancs Champagnes, made exclusively from white grapes, are generally more citrusy, crisp, and dry, making them perfect for aperitifs and seafood pairings. Notable Grand Cru villages include Le Mesnil-sur-Oger, Cramant, Avize, and Oger. Prestigious examples are Salon and Krug Clos du Mesnil, known for their elegance and aging potential.",
     winery:
       "Taittinger is a prestigious Champagne house based in Reims, renowned for its Chardonnay-dominant cuvées, especially the Comtes de Champagne Blanc de Blancs. Founded in 1932 by Pierre Taittinger, the house owns 290 hectares of vineyards, primarily planted with Pinot Noir, Chardonnay, and some Pinot Meunier. The Brut Reserve NV features a fresh, delicate style with 40% Chardonnay. The flagship Comtes de Champagne ages for at least 10 years in historic chalk cellars. Taittinger also produces a Comtes de Champagne Rosé, blending Pinot Noir and Chardonnay.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png"],
     oldest_vintage: 1999,
     maximum_price: 2869.2,
     annual_production: 12000,
@@ -37276,7 +37276,7 @@ export const Wine54 = {
       "The Indicazione Geografica Tipica (IGT) classification in Tuscany allows winemakers flexibility beyond the stricter DOCG and DOC rules, covering diverse styles from dry whites to sweet reds and sparkling rosés. Introduced in 1992, IGT aimed to legitimize high-quality wines, notably Super Tuscans, which previously bore the low-ranking Vino da Tavola label. Predominantly made from Sangiovese, along with Cabernet Sauvignon, Merlot, and Cabernet Franc, IGT wines now span 13,388 hectares with annual production around 65 million liters, driving Tuscany’s modern wine evolution.",
     winery:
       "Tignanello, a Super Tuscan red wine from Marchesi Antinori, is a blend of Sangiovese, Cabernet Sauvignon and Cabernet Franc, known for its rich complex flavours and elegant structure, and is considered an innovative pioneer of modern italian top wines. Antinori is a prestigious Tuscan wine company and one of Italy's largest producers, with a history dating back to the 14th Century. Known for pioneering innovation in winemaking, Antinori produces around 20 million bottles annually across 150 labels. Its flagship wines include Tignanello, the first to blend Sangiovese with Cabernet Sauvignon and Cabernet Franc, and Solaia, a bold Bordeaux-style blend. Antinori also owns estates like Badia a Passignano, Pian delle Vigne in Montalcino, and Castello della Sala in Umbria.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Tignanello.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Tignanello.png"],
     oldest_vintage: 2000,
     maximum_price: 2250.0,
     annual_production: 25000,
@@ -37376,7 +37376,7 @@ export const Wine55 = {
       'Barolo is a prestigious DOCG wine from Piedmont, Italy, crafted exclusively from Nebbiolo grapes. Known for its "tar and roses" aroma, firm tannins, and high acidity, Barolo develops complex flavors of truffles and dark chocolate with age. Key subregions like La Morra and Serralunga d\'Alba produce distinct styles, from aromatic to robust. Barolo must age at least 38 months (62 for Riserva). Modernists favor fruitier, earlier-drinking styles, sparking the ongoing "Barolo Wars" between tradition and innovation.',
     winery:
       "Giuseppe Rinaldi was a traditionalist Barolo producer in Piedmont, Italy. His family began winemaking in 1870, and he acquired top vineyards in the 1920s. Rejecting modern trends, he championed Barolo blends over single-vineyard wines, clashing with new regulations. After a 2009 law change, Rinaldi introduced Barolo Brunate and Tre Tine. His wines, needing long cellaring, remain highly regarded. He passed in 2018, with his wife Annalisa and daughters Marta and Carlotta continuing the estate’s legacy.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Rinaldi_Barolo.webp",
     ],
     oldest_vintage: 2015,
@@ -37478,7 +37478,7 @@ export const Wine56 = {
       "Champagne Bollinger, founded in 1829 in Aÿ, France, is renowned for its robust, Pinot Noir-dominant style. The house remains independently owned by Société Jacques Bollinger. Pinot Noir comprises at least 60% of its blends, with no Blanc de Blancs produced. Bollinger manages 169 hectares of premier and grand cru vineyards, with two-thirds estate-grown grapes. Known for barrel aging and cork-sealed reserve wines, Bollinger's notable cuvées include La Grande Année, RD, and Vieilles Vignes Françaises. Bollinger is famously James Bond's preferred Champagne.",
     winery:
       "Champagne Bollinger, founded in 1829 in Aÿ, France, is renowned for its robust, Pinot Noir-dominant style. The house remains independently owned by Société Jacques Bollinger. Pinot Noir comprises at least 60% of its blends, with no Blanc de Blancs produced. Bollinger manages 169 hectares of premier and grand cru vineyards, with two-thirds estate-grown grapes. Known for barrel aging and cork-sealed reserve wines, Bollinger's notable cuvées include La Grande Année, RD, and Vieilles Vignes Françaises. Bollinger is famously James Bond's preferred Champagne.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Bollinger_Vignes.png",
     ],
     oldest_vintage: 2008,
@@ -37579,7 +37579,7 @@ export const Wine57 = {
       'Champagne Brut is a dry, sparkling wine from France\'s Champagne region. It can be white or rosé and is typically made from the classic blend of Chardonnay, Pinot Noir, and Pinot Meunier, though it may also include lesser-known varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. The term "Brut" means "raw," indicating minimal added sugar (dosage) during production. By law, Brut Champagne contains less than 15g/L of sugar. Drier styles include Brut Nature (0–3g/L) and Extra Brut (0–6g/L). Introduced by Perrier-Jouët in 1846 for the British market, Brut has become the most popular Champagne style today, surpassing sweeter versions like Sec, Demi-Sec, and Doux.',
     winery:
       "Dom Pérignon, owned by Moët & Chandon under LVMH, is a prestigious Champagne brand named after Dom Pierre Pérignon, a 17th-century monk credited with advancing Champagne production. First released in 1937, Dom Pérignon is a vintage-only Champagne, blending Chardonnay and Pinot Noir from the best vineyards. Its maturation follows the Plénitude concept: Vintage (9 years), P2 (12–15 years), and P3 (25+ years). Dom Pérignon also produces rare Rosé vintages, reflecting elegance and aging potential.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Dom_Perignon_2002.png",
     ],
     oldest_vintage: 2002,
@@ -37680,7 +37680,7 @@ export const Wine58 = {
       "Saint-Julien, a small but esteemed Left Bank Bordeaux appellation, lacks a first growth but compensates with 11 classed growths, including five top-rated second growths. It lies between Pauillac and Margaux, covering 900 hectares, with vineyards split between Saint-Julien-Beychevelle and Beychevelle. Saint-Julien wines are mainly Cabernet Sauvignon-based blends, governed by strict appellation laws since 1936. Despite its modest size, it attracts significant investment and produces consistently high-quality wines distinct from neighbouring Pauillac yet equally collectible.",
     winery:
       "Château Léoville-Las Cases, a second growth estate in Bordeaux's Saint-Julien appellation, is Cabernet Sauvignon-dominant with Merlot and Cabernet Franc. Originally part of a larger estate, it was divided in the 18th and 19th centuries, creating Léoville-Barton and Léoville-Poyferré. Covering 98 hectares, its gravel and clay soils benefit from the Gironde's moderating influence. The estate produces three wines, including Le Petit Lion du Marquis de Las Cases. Owned by Domaines Delon, it also manages Château Potensac and Château Nénin.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Vin_De_Leoville.png",
     ],
     oldest_vintage: 2015,
@@ -37782,7 +37782,7 @@ export const Wine59 = {
       "Chardonnay–Pinot Noir blends are widely used for sparkling wines globally, often crafted via the traditional méthode champenoise. Originating in France, this blend is also popular in Italy (Franciacorta) and New World regions like California, Australia (Tasmania), New Zealand (Marlborough), and South Africa (Stellenbosch). Chardonnay adds texture and nutty flavors, while Pinot Noir contributes red-fruit notes. Styles range from crisp and mineral to rich and toasty, with brut denoting dryness. Ideal pairings include bay scallops with garlic butter, oysters, and Camembert cheese.",
     winery:
       "Louis Roederer is a prestigious Champagne house in Reims, best known for its iconic Cristal cuvée. Founded in 1776, it gained prominence when Louis Roederer took over in 1833, focusing on international markets, notably becoming the Champagne of choice for Russia’s Tsar Alexander II. Cristal was created for the Tsar in a clear, flat-bottomed bottle for security reasons.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Louis_Roederer_244.png",
     ],
     oldest_vintage: 0,
@@ -37883,7 +37883,7 @@ export const Wine60 = {
       "The Pelješac Peninsula, between Split and Dubrovnik, is a key Croatian wine region famed for powerful Plavac Mali reds, especially from the Postup and Dingač appellations. Its mountainous, sun-drenched karst terrain creates ideal mesoclimates for viticulture. Dingač, established in 1961, was Croatia’s first appellation. Postup wines are slightly lighter but still rich. Pelješac wines are bold, tannic, and often feature smoky, gamey notes. The region also grows Graševina and lies just south of Hvar, another Plavac Mali stronghold.",
     winery:
       "Edivo Vina, located on Croatia's Pelješac Peninsula, is renowned for its unique underwater wine-aging process. Their signature wine, Navis Mysterium, matures in amphorae submerged beneath the Adriatic Sea for over 700 days, resulting in a distinct flavour profile. Visitors can enjoy wine tastings at the Edivo Wine Bar and, for certified divers, guided tours of the submerged cellar, offering an unparalleled oenological experience.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/edivo.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/edivo.png"],
     oldest_vintage: 2012,
     maximum_price: 300.0,
     annual_production: 700,
@@ -37981,7 +37981,7 @@ export const Wine61 = {
       "​Bâtard-Montrachet is a Grand Cru vineyard in Burgundy's Côte de Beaune, spanning 11.97 hectares across Puligny-Montrachet and Chassagne-Montrachet. Renowned for exceptional Chardonnay wines, it lies below the esteemed Montrachet vineyard. The name originates from a medieval legend where the Lord of Puligny divided his land among his children, with \"bâtard\" referring to his illegitimate son. The vineyard's deeper, pebbly limestone soils with higher clay content contribute to the wines' complexity and aging potential.",
     winery:
       "Domaine Fontaine-Gagnard is a respected wine estate in Chassagne-Montrachet, founded in 1985 by Laurence Gagnard and Richard Fontaine. Now led by their daughter, Céline Fontaine, the domaine covers around 12 hectares, including prestigious plots in Le Montrachet, Bâtard-Montrachet, and Criots-Bâtard-Montrachet. Known for elegant Chardonnay wines, they also produce reds from Volnay and Pommard. Winemaking is traditional, with hand-harvesting, natural yeasts, and oak barrel ageing. The estate produces 22 appellations, with two-thirds of its output dedicated to white wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Fontaine-Gagnard.png",
     ],
     oldest_vintage: 1988,
@@ -38082,7 +38082,7 @@ export const Wine62 = {
       "Musigny is a Grand Cru vineyard in Chambolle-Musigny, Burgundy, producing both Pinot Noir and Chardonnay. Officially classified in 1936, it covers 10.8 hectares and is known for its limestone-rich terroir. Divided into three climats, it yields elegant yet powerful wines. Red Musigny ranks among Burgundy’s finest, while rare white Musigny is made solely by Domaine Comte Georges de Vogüé. Between 1994–2014, the white wine was labelled as Bourgogne Blanc due to young vines. Musigny remains a cherished, prestigious but understated gem.",
     winery:
       "Joseph Drouhin, founded in Beaune in 1880, is a leading Burgundy wine producer with vineyards across Chablis, Côte de Nuits, Côte de Beaune, and Côte Chalonnaise. The domaine produces wines from village-level cuvées to prestigious grand cru and premier cru wines made from Pinot Noir and Chardonnay. Notable holdings include Clos des Mouches, Musigny, Corton-Charlemagne, and Montrachet. In 1988, Drouhin expanded to Oregon. The estate combines estate-grown grapes with those sourced from local growers to create its diverse wine portfolio.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/musigny_1.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/musigny_1.png"],
     oldest_vintage: 2015,
     maximum_price: 1140.0,
     annual_production: 700,
@@ -38150,7 +38150,7 @@ export const Wine63 = {
       "Saint-Émilion is a prominent Bordeaux Right Bank appellation known for its Merlot-based red wines, producing over 250,000hl annually. The region's vineyards, dating back to Roman times, are divided into three main areas: a limestone plateau housing most prestigious estates, a southern alluvial plain, and a northwestern gravelly terrace. Unlike Médoc's Cabernet Sauvignon focus, Saint-Émilion favours Merlot and Cabernet Franc due to its cooler, clay-chalk soils. The area features four satellite regions and operates a controversial classification system, from which several top estates recently withdrew.",
     winery:
       "Château Beauséjour - Joséphine Duffau-Lagarrosse, also known as Beauséjour J D-L, is a prestigious Premier Grand Cru Classé B estate in Saint-Émilion, Bordeaux. With 6.75 hectares of mainly Merlot and Cabernet Franc, it has gained acclaim for exceptional vintages. The estate was split in 1869, creating Château Beau-Séjour Bécot. In 2021, ownership passed to the Courtin-Clarins family, though Joséphine Duffau-Lagarrosse remains at the helm. Its 1990, 2009, and 2010 vintages each earned 100 points from critic Robert Parker.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/beausejour-hdl-sm-ma_MUGWiEA.png",
     ],
     oldest_vintage: 2015,
@@ -38220,7 +38220,7 @@ export const Wine64 = {
       "Saint-Émilion is a prominent Bordeaux Right Bank appellation known for its Merlot-based red wines, producing over 250,000hl annually. The region's vineyards, dating back to Roman times, are divided into three main areas: a limestone plateau housing most prestigious estates, a southern alluvial plain, and a northwestern gravelly terrace. Unlike Médoc's Cabernet Sauvignon focus, Saint-Émilion favours Merlot and Cabernet Franc due to its cooler, clay-chalk soils. The area features four satellite regions and operates a controversial classification system, from which several top estates recently withdrew.",
     winery:
       "Château Figeac, a flagship Saint-Émilion property, sits on three gravel knolls that favour Cabernet Sauvignon and Cabernet Franc, each making up roughly 35 percent of the mix, with Merlot supplying the rest. Guided by Thierry Manoncourt, quality rose dramatically, culminating in elevation to Premier Grand Cru Classé (A) in 2022. The 40-hectare vineyard yields about 100,000 bottles of the grand vin, prized for its fragrant depth, silk-like palate and longevity. Since 2012 the polished second wine bears the name Petit-Figeac.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/figac-sm_vDl28FJ.png",
     ],
     oldest_vintage: 2020,
@@ -38352,7 +38352,7 @@ export const Wine65 = {
       "Napa Valley is one of the world’s most prestigious wine regions, stretching 35 miles between the Vacas and Mayacamas mountain ranges. Its global acclaim stems from its ideal terroir—notably its climate and soils—for cultivating premium Cabernet Sauvignon. The region's proximity to San Francisco attracts millions of wine tourists annually. Napa's reputation was solidified by its victory over French wines in the 1976 Paris Judgment. Pioneers like George C. Yount, Charles Krug, and Robert Mondavi shaped its modern wine industry. While Cabernet Sauvignon dominates, varieties like Merlot, Zinfandel, Chardonnay, and Sauvignon Blanc also thrive.",
     winery:
       "Screaming Eagle is Napa Valley's most iconic and expensive wine. Founded in 1986 by Jean Phillips, the winery gained cult status after its 1992 debut vintage received a 99-point rating from critic Robert Parker. Its Cabernet Sauvignon-based wine is produced in tiny quantities from a vineyard in the Oakville AVA. The winery also produces a second wine, Second Flight, and a rare Sauvignon Blanc. In 2006, Stanley Kroenke acquired full ownership, solidifying Screaming Eagle's reputation as America's most exclusive wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/ScreamingEagleSecondFlight.png",
     ],
     oldest_vintage: 2007,
@@ -38454,7 +38454,7 @@ export const Wine66 = {
       "Le Montrachet is a prestigious Grand Cru vineyard in Burgundy’s Côte de Beaune, spanning 7.99 hectares between Puligny- and Chassagne-Montrachet. Renowned for producing some of the world’s finest Chardonnay, its wines are rich, structured, and highly collectible. The limestone-marl slope, with ideal sun exposure, contributes to its exceptional terroir. Neighboring Grand Crus include Chevalier-Montrachet, Bâtard-Montrachet, Bienvenues-Bâtard-Montrachet, and Criots-Bâtard-Montrachet. Notable producers include Domaine Leflaive, Joseph Drouhin, Bouchard Père et Fils, and Domaine de la Romanée-Conti.",
     winery:
       "Bouchard Père et Fils, founded in 1731 and now part of Joseph Henriot’s Groupe La Vigie, is Burgundy’s largest landowner, holding 130 ha across 450 parcels, with 12 ha of grands crus, 74 ha of premiers crus and four monopoles. From illustrious sites such as Montrachet, Corton-Charlemagne and Chambertin to broader Bourgogne bottlings, it offers more than 100 Pinot Noir and Chardonnay wines, including cuvées from the Mâconnais, Côte Chalonnaise and Beaujolais. Production centres on a 2005 Savigny-lès-Beaune winery, with maturation in the 15th-century Château de Beaune’s 4000-barrel cellar.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/bouchard_G3SKiiN.png",
     ],
     oldest_vintage: 2018,
@@ -38556,7 +38556,7 @@ export const Wine67 = {
       "Pauillac, a prestigious appellation on Bordeaux’s Médoc peninsula, is renowned for producing some of the world’s finest red wines, predominantly from Cabernet Sauvignon. Home to three First Growth estates—Lafite Rothschild, Mouton Rothschild, and Château Latour—Pauillac wines are known for their full-bodied, rich style with cassis and cedarwood aromas. The region’s 1,200 hectares of vineyards benefit from varied terroir, creating wines with powerful tannins and exceptional ageing potential. Merlot, Cabernet Franc, and Petit Verdot also feature in blends, adding complexity.",
     winery:
       "Château Batailley, a historic Pauillac fifth growth, spans 57 hectares of deep gravel over clay-limestone west of Mouton-Rothschild. Around 70 percent Cabernet Sauvignon, 25 percent Merlot, with Petit Verdot and Cabernet Franc complete the plantings. The grand vin ferments in stainless steel, then spends 16-18 months in 55 percent new French oak, delivering ever greater finesse alongside consistent value. Second wine Lions de Batailley mirrors the Cabernet core with extra Merlot. The estate’s name recalls a 1452 Hundred Years’ War battle fought there.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Batailley.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Batailley.png"],
     oldest_vintage: 2015,
     maximum_price: 264.0,
     annual_production: 18000,
@@ -38624,7 +38624,7 @@ export const Wine68 = {
       "Centered on the Montagne de Corton, Burgundy’s sole red Côte de Beaune grand cru, Corton spans 145 hectares across Aloxe-Corton, Ladoix-Serrigny and Pernand-Vergelesses. Predominantly Pinot Noir, with limited Chardonnay, Pinot Blanc and Pinot Gris permitted, it yields powerful, tannic reds scented with violets, berries and earth, alongside Corton blanc from 4.5 hectares. Its slopes vary: warmer marl to the east suits reds; northern and western parcels favour whites including Corton-Charlemagne. Cultivation dates to Charlemagne’s era; today Louis Latour dominates ownership.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/romanee-conti-corton-2018.png",
     ],
     oldest_vintage: 2011,
@@ -38726,7 +38726,7 @@ export const Wine69 = {
       "Clos de Vougeot, a 51-hectare walled grand cru in the Côte de Nuits, was founded by Cistercian monks in the 11th Century and classified in 1937. Entirely planted with Pinot Noir, it is divided into 100 parcels held by more than 80 producers, resulting in markedly variable quality. The upper slopes’ pebbly limestone yields the finest fruit; mid-slope mixes more clay, while lower plots are alluvial and wetter. Château de la Tour holds the largest share; wines reflect individual terroir slices.",
     winery:
       "Joseph Drouhin, founded in Beaune in 1880, is a leading Burgundy wine producer with vineyards across Chablis, Côte de Nuits, Côte de Beaune, and Côte Chalonnaise. The domaine produces wines from village-level cuvées to prestigious grand cru and premier cru wines made from Pinot Noir and Chardonnay. Notable holdings include Clos des Mouches, Musigny, Corton-Charlemagne, and Montrachet. In 1988, Drouhin expanded to Oregon. The estate combines estate-grown grapes with those sourced from local growers to create its diverse wine portfolio.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/20138019123_Joseph-Drouhin_Clos-de-Vougeot_2013_01.png",
     ],
     oldest_vintage: 2018,
@@ -38827,7 +38827,7 @@ export const Wine70 = {
       "Veneto IGT, instituted in 1995, is the region-wide Indicazione Geografica Tipica for north-east Italy’s Veneto. It offers producers flexibility to satisfy global markets, allowing indigenous grapes such as Pinot Grigio, Garganega and Corvina alongside international Bordeaux varieties Cabernet Sauvignon, Cabernet Franc, Carménère and Merlot. Covering red, white and rosé styles, it underpins the region’s status as Italy’s volume leader, complementing flagship DOC wines like Valpolicella, Amarone, Soave and Prosecco and reflecting Veneto’s Alpine-to-Adriatic cultural crossroads in contemporary international wine trade.",
     winery:
       "Giuseppe Quintarelli, the “Maestro del Veneto”, crafts benchmark Amarone and Valpolicella reds from hillside vineyards north of Verona. Family-run after Quintarelli’s 2012 passing, the estate’s handwritten labels front wines blended roughly 55 percent Corvina/Corvinone, 30 percent Rondinella and 15 percent Cabernet Sauvignon, Nebbiolo, Croatina and Sangiovese, picked in successive passes. Only great vintages yield Amarone della Valpolicella Classico and its Riserva or the rarer Selezione barrel; lesser years become Rosso del Bepi. Bordeaux-styled Alzero and eight-year Slavonian oak élevage complete the cult allure.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Cabernet_Jemeto.png",
     ],
     oldest_vintage: 2011,
@@ -38897,7 +38897,7 @@ export const Wine71 = {
       "Pomerol, an unclassified yet esteemed Bordeaux appellation, stands apart for its Merlot-dominated wines, known for their richness and early approachability. Located near Saint-Émilion, its 792-hectare vineyard features diverse soils, with the finest wines produced on the clay-rich eastern plateau. Iconic producers like Pétrus, Lafleur, and Le Pin elevate Pomerol’s prestige. Though small and lacking a formal classification system, its limited production and growing global demand ensure Pomerol's prominence in the wine world.",
     winery:
       "Vieux Château Certan, a 14-hectare Pomerol estate neighbouring Pétrus, produces some of the most coveted Right-Bank reds. Plantings are 65 % Merlot, 30 % Cabernet Franc and 5 % Cabernet Sauvignon, rooted in Gunz gravel with clay and ironstone. Fermented in oak vats and matured up to 22 months in new barriques, the grand vin’s blend varies by vintage, excelling whether Merlot- or Cabernet-led. Second wine La Gravette de Certan comes from younger vines. The Thienpoint family has guided quality since 1924 onward.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/HED94363.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/HED94363.png"],
     oldest_vintage: 2020,
     maximum_price: 1080.0,
     annual_production: 5000,
@@ -39051,7 +39051,7 @@ export const Wine72 = {
     grape_variety: "NA",
     region: "NA",
     winery: "NA",
-    wine_images: [],
+    images: [],
     oldest_vintage: 0,
     maximum_price: 72657.0,
     annual_production: 1,
@@ -39208,7 +39208,7 @@ export const Wine73 = {
       "Romanée-Conti, a Grand Cru vineyard in Vosne-Romanée, is one of the world’s most prestigious and exclusive wine estates. Owned solely by Domaine de la Romanée-Conti (DRC), its 1.81 hectares produce fewer than 500 cases annually of exceptional Pinot Noir, famed for elegance, depth, and ageing potential. Its ideal terroir—limestone-rich soils and an easterly slope—yields highly sought-after wines, commanding tens of thousands of dollars per bottle. Romanée-Conti’s rarity and prestige make it both the most coveted and counterfeited wine globally.",
     winery:
       "Domaine de la Romanée-Conti (DRC) is Burgundy's most prestigious and collectible wine estate, based in Vosne-Romanée. It produces world-renowned Pinot Noir wines from eight Grand Cru vineyards, including the legendary Romanée-Conti, La Tâche, and Richebourg. DRC also crafts exclusive Chardonnay from Montrachet. With limited production—only 6,000 bottles of Romanée-Conti annually—its wines are highly sought after and often fetch record prices at auction. Co-owned by the de Villaine and Leroy families, DRC remains a symbol of excellence and authenticity in fine wine.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/DRCNewAssortment.png",
     ],
     oldest_vintage: 2016,
@@ -39341,7 +39341,7 @@ export const Wine74 = {
       "The Indicazione Geografica Tipica (IGT) classification in Tuscany allows winemakers flexibility beyond the stricter DOCG and DOC rules, covering diverse styles from dry whites to sweet reds and sparkling rosés. Introduced in 1992, IGT aimed to legitimize high-quality wines, notably Super Tuscans, which previously bore the low-ranking Vino da Tavola label. Predominantly made from Sangiovese, along with Cabernet Sauvignon, Merlot, and Cabernet Franc, IGT wines now span 13,388 hectares with annual production around 65 million liters, driving Tuscany’s modern wine evolution.",
     winery:
       "Case Basse, founded by Gianfranco Soldera in 1972 near Montalcino, Tuscany, produces prized Brunello, Rosso di Montalcino and IGT Toscana wines from its 2 ha Case Basse and 4.5 ha Intistieti vineyards, entirely Sangiovese. Modern vineyard practices limit yields, while cellar methods use natural yeasts and long ageing in Slavonian oak. Production is unfiltered, totalling 15 000 bottles annually. After a 2012 cellar sabotage destroyed five vintages, Soldera resigned from the Consorzio. He died in 2019; widow Graziella and children manage the estate.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Soldera_ToscanaSangiovese_CaseBasse_2018_550x_FuZ5aCC.png",
     ],
     oldest_vintage: 2013,
@@ -39411,7 +39411,7 @@ export const Wine75 = {
       "Rutherford, at the heart of Napa Valley, is renowned for exceptional Cabernet Sauvignon, benefiting from long, warm days and cooling morning fog. Its famed “Rutherford dust” character comes from unique alluvial soils, producing wines with earthy, organic flavours, ripe tannins, and a perfect balance of acidity and richness. Alongside Cabernet, Merlot, Malbec, and other Bordeaux varietals thrive here. Home to legendary wineries, Rutherford’s terroir yields some of America’s most acclaimed red wines, with great ageing potential and depth.",
     winery:
       "Scarecrow Estate, in Rutherford, Napa Valley, is famed for its top-tier Cabernet Sauvignon, with its 2007 vintage earning a perfect 100 points from Robert Parker. Founded on land originally owned by MGM’s Joseph Judson Cohn, the estate’s vineyards were planted in the 1940s and now produce two rare wines: Scarecrow and M.Étain. Both are 100% Cabernet Sauvignon, aged in French oak. Annual production is limited to just 500 cases, making them highly sought-after collectibles.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/2015Scarecrow_800x.png",
     ],
     oldest_vintage: 2019,
@@ -39513,7 +39513,7 @@ export const Wine76 = {
       'Champagne Brut is a dry, sparkling wine from France’s Champagne region, made primarily from Chardonnay, Pinot Noir, and Pinot Meunier. It can also include rare varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. "Brut" means "raw," indicating minimal added sugar (less than 12g/L), although small amounts are added during disgorgement. Brut Champagne can be white, rosé, vintage, or non-vintage. Pioneered by Perrier-Jouët in 1846 for the English market, Brut is now the most popular Champagne style, surpassing sweeter versions like Sec and Demi-Sec.',
     winery:
       "Krug is one of Champagne's most prestigious houses, renowned for producing some of the most collectible and expensive wines in the region. Founded in 1843 by Joseph Krug, the house emphasizes crafting the best possible Champagne every year, rejecting traditional hierarchies. Its flagship wine, Grande Cuvée, blends around 120 wines from over 10 vintages, aged for six years for rich complexity. Krug also produces a vintage Champagne, a non-vintage rosé, and the rare, single-vineyard Clos du Mesnil (Chardonnay) and Clos d'Ambonnay (Pinot Noir). Now part of Moët Hennessy, Krug remains a symbol of luxury.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/10008055082_Champagne-Krug_Grande-Cuvee-168eme-Edition_0000_01.png",
     ],
     oldest_vintage: 0,
@@ -39614,7 +39614,7 @@ export const Wine77 = {
       'Champagne Brut is a dry, sparkling wine from France’s Champagne region, made primarily from Chardonnay, Pinot Noir, and Pinot Meunier. It can also include rare varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. "Brut" means "raw," indicating minimal added sugar (less than 12g/L), although small amounts are added during disgorgement. Brut Champagne can be white, rosé, vintage, or non-vintage. Pioneered by Perrier-Jouët in 1846 for the English market, Brut is now the most popular Champagne style, surpassing sweeter versions like Sec and Demi-Sec.',
     winery:
       "Champagne Bollinger, founded in 1829 in Aÿ, is one of Champagne’s most prestigious houses, renowned for its Pinot Noir-driven style. The estate manages 169 hectares of premier and grand cru vineyards, with two-thirds estate-grown grapes. Bollinger’s wines are vinified by plot, barrel-aged for roundness, and feature a unique reserve wine system under cork. Its collection includes the iconic RD cuvée, known for extended lees ageing. Bollinger is famously linked to James Bond and remains independently owned.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/jamesbond.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/jamesbond.png"],
     oldest_vintage: 2011,
     maximum_price: 882.0,
     annual_production: 6000,
@@ -39713,7 +39713,7 @@ export const Wine78 = {
       'Barolo is a prestigious DOCG wine from Piedmont, Italy, crafted exclusively from Nebbiolo grapes. Known for its "tar and roses" aroma, firm tannins, and high acidity, Barolo develops complex flavors of truffles and dark chocolate with age. Key subregions like La Morra and Serralunga d\'Alba produce distinct styles, from aromatic to robust. Barolo must age at least 38 months (62 for Riserva). Modernists favor fruitier, earlier-drinking styles, sparking the ongoing "Barolo Wars" between tradition and innovation.',
     winery:
       "Ceretto is a prestigious Piedmont wine producer, renowned for Barolo and Barbaresco. Founded in 1930 by Ricardo Ceretto, it pioneered single-vineyard Barolo with its first cru in 1986. Key sites include Bricco Roche and Bricco Asili. Wines are fermented with wild yeasts and aged in French oak, offering delicate yet intense profiles of fruit, spice, and truffle. Ceretto also produces Langhe DOC Bianco, Dolcetto d'Alba, and Barbaresco wines like Bernardot, Gallina, and Asili from marl and clay-rich soils.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/barolo-brunate-docg-bio_11381_zoom.png",
     ],
     oldest_vintage: 2016,
@@ -39815,7 +39815,7 @@ export const Wine80 = {
       "Saint-Julien, a prestigious Left Bank Bordeaux appellation, lies between Pauillac and Margaux. Though it lacks a first growth, it boasts remarkable consistency, producing refined reds from 11 classed growths, including renowned second growths like Léoville-Las Cases and Ducru-Beaucaillou. Its 900 hectares of vineyards, split between Saint-Julien-Beychevelle and Beychevelle, are planted mainly with Cabernet Sauvignon, Merlot, and related varieties. Established in 1936, appellation laws strictly define vineyard locations. Nearly every acre is under vine, with ownership spanning wealthy individuals and major international companies.",
     winery:
       "Château Beychevelle, a fourth growth in the 1855 Bordeaux Classification, is a renowned Saint-Julien estate on Bordeaux’s Left Bank. Its 90-hectare vineyard, mainly Cabernet Sauvignon with Merlot and Petit Verdot, produces a supple, powerful grand vin aged 18 months in oak, plus the second wine, Amiral de Beychevelle. Some plots yield Haut-Médoc wine, Les Brulières. The name, from “Baisse-Voile” (lower sails), honours a 16th-century duke and admiral. The estate, now owned by Castel-Suntory, spans 250 hectares in prime terroir.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/beychevelle-750.png",
     ],
     oldest_vintage: 2021,

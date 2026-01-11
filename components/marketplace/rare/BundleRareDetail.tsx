@@ -105,7 +105,7 @@ console.log("")
               >
                 <CardContent className="flex flex-col items-center bg-transparent justify-between h-full">
                   <Image
-                    src={item.wine_images[0]}
+                    src={item.images[0]}
                     alt=""
                     width={400}
                     height={400}

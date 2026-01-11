@@ -59,7 +59,7 @@ export default function SpecialVolDetail() {
                 alt=""
                 width={400}
                 height={400}
-                src={data.wine_details.wine_images[0]}
+                src={data.wine_details.images[0]}
                 className={`h-full max-h-[280px] w-[360px] transition-all duration-300 object-contain`}
               ></Image>
             </div>

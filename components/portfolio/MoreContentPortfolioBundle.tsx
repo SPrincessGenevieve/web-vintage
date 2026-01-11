@@ -25,6 +25,7 @@ import { CartItemT } from "@/lib/types";
 import { toast } from "sonner";
 import { useWineCellar } from "@/context/WineCellarContext";
 import { uuidv4 } from "zod";
+import GiftDialogBundle from "./gift/GiftDialogBundle";
 
 const items = [
   //   {
@@ -41,7 +42,11 @@ const items = [
   },
 ];
 
-export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
+export default function MoreContentPortfolioBundle({
+  data,
+}: {
+  data: CartItemT;
+}) {
   const router = useRouter();
   const [select, setSelect] = useState("");
   const [open, setOpen] = useState(false);
@@ -79,8 +84,8 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
       short_description: data.short_description,
       images: data.images,
       is_special_volumes: data.is_special_volumes,
-      basket: null,
-      basket_items: null,
+      basket: data.basket,
+      basket_items: data.basket_items,
       is_available: data.is_available,
       photo_request: data.photo_request,
       wine_name: data.wine_name,
@@ -149,10 +154,7 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
                 Are you sure you want to cancel your gift?
               </Label>
               <div className="w-full flex gap-2 justify-end">
-                <Button
-                  onClick={handleCancelGift}
-                  className="bg-red-700 text-white hover:bg-red-700/50"
-                >
+                <Button onClick={handleCancelGift} className="bg-red-700 text-white hover:bg-red-700/50">
                   Yes, cancel
                 </Button>
                 <Button onClick={() => setOpen(false)} variant={"outline"}>
@@ -161,11 +163,11 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
               </div>
             </div>
           ) : select === "Gift" && data.status !== "Gift Request" ? (
-            <GiftDialog
+            <GiftDialogBundle
               gift={handleGift}
               close={() => setOpen(false)}
               data={data}
-            ></GiftDialog>
+            ></GiftDialogBundle>
           ) : (
             <></>
           )}

@@ -10,7 +10,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { toast } from "sonner";
 
-export default function GiftDialog({
+export default function GiftDialogBundle({
   data,
   close,
   gift,
@@ -31,7 +31,7 @@ export default function GiftDialog({
       ? 600
       : 0;
   const total =
-    Number(data.stock_wine_vintage?.market_value) *
+    Number(data.basket?.market_value) *
     data.case_size *
     data.quantity;
 

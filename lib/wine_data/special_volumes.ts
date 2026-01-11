@@ -2,7 +2,7 @@ export const special_volume = [
   {
     id: 21,
     name: "Dom Perignon",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Dom_Perignon_2012.png",
     ],
     price: 350.00,
@@ -15,7 +15,7 @@ export const special_volume = [
   {
     id: 42,
     name: "Louis Roederer, Cristal",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Louis_Roederer_Cristal.png",
     ],
     price: 5000.0,
@@ -28,7 +28,7 @@ export const special_volume = [
   {
     id: 53,
     name: "Taittinger, Comtes de Champagne Blanc de Blancs",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png"],
     price: 2869.2,
     fromm: "Champagne",
     vintage: 1999,
@@ -39,7 +39,7 @@ export const special_volume = [
   {
     id: 54,
     name: "Tignanello, Toscana",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Tignanello.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Tignanello.png"],
     price: 2250.0,
     fromm: "Italy",
     vintage: 2000,

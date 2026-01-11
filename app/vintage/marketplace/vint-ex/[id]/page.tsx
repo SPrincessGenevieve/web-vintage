@@ -67,7 +67,7 @@ export default function VintExDetail() {
                   }
                 }}
                 className={`h-auto max-h-[280px] w-[360px] transition-all duration-300 ${
-                  useContain ? "object-contain" : "object-cover"
+                  useContain ? "object-contain" : "object-contain"
                 }`}
               ></Image>
             </div>

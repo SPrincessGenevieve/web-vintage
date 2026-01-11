@@ -93,7 +93,7 @@ export default function CardWine({ item, type }: vintageT) {
                       } w-full h-full flex `}
                     >
                       {/* Access images from the correct object */}
-                      <WineImage type={type} src={rawItem.images} />
+                      <WineImage type={type} src={rawItem.image ?? rawItem.images[0]} />
                     </div>
                     <div className="w-full">
                       <Label className="font-semibold text-primary-brown">

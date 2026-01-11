@@ -48,7 +48,7 @@ export interface StepThreeInviteType {
 export interface VintExCardT {
   id: number;
   name: string;
-  wine_images: string[];
+  images: string[];
   is_very_special: boolean;
   vintage_range: string;
   price_range: string;
@@ -63,7 +63,7 @@ export interface VintExCardT {
 export interface SpecialVolumesCardT {
   id: number;
   name: string;
-  wine_images: string[];
+  images: string[];
   price: number;
   fromm: string;
   vintage: number;
@@ -174,7 +174,7 @@ export interface BasketItemsT {
     is_user_investment: boolean;
     is_very_special: boolean;
   };
-  wine_images: string[];
+  images: string[];
 }
 
 export interface WineResultDetailT {
@@ -283,6 +283,7 @@ export interface VintexDetailsT {
 
 export interface CartItemT {
   id: number | string;
+  investment_id?: number | string;
   case_size: number;
   quantity: number;
   stock_wine_vintage: StockWineVintageT | null;
@@ -510,7 +511,7 @@ export interface PortfolioBasketItemT {
   wine_vintage: VintexResultsT & {
     available_case_size: number[];
   };
-  wine_images: string[];
+  images: string[];
   wine_parent_name: string;
 }
 

@@ -74,7 +74,7 @@ type CardType = "vint-ex" | "special-volumes" | "special-bundle" | "rare";
 
 export default function Marketplace() {
   const { filter_market, setUserDetails } = useUserContext();
-  const { rare, addToRare } = useRare();
+  const { rare, addToRare, clearRare } = useRare();
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState<CardType>("vint-ex");
 
@@ -164,6 +164,7 @@ export default function Marketplace() {
 
   return (
     <div className={`flex flex-col gap-4 h-full`}>
+      <Button onClick={() => clearRare()}>CLEAR RARE</Button>
       <Input
         placeholder="Search by wine name"
         className="bg-primary-gray-400"

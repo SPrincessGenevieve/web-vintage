@@ -43,6 +43,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useRare } from "@/context/RareContext";
 
 export interface DrawerBundleT {
   data: WineRareResultsT;
@@ -59,6 +60,7 @@ export default function DrawerRareBundleBuy({
   const { subAccounts } = useSubAccount();
   const { addToCartSummary, clearCartSummary } = useCartSummary();
   const { setUserDetails } = useUserContext();
+  const { removeFromRare } = useRare();
 
   const bottle_size = data?.basket_items?.[0].basket_bottle_size;
   const bottle =
@@ -147,6 +149,7 @@ export default function DrawerRareBundleBuy({
 
   const newBundleItem: CartItemT = {
     id: newItem.id,
+    investment_id: data.investment_id,
     case_size: newItem.case_size,
     quantity: newItem.quantity,
     wine_name: newItem?.basket?.name ?? "",
@@ -197,12 +200,6 @@ export default function DrawerRareBundleBuy({
 
   const handleAddToBasket = () => {
     addToCart(newItem);
-    // setCheckedItems((prev) => ({
-    //   ...prev,
-    //   [newItem.id]: true, // safely update Record<string, boolean>
-    // }));
-    // addToCartSummary(newItemBuy);
-
     console.log("DATA RSULT: ", newItem);
     toast.success("Wine added to cart");
     location.reload();
@@ -219,6 +216,10 @@ export default function DrawerRareBundleBuy({
       [newItem.id]: true,
     }));
     addToCartSummary(newBundleItem);
+
+    // ✅ Wait for it to complete if async
+    // await removeFromRare(data.investment_id);
+
     router.refresh();
     router.push("/vintage/cart/review");
   };

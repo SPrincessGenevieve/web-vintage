@@ -503,7 +503,7 @@ export const user_data = {
         investment_id: 531,
         wine_name: "Bartolo",
         vintage: 2000,
-        wine_images: [
+        images: [
           "https://cdn.vinissimus.com/img/unsafe/p385x/plain/local:///prfmtgrande/vi/barol18_anv800_1666880192.png",
         ],
         wines_investment_value: -8000.0,
@@ -519,7 +519,7 @@ export const user_data = {
         investment_id: 507,
         wine_name: "Bartolo",
         vintage: 2000,
-        wine_images: [
+        images: [
           "https://cdn.vinissimus.com/img/unsafe/p385x/plain/local:///prfmtgrande/vi/barol18_anv800_1666880192.png",
         ],
         wines_investment_value: 4000.0,
@@ -535,7 +535,7 @@ export const user_data = {
         investment_id: 677,
         wine_name: "Super Tuscan Bundle",
         vintage: "-",
-        wine_images: [
+        images: [
           "https://d18vt6ndh4jzvp.cloudfront.net/media/basket_wine_BWU8ccd.png",
         ],
         wines_investment_value: 7414.67,
@@ -551,7 +551,7 @@ export const user_data = {
         investment_id: 654,
         wine_name: "Bartolo",
         vintage: 2000,
-        wine_images: [
+        images: [
           "https://cdn.vinissimus.com/img/unsafe/p385x/plain/local:///prfmtgrande/vi/barol18_anv800_1666880192.png",
         ],
         wines_investment_value: 0.0,
@@ -567,7 +567,7 @@ export const user_data = {
         investment_id: 653,
         wine_name: "Bollinger, La Grande Annee",
         vintage: 1997,
-        wine_images: [
+        images: [
           "https://d18vt6ndh4jzvp.cloudfront.net/media/Bollinger_-_wine4.png",
         ],
         wines_investment_value: -1060.98,
@@ -583,7 +583,7 @@ export const user_data = {
         investment_id: 703,
         wine_name: "Bartolo",
         vintage: 2000,
-        wine_images: [
+        images: [
           "https://cdn.vinissimus.com/img/unsafe/p385x/plain/local:///prfmtgrande/vi/barol18_anv800_1666880192.png",
         ],
         wines_investment_value: 0.0,

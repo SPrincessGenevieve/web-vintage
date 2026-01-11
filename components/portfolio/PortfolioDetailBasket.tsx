@@ -15,6 +15,8 @@ import { WineImage } from "@/components/marketplace/WineImage";
 import BuyBundleBtn from "@/components/BuyBundleBtn";
 import { CartItemT, SpecialBundleT } from "@/lib/types";
 import BuyBundlePortfolioBtn from "./BuyBundlePortfolioBtn";
+import MoreContentPortfolio from "./MoreContentPortfolio";
+import MoreContentPortfolioBundle from "./MoreContentPortfolioBundle";
 
 export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
   const pathname = usePathname();
@@ -27,7 +29,7 @@ export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
 
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto justify-between">
-      <div className=" flex">
+      <div className=" flex relative justify-between w-full">
         <Button
           className="p-0 m-0 px-0 mx-0"
           variant={"ghost"}
@@ -35,6 +37,9 @@ export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
         >
           <ChevronLeft></ChevronLeft>Back
         </Button>
+        <div>
+          <MoreContentPortfolioBundle data={item}></MoreContentPortfolioBundle>
+        </div>
       </div>
       <div className="flex gap-4 min-h-[32%]">
         <Card className="">
@@ -89,6 +94,7 @@ export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
             </div>
           </CardContent>
         </Card>
+
         <BuyBundlePortfolioBtn item={item}></BuyBundlePortfolioBtn>
       </div>
       <div className="w-full h-[58%]">
@@ -107,7 +113,7 @@ export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
                 >
                   <CardContent className="flex flex-col items-center bg-transparent justify-between h-full">
                     <Image
-                      src={item2.wine_images[0]}
+                      src={item2.images[0]}
                       alt=""
                       width={400}
                       height={400}

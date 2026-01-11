@@ -539,6 +539,8 @@ export default function Portfolio() {
                                 ? "bg-primary-brown text-black"
                                 : item.status === "Awaiting Arrival"
                                 ? "bg-red-900  text-white"
+                                : item.status === "Gift Request"
+                                ? "bg-pink-800  text-white"
                                 : "text-white bg-[#8A6B47]"
                             }`}
                           >

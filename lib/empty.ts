@@ -1,4 +1,4 @@
-import { DefaultVintageT, VintexDetailsT, VintexResultsT, WineDetailsT } from "./types";
+import { DefaultVintageT, VintexDetailsT, VintexResultsT, WineParent } from "./types";
 
 export const emptyVintexResult: VintexResultsT = {
   id: 0,
@@ -30,7 +30,7 @@ export const emptyVintexResult: VintexResultsT = {
   is_unavailable: false,
   get_notified: false,
 };
-export const emptyVintexWineDetail: WineDetailsT = {
+export const emptyVintexWineDetail: WineParent = {
   id: 0,
   lwin7: "",
   name: "",

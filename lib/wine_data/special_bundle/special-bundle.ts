@@ -35,7 +35,7 @@ export const WineBundle1 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Solaia.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Solaia.png"],
       wine_parent_name: "Solaia, Toscana",
     },
     {
@@ -73,7 +73,7 @@ export const WineBundle1 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/sassicaia.png",
       ],
       wine_parent_name: "Sassicaia, Tenuta San Guido, Bolgheri",
@@ -113,7 +113,7 @@ export const WineBundle1 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Tignanello.png",
       ],
       wine_parent_name: "Tignanello, Toscana",
@@ -153,7 +153,7 @@ export const WineBundle1 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Masetto.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Masetto.png"],
       wine_parent_name: "Masseto, Toscana",
     },
     {
@@ -191,7 +191,7 @@ export const WineBundle1 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Ornellaia.png",
       ],
       wine_parent_name: "Ornellaia, Bolgheri",
@@ -257,7 +257,7 @@ export const WineBundle2 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/OpusOne.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/OpusOne.png"],
       wine_parent_name: "Opus One, Napa Valley",
     },
     {
@@ -295,7 +295,7 @@ export const WineBundle2 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Dominus_Napa_Valley.png",
       ],
       wine_parent_name: "Dominus, Napa Valley",
@@ -335,7 +335,7 @@ export const WineBundle2 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/2015Scarecrow_800x.png",
       ],
       wine_parent_name: "Scarecrow, Cabernet Sauvignon, Rutherford",
@@ -375,7 +375,7 @@ export const WineBundle2 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Screaming_eagle.png",
       ],
       wine_parent_name: "Screaming Eagle, Cabernet Sauvignon, Oakville",
@@ -415,7 +415,7 @@ export const WineBundle2 = {
         is_very_special: false,
         available_case_size: [3, 6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/HarlanEstate.png",
       ],
       wine_parent_name: "Harlan Estate, Napa Valley",
@@ -481,7 +481,7 @@ export const WineBundle3 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Haut_Brion.png",
       ],
       wine_parent_name: "Chateau Haut-Brion",
@@ -521,7 +521,7 @@ export const WineBundle3 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Lafite_Rothschild.png",
       ],
       wine_parent_name: "Chateau Lafite Rothschild",
@@ -561,7 +561,7 @@ export const WineBundle3 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Latour_1.png",
       ],
       wine_parent_name: "Chateau Latour",
@@ -601,7 +601,7 @@ export const WineBundle3 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Margaux_1.png",
       ],
       wine_parent_name: "Chateau Margaux",
@@ -641,7 +641,7 @@ export const WineBundle3 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Mouton_Rothschild.png",
       ],
       wine_parent_name: "Chateau Mouton Rothschild",
@@ -681,7 +681,7 @@ export const WineBundle3 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
       wine_parent_name: "Petrus, Pomerol",
     },
     {
@@ -719,7 +719,7 @@ export const WineBundle3 = {
         is_very_special: false,
         available_case_size: [3, 6],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
       wine_parent_name: "Le Pin, Pomerol",
     },
   ],
@@ -783,7 +783,7 @@ export const WineBundle4 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Dom_Perignon_2012.png",
       ],
       wine_parent_name: "Dom Perignon",
@@ -823,7 +823,7 @@ export const WineBundle4 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/salon.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/salon.png"],
       wine_parent_name: "Salon, Le Mesnil Grand Cru",
     },
     {
@@ -861,7 +861,7 @@ export const WineBundle4 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/krug.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/krug.png"],
       wine_parent_name: "Krug, Vintage Brut",
     },
     {
@@ -899,7 +899,7 @@ export const WineBundle4 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Pol_Roger.png",
       ],
       wine_parent_name: "Pol Roger, Sir Winston Churchill",
@@ -939,7 +939,7 @@ export const WineBundle4 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png",
       ],
       wine_parent_name: "Taittinger, Comtes de Champagne Blanc de Blancs",
@@ -979,7 +979,7 @@ export const WineBundle4 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Louis_Roederer_Cristal.png",
       ],
       wine_parent_name: "Louis Roederer, Cristal",
@@ -1045,7 +1045,7 @@ export const WineBundle5 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_Conti.png",
       ],
       wine_parent_name: "DRC, Romanee-Conti Grand Cru",
@@ -1085,7 +1085,7 @@ export const WineBundle5 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRCLaTacheGrandCruRedWine.png",
       ],
       wine_parent_name: "DRC, La Tache Grand Cru (Romanee)",
@@ -1125,7 +1125,7 @@ export const WineBundle5 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Richebourg.png",
       ],
       wine_parent_name: "DRC, Richebourg Grand Cru (Romanee)",
@@ -1165,7 +1165,7 @@ export const WineBundle5 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_St_Vivant.png",
       ],
       wine_parent_name: "DRC, Romanee-Saint-Vivant Grand Cru",
@@ -1205,7 +1205,7 @@ export const WineBundle5 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Grands_Echezeaux.png",
       ],
       wine_parent_name: "DRC, Grands Echezeaux Grand Cru (Romanee)",
@@ -1245,7 +1245,7 @@ export const WineBundle5 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Echezeaux.png",
       ],
       wine_parent_name: "DRC, Echezeaux Grand Cru (Romanee)",
@@ -1285,7 +1285,7 @@ export const WineBundle5 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Chevalier_Montrachet_Domaine_Leflave.png",
       ],
       wine_parent_name: "Domaine Leflaive, Chevalier-Montrachet",
@@ -1351,7 +1351,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Screaming_eagle.png",
       ],
       wine_parent_name: "Screaming Eagle, Cabernet Sauvignon, Oakville",
@@ -1391,7 +1391,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/OpusOne.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/OpusOne.png"],
       wine_parent_name: "Opus One, Napa Valley",
     },
     {
@@ -1429,7 +1429,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/HarlanEstate.png",
       ],
       wine_parent_name: "Harlan Estate, Napa Valley",
@@ -1469,7 +1469,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Dominus_Napa_Valley.png",
       ],
       wine_parent_name: "Dominus, Napa Valley",
@@ -1509,7 +1509,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/2015Scarecrow_800x.png",
       ],
       wine_parent_name: "Scarecrow, Cabernet Sauvignon, Rutherford",
@@ -1549,7 +1549,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
       wine_parent_name: "Petrus, Pomerol",
     },
     {
@@ -1587,7 +1587,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3, 6],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
       wine_parent_name: "Le Pin, Pomerol",
     },
     {
@@ -1625,7 +1625,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Lafite_Rothschild.png",
       ],
       wine_parent_name: "Chateau Lafite Rothschild",
@@ -1665,7 +1665,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Mouton_Rothschild.png",
       ],
       wine_parent_name: "Chateau Mouton Rothschild",
@@ -1705,7 +1705,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Margaux_1.png",
       ],
       wine_parent_name: "Chateau Margaux",
@@ -1745,7 +1745,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Latour_1.png",
       ],
       wine_parent_name: "Chateau Latour",
@@ -1785,7 +1785,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Haut_Brion.png",
       ],
       wine_parent_name: "Chateau Haut-Brion",
@@ -1825,7 +1825,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [1],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_Conti.png",
       ],
       wine_parent_name: "DRC, Romanee-Conti Grand Cru",
@@ -1865,7 +1865,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_Conti.png",
       ],
       wine_parent_name: "DRC, Romanee-Conti Grand Cru",
@@ -1905,7 +1905,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Romanee_St_Vivant.png",
       ],
       wine_parent_name: "DRC, Romanee-Saint-Vivant Grand Cru",
@@ -1945,7 +1945,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3, 6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRC_Echezeaux.png",
       ],
       wine_parent_name: "DRC, Echezeaux Grand Cru (Romanee)",
@@ -1985,7 +1985,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Grands_Echezeaux.png",
       ],
       wine_parent_name: "DRC, Grands Echezeaux Grand Cru (Romanee)",
@@ -2025,7 +2025,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Dom_Perignon_2012.png",
       ],
       wine_parent_name: "Dom Perignon",
@@ -2065,7 +2065,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/salon.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/salon.png"],
       wine_parent_name: "Salon, Le Mesnil Grand Cru",
     },
     {
@@ -2103,7 +2103,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/krug.png"],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/krug.png"],
       wine_parent_name: "Krug, Vintage Brut",
     },
     {
@@ -2141,7 +2141,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Pol_Roger.png",
       ],
       wine_parent_name: "Pol Roger, Sir Winston Churchill",
@@ -2181,7 +2181,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [6],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png",
       ],
       wine_parent_name: "Taittinger, Comtes de Champagne Blanc de Blancs",
@@ -2221,7 +2221,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/Louis_Roederer_Cristal.png",
       ],
       wine_parent_name: "Louis Roederer, Cristal",
@@ -2261,7 +2261,7 @@ export const WineBundle6 = {
         is_very_special: false,
         available_case_size: [3],
       },
-      wine_images: [
+      images: [
         "https://d18vt6ndh4jzvp.cloudfront.net/media/DRCLaTacheGrandCruRedWine.png",
       ],
       wine_parent_name: "DRC, La Tache Grand Cru (Romanee)",

@@ -50,7 +50,7 @@ export const WineSpecialVol21 = {
       'Champagne Brut is a dry, sparkling wine from France\'s Champagne region. It can be white or rosé and is typically made from the classic blend of Chardonnay, Pinot Noir, and Pinot Meunier, though it may also include lesser-known varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. The term "Brut" means "raw," indicating minimal added sugar (dosage) during production. By law, Brut Champagne contains less than 15g/L of sugar. Drier styles include Brut Nature (0–3g/L) and Extra Brut (0–6g/L). Introduced by Perrier-Jouët in  1846 for the British market, Brut has become the most popular Champagne style today, surpassing sweeter versions like Sec, Demi-Sec, and Doux.',
     winery:
       "Dom Pérignon, owned by Moët & Chandon under LVMH, is a prestigious Champagne brand named after Dom Pierre Pérignon, a 17th-century monk credited with advancing Champagne production. First released in 1937, Dom Pérignon is a vintage-only Champagne, blending Chardonnay and Pinot Noir from the best vineyards. Its maturation follows the Plénitude concept: Vintage (9 years), P2 (12–15 years), and P3 (25+ years). Dom Pérignon also produces rare Rosé vintages, reflecting elegance and aging potential.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Dom_Perignon_2012.png",
     ],
     vintage: 2008,
@@ -112,7 +112,7 @@ export const WineSpecialVol42 = {
       'Champagne Brut is a dry, sparkling wine from France\'s Champagne region. It can be white or rosé and is typically made from the classic blend of Chardonnay, Pinot Noir, and Pinot Meunier, though it may also include lesser-known varieties like Pinot Blanc, Pinot Gris, Petit Meslier, and Arbane. The term "Brut" means "raw," indicating minimal added sugar (dosage) during production. By law, Brut Champagne contains less than 15g/L of sugar. Drier styles include Brut Nature (0–3g/L) and Extra Brut (0–6g/L). Introduced by Perrier-Jouët in 1846 for the British market, Brut has become the most popular Champagne style today, surpassing sweeter versions like Sec, Demi-Sec, and Doux.',
     winery:
       "Louis Roederer is a prestigious Champagne house in Reims, best known for its iconic Cristal cuvée. Founded in 1776, it gained prominence when Louis Roederer took over in 1833, focusing on international markets, notably becoming the Champagne of choice for Russia’s Tsar Alexander II. Cristal was created for the Tsar in a clear, flat-bottomed bottle for security reasons.Roederer owns 240 hectares of vineyards across the Montagne de Reims, Vallée de la Marne, and Côte des Blancs, with a commitment to biodynamic farming. Cristal, made from around 60% Pinot Noir and 40% Chardonnay, is produced in vintage and rosé styles, with some aging in oak. The portfolio includes non-vintage brut, vintage, rosé, Blanc de Blancs, and the Brut Nature collaboration with designer Philippe Starck. Roederer also crafts still wines under the Hommage à Camille label in the Coteaux Champenois appellation.",
-    wine_images: [
+    images: [
       "https://d18vt6ndh4jzvp.cloudfront.net/media/Louis_Roederer_Cristal.png",
     ],
     vintage: 2012,
@@ -174,7 +174,7 @@ export const WineSpecialVol53 = {
       "The Côte des Blancs is the heart of Blanc de Blancs Champagne production, located south of Épernay. Its chalky soils are ideal for growing Chardonnay, which makes up 96% of plantings. Blanc de Blancs Champagnes, made exclusively from white grapes, are generally more citrusy, crisp, and dry, making them perfect for aperitifs and seafood pairings. Notable Grand Cru villages include Le Mesnil-sur-Oger, Cramant, Avize, and Oger. Prestigious examples are Salon and Krug Clos du Mesnil, known for their elegance and aging potential.",
     winery:
       "Taittinger is a prestigious Champagne house based in Reims, renowned for its Chardonnay-dominant cuvées, especially the Comtes de Champagne Blanc de Blancs. Founded in 1932 by Pierre Taittinger, the house owns 290 hectares of vineyards, primarily planted with Pinot Noir, Chardonnay, and some Pinot Meunier. The Brut Reserve NV features a fresh, delicate style with 40% Chardonnay. The flagship Comtes de Champagne ages for at least 10 years in historic chalk cellars. Taittinger also produces a Comtes de Champagne Rosé, blending Pinot Noir and Chardonnay.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Taittinger.png"],
     vintage: 2008,
     price: 2869.2,
     annual_production: 12000,
@@ -263,7 +263,7 @@ export const WineSpecialVol54 = {
       "The Indicazione Geografica Tipica (IGT) classification in Tuscany allows winemakers flexibility beyond the stricter DOCG and DOC rules, covering diverse styles from dry whites to sweet reds and sparkling rosés. Introduced in 1992, IGT aimed to legitimize high-quality wines, notably Super Tuscans, which previously bore the low-ranking Vino da Tavola label. Predominantly made from Sangiovese, along with Cabernet Sauvignon, Merlot, and Cabernet Franc, IGT wines now span 13,388 hectares with annual production around 65 million liters, driving Tuscany’s modern wine evolution.",
     winery:
       "Tignanello, a Super Tuscan red wine from Marchesi Antinori, is a blend of Sangiovese, Cabernet Sauvignon and Cabernet Franc, known for its rich complex flavours and elegant structure, and is considered an innovative pioneer of modern italian top wines. Antinori is a prestigious Tuscan wine company and one of Italy's largest producers, with a history dating back to the 14th Century. Known for pioneering innovation in winemaking, Antinori produces around 20 million bottles annually across 150 labels. Its flagship wines include Tignanello, the first to blend Sangiovese with Cabernet Sauvignon and Cabernet Franc, and Solaia, a bold Bordeaux-style blend. Antinori also owns estates like Badia a Passignano, Pian delle Vigne in Montalcino, and Castello della Sala in Umbria.",
-    wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Tignanello.png"],
+    images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Tignanello.png"],
     vintage: 2021,
     price: 2250.0,
     annual_production: 25000,

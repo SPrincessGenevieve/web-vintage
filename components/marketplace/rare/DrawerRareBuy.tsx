@@ -87,6 +87,7 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
 
   const newItem: CartItemT = {
     id: buildCartItemId(type, result.investment_id, caseSize),
+    investment_id: result.investment_id,
     case_size: caseSize,
     quantity: quantityData,
     wine_name:
@@ -161,6 +162,7 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
 
   const newItemBuy: CartItemT = {
     id: newItem.id,
+    investment_id: newItem.investment_id,
     case_size: newItem.case_size,
     quantity: newItem.quantity,
     wine_name: newItem.wine_name,
@@ -211,7 +213,6 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
     }));
     addToCartSummary(newItemBuy);
     router.refresh(); // ⬅ revalidate server components
-    removeFromRare(result.investment_id);
     router.push("/vintage/cart/review");
   };
   return (

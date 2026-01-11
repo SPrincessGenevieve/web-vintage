@@ -393,7 +393,7 @@ export const portfolio_default: CartItemT[] = [
           is_user_investment: false,
           is_very_special: false,
         },
-        wine_images: [
+        images: [
           "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Haut_Brion.png",
         ],
       },
@@ -430,7 +430,7 @@ export const portfolio_default: CartItemT[] = [
           is_user_investment: false,
           is_very_special: false,
         },
-        wine_images: [
+        images: [
           "https://d18vt6ndh4jzvp.cloudfront.net/media/Lafite_Rothschild.png",
         ],
       },
@@ -467,7 +467,7 @@ export const portfolio_default: CartItemT[] = [
           is_user_investment: false,
           is_very_special: false,
         },
-        wine_images: [
+        images: [
           "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Latour_1.png",
         ],
       },
@@ -504,7 +504,7 @@ export const portfolio_default: CartItemT[] = [
           is_user_investment: false,
           is_very_special: false,
         },
-        wine_images: [
+        images: [
           "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_Margaux_1.png",
         ],
       },
@@ -541,7 +541,7 @@ export const portfolio_default: CartItemT[] = [
           is_user_investment: false,
           is_very_special: false,
         },
-        wine_images: [
+        images: [
           "https://d18vt6ndh4jzvp.cloudfront.net/media/Mouton_Rothschild.png",
         ],
       },
@@ -578,7 +578,7 @@ export const portfolio_default: CartItemT[] = [
           is_user_investment: false,
           is_very_special: false,
         },
-        wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
+        images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/Petrus.png"],
       },
       {
         id: 19,
@@ -613,7 +613,7 @@ export const portfolio_default: CartItemT[] = [
           is_user_investment: false,
           is_very_special: false,
         },
-        wine_images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
+        images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/LePin.png"],
       },
     ],
     is_available: true,

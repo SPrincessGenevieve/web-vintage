@@ -33,7 +33,7 @@ export default function TopWines() {
                     width={400}
                     height={400}
                     className="h-20 w-auto object-contain"
-                    src={item.wine_images[0]}
+                    src={item.images[0]}
                   />
                 </div>
 
