@@ -21,6 +21,8 @@ import CartProgress from "@/components/cart/CartProgress";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { useCartSummary } from "@/context/CartSummary";
 import { useUserContext } from "@/context/UserContext";
+import { useSubAccount } from "@/context/SubAccountContext";
+import { generateHoldingYear } from "@/components/marketplace/special-volume/DrawerBuy";
 
 export default function Cart() {
   const {
@@ -33,6 +35,7 @@ export default function Cart() {
   } = useCart();
 
   const { addToCartSummary, clearCartSummary } = useCartSummary();
+  const { subAccounts } = useSubAccount();
   const { setUserDetails } = useUserContext();
   const router = useRouter();
   const handleDeleteAll = () => clearCart();
@@ -74,7 +77,6 @@ export default function Cart() {
     }
     return total;
   }, 0);
-
   const handleCheckout = () => {
     if (total_market_value === 0) {
       return;
@@ -120,7 +122,7 @@ export default function Cart() {
           purchase_date: today,
           purchase_price: total,
           status: "Buy Request",
-          sub_account: "",
+          sub_account: subAccounts[0],
           location: "portfolio",
           bottle_size: item.bottle_size,
           vintage: item.vintage,
@@ -132,13 +134,14 @@ export default function Cart() {
           region: item.region,
           grape_variety: item.grape_variety,
           rp_tasting_notes: item.rp_tasting_notes,
+          wine_parent: item.wine_parent,
+          holding_year: generateHoldingYear(String(item.id)),
         }), // ✅ correct per-item total
           setUserDetails({
             cart_total: total_market_value,
           });
       }
     });
-
     router.push("/vintage/cart/review");
   };
 
@@ -167,7 +170,7 @@ export default function Cart() {
           />
           <Label htmlFor="select-all">Wine Cellar ({cart.length})</Label>
         </div>
-        <CartProgress step={1}></CartProgress>
+        <CartProgress  step={1}></CartProgress>
         <Button onClick={handleDeleteAll} variant="ghost">
           <Trash className="text-red-700" /> Delete All
         </Button>
@@ -238,6 +241,12 @@ export default function Cart() {
 
               console.log("VINTAGE: ", item);
 
+              const imageSrc =
+                item.basket?.image ??
+                item.images?.[0] ??
+                item.wine_parent?.images?.[0] ??
+                "/images/placeholder.png";
+
               return (
                 <div
                   key={item.id}
@@ -259,11 +268,7 @@ export default function Cart() {
                     >
                       <WineImage
                         type={item.basket !== null ? "special-bundle" : ""}
-                        src={
-                          item.basket === null
-                            ? item.images[0]
-                            : item.basket.image
-                        }
+                        src={imageSrc}
                       />
                     </div>
 

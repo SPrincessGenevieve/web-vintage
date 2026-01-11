@@ -5,6 +5,7 @@ export interface SubAccountType {
   relationship: string;
   image: string;
   birth_date: string;
+  is_active: boolean;
 }
 
 export interface StepOneRegisterType {
@@ -119,30 +120,10 @@ export interface RareCardT {
     median: number;
     is_user_investment: boolean;
   };
-  wine_parent: {
-    id: number;
-    lwin7: string;
-    name: string;
-    fromm: string;
-    red_wine: string;
-    grapes: string;
-    pair_with: string;
-    region_of_appellation: string;
-    alcohol_abv: string;
-    sweetness: string;
-    blend: string;
-    maturation: string;
-    ownership: string;
-    closure_type: string;
-    grape_variety: string;
-    region: string;
-    winery: string;
-    images: string[];
-    annual_production: number;
-    default_case_size: number;
-  };
-  basket_details: BasketDetailsT | null;
-  basket_items: BasketItemsT | null;
+  wine_parent: WineParent;
+  basket_details: BasketDetailsT | CartBasketT | null;
+  basket_items: BasketItemsT | BasketItemsT[] | null;
+
 }
 
 export interface BasketDetailsT {
@@ -153,6 +134,8 @@ export interface BasketDetailsT {
   case_size: number;
   winery: string;
   region: string;
+  fromm: string;
+  grapes: string;
   grape_variety: string;
   image: string | string[];
   special_id: string;
@@ -254,54 +237,6 @@ export interface VintexResultsT {
   get_notified: boolean;
 }
 
-export interface WineDetailsT {
-  id: number;
-  lwin7: string;
-  name: string;
-  fromm: string;
-  red_wine: string;
-  grapes: string;
-  pair_with: string;
-  region_of_appellation: string;
-  alcohol_abv: string;
-  sweetness: string;
-  blend: string;
-  ownership: string;
-  closure_type: string;
-  grape_variety: string;
-  region: string;
-  winery: string;
-  wine_images: string[];
-  oldest_vintage: number;
-  maximum_price: number;
-  annual_production: number;
-  default_case_size: number;
-}
-
-export interface SpecialVolumeWineDetailsT {
-  id: number;
-  lwin7: string;
-  name: string;
-  fromm: string;
-  red_wine: string;
-  grapes: string;
-  pair_with: string;
-  region_of_appellation: string;
-  alcohol_abv: string;
-  sweetness: string;
-  blend: string;
-  ownership: string;
-  closure_type: string;
-  grape_variety: string;
-  region: string;
-  winery: string;
-  wine_images: string[];
-  vintage: number;
-  price: number;
-  annual_production: number;
-  default_case_size: number;
-}
-
 export interface DefaultVintageT {
   price: number;
   vintage_year: number;
@@ -342,7 +277,7 @@ export interface DefaultVintageT {
 
 export interface VintexDetailsT {
   results: VintexResultsT[];
-  wine_details: WineDetailsT;
+  wine_details: WineParent;
   default_vintage: DefaultVintageT;
 }
 
@@ -357,11 +292,15 @@ export interface CartItemT {
   is_special_volumes: boolean;
   basket: CartBasketT | null;
   basket_items: BasketItemsT[] | null;
+  wine_parent: WineParent;
   is_available: boolean;
   photo_request: boolean;
   wine_name: string;
+  holding_year?: string;
   fromm?: string;
   purchase_price: number;
+  profit_lost?: number;
+  profit_lost_by_percent?: number;
   purchase_date: string;
   status: string;
   sub_account: SubAccountType;
@@ -374,7 +313,7 @@ export interface CartItemT {
   ownership: string;
   winery: string;
   region: string;
-  grape_variety: string
+  grape_variety: string;
   rp_tasting_notes: string;
 }
 
@@ -536,7 +475,7 @@ export interface PortfolioT {
   quantity_to_transfer: number;
   bottle_size: string;
   sub_account: string;
-  wine_parent: WineDetailsT;
+  wine_parent: WineParent;
   wine_vintage_details: VintexResultsT & {
     available_case_size: number[];
   };
@@ -599,28 +538,6 @@ export interface WineRareVintageDetails {
   median: number;
   is_user_investment: boolean;
 }
-export interface WineRareParentT {
-  id: number;
-  lwin7: string;
-  name: string;
-  fromm: string;
-  red_wine: string;
-  grapes: string;
-  pair_with: string;
-  region_of_appellation: string;
-  alcohol_abv: string;
-  sweetness: string;
-  blend: string;
-  maturation: string;
-  ownership: string;
-  closure_type: string;
-  grape_variety: string;
-  region: string;
-  winery: string;
-  images: string;
-  annual_production: number;
-  default_case_size: number;
-}
 
 export interface WineRareBasketDetailT {
   id: number;
@@ -631,6 +548,7 @@ export interface WineRareBasketDetailT {
   fromm: string;
   grapes: string;
   grape_variety: string;
+  market_value: number;
   special_id: string;
   is_assortment: boolean;
 }
@@ -642,7 +560,7 @@ export interface WineRareResultsT {
   market_value: number;
   is_owner: boolean;
   wine_vintage_details: WineRareVintageDetails | null;
-  wine_parent: WineRareParentT | null;
+  wine_parent: WineParent;
   basket_details: WineRareBasketDetailT | null;
   basket_items: BasketItemsT[] | null;
 }
@@ -653,7 +571,7 @@ export interface RareT {
 
 export interface SpecialVolumeT {
   results: WineResultDetailT[];
-  wine_details: SpecialVolumeWineDetailsT;
+  wine_details: WineParent;
 }
 
 export interface SpecialBundleParentT {
@@ -685,4 +603,62 @@ export interface PaymentMethodT {
   img: string;
   card_type: string;
   is_default: boolean;
+}
+
+
+export interface WineParent {
+  /** Unique identifier */
+  id: number;
+
+  /** LWIN7 code */
+  lwin7?: string;
+
+  /** Wine name */
+  name: string;
+
+  /** Origin */
+  fromm?: string;
+  region?: string;
+  region_of_appellation?: string;
+
+  /** Wine type */
+  red_wine?: string;
+
+  /** Grapes & blend */
+  grapes?: string;
+  grape_variety?: string;
+  blend?: string;
+
+  /** Food pairing */
+  pair_with?: string;
+
+  /** Wine production info */
+  winery?: string;
+  annual_production?: number;
+  default_case_size?: number;
+  case_size?: number;
+  special_id?: number | null;
+
+  /** Vintage info */
+  vintage?: number | null;
+  oldest_vintage?: number;
+
+  /** Price & market value */
+  price?: number;
+  market_value?: number;
+  maximum_price?: number;
+
+  /** Wine properties */
+  alcohol_abv?: string;
+  sweetness?: string;
+  maturation?: string;
+  ownership?: string;
+  closure_type?: string;
+
+  /** Images */
+  images?: any; // from WineRareParentT / SpecialBundleParentT
+
+  /** Special bundle info */
+  is_assortment?: boolean;
+  sub_header?: string;
 }

@@ -30,7 +30,7 @@ export default function PortfolioDetail() {
       {data.basket === null ? (
         <PortfolioDetailSingle item={data}></PortfolioDetailSingle>
       ) : (
-        <PortfolioDetailBasket></PortfolioDetailBasket>
+        <PortfolioDetailBasket item={data}></PortfolioDetailBasket>
       )}
     </div>
   );

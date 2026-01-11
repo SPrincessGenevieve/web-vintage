@@ -18,7 +18,7 @@ export default function Vintage() {
   const tabs = ["Performance", "Overview", "Tasting Note"];
 
   return (
-    <div>
+    <div className="w-full h-full"> 
       <TableVintageDetail></TableVintageDetail>
     </div>
   );

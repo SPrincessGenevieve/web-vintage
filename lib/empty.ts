@@ -47,7 +47,7 @@ export const emptyVintexWineDetail: WineDetailsT = {
   grape_variety: "",
   region: "",
   winery: "",
-  wine_images: [],
+  images: [],
   oldest_vintage: 0,
   maximum_price: 0,
   annual_production: 0,

@@ -11,7 +11,6 @@ import VintageTable from "@/components/marketplace/vintex/VintageTable";
 import TabDeatils from "@/components/marketplace/TabDetails";
 import DrawerVintage from "@/components/marketplace/vintex/DrawerVintage";
 import { useUserContext } from "@/context/UserContext";
-import TableVintageDetail from "@/components/marketplace/vintex/TableVintageDetail";
 import { ChevronLeft, Wine } from "lucide-react";
 
 export interface VintageT {
@@ -30,13 +29,14 @@ export default function VintExDetail() {
   const [activeTab, setActiveTab] = useState("Vintage");
   const tabs = ["Vintage", "Overview", "Region", "Grapes"];
 
+  console.log("DATA: ", data);
+
   // Don't use state for this if it's derived from 'data'
   // const [vintageList, setVintageList] = useState<VintageT[]>([]);
 
   if (!data) {
     return <div>Wine data not found for ID: {id}</div>;
   }
-
 
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto">
@@ -57,7 +57,7 @@ export default function VintExDetail() {
                 alt=""
                 width={400}
                 height={400}
-                src={data.wine_details.wine_images[0]}
+                src={data.wine_details.images[0]}
                 onLoadingComplete={(img) => {
                   const ratio = img.naturalWidth / img.naturalHeight;
 
@@ -77,13 +77,15 @@ export default function VintExDetail() {
           <CardContent className="p-4 flex flex-col justify-between h-full">
             <DetailsCard
               name={data.wine_details.name}
-              alcohol_abv={data.wine_details.alcohol_abv}
-              blend={data.wine_details.blend}
-              grapes={data.wine_details.grapes}
-              ownership={data.wine_details.ownership}
+              alcohol_abv={data.wine_details.alcohol_abv ?? ""}
+              blend={data.wine_details.blend ?? ""}
+              grapes={data.wine_details.grapes ?? ""}
+              ownership={data.wine_details.ownership ?? ""}
             ></DetailsCard>
             <div>
               <DrawerVintage
+                raw_data={data}
+                parent_data={data.wine_details}
                 trigger={
                   <Button className="text-black">
                     <Wine className="mr-2 h-4 w-4" /> Choose your vintage
@@ -130,19 +132,19 @@ export default function VintExDetail() {
           {activeTab === "Overview" && (
             <TabDeatils
               title="Overflow"
-              desc={data.wine_details.winery}
+              desc={data.wine_details.winery ?? ""}
             ></TabDeatils>
           )}
           {activeTab === "Region" && (
             <TabDeatils
               title="Region"
-              desc={data.wine_details.region}
+              desc={data.wine_details.region ?? ""}
             ></TabDeatils>
           )}
           {activeTab === "Grapes" && (
             <TabDeatils
               title="Grapes"
-              desc={data.wine_details.grape_variety}
+              desc={data.wine_details.grape_variety ?? ""}
             ></TabDeatils>
           )}
         </CardContent>

@@ -1,56 +1,40 @@
 "use client";
 
+import { Card, CardContent } from "@/components/ui/card";
+import { WineRareResultsT } from "@/lib/types";
+import Image from "next/image";
+import React, { useState } from "react";
+import DetailsCard from "../DetailsCard";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { wineSpecialVolume } from "@/lib/wine_data/special-volumes";
-import {
-  ChevronDown,
-  ChevronLeft,
-  ShoppingBasket,
-  Star,
-  WineOff,
-} from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
-import DetailsCard from "@/components/marketplace/DetailsCard";
-import DrawerBuySpecialVol from "@/components/marketplace/special-volume/DrawerBuy";
-import TabDeatils from "@/components/marketplace/TabDetails";
-import SpecialVolumeChart from "@/components/marketplace/special-volume/SpecialVolumeChart";
+import DrawerBuyRare from "./DrawerRareBuy";
+import { ShoppingBasket } from "lucide-react";
+import RareChart from "../special-volume/RareChart";
+import TabDeatils from "../TabDetails";
 
-export default function SpecialVolDetail() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const id = pathname.split("/").pop() || "";
-  const [activeTab, setActiveTab] = useState("Performance");
-
+export default function VintexRareDetail({
+  data,
+  item,
+  dataType,
+}: {
+  data: WineRareResultsT;
+  item: WineRareResultsT;
+  dataType: string;
+}) {
   const tabs = ["Performance", "Overview", "Region", "Grapes"];
-  const data = wineSpecialVolume[id];
-  const item = data.results[0];
-
+  const [activeTab, setActiveTab] = useState("Performance");
+  const release_price = item?.wine_vintage_details?.release_price ?? "";
+  console.log("DATA: ", item)
   const formattedReleasePrice =
-    item.release_price && !isNaN(Number(item.release_price))
-      ? Number(item.release_price) > 0
-        ? `+${item.release_price}%`
-        : `${item.release_price}%`
+    release_price && !isNaN(Number(release_price))
+      ? Number(release_price) > 0
+        ? `+${release_price}%`
+        : `${release_price}%`
       : "";
 
-  if (!data) {
-    return (
-      <div className="w-full h-full">
-        <Label>Wine data not found for ID: {id}</Label>
-      </div>
-    );
-  }
-
+  const imgSrc = item.wine_parent.images[0]
   return (
-    <div className="flex flex-col gap-4 h-full overflow-y-auto">
-      <div className=" flex">
-        <Button className="p-0 m-0 px-0 mx-0"  variant={"ghost"} onClick={() => router.push("/vintage/marketplace")}>
-          <ChevronLeft></ChevronLeft>Back
-        </Button>
-      </div>
+    <div className="flex flex-col gap-4 h-full">
       <div className="flex gap-4 h-[35%]">
         <Card className="">
           <CardContent>
@@ -59,7 +43,7 @@ export default function SpecialVolDetail() {
                 alt=""
                 width={400}
                 height={400}
-                src={data.wine_details.wine_images[0]}
+                src={imgSrc ?? "/placeholder.png"}
                 className={`h-full max-h-[280px] w-[360px] transition-all duration-300 object-contain`}
               ></Image>
             </div>
@@ -68,11 +52,31 @@ export default function SpecialVolDetail() {
         <Card className="w-full">
           <CardContent className="p-4 flex flex-col justify-between h-full">
             <DetailsCard
-              name={data.wine_details.name}
-              alcohol_abv={data.wine_details.alcohol_abv ?? ''}
-              blend={data.wine_details.blend ?? ''}
-              grapes={data.wine_details.grapes ?? ''}
-              ownership={data.wine_details.ownership ?? ''}
+              name={
+                item.basket_details === null
+                  ? item.wine_parent?.name ?? ""
+                  : item.basket_details?.name ?? ""
+              }
+              alcohol_abv={
+                item.basket_details === null
+                  ? item.wine_parent?.alcohol_abv ?? ""
+                  : "0.00%"
+              }
+              blend={
+                item.basket_details === null
+                  ? item.wine_parent?.blend ?? ""
+                  : "---"
+              }
+              grapes={
+                item.basket_details === null
+                  ? item.wine_parent?.grapes ?? ""
+                  : item.wine_parent.grapes ?? ""
+              }
+              ownership={
+                item.basket_details === null
+                  ? item.wine_parent?.ownership ?? ""
+                  : "---"
+              }
             ></DetailsCard>
           </CardContent>
         </Card>
@@ -101,15 +105,15 @@ export default function SpecialVolDetail() {
             <div className="w-full h-full flex flex-col items-center justify-center">
               <Label
                 className={`text-[18px] md:text-lg font-poppins-medium ${
-                  Number(item.release_price) > 0
+                  Number(item.wine_vintage_details?.release_price) > 0
                     ? "text-green-500"
-                    : Number(item.release_price) < 0
+                    : Number(item.wine_vintage_details?.release_price) < 0
                     ? "text-red-500"
                     : "text-gray-400"
                 }`}
                 variant="h1"
               >
-                {formattedReleasePrice}
+                {formattedReleasePrice || "---"}
               </Label>
               <Label>Lifetime Performance</Label>
             </div>
@@ -121,21 +125,21 @@ export default function SpecialVolDetail() {
             <div className="flex flex-col w-full items-end gap-4">
               <div className="flex justify-end w-full gap-4">
                 <div className="flex items-center min-w-28 justify-center gap-2 border-2 border-black rounded-[10px] p-2">
-                  <Label className="text-black font-bold">{item.vintage}</Label>
+                  <Label className="text-black font-bold">
+                    {item.basket_details === null
+                      ? item.wine_vintage_details?.vintage
+                      : "---"}
+                  </Label>
                 </div>
-                <DrawerBuySpecialVol
-                  type={"special-volume"}
+                <DrawerBuyRare
+                  type="rare"
                   trigger={
                     <Button className="bg-primary-gray-500 text-primary-brown hover:text-black border-2 border-transparent h-10 hover:border-black">
                       <ShoppingBasket /> Buy this vintage
                     </Button>
                   }
-                  parent_data={data}
                   result={item}
-                  result_data={data.results}
-                  bottle_size={item.bottle_size}
-                  default_case_size_list={item.available_case_size}
-                ></DrawerBuySpecialVol>
+                ></DrawerBuyRare>
               </div>
 
               <div className="flex flex-col items-end">
@@ -156,30 +160,45 @@ export default function SpecialVolDetail() {
       <Card className="h-full w-full">
         <CardContent className="h-full overflow-y-auto">
           {activeTab === "Performance" && (
-            <SpecialVolumeChart
-              release_price={Number(item.release_price)}
-              lwin11={item.lwin11}
+            <RareChart
+              release_price={Number(item.wine_vintage_details?.release_price)}
+              lwin11={
+                item.basket_details
+                  ? ""
+                  : item.wine_vintage_details?.lwin11 ?? ""
+              }
               lifetime_performance={formattedReleasePrice}
-              data={data}
-              result={data.results}
-            ></SpecialVolumeChart>
+              data={item}
+            ></RareChart>
           )}
           {activeTab === "Overview" && (
             <TabDeatils
               title="Overflow"
-              desc={data.wine_details.winery ?? ''}
+              desc={
+                item.basket_details === null
+                  ? item.wine_parent?.winery ?? ""
+                  : item.basket_details?.winery ?? ""
+              }
             ></TabDeatils>
           )}
           {activeTab === "Region" && (
             <TabDeatils
               title="Region"
-              desc={data.wine_details.region ?? ''}
+              desc={
+                item.basket_details === null
+                  ? item.wine_parent?.region ?? ""
+                  : item.basket_details?.region ?? ""
+              }
             ></TabDeatils>
           )}
           {activeTab === "Grapes" && (
             <TabDeatils
               title="Grapes"
-              desc={data.wine_details.grapes ?? ''}
+              desc={
+                item.basket_details === null
+                  ? item.wine_parent?.grape_variety ?? ""
+                  : item.basket_details?.grape_variety ?? ""
+              }
             ></TabDeatils>
           )}
         </CardContent>

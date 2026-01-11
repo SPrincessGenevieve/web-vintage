@@ -19,18 +19,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { VintageT } from "@/app/vintage/marketplace/vint-ex/[id]/page";
 import {
-  SpecialVolumeT,
+  PortfolioBasketItemT,
+  SpecialBundleParentT,
+  SpecialBundleT,
   VintexDetailsT,
   VintexResultsT,
-  WineResultDetailT,
+  WineRareResultsT,
 } from "@/lib/types";
 import { useCart } from "@/context/CartContext";
 import { CartItemT } from "@/lib/types";
 import { toast } from "sonner";
 import { useSubAccount } from "@/context/SubAccountContext";
+import { v4 as uuidv4 } from "uuid";
 import { useCartSummary } from "@/context/CartSummary";
-import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/UserContext";
 import {
   Dialog,
   DialogContent,
@@ -41,50 +44,23 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-export interface DrawerVintageT {
-  result: WineResultDetailT;
-  result_data: WineResultDetailT[];
-  parent_data: SpecialVolumeT;
-  bottle_size: string;
-  default_case_size_list: number[];
+export interface DrawerBundleT {
+  data: WineRareResultsT;
   trigger: React.ReactNode;
   type: string;
 }
 
-export const generateHoldingYear = (id: string) => {
-  const KEY = `holding_year_${id}`;
-  const now = Date.now();
-  const DAY = 1000 * 60 * 60 * 24;
-
-  const cached = localStorage.getItem(KEY);
-
-  if (cached) {
-    const { value, timestamp } = JSON.parse(cached);
-    if (now - timestamp < DAY) return value;
-  }
-
-  // SINGLE number only
-  const year = Math.floor(Math.random() * 10) + 1;
-
-  localStorage.setItem(KEY, JSON.stringify({ value: year, timestamp: now }));
-
-  return year;
-};
-
-export default function DrawerBuySpecialVol({
-  result,
-  bottle_size,
-  default_case_size_list,
-  result_data,
-  parent_data,
+export default function DrawerRareBundleBuy({
+  data,
   trigger,
   type,
-}: DrawerVintageT) {
+}: DrawerBundleT) {
   const { addToCart, setCheckedItems } = useCart(); // Access the global add function
-  const { addToCartSummary, clearCartSummary } = useCartSummary();
-  const router = useRouter();
-
   const { subAccounts } = useSubAccount();
+  const { addToCartSummary, clearCartSummary } = useCartSummary();
+  const { setUserDetails } = useUserContext();
+
+  const bottle_size = data?.basket_items?.[0].basket_bottle_size;
   const bottle =
     bottle_size === "0750"
       ? 75
@@ -96,148 +72,154 @@ export default function DrawerBuySpecialVol({
       ? 600
       : 0;
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [photoRequest, setPhotoRequest] = useState(false);
-  const [open, setOpen] = useState(false);
-  const { setUserDetails } = useUserContext();
-  const [selectedVintage, setSelectedVintage] = useState(result?.vintage);
+  const [selectedVintage, setSelectedVintage] = useState("---");
   const [quantityData, setQuantityData] = useState(1);
   const [selectedCaseSize, setSelectedCaseSize] = useState(
-    result.available_case_size.length > 0
-      ? `${result.available_case_size[0]}x${bottle}cl`
-      : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
+    `${data.case_size}x${bottle}cl`
   );
-  const parent = parent_data.wine_details;
+  const [photoRequest, setPhotoRequest] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const [caseSize, setCaseSize] = useState(
-    result.available_case_size.length > 0
-      ? result.available_case_size[0]
-      : default_case_size_list[0]
-  );
-  const total = Number(result.market_value) * caseSize * quantityData;
+  const router = useRouter();
 
-  useEffect(() => {
-    setSelectedCaseSize(
-      result.available_case_size.length > 0
-        ? `${result.available_case_size[0]}x${bottle}cl`
-        : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
-    );
-    setCaseSize(
-      result.available_case_size.length > 0
-        ? result.available_case_size[0]
-        : default_case_size_list?.[0] ?? 1
-    );
-  }, [selectedVintage]);
+  const total =
+    Number(data.basket_details?.market_value) * data.case_size * quantityData;
 
-  const buildCartItemId = (
-    type: string,
-    result: WineResultDetailT,
-    selectedVintage: number,
-    caseSize: number
-  ) => {
-    return `${type}-${result.id}-${selectedVintage}-${caseSize}`;
+  const buildCartItemId = (type: string, id: number, case_size: number) => {
+    return `${type}-${id}`;
   };
 
+  const rareID = uuidv4();
+
   const newItem: CartItemT = {
-    id: buildCartItemId(type, result, selectedVintage, caseSize),
-    case_size: caseSize,
+    id: rareID,
+    case_size: data.case_size,
     quantity: quantityData,
-    location: "portfolio",
-    wine_name: result.name,
-    short_description: "",
-    images: parent.images,
-    is_special_volumes: false,
-    is_available: false,
+    wine_name: data.basket_details?.name ?? "",
+    short_description: data.basket_details?.winery ?? "",
+    images: data.basket_details?.image ?? "",
+    is_special_volumes: type === "special-volume" || type === "rare",
+    is_available: true,
     photo_request: false,
-    stock_wine_vintage: type !== "special-bundle" ? (result as any) : null,
-    basket: null,
-    basket_items: null,
-    fromm: parent_data.wine_details.fromm,
+    location: "portfolio",
+    stock_wine_vintage: null,
+    basket: {
+      id: data.basket_details?.id ?? 0,
+      name: data.basket_details?.name ?? "",
+      vintage: null,
+      quantity: quantityData,
+      market_value: Number(data.basket_details?.market_value),
+      case_size: data.case_size,
+      winery: data.basket_details?.winery ?? "",
+      region: data.basket_details?.region ?? "",
+      grapes: data.basket_details?.grapes ?? "",
+      grape_variety: data.basket_details?.grape_variety ?? "",
+      fromm: data.basket_details?.fromm ?? "",
+      image: data.basket_details?.image ?? "",
+      special_id: null,
+      is_assortment: true,
+      sub_header: "",
+      bottle_size: bottle_size ?? "",
+    },
+    basket_items: data.basket_items,
     user_investment_wine_vintage: null,
+    fromm: data.basket_details?.fromm,
     purchase_price: 0,
     purchase_date: "",
     status: "",
     sub_account: subAccounts[0],
-    bottle_size: bottle_size,
-    vintage: result.vintage,
-    alcohol_abv: parent_data.wine_details.alcohol_abv ?? "",
-    blend: parent_data.wine_details.blend ?? "",
-    grapes: parent_data.wine_details.grapes ?? "",
-    ownership: parent_data.wine_details.ownership ?? "",
-    winery: parent_data.wine_details.winery ?? "",
-    region: parent_data.wine_details.region ?? "",
-    grape_variety: parent_data.wine_details.grape_variety ?? "",
-    rp_tasting_notes: result.rp_tasting_notes ?? "",
-    wine_parent: parent_data.wine_details,
+    bottle_size: bottle_size ?? "",
+    vintage: 0,
+    alcohol_abv: "",
+    blend: "",
+    grapes: "",
+    ownership: "",
+    winery: data.basket_details?.winery ?? "",
+    region: data.basket_details?.region ?? "",
+    grape_variety: data.basket_details?.grape_variety ?? "",
+    rp_tasting_notes: "",
+    wine_parent: data.wine_parent,
   };
 
   const newTotal =
-    Number(newItem.stock_wine_vintage?.market_value) *
-    newItem.case_size *
-    newItem.quantity;
-
+    Number(newItem.basket?.market_value) * newItem.case_size * newItem.quantity;
   const today = new Date().toISOString().split("T")[0];
 
-  const newItemBuy: CartItemT = {
+  const newBundleItem: CartItemT = {
     id: newItem.id,
     case_size: newItem.case_size,
     quantity: newItem.quantity,
-    stock_wine_vintage: newItem.stock_wine_vintage,
-    user_investment_wine_vintage: newItem.user_investment_wine_vintage,
-    short_description: newItem.short_description,
-    images: newItem.images,
+    wine_name: newItem?.basket?.name ?? "",
+    short_description: newItem?.basket?.winery ?? "",
+    images: newItem?.basket?.image ?? "",
     is_special_volumes: false,
-    basket: newItem.basket,
+    is_available: newItem.is_available,
+    photo_request: false,
+    location: "portfolio",
+    stock_wine_vintage: null,
+    basket: {
+      id: newItem?.basket?.id ?? 0,
+      name: newItem?.basket?.name ?? "",
+      vintage: null,
+      quantity: quantityData,
+      market_value: Number(newItem?.basket?.market_value),
+      case_size: newItem.case_size,
+      winery: newItem?.basket?.winery ?? "",
+      region: newItem?.basket?.region ?? "",
+      grapes: newItem?.basket?.grapes ?? "",
+      grape_variety: newItem?.basket?.grape_variety ?? "",
+      fromm: newItem?.basket?.fromm ?? "",
+      image: newItem?.basket?.image ?? "",
+      special_id: 0,
+      is_assortment: newItem?.basket?.is_assortment ?? false,
+      sub_header: newItem?.basket?.sub_header ?? "",
+      bottle_size: newItem?.bottle_size ?? "",
+    },
     basket_items: newItem.basket_items,
-    is_available: true,
-    photo_request: photoRequest,
-    wine_name: newItem.wine_name,
-    fromm: newItem.fromm,
-    purchase_date: today,
+    user_investment_wine_vintage: null,
+    fromm: newItem?.basket?.fromm,
     purchase_price: newTotal,
+    purchase_date: today,
     status: "Buy Request",
     sub_account: subAccounts[0],
-    location: "portfolio",
-    bottle_size: newItem.bottle_size,
+    bottle_size: newItem.bottle_size ?? "",
     vintage: newItem.vintage,
     alcohol_abv: newItem.alcohol_abv,
     blend: newItem.blend,
     grapes: newItem.grapes,
     ownership: newItem.ownership,
-    winery: newItem.winery,
-    region: newItem.region,
-    grape_variety: newItem.grape_variety,
+    winery: newItem.winery ?? "",
+    region: newItem.region ?? "",
+    grape_variety: newItem.grape_variety ?? "",
     rp_tasting_notes: newItem.rp_tasting_notes,
     wine_parent: newItem.wine_parent,
-    holding_year: generateHoldingYear(String(newItem.id)),
   };
 
   const handleAddToBasket = () => {
     addToCart(newItem);
+    // setCheckedItems((prev) => ({
+    //   ...prev,
+    //   [newItem.id]: true, // safely update Record<string, boolean>
+    // }));
+    // addToCartSummary(newItemBuy);
+
+    console.log("DATA RSULT: ", newItem);
     toast.success("Wine added to cart");
     location.reload();
   };
 
-  const handleBuyWine = () => {
-    console.log("BUY WINE");
-    setOpen(!open);
-    if (photoRequest) {
-      setUserDetails({
-        cart_total: newTotal + 16.99,
-      });
-    } else {
-      setUserDetails({
-        cart_total: newTotal,
-      });
-    }
-
+  const handleBuyWine = async () => {
+    setOpen(false);
+    setUserDetails({
+      cart_total: photoRequest ? newTotal + 16.99 : newTotal,
+    });
     addToCart(newItem);
-    
     setCheckedItems((prev) => ({
       ...prev,
-      [newItem.id]: true, // safely update Record<string, boolean>
+      [newItem.id]: true,
     }));
-
-    addToCartSummary(newItemBuy);
+    addToCartSummary(newBundleItem);
+    router.refresh();
     router.push("/vintage/cart/review");
   };
 
@@ -257,23 +239,30 @@ export default function DrawerBuySpecialVol({
             <Label className="text-primary-brown">Vintage</Label>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex min-w-32 justify-between gap-2 border border-white/30 rounded-[10px] p-2">
-                <Label>{selectedVintage}</Label>
+                <Label>
+                  {/* {selectedVintage === 0
+                    ? result_data.find((v) => !v.is_unavailable)?.vintage
+                    : selectedVintage} */}{" "}
+                  ---
+                </Label>
                 <ChevronDown size={20} color="white"></ChevronDown>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              {/* <DropdownMenuContent>
                 {result_data.map((item, index) => (
                   <DropdownMenuCheckboxItem
                     onClick={() => {
                       setSelectedVintage(item.vintage);
                       setSelectedIndex(index);
                     }}
+                    disabled={item.is_unavailable && true}
                     key={index}
                   >
                     {item.vintage}
                     {item.is_very_special && <Star></Star>}
+                    {item.is_unavailable && <WineOff></WineOff>}
                   </DropdownMenuCheckboxItem>
                 ))}
-              </DropdownMenuContent>
+              </DropdownMenuContent> */}
             </DropdownMenu>
           </div>
           <div className="flex justify-between">
@@ -284,30 +273,9 @@ export default function DrawerBuySpecialVol({
                 <ChevronDown size={20} color="white"></ChevronDown>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                {result.available_case_size.length > 0
-                  ? result.available_case_size.map((item, index) => (
-                      <DropdownMenuCheckboxItem
-                        checked={item === caseSize ? true : false}
-                        onClick={() => {
-                          setSelectedCaseSize(`${item}x${bottle}cl`);
-                          setCaseSize(item);
-                        }}
-                        key={index}
-                      >
-                        {item}x{bottle}cl
-                      </DropdownMenuCheckboxItem>
-                    ))
-                  : default_case_size_list.map((item, index) => (
-                      <DropdownMenuCheckboxItem
-                        onClick={() =>
-                          setSelectedCaseSize(`${item}x${bottle}cl`)
-                        }
-                        key={index}
-                        checked={item === caseSize ? true : false}
-                      >
-                        {item}x{bottle}cl
-                      </DropdownMenuCheckboxItem>
-                    ))}
+                <DropdownMenuCheckboxItem>
+                  {data.case_size}x{bottle}cl
+                </DropdownMenuCheckboxItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -327,6 +295,7 @@ export default function DrawerBuySpecialVol({
                 onClick={() => setQuantityData(quantityData + 1)}
                 variant={"ghost"}
                 className="p-0 m-0 h-5"
+                disabled={quantityData === data.quantity ? true : false}
               >
                 <Plus className="text-green-600"></Plus>
               </Button>

@@ -72,6 +72,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
       return [...prev, newItem];
     });
+
+    // ✅ Always ensure checkedItems has a value for this item
+    setCheckedItems((prev) => ({
+      ...prev,
+      [newItem.id]: prev[newItem.id] ?? false, // default false if not set
+    }));
   };
 
   const removeFromCart = (id: string | number) => {

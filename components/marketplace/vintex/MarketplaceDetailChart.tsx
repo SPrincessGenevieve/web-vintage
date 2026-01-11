@@ -109,7 +109,7 @@ export default function MarketplaceDetailChart({
   return (
     <div className="p-4 flex flex-col gap-4">
       <Label variant="h1">
-        {ParentWineName}, {item.vintage}, {case_size}x{bottle}cl
+        {ParentWineName}, {item?.vintage ?? 0}, {case_size}x{bottle}cl
       </Label>
       <div className="flex w-full bg-black/20 p-2 mb-4 rounded-2xl">
         {filterBtn.map((item, index) => (

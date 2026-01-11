@@ -63,30 +63,36 @@ export default function WineSuccess() {
             <Label>Your order has been successfully processed.</Label>
           </div>
           <div className="w-full mt-8 flex overflow-x-auto gap-4 scroll-area">
-            {cart_summary.map((item, index) => (
-              <div
-                key={index}
-                className="relative shrink-0 w-55 flex flex-col items-center juc gap-4"
-              >
-                <div className="absolute right-0 min-w-6 min-h-6 bg-primary-brown rounded-full flex justify-center">
-                  <Label className="text-black text-[12px] font-bold">
-                    +{item.quantity}
-                  </Label>
+            {cart_summary.map((item, index) => {
+              const imageSrc =
+                item.basket?.image ??
+                item.images?.[0] ??
+                item.wine_parent?.images?.[0] ??
+                "/default-image.png"; // fallback if all are undefined
+
+              return (
+                <div
+                  key={index}
+                  className="relative shrink-0 w-55 flex flex-col items-center juc gap-4"
+                >
+                  <div className="absolute right-0 min-w-6 min-h-6 bg-primary-brown rounded-full flex justify-center">
+                    <Label className="text-black text-[12px] font-bold">
+                      +{item.quantity}
+                    </Label>
+                  </div>
+                  <div className="h-40 w-full flex items-center justify-center">
+                    <Image
+                      src={imageSrc}
+                      alt={item.wine_name}
+                      width={400}
+                      height={400}
+                      className="w-auto h-full  rounded-2xl"
+                    />
+                  </div>
+                  <Label className="text-center">{item.wine_name}</Label>
                 </div>
-                <div className="h-40 w-full flex items-center justify-center">
-                  <Image
-                    src={
-                      item.basket === null ? item.images[0] : item.basket.image
-                    }
-                    alt={item.wine_name}
-                    width={400}
-                    height={400}
-                    className="w-auto h-full  rounded-2xl"
-                  />
-                </div>
-                <Label className="text-center">{item.wine_name}</Label>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className="w-full flex gap-2 items-center mt-8">
             <Button onClick={() => handleNext("portfolio")}>

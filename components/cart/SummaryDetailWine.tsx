@@ -18,7 +18,7 @@ export default function SummaryDetailWine() {
         const vintage =
           item.basket === null && item.user_investment_wine_vintage === null
             ? item.stock_wine_vintage?.vintage ?? ""
-            : item.basket?.vintage;
+            : "";
 
         const bottle_size =
           Array.isArray(item.basket_items) && item.basket_items.length > 0
@@ -41,17 +41,16 @@ export default function SummaryDetailWine() {
 
         const total =
           (Number(market_value) || 1) * Number(item.quantity) * item.case_size;
+        const imgSrc = Array.isArray(item.images)
+          ? item.images[0]
+          : item.images;
 
         return (
           <div key={index} className="flex gap-4">
             <div className="w-40">
               <WineImage
                 type={item.basket === null ? "vint-ex" : "special-bundle"}
-                src={
-                  item.basket === null
-                    ? item.images[0] || ""
-                    : item.basket.image
-                }
+                src={imgSrc}
               ></WineImage>
             </div>
             <div className="w-full">

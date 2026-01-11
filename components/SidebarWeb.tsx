@@ -40,19 +40,31 @@ export default function SidebarWeb() {
           {menu_list.map((item, index) => (
             <Button
               key={index}
-              variant={item.value === activeTab ? "default" : "ghost"}
+              variant={
+                pathname.startsWith(`/vintage/${item.value}`)
+                  ? "default"
+                  : "ghost"
+              }
               onClick={() => handleTabs(item.value, item.link)}
               className="justify-start hover:bg-primary-brown/30"
             >
               {item.value === "activities" ? (
                 <item.icon
                   fill={"transparent"}
-                  color={item.value === activeTab ? "black" : "white"}
-                ></item.icon>
+                  color={
+                    pathname.startsWith(`/vintage/${item.value}`)
+                      ? "black"
+                      : "white"
+                  }
+                />
               ) : (
                 <item.icon
-                  color={item.value === activeTab ? "black" : "white"}
-                ></item.icon>
+                  color={
+                    pathname.startsWith(`/vintage/${item.value}`)
+                      ? "black"
+                      : "white"
+                  }
+                />
               )}
               {item.label}
             </Button>

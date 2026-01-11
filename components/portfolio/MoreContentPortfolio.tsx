@@ -87,6 +87,7 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
       region: data.region,
       grape_variety: data.grape_variety,
       rp_tasting_notes: data.rp_tasting_notes,
+      wine_parent: data.wine_parent
     });
     removeFromPortfolio(data.id);
     toast.success("Wine has been successfully moved to Wine Cellar.");
@@ -104,6 +105,11 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
         <DropdownMenuContent>
           {items.map((item, index) => (
             <DropdownMenuItem
+              disabled={
+                item.label === "Gift" && data.status !== "In Bond"
+                  ? true
+                  : false
+              }
               key={index}
               onClick={() => {
                 setSelect(item.label);

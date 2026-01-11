@@ -4,7 +4,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { SubAccountType } from "@/lib/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +18,7 @@ import { CalendarFormField } from "@/components/ui/CalendarFormField";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { relationship_option } from "./AddSubAccount";
+import { Switch } from "@/components/ui/switch";
 
 const formSchema = z.object({
   first_name: z.string().min(2, { message: "This field is required." }),
@@ -54,10 +55,15 @@ export default function UpdateSubAccount({
   item: SubAccountType;
   index: number;
 }) {
-  const { addSubAccount, updateSubAccount } = useSubAccount();
+  const { addSubAccount, removeSubAccount, updateSubAccount } = useSubAccount();
 
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    setChecked(item.is_active);
+  }, [item.is_active]);
 
   const base64ToFile = (
     base64?: string,
@@ -124,69 +130,97 @@ export default function UpdateSubAccount({
     }
   };
 
+  const handleDel = () => {
+    setOpen(false);
+    toast.success("Account deleted successfully.");
+    removeSubAccount(item.id);
+  };
+
+  const handleActive = () => {
+    updateSubAccount(item.id, {
+      is_active: !checked,
+    });
+  };
+
   return (
-    <Dialog>
-      <DialogTrigger disabled={item.id === "1" ? true : false} className="w-full">
-        <div
-          key={index}
-          className="flex w-full gap-2 border-b border-primary-brown/30 transition ease-in-out hover:bg-primary-gray-500/30 p-2"
+    <div className="flex items-center gap-2 border-b border-primary-brown/30 transition ease-in-out hover:bg-primary-gray-500/30 p-2">
+      <Dialog>
+        <DialogTrigger
+          disabled={item.id === "1" ? true : false}
+          className="w-full"
         >
-          <Avatar>
-            <AvatarImage
-              className="object-cover"
-              src={item.image}
-            ></AvatarImage>
-          </Avatar>
-          <Label className="w-full text-left">
-            {item.last_name}, {item.first_name.slice()[0]}.
-          </Label>
-        </div>
-      </DialogTrigger>
-      <DialogContent>
-        <div>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-4"
-            >
-              <ImageUploadFormField
-                control={form.control}
-                name="image"
-                label="Upload ID Document"
-                accept="image/*,application/pdf"
-              ></ImageUploadFormField>
-              <InputFormField
-                control={form.control}
-                name="first_name"
-                label="First Name"
-                placeholder="John"
-              />
-              <InputFormField
-                control={form.control}
-                name="last_name"
-                label="Last Name"
-                placeholder="John"
-              />
-              <SimpleDropdownInput
-                control={form.control}
-                name="relationship"
-                label="Relationship"
-                placeholder=""
-                options={relationship_option}
-              />
-              <CalendarFormField
-                control={form.control}
-                name="birthDate"
-                label="Birth Date"
-                placeholder="Select date of birth"
-              />
-              <Button id="submit">
-                {loading ? <Spinner></Spinner> : "Update Sub-account"}
-              </Button>
-            </form>
-          </Form>
-        </div>
-      </DialogContent>
-    </Dialog>
+          <div key={index} className="flex w-full gap-2 ">
+            <Avatar>
+              <AvatarImage
+                className="object-cover"
+                src={item.image}
+              ></AvatarImage>
+            </Avatar>
+            <Label className="w-full text-left">
+              {item.last_name}, {item.first_name.slice()[0]}.
+            </Label>
+          </div>
+        </DialogTrigger>
+        <DialogContent className="overflow-y-auto max-h-[90%]">
+          <div>
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="flex flex-col gap-4"
+              >
+                <ImageUploadFormField
+                  control={form.control}
+                  name="image"
+                  label="Upload ID Document"
+                  accept="image/*,application/pdf"
+                ></ImageUploadFormField>
+                <InputFormField
+                  control={form.control}
+                  name="first_name"
+                  label="First Name"
+                  placeholder="John"
+                />
+                <InputFormField
+                  control={form.control}
+                  name="last_name"
+                  label="Last Name"
+                  placeholder="John"
+                />
+                <SimpleDropdownInput
+                  control={form.control}
+                  name="relationship"
+                  label="Relationship"
+                  placeholder=""
+                  options={relationship_option}
+                />
+                <CalendarFormField
+                  control={form.control}
+                  name="birthDate"
+                  label="Birth Date"
+                  placeholder="Select date of birth"
+                />
+                <div className="w-full flex gap-2 justify-end">
+                  <Button
+                    type="button"
+                    onClick={handleDel}
+                    className="bg-red-700 hover:bg-red-700/50 text-white"
+                  >
+                    Delete Account
+                  </Button>
+                  <Button id="submit">
+                    {loading ? <Spinner></Spinner> : "Update Sub-account"}
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          </div>
+        </DialogContent>
+      </Dialog>
+      <Switch
+        onClick={handleActive}
+        checked={checked}
+        onCheckedChange={setChecked}
+      ></Switch>
+    </div>
   );
 }

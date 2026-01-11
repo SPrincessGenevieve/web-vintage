@@ -83,6 +83,7 @@ const defaultUserContext: UserContextType = {
     relationship: "",
     image: "",
     birth_date: "",
+    is_active: false,
   },
   sub_account_wine_cellar: {
     id: "",
@@ -91,6 +92,7 @@ const defaultUserContext: UserContextType = {
     relationship: "",
     image: "",
     birth_date: "",
+    is_active: false
   },
   setUserDetails: () => {},
   addPaymentMethod: () => {},

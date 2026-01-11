@@ -8,5 +8,6 @@ export const default_sub_account: SubAccountType[] = [
     relationship: "",
     image: "/profile.jpg",
     birth_date: "2000-29-01",
+    is_active: true,
   },
 ];

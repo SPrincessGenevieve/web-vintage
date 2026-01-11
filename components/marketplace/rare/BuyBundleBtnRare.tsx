@@ -1,48 +1,46 @@
-import React from "react";
-import { Card, CardContent } from "./ui/card";
+import React, { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Label } from "./ui/label";
+} from "@/components/ui/dropdown-menu";
+import { Label } from "@/components/ui/label";
 import { ChevronDown, ShoppingBasket, Star, WineOff } from "lucide-react";
-import DrawerBuy from "./marketplace/vintex/DrawerBuy";
-import { Button } from "./ui/button";
-import { BasketItemsT, SpecialBundleT } from "@/lib/types";
-import DrawerBundleBuy from "./marketplace/special-bundle/DrawerBundleBuy";
+import { Button } from "@/components/ui/button";
+import { SpecialBundleT, WineRareResultsT } from "@/lib/types";
+import DrawerBundleBuy from "../special-bundle/DrawerBundleBuy";
+import DrawerRareBundleBuy from "./DrawerRareBundleBuy";
 
-interface BuyT {
-  data: SpecialBundleT;
-}
-
-export default function BuyBundleBtn({ data }: BuyT) {
+export default function BuyBundleBtnRare({ data, market_value }: { data: WineRareResultsT, market_value: number }) {
+  const bottle_size = data?.basket_items?.[0].basket_bottle_size;
   const bottle =
-    data.results[0].basket_bottle_size === "0750"
+    bottle_size === "0750"
       ? 75
-      : data.results[0].basket_bottle_size === "1500"
+      : bottle_size === "1500"
       ? 150
-      : data.results[0].basket_bottle_size === "3000"
+      : bottle_size === "3000"
       ? 300
-      : data.results[0].basket_bottle_size === "6000"
+      : bottle_size === "6000"
       ? 600
       : 0;
+
 
   const details = [
     {
       label: "Case Size",
-      value: `${data.basket_details.case_size}x${bottle}cl`,
+      value: `${data.case_size}x${bottle}cl`,
     },
     {
       label: "Region",
-      value: data.basket_details.fromm,
+      value: data?.basket_details?.fromm ?? "",
     },
     {
       label: "Grapes",
-      value: data.basket_details.grapes,
+      value: data?.basket_details?.grapes ?? "",
     },
   ];
+
+  console.log("BUNDLE QUANTITY: ", data.quantity)
 
   return (
     <Card className="w-full border-primary-brown/50 p-0 max-w-[300px] bg-primary-gray-400/70">
@@ -56,7 +54,7 @@ export default function BuyBundleBtn({ data }: BuyT) {
               variant="h1"
               className="text-primary-brown text-[25px] font-bold"
             >
-              £{Number(data.basket_details.market_value).toLocaleString()}
+              £{Number(market_value).toLocaleString()}
             </Label>
           </div>
           <div className="flex justify-between w-full gap-4">
@@ -71,19 +69,15 @@ export default function BuyBundleBtn({ data }: BuyT) {
                 ></ChevronDown>
               </DropdownMenuTrigger>
             </DropdownMenu>
-            <DrawerBundleBuy
+            <DrawerRareBundleBuy
               type={"special-bundle"}
               trigger={
                 <Button className="bg-primary-brown textblack hover:text-black border-2 border-transparent h-10 hover:border-primary-brown">
                   <ShoppingBasket /> Buy this vintage
                 </Button>
               }
-              parent_data={data.basket_details}
               data={data}
-              result_data={data.results}
-              bottle_size={data.results[0].basket_bottle_size}
-              default_case_size_list={data.basket_details.case_size}
-            ></DrawerBundleBuy>
+            ></DrawerRareBundleBuy>
           </div>
         </div>
 

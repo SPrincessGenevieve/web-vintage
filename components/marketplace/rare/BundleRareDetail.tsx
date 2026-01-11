@@ -1,42 +1,43 @@
 "use client";
 
-import { Label } from "@/components/ui/label";
-import { usePathname } from "next/navigation";
-import React, { useState } from "react";
-import { wineSpecialBundle } from "@/lib/wine_data/special_bundle/index";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import DetailsCard from "@/components/marketplace/DetailsCard";
-import TabDeatils from "@/components/marketplace/TabDetails";
-import { WineImage } from "@/components/marketplace/WineImage";
+import React, { useState } from "react";
+import TabDeatils from "../TabDetails";
 import BuyBundleBtn from "@/components/BuyBundleBtn";
+import { useRouter } from "next/navigation";
+import { WineRareResultsT } from "@/lib/types";
+import BuyBundleBtnRare from "./BuyBundleBtnRare";
 
-export default function SpecialBundleDetail() {
-  const pathname = usePathname();
+export default function BundleRareDetail({
+  item,
+  data,
+  dataType,
+  market_value,
+}: {
+  item: WineRareResultsT;
+  data: WineRareResultsT;
+  dataType: string;
+  market_value: number;
+}) {
   const router = useRouter();
+    const tabs = ["Overview", "Region", "Grapes"];
+    const [activeTab, setActiveTab] = useState("Overview");
 
-  const tabs = ["Overview", "Region", "Grapes"];
-  const [activeTab, setActiveTab] = useState("Overview");
+  const imgSrc =
+    dataType === "vintex"
+      ? data.wine_parent?.images?.[0]
+      : item.basket_details?.image ?? "";
 
-  const id = pathname.split("/").pop() || "";
-  const data = wineSpecialBundle[id];
-  const results = data.results;
-  const details = data.basket_details;
+const bundle_parent_data = item.basket_details
+const bundle_items_data = item.basket_items ?? []
+
+console.log("")
 
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto justify-between">
-      <div className=" flex">
-        <Button
-          className="p-0 m-0 px-0 mx-0"
-          variant={"ghost"}
-          onClick={() => router.push("/vintage/marketplace")}
-        >
-          <ChevronLeft></ChevronLeft>Back
-        </Button>
-      </div>
       <div className="flex gap-4 min-h-[32%]">
         <Card className="">
           <CardContent className="flex h-full items-center justify-center">
@@ -44,7 +45,7 @@ export default function SpecialBundleDetail() {
               alt=""
               width={400}
               height={400}
-              src={details.image}
+              src={imgSrc}
               className={`h-full w-auto rounded-xl max-w-[600px] transition-all duration-300 object-contain`}
             ></Image>
           </CardContent>
@@ -55,7 +56,7 @@ export default function SpecialBundleDetail() {
               variant="h1"
               className="text-primary-brown pb-2 w-full border-b-2 border-primary-brown/30"
             >
-              {data.basket_details.name}
+              {bundle_parent_data?.name ?? ""}
             </Label>
             <div className="flex items-center justify-between">
               {tabs.map((item, index) => (
@@ -76,23 +77,23 @@ export default function SpecialBundleDetail() {
             </div>
             <div className="h-full">
               {activeTab === "Overview" && (
-                <TabDeatils title="Overview" desc={details.winery}></TabDeatils>
+                <TabDeatils title="Overview" desc={bundle_parent_data?.winery ?? ""}></TabDeatils>
               )}
               {activeTab === "Region" && (
-                <TabDeatils title="Region" desc={details.region}></TabDeatils>
+                <TabDeatils title="Region" desc={bundle_parent_data?.region ?? ""}></TabDeatils>
               )}
               {activeTab === "Grapes" && (
-                <TabDeatils title="Grapes" desc={details.grapes}></TabDeatils>
+                <TabDeatils title="Grapes" desc={bundle_parent_data?.grapes ?? ""}></TabDeatils>
               )}
             </div>
           </CardContent>
         </Card>
-        <BuyBundleBtn data={data}></BuyBundleBtn>
+        <BuyBundleBtnRare market_value={market_value} data={data}></BuyBundleBtnRare>
       </div>
       <div className="w-full h-[58%]">
         <Card className="w-full h-full overflow-x-auto">
           <CardContent className="flex flex-nowrap gap-2 h-full">
-            {results.map((item, index) => (
+            {bundle_items_data.map((item, index) => (
               <Card
                 onClick={() =>
                   router.push(
@@ -112,7 +113,7 @@ export default function SpecialBundleDetail() {
                   />
                   <div className="w-full flex flex-col mt-4">
                     <Label variant="h2" className="text-primary-brown">
-                      {item.wine_parent_name}
+                      {item?.wine_vintage.name ?? ""}
                     </Label>
                     <div className="flex justify-between items-center mt-4">
                       <Label>Quantity:</Label>

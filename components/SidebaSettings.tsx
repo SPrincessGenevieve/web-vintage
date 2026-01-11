@@ -114,7 +114,7 @@ export default function SidebarSettings() {
                     <Label className="text-white">Sub Accounts</Label>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent>
+                <AccordionContent className="overflow-y-auto max-h-[300px]">
                   <div>
                     {subAccounts.map((item, index) => (
                       <UpdateSubAccount

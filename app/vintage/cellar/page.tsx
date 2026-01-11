@@ -24,11 +24,15 @@ import { useWineCellar } from "@/context/WineCellarContext";
 import { portfolio_default } from "@/lib/default_portfolio";
 import {
   ArrowUpDown,
+  BottleWine,
   Dot,
   Download,
   Funnel,
   ListRestart,
+  ShoppingCartIcon,
   TableCellsMerge,
+  Trash,
+  Wine,
   WineOff,
   X,
 } from "lucide-react";
@@ -36,6 +40,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { uuidv4 } from "zod";
+import { Spinner } from "@/components/ui/spinner";
+import { useSubAccount } from "@/context/SubAccountContext";
+import { default_sub_account } from "@/lib/default_sub_account";
 
 const sort = [
   {
@@ -77,17 +84,37 @@ const header_list = [
 export default function WineCellar() {
   const { wineCellar, clearWineCellar, addToWineCellar } = useWineCellar();
   const router = useRouter();
+  const [loadingID, setLoadingID] = useState("");
+  const { subAccounts, addSubAccount } = useSubAccount();
+  const [search, setSearch] = useState("");
+
+  const activeSubAccount = subAccounts.find((s) => s.is_active);
+
+  const filteredWineCellar = React.useMemo(() => {
+    if (!activeSubAccount) return [];
+    return wineCellar.filter(
+      (item) => item.sub_account.id === activeSubAccount.id
+    );
+  }, [wineCellar, activeSubAccount]);
+
+  useEffect(() => {
+    if (subAccounts.length === 0) {
+      default_sub_account.forEach((item) => addSubAccount(item));
+    }
+  }, [subAccounts.length]);
 
   const vintage_list = Array.from(
     new Set(
-      wineCellar
+      filteredWineCellar
         .filter((item) => item?.vintage && item.vintage !== 0)
         .map((item) => item.vintage)
     )
   );
 
   const region_list = Array.from(
-    new Set(wineCellar.filter((item) => item?.fromm).map((item) => item.fromm))
+    new Set(
+      filteredWineCellar.filter((item) => item?.fromm).map((item) => item.fromm)
+    )
   );
   const [selectedVintage, setSelectedVintage] = useState(0);
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -156,7 +183,7 @@ export default function WineCellar() {
     } else {
       setCountFilter(0);
     }
-  })
+  });
 
   const clearFilter = () => {
     setSelectedRegion("");
@@ -164,10 +191,87 @@ export default function WineCellar() {
     setSelectedVintage(0);
   };
 
+  const getMarketValue = (item: any) => {
+    return item.basket !== null
+      ? item.basket.market_value
+      : item.stock_wine_vintage?.market_value ?? 0;
+  };
+
   const handleDetail = (id: string) => {
+    setLoadingID(id);
     console.log(`/vintage/cellar/${id}`);
     router.push(`/vintage/cellar/${id}`);
   };
+
+  const displayWineCellar = React.useMemo(() => {
+    let data = [...filteredWineCellar];
+
+    /** SEARCH */
+    if (search.trim() !== "") {
+      const keyword = search.toLowerCase();
+      data = data.filter((item) =>
+        item.wine_name.toLowerCase().includes(keyword)
+      );
+    }
+
+    /** FILTER — VINTAGE */
+    if (selectedVintage !== 0) {
+      data = data.filter((item) => item.vintage === selectedVintage);
+    }
+
+    /** FILTER — REGION */
+    if (selectedRegion !== "") {
+      data = data.filter((item) => item.fromm === selectedRegion);
+    }
+
+    /** SORT */
+    if (selectedSort !== "") {
+      data.sort((a, b) => {
+        const plA = generateProfitLoss(
+          String(a.id),
+          a.purchase_price
+        ).profit_loss_value;
+        const plB = generateProfitLoss(
+          String(b.id),
+          b.purchase_price
+        ).profit_loss_value;
+
+        const mvA = getMarketValue(a);
+        const mvB = getMarketValue(b);
+
+        switch (selectedSort) {
+          case "best":
+            return plB - plA; // highest profit first
+
+          case "worst":
+            return plA - plB; // lowest profit first
+
+          case "high":
+            return mvB - mvA; // price high → low
+
+          case "low":
+            return mvA - mvB; // price low → high
+
+          case "short":
+            return a.purchase_price - b.purchase_price;
+
+          case "long":
+            return b.purchase_price - a.purchase_price;
+
+          default:
+            return 0;
+        }
+      });
+    }
+
+    return data;
+  }, [
+    filteredWineCellar,
+    search,
+    selectedVintage,
+    selectedRegion,
+    selectedSort,
+  ]);
 
   return (
     <div className="w-full h-full flex flex-col gap-4 overflow-y-auto">
@@ -261,152 +365,172 @@ export default function WineCellar() {
         </div>
       </div>
       <Card className={`overflow-y-auto relative gap-0 h-[90%]`}>
-        <CardContent className="flex h-full flex-col min-w-400">
-          <Table className="rounded-2xl">
-            <TableHeader>
-              <TableRow className="border-primary-brown/30">
-                {header_list.map((item) => (
-                  <TableCell className="text-white/30">
-                    <div className="w-full flex items-center justify-center">
-                      <Label className="">{item}</Label>
-                    </div>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody className="w-full rounded-2xl">
-              {wineCellar.map((item, index) => {
-                const id = String(item.id);
-                const { profit_loss_value, profit_loss_percent } =
-                  generateProfitLoss(id, item.purchase_price);
-                const market_val =
-                  item.basket !== null
-                    ? item.basket.market_value
-                    : item.stock_wine_vintage?.market_value;
+        {displayWineCellar.length === 0 ? (
+          <div className="w-full h-full flex-col flex items-center justify-center gap-4">
+            <Trash className="text-primary-brown" size={40}></Trash>
+            <Label variant="h1" className="text-[18px]">
+              Your Wine Cellar is empty
+            </Label>
+            <Button onClick={() => router.push("/vintage/marketplace")}>
+              <Wine></Wine>
+              Shop Marketplace
+            </Button>
+          </div>
+        ) : (
+          <CardContent className="flex h-full flex-col min-w-400">
+            <Table className="rounded-2xl">
+              <TableHeader>
+                <TableRow className="border-primary-brown/30">
+                  {header_list.map((item) => (
+                    <TableCell className="text-white/30">
+                      <div className="w-full flex items-center justify-center">
+                        <Label className="">{item}</Label>
+                      </div>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody className="w-full rounded-2xl">
+                {filteredWineCellar.map((item, index) => {
+                  const id = String(item.id);
+                  const { profit_loss_value, profit_loss_percent } =
+                    generateProfitLoss(id, item.purchase_price);
+                  const market_val =
+                    item.basket !== null
+                      ? item.basket.market_value
+                      : item.stock_wine_vintage?.market_value;
 
-                const bottle = item.bottle_size;
+                  const bottle = item.bottle_size;
 
-                return (
-                  <TableRow
-                    onClick={() => handleDetail(String(item.id))}
-                    className="border-primary-brown/30 rounded-2xl"
-                  >
-                    <TableCell className="max-w-[300px]">
-                      <div className="flex gap-4">
-                        <Image
-                          alt=""
-                          width={400}
-                          height={400}
-                          className="rounded-2xl w-40 h-30 object-contain"
-                          src={
-                            item.basket === null
-                              ? item.images[0]
-                              : item.basket.image
-                          }
-                        ></Image>
-                        <div className="flex flex-col justify-center">
-                          <Label variant="h2" className="text-primary-brown">
-                            {item.wine_name}
-                          </Label>
-                          <div className="flex items-center">
-                            <Label>{item.fromm}</Label>
-                            {item.basket === null && (
-                              <>
-                                <Dot className="text-white"></Dot>
-                                <Label>{item?.vintage}</Label>
-                              </>
-                            )}
-                            <Dot className="text-white"></Dot>
-                            <Label>
-                              {item.case_size}x
-                              {bottle === "0750"
-                                ? 75
-                                : bottle === "1500"
-                                ? 150
-                                : bottle === "3000"
-                                ? 300
-                                : bottle === "6000"
-                                ? 600
-                                : 0}
-                              cl
+                  return (
+                    <TableRow
+                      onClick={() => handleDetail(String(item.id))}
+                      className="border-primary-brown/30  rounded-2xl"
+                    >
+                      <TableCell className="max-w-[300px] ">
+                        {loadingID === item.id && (
+                          <div className="absolute bg-primary-gray-500/30 w-[99%] h-30 flex items-center justify-center">
+                            <Spinner className="h-10 w-10 text-primary-brown"></Spinner>
+                          </div>
+                        )}
+                        <div className="flex gap-4 relative">
+                          <Image
+                            alt=""
+                            width={400}
+                            height={400}
+                            className="rounded-2xl w-40 h-30 object-contain"
+                            src={
+                              item.basket === null
+                                ? item.images[0]
+                                : item.basket.image
+                            }
+                          ></Image>
+                          <div className="flex flex-col justify-center">
+                            <Label variant="h2" className="text-primary-brown">
+                              {item.wine_name}
                             </Label>
+                            <div className="flex items-center">
+                              <Label>{item.fromm}</Label>
+                              {item.basket === null && (
+                                <>
+                                  <Dot className="text-white"></Dot>
+                                  <Label>{item?.vintage}</Label>
+                                </>
+                              )}
+                              <Dot className="text-white"></Dot>
+                              <Label>
+                                {item.case_size}x
+                                {bottle === "0750"
+                                  ? 75
+                                  : bottle === "1500"
+                                  ? 150
+                                  : bottle === "3000"
+                                  ? 300
+                                  : bottle === "6000"
+                                  ? 600
+                                  : 0}
+                                cl
+                              </Label>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="w-full flex justify-center">
-                        <Label className="text-white">{item.quantity}</Label>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="w-full flex justify-center">
-                        <Label className="text-white">
-                          £{" "}
-                          {Number(
-                            item.purchase_price.toFixed(2)
-                          ).toLocaleString()}
-                        </Label>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="w-full flex justify-center">
-                        <Label className="text-white">
-                          £ {market_val?.toLocaleString()}
-                        </Label>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="w-full gap-2 flex flex-col items-center justify-center">
-                        <Label
-                          className={`${
-                            profit_loss_value > 0
-                              ? "text-green-500"
-                              : "text-red-500"
-                          }`}
-                        >
-                          £{" "}
-                          {Number(profit_loss_value.toFixed()).toLocaleString()}
-                        </Label>
-                        <Label
-                          className={`text-white px-2 py-1 rounded-[5px] ${
-                            profit_loss_value > 0
-                              ? "bg-green-500/30"
-                              : "bg-red-500/30"
-                          }`}
-                        >
-                          {profit_loss_percent}%
-                        </Label>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="w-full flex justify-center">
-                        <Label className="text-white">
-                          {getHoldingDate(item.purchase_date)}
-                        </Label>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="w-full flex justify-center">
-                        <Label
-                          className={`rounded-[5px] px-2 py-0.5 font-semibold ${
-                            item.status === "Buy Request"
-                              ? "bg-primary-brown text-black"
-                              : item.status === "Awaiting Arrival"
-                              ? "bg-red-900  text-white"
-                              : "text-white bg-[#8A6B47]"
-                          }`}
-                        >
-                          {item.status}
-                        </Label>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </CardContent>
+                      </TableCell>
+                      <TableCell>
+                        <div className="w-full flex justify-center">
+                          <Label className="text-white">{item.quantity}</Label>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="w-full flex justify-center">
+                          <Label className="text-white">
+                            £{" "}
+                            {Number(
+                              item.purchase_price.toFixed(2)
+                            ).toLocaleString()}
+                          </Label>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="w-full flex justify-center">
+                          <Label className="text-white">
+                            £ {market_val?.toLocaleString()}
+                          </Label>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="w-full gap-2 flex flex-col items-center justify-center">
+                          <Label
+                            className={`${
+                              profit_loss_value > 0
+                                ? "text-green-500"
+                                : "text-red-500"
+                            }`}
+                          >
+                            £{" "}
+                            {Number(
+                              profit_loss_value.toFixed()
+                            ).toLocaleString()}
+                          </Label>
+                          <Label
+                            className={`text-white px-2 py-1 rounded-[5px] ${
+                              profit_loss_value > 0
+                                ? "bg-green-500/30"
+                                : "bg-red-500/30"
+                            }`}
+                          >
+                            {profit_loss_percent}%
+                          </Label>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="w-full flex justify-center">
+                          <Label className="text-white">
+                            {getHoldingDate(item.purchase_date)}
+                          </Label>
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="w-full flex justify-center">
+                          <Label
+                            className={`rounded-[5px] px-2 py-0.5 font-semibold ${
+                              item.status === "Buy Request"
+                                ? "bg-primary-brown text-black"
+                                : item.status === "Awaiting Arrival"
+                                ? "bg-red-900  text-white"
+                                : "text-white bg-[#8A6B47]"
+                            }`}
+                          >
+                            {item.status}
+                          </Label>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </CardContent>
+        )}
       </Card>
     </div>
   );

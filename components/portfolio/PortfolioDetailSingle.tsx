@@ -10,12 +10,14 @@ import TabDeatils from "../marketplace/TabDetails";
 import PortfolioDetailChart from "./PortfolioDetailChart";
 import DetailsCardPortfolio from "./DetailsCardPortfolio";
 import MoreContentPortfolio from "./MoreContentPortfolio";
+import SellDialog from "../SellDialog";
+import BuyDialog from "../BuyDialog";
 
 export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Performance");
 
-  const imgSrc = item.images[0];
+  const imgSrc = item.wine_parent.images[0];
   const tabs = ["Performance", "Overview", "Region", "Grapes"];
 
   const release_price = item.stock_wine_vintage?.release_price;
@@ -96,6 +98,7 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
         <Card className="w-full">
           <CardContent className="relative p-4 flex flex-col justify-between h-full">
             <DetailsCardPortfolio
+              holding_years={item.holding_year ?? ""}
               name={item.wine_name}
               quantity={item.quantity}
               purchase_price={item.purchase_price}
@@ -152,12 +155,8 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
           <CardContent className="flex bg-transparent p-0">
             <div className="flex flex-col w-full items-end gap-4">
               <div className="flex justify-center items-center w-full gap-2 rounded-t-[14px] bg-primary-gray-500/50 border-b border-primary-brown/50 p-4">
-                <Button className="bg-red-800 border-2 border-red-800 hover:bg-red-700 text-white w-1/2">
-                  Sell
-                </Button>
-                <Button className="border-2 border-primary-gray-500 w-1/2">
-                  Buy
-                </Button>
+                <SellDialog item={item}></SellDialog>
+                <BuyDialog item={item}></BuyDialog>
               </div>
 
               <div className="flex flex-col items-end p-2">

@@ -1,9 +1,9 @@
 import React from "react";
 import { Label } from "../ui/label";
 
-export default function CartProgress({ step }: { step: number }) {
+export default function CartProgress({ step, width = "w-[80%]" }: { step: number, width?: string }) {
   return (
-    <div className="w-[80%] flex items-center justify-evenly gap-2">
+    <div className={`${width} flex items-center justify-evenly gap-2`}>
       {Array.from({ length: 3 }).map((item, index) => (
         <>
           <div className="w-[10%] flex items-center justify-center">

@@ -10,6 +10,7 @@ interface DetailCardT {
   profit_loss_percent: string;
   purchase_date: string;
   status: string;
+  holding_years: string;
 }
 
 export default function DetailsCardPortfolio({
@@ -20,21 +21,8 @@ export default function DetailsCardPortfolio({
   profit_loss_percent,
   status,
   purchase_date,
+  holding_years,
 }: DetailCardT) {
-  const getHoldingDate = (purchaseDate: string) => {
-    const start = new Date(purchaseDate);
-    const now = new Date();
-
-    const days = Math.floor(
-      (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
-    );
-
-    if (days < 30) return `${days} Day/s`;
-    if (days < 365) return `${Math.floor(days / 30)} Month/s`;
-
-    return `${Math.floor(days / 365)} Year/s`;
-  };
-
   return (
     <div>
       <Label variant="h1" className="text-primary-brown">
@@ -97,7 +85,7 @@ export default function DetailsCardPortfolio({
               Holding
             </Label>
             <Label variant="h2" className="text-primary-brown">
-              {getHoldingDate(purchase_date)}
+              {holding_years} Year/s
             </Label>
           </div>
           <div className="w-1/2 flex flex-col">

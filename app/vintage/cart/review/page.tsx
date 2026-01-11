@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useCartSummary } from "@/context/CartSummary";
 import { useUserContext } from "@/context/UserContext";
-import { Edit, Plus, Wallet } from "lucide-react";
+import { ChevronLeft, Edit, Plus, Wallet } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Image from "next/image";
@@ -63,7 +63,7 @@ export default function Review() {
   const summary = [
     {
       title: "Wine Total",
-      value: cart_total.toLocaleString(),
+      value: Number(cart_total).toLocaleString(),
     },
     {
       title: "Photo Request Total",
@@ -89,53 +89,59 @@ export default function Review() {
 
   const handleCheckout = () => {
     setLoading(true);
+    console.log("CLICKED SUMMARY: ", cart_summary[0].id);
     try {
       cart_summary.forEach((item) => {
-        const itemIdStr = item.id.toString();
-        if (checkedItems[item.id.toString()]) {
-          const stock = item.basket === null && item.stock_wine_vintage;
-          const basket = item.basket !== null && item.basket;
-          const basket_items = Array.isArray(item.basket_items)
-            ? item.basket_items
-            : [];
-          const image = item.basket !== null ? item.basket.image : item.images;
-          console.log("CART BASKET ITEMS: ", basket_items);
-          const portfolioId = uuidv4();
+        const isChecked = checkedItems[item.id?.toString()] ?? true; // default true if undefined
 
-          addToPortfolio({
-            id: portfolioId,
-            case_size: item.case_size,
-            quantity: item.quantity,
-            stock_wine_vintage: stock || null,
-            user_investment_wine_vintage: null,
-            short_description: item.short_description,
-            images: image,
-            is_special_volumes: false,
-            basket: basket || null,
-            basket_items: basket_items,
-            is_available: true,
-            photo_request: item.photo_request,
-            wine_name: item.wine_name,
-            fromm: item.fromm,
-            purchase_date: item.purchase_date,
-            purchase_price: item.purchase_price,
-            status: item.status,
-            sub_account: item.sub_account,
-            bottle_size: item.bottle_size,
-            vintage: item.vintage,
-            location: item.location,
-            alcohol_abv: item.alcohol_abv,
-            blend: item.blend,
-            grapes: item.grapes,
-            ownership: item.ownership,
-            winery: item.winery,
-            region: item.region,
-            grape_variety: item.grape_variety,
-            rp_tasting_notes: item.rp_tasting_notes
-          });
-        }
+        if (!isChecked) return;
+
+        const stock = item.basket === null ? item.stock_wine_vintage : null;
+        const basket = item.basket !== null ? item.basket : null;
+        const basket_items = Array.isArray(item.basket_items)
+          ? item.basket_items
+          : [];
+        const image = item.basket?.image ?? item.images?.[0] ?? null;
+
+        const portfolioId = uuidv4();
+        const dataEntry = {
+          id: portfolioId,
+          case_size: item.case_size,
+          quantity: item.quantity,
+          stock_wine_vintage: stock || null,
+          user_investment_wine_vintage: null,
+          short_description: item.short_description,
+          images: image,
+          is_special_volumes: false,
+          basket: basket || null,
+          basket_items: basket_items,
+          is_available: true,
+          photo_request: item.photo_request,
+          wine_name: item.wine_name,
+          fromm: item.fromm,
+          purchase_date: item.purchase_date,
+          purchase_price: item.purchase_price,
+          status: item.status,
+          sub_account: item.sub_account,
+          bottle_size: item.bottle_size,
+          vintage: item.vintage,
+          location: item.location,
+          alcohol_abv: item.alcohol_abv,
+          blend: item.blend,
+          grapes: item.grapes,
+          ownership: item.ownership,
+          winery: item.winery,
+          region: item.region,
+          grape_variety: item.grape_variety,
+          rp_tasting_notes: item.rp_tasting_notes,
+          wine_parent: item.wine_parent,
+          holding_year: item.holding_year,
+        };
+
+        console.log("CART BASKET ITEMS: ", dataEntry);
+        addToPortfolio(dataEntry);
         removeFromCart(item.id);
-        delete checkedItems[itemIdStr];
+        delete checkedItems[item.id];
       });
 
       router.replace("/vintage/cart/success");
@@ -151,10 +157,30 @@ export default function Review() {
     }
   });
 
+  useEffect(() => {
+    console.log("PORTFOLIO: ", portfolio);
+  }, [portfolio]);
+
   return (
     <div className="flex flex-col gap-4 h-full ">
-      <div className="w-full flex items-center justify-center p-2">
-        <CartProgress step={2}></CartProgress>
+      <div className="w-full flex items-center justify-evenly p-2">
+        <div
+          id="back"
+          onClick={() => router.back()}
+          className=" cursor-pointer flex gap-2 items-center"
+        >
+          <ChevronLeft
+            className="cursor-pointer text-white/70"
+            size={18}
+          ></ChevronLeft>
+          <Label className="cursor-pointer" htmlFor="back">
+            Back
+          </Label>
+        </div>
+        <CartProgress width={"w-full"} step={2}></CartProgress>
+        <div className="">
+          <Label className=""></Label>
+        </div>
       </div>
       <div className="flex gap-4 w-full h-full ">
         <div className="flex flex-col gap-4 h-full">
@@ -182,7 +208,7 @@ export default function Review() {
               </div>
             </CardContent>
           </Card>
-          <Card className="w-100 h-full  max-h-80 overflow-y-auto">
+          <Card className="w-100 h-full  max-h-105 overflow-y-auto">
             <CardContent className="flex h-full flex-col gap-4 p-4">
               <CardHeader className="w-full flex flex-col items-center">
                 <CardTitle>

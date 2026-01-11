@@ -92,6 +92,7 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
       region: data.region,
       grape_variety: data.grape_variety,
       rp_tasting_notes: data.rp_tasting_notes,
+      wine_parent: data.wine_parent
     });
     removeFromWineCellar(data.id);
     toast.success("Wine has been successfully moved to Wine Cellar.");

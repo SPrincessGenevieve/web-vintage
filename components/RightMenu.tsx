@@ -7,12 +7,18 @@ import { useRouter, usePathname } from "next/navigation";
 import { Spinner } from "./ui/spinner";
 import { Label } from "./ui/label";
 import { useCart } from "@/context/CartContext";
+import { useSubAccount } from "@/context/SubAccountContext";
+import { SubAccountType } from "@/lib/types";
 
 export default function RightMenu() {
   const router = useRouter();
   const pathname = usePathname();
   const path = pathname.split("/vintage/")[1];
   const { cart } = useCart();
+  const { subAccounts } = useSubAccount();
+  const activeAccount = subAccounts.find((item) => item.is_active === true) as
+    | SubAccountType
+    | undefined;
 
   const [isPending, startTransition] = useTransition();
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
@@ -45,10 +51,9 @@ export default function RightMenu() {
     });
   };
 
-  const handleSettings = () =>{
-    router.push("/vintage/settings/profile")
-  }
-
+  const handleSettings = () => {
+    router.push("/vintage/settings/profile");
+  };
 
   return (
     <div className="flex gap-4">
@@ -76,8 +81,10 @@ export default function RightMenu() {
         </div>
       ))}
       <Avatar onClick={handleSettings} className="cursor-pointer">
-        <AvatarImage className="object-cover" src={"/profile.jpg"} />
-        <AvatarFallback>R</AvatarFallback>
+        <AvatarImage className="object-cover" src={activeAccount?.image ?? ""} />
+        <AvatarFallback>
+          {activeAccount?.last_name.split("")[0]}
+        </AvatarFallback>
       </Avatar>
     </div>
   );

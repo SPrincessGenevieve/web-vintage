@@ -115,6 +115,7 @@ export default function AddSubAccount() {
         image: imageBase64,
         relationship: values.relationship,
         birth_date: values.birthDate.toISOString(),
+        is_active: false,
       });
 
       toast.success(

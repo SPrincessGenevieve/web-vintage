@@ -8,9 +8,17 @@ import { Button } from "./ui/button";
 import { Bell, Bot, ShoppingCart } from "lucide-react";
 import RightMenu from "./RightMenu";
 import { useRouter } from "next/navigation";
+import { SubAccountType } from "@/lib/types";
+import { useSubAccount } from "@/context/SubAccountContext";
 
 export default function Taskbar() {
   const router = useRouter();
+  const { subAccounts } = useSubAccount();
+
+  const activeAccount = subAccounts.find((item) => item.is_active === true) as
+    | SubAccountType
+    | undefined;
+
   return (
     <Card className="w-full h-14 rounded-none p-2 border-0 border-b">
       <CardContent className="items-center justify-between h-full flex p-0 px-2">
@@ -25,7 +33,9 @@ export default function Taskbar() {
             className="w-8 h-auto"
             src={"/logo.png"}
           ></Image>
-          <Label className="text-[18px] text-primary-brown">John Doe</Label>
+          <Label className="text-[18px] text-primary-brown">
+            {activeAccount?.last_name} {activeAccount?.first_name.split("")[0]}.
+          </Label>
         </div>
         <RightMenu></RightMenu>
       </CardContent>

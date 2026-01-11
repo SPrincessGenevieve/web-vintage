@@ -1,9 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import CardWine from "@/components/marketplace/CardWine";
-import { WineImage } from "@/components/marketplace/WineImage";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -15,22 +13,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { vintex } from "@/lib/wine_data/vintex";
-import {
-  ChartPie,
-  Funnel,
-  FunnelPlus,
-  FunnelX,
-  SortAsc,
-  SortDesc,
-  X,
-} from "lucide-react";
-import Image from "next/image";
+import { ChartPie, Funnel, SortAsc, SortDesc, X } from "lucide-react";
 import React from "react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { special_volume } from "@/lib/wine_data/special_volumes";
 import { special_bundle } from "@/lib/wine_data/special_bundle";
-import { rare } from "@/lib/wine_data/rare";
+import { rare as rare_data } from "@/lib/wine_data/rare";
 import { useUserContext } from "@/context/UserContext";
+import { useRare } from "@/context/RareContext";
+import CardWineBundle from "@/components/marketplace/CardWineRare";
+import CardWineRare from "@/components/marketplace/CardWineRare";
 
 const filter = [
   {
@@ -83,6 +74,7 @@ type CardType = "vint-ex" | "special-volumes" | "special-bundle" | "rare";
 
 export default function Marketplace() {
   const { filter_market, setUserDetails } = useUserContext();
+  const { rare, addToRare } = useRare();
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState<CardType>("vint-ex");
 
@@ -98,6 +90,10 @@ export default function Marketplace() {
   };
 
   const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
+
+  useEffect(() => {
+    rare_data.forEach((item) => addToRare(item));
+  }, [rare.length]);
 
   useEffect(() => {
     setSortOrder("none");
@@ -163,6 +159,8 @@ export default function Marketplace() {
     else if (sortOrder === "asc") setSortOrder("desc");
     else setSortOrder("none");
   };
+
+  console.log("WINE: ", currentData);
 
   return (
     <div className={`flex flex-col gap-4 h-full`}>
@@ -278,7 +276,11 @@ export default function Marketplace() {
           </div>
         )}
       </div>
-      <CardWine item={currentData} type={selectedCategory} />
+      {selectedCategory === "rare" ? (
+        <CardWineRare item={currentData} type={selectedCategory}></CardWineRare>
+      ) : (
+        <CardWine item={currentData} type={selectedCategory} />
+      )}
     </div>
   );
 }
