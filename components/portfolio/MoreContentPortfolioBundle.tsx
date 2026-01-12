@@ -115,7 +115,7 @@ export default function MoreContentPortfolioBundle({
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="absolute top-0 right-0">
+        <DropdownMenuTrigger className="">
           <Button className="" variant={"ghost"}>
             <EllipsisVertical></EllipsisVertical>
           </Button>

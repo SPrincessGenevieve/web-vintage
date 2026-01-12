@@ -10,6 +10,7 @@ import { CartSummaryProvider } from "@/context/CartSummary";
 import { WineCellarProvider } from "@/context/WineCellarContext";
 import { SubAccountProvider } from "@/context/SubAccountContext";
 import { RareProvider } from "@/context/RareContext";
+import { DeliveryProvider } from "@/context/DeliveryContext";
 
 const poppins = Poppins({
   variable: "--font-poppins-sans",
@@ -44,7 +45,9 @@ export default function RootLayout({
               <PortfolioProvider>
                 <SubAccountProvider>
                   <RareProvider>
-                    <WineCellarProvider>{children}</WineCellarProvider>
+                    <DeliveryProvider>
+                      <WineCellarProvider>{children}</WineCellarProvider>
+                    </DeliveryProvider>
                   </RareProvider>
                 </SubAccountProvider>
               </PortfolioProvider>

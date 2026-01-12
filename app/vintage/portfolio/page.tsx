@@ -391,7 +391,7 @@ export default function Portfolio() {
           <div className="w-full h-full flex-col flex items-center justify-center gap-4">
             <Trash className="text-primary-brown" size={40}></Trash>
             <Label variant="h1" className="text-[18px]">
-              Your Wine Cellar is empty
+              Your Portfolio is empty
             </Label>
             <Button onClick={() => router.push("/vintage/marketplace")}>
               <Wine></Wine>

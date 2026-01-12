@@ -30,7 +30,7 @@ export default function WineCellarDetail() {
       {data.basket === null ? (
         <WineCellarDetailSingle item={data}></WineCellarDetailSingle>
       ) : (
-        <WineCellarDetailBasket></WineCellarDetailBasket>
+        <WineCellarDetailBasket item={data}></WineCellarDetailBasket>
       )}
     </div>
   );

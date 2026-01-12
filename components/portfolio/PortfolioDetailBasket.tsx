@@ -37,9 +37,6 @@ export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
         >
           <ChevronLeft></ChevronLeft>Back
         </Button>
-        <div>
-          <MoreContentPortfolioBundle data={item}></MoreContentPortfolioBundle>
-        </div>
       </div>
       <div className="flex gap-4 min-h-[32%]">
         <Card className="">
@@ -54,43 +51,51 @@ export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
           </CardContent>
         </Card>
         <Card className="w-full">
-          <CardContent className="p-4 flex flex-col justify-between h-full">
-            <Label
-              variant="h1"
-              className="text-primary-brown pb-2 w-full border-b-2 border-primary-brown/30"
-            >
-              {item.wine_name}
-            </Label>
-            <div className="flex items-center justify-between">
-              {tabs.map((item, index) => (
-                <div key={index} className="flex w-full">
-                  <Button
-                    onClick={() => setActiveTab(item)}
-                    variant={"ghost"}
-                    className={`w-full border-b-2 ${
-                      activeTab === item
-                        ? "border-white text-white font-semibold"
-                        : "border-primary-brown/30"
-                    } rounded-none`}
-                  >
-                    {item}
-                  </Button>
-                </div>
-              ))}
+          <CardContent className="p-4 flex justify-between h-full">
+            <div>
+              <Label
+                variant="h1"
+                className="text-primary-brown pb-2 w-full border-b-2 border-primary-brown/30"
+              >
+                {item.wine_name}
+              </Label>
+              <div className="flex items-center justify-between">
+                {tabs.map((item, index) => (
+                  <div key={index} className="flex w-full">
+                    <Button
+                      onClick={() => setActiveTab(item)}
+                      variant={"ghost"}
+                      className={`w-full border-b-2 ${
+                        activeTab === item
+                          ? "border-white text-white font-semibold"
+                          : "border-primary-brown/30"
+                      } rounded-none`}
+                    >
+                      {item}
+                    </Button>
+                  </div>
+                ))}
+              </div>
+              <div className="h-full">
+                {activeTab === "Overview" && (
+                  <TabDeatils title="Overview" desc={item.winery}></TabDeatils>
+                )}
+                {activeTab === "Region" && (
+                  <TabDeatils title="Region" desc={item.region}></TabDeatils>
+                )}
+                {activeTab === "Grapes" && (
+                  <TabDeatils
+                    title="Grapes"
+                    desc={item.grape_variety}
+                  ></TabDeatils>
+                )}
+              </div>
             </div>
-            <div className="h-full">
-              {activeTab === "Overview" && (
-                <TabDeatils title="Overview" desc={item.winery}></TabDeatils>
-              )}
-              {activeTab === "Region" && (
-                <TabDeatils title="Region" desc={item.region}></TabDeatils>
-              )}
-              {activeTab === "Grapes" && (
-                <TabDeatils
-                  title="Grapes"
-                  desc={item.grape_variety}
-                ></TabDeatils>
-              )}
+
+            <div>
+              <MoreContentPortfolioBundle
+                data={item}
+              ></MoreContentPortfolioBundle>
             </div>
           </CardContent>
         </Card>

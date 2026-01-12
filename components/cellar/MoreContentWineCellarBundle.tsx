@@ -18,14 +18,15 @@ import {
 } from "../ui/dropdown-menu";
 import { Label } from "../ui/label";
 import GiftDialog from "../portfolio/gift/GiftDialog";
-import AssignWine from "../portfolio/AssignWine/AssignWine";
 import AssignSubAccount from "../AssignSubAccount/AssignSubAccount";
 import { useParams, useRouter } from "next/navigation";
-import { useWineCellar } from "@/context/WineCellarContext";
-import { CartItemT } from "@/lib/types";
-import { portfolio_default } from "@/lib/default_portfolio";
-import { toast } from "sonner";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { CartItemT } from "@/lib/types";
+import { toast } from "sonner";
+import { useWineCellar } from "@/context/WineCellarContext";
+import { uuidv4 } from "zod";
+import GiftDialogBundle from "../portfolio/gift/GiftDialogBundle";
+import AssignSubAccountBundle from "../AssignSubAccount/AssignSubAccountBundle";
 
 const items = [
   //   {
@@ -36,29 +37,41 @@ const items = [
   //   label: "Gift",
   //   icon: GiftIcon,
   // },
-  // {
-  //   label: "Assign to Portfolio",
-  //   icon: Wine,
-  // },
   {
     label: "Assign to Sub-account",
     icon: Users,
   },
 ];
 
-export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
+export default function MoreContentWineCellarBundle({
+  data,
+}: {
+  data: CartItemT;
+}) {
   const router = useRouter();
   const [select, setSelect] = useState("");
   const [open, setOpen] = useState(false);
   const params = useParams();
   const id = params.id as string; // {wine}
-  const { removeFromWineCellar } = useWineCellar();
-  const { addToPortfolio } = usePortfolio();
+  const { portfolio,  addToPortfolio } = usePortfolio();
+  const { removeFromWineCellar, updateWineCellarItem } = useWineCellar();
 
   const handleGift = () => {
     setOpen(false);
-    toast.success("Your wine is now being gifted.");
-    // toast.success("Your wine is now listed for sale on the marketplace");
+    updateWineCellarItem(data.id, {
+      status: "Gift Request", // or whatever your gifted status value is
+    });
+    toast.success(
+      "Your wine has been gifted successfully. Awaiting confirmation from the recipient."
+    );
+  };
+
+  const handleCancelGift = () => {
+    setOpen(false);
+    updateWineCellarItem(data.id, {
+      status: "In Bond", // or whatever your gifted status value is
+    });
+    toast.success("Your gifted wine has been successfully cancelled.");
   };
 
   const handleAssignToWineCellar = () => {
@@ -71,8 +84,8 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
       short_description: data.short_description,
       images: data.images,
       is_special_volumes: data.is_special_volumes,
-      basket: null,
-      basket_items: null,
+      basket: data.basket,
+      basket_items: data.basket_items,
       is_available: data.is_available,
       photo_request: data.photo_request,
       wine_name: data.wine_name,
@@ -92,10 +105,10 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
       region: data.region,
       grape_variety: data.grape_variety,
       rp_tasting_notes: data.rp_tasting_notes,
-      wine_parent: data.wine_parent
+      wine_parent: data.wine_parent,
     });
     removeFromWineCellar(data.id);
-    toast.success("Wine has been successfully moved to Wine Cellar.");
+    toast.success("Wine has been successfully moved to Portfolio.");
     router.push("/vintage/portfolio");
   };
 
@@ -110,6 +123,9 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
         <DropdownMenuContent>
           {items.map((item, index) => (
             <DropdownMenuItem
+              disabled={
+                data.status !== "In Bond" && data.status !== "Gift Request"
+              }
               key={index}
               onClick={() => {
                 setSelect(item.label);
@@ -117,29 +133,46 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
               }}
             >
               <item.icon className="text-primary-brown"></item.icon>
-              <Label className="text-white">{item.label}</Label>
+              <Label className="text-white">
+                {data.status === "Gift Request" && item.label === "Gift"
+                  ? "Cancel Gift"
+                  : item.label}
+              </Label>
             </DropdownMenuItem>
           ))}
           <DropdownMenuItem onClick={handleAssignToWineCellar}>
-            <Wine className="text-primary-brown"></Wine>
+            <TextIcon className="text-primary-brown"></TextIcon>
             <Label className="text-white">Assign to Portfolio</Label>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="overflow-y-auto">
-          {select === "Gift" && (
-            <GiftDialog
+          {select === "Gift" && data.status === "Gift Request" ? (
+            <div className="flex flex-col gap-4">
+              <Label variant="h1">
+                Are you sure you want to cancel your gift?
+              </Label>
+              <div className="w-full flex gap-2 justify-end">
+                <Button onClick={handleCancelGift} className="bg-red-700 text-white hover:bg-red-700/50">
+                  Yes, cancel
+                </Button>
+                <Button onClick={() => setOpen(false)} variant={"outline"}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          ) : select === "Gift" && data.status !== "Gift Request" ? (
+            <GiftDialogBundle
               gift={handleGift}
               close={() => setOpen(false)}
               data={data}
-            ></GiftDialog>
-          )}
-          {select === "Assign to Wine Cellar" && (
-            <AssignWine data={data}></AssignWine>
+            ></GiftDialogBundle>
+          ) : (
+            <></>
           )}
           {select === "Assign to Sub-account" && (
-            <AssignSubAccount data={data}></AssignSubAccount>
+            <AssignSubAccountBundle data={data}></AssignSubAccountBundle>
           )}
         </DialogContent>
       </Dialog>

@@ -280,6 +280,8 @@ export default function WineCellar() {
         <Input
           placeholder="Search by wine name"
           className="bg-primary-gray-400"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         ></Input>
         <Button variant={"outline"} className="mt-2">
           <Download></Download> Excel
@@ -365,7 +367,7 @@ export default function WineCellar() {
         </div>
       </div>
       <Card className={`overflow-y-auto relative gap-0 h-[90%]`}>
-        {displayWineCellar.length === 0 ? (
+        {filteredWineCellar.length === 0 ? (
           <div className="w-full h-full flex-col flex items-center justify-center gap-4">
             <Trash className="text-primary-brown" size={40}></Trash>
             <Label variant="h1" className="text-[18px]">
@@ -391,7 +393,7 @@ export default function WineCellar() {
                 </TableRow>
               </TableHeader>
               <TableBody className="w-full rounded-2xl">
-                {filteredWineCellar.map((item, index) => {
+                {displayWineCellar.map((item, index) => {
                   const id = String(item.id);
                   const { profit_loss_value, profit_loss_percent } =
                     generateProfitLoss(id, item.purchase_price);

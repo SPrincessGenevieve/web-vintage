@@ -11,6 +11,7 @@ import MoreContent from "./MoreContentWineCellar";
 import DetailsCardWineCellar from "./DetailsCardWineCellar";
 import WineCellarDetailChart from "./WineCellarDetailChart";
 import MoreContentWineCellar from "./MoreContentWineCellar";
+import DeliverDialog from "./DeliverDialog";
 
 export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
   const router = useRouter();
@@ -104,7 +105,6 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
               status={item.status}
               purchase_date={item.purchase_date}
             ></DetailsCardWineCellar>
-            <MoreContentWineCellar data={item}></MoreContentWineCellar>
           </CardContent>
         </Card>
       </div>
@@ -151,13 +151,18 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
         <Card className="w-full max-w-[300px] p-0 m-0 bg-primary-gray-400">
           <CardContent className="flex bg-transparent p-0">
             <div className="flex flex-col w-full items-end gap-4">
-              <div className="flex justify-center items-center w-full gap-2 rounded-t-[14px] bg-primary-gray-500/50 border-b border-primary-brown/50 p-4">
-                <Button className="bg-red-800 border-2 border-red-800 hover:bg-red-700 text-white w-1/2">
+              <div className="flex justify-between items-center w-full gap-2 rounded-t-[14px] bg-primary-gray-500/50 border-b border-primary-brown/50 p-4">
+                <DeliverDialog item={item}></DeliverDialog>
+                <div className="relative flex items-center justify-center w-[10%] h-full">
+                  <MoreContentWineCellar data={item}></MoreContentWineCellar>
+                </div>
+
+                {/* <Button className="bg-red-800 border-2 border-red-800 hover:bg-red-700 text-white w-1/2">
                   Sell
                 </Button>
                 <Button className="border-2 border-primary-gray-500 w-1/2">
                   Buy
-                </Button>
+                </Button> */}
               </div>
 
               <div className="flex flex-col items-end p-2">

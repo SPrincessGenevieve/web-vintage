@@ -123,7 +123,6 @@ export interface RareCardT {
   wine_parent: WineParent;
   basket_details: BasketDetailsT | CartBasketT | null;
   basket_items: BasketItemsT | BasketItemsT[] | null;
-
 }
 
 export interface BasketDetailsT {
@@ -316,6 +315,34 @@ export interface CartItemT {
   region: string;
   grape_variety: string;
   rp_tasting_notes: string;
+}
+
+export interface ProfileT {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  birth_date: string;
+  street_address: string;
+  city: string;
+  state: string;
+  town_county: string;
+  postal_code: string;
+  country: string;
+  investment_time: string;
+  budget: number;
+  region: string;
+  profile_picture: string;
+  membership_status: string;
+}
+
+export interface DeliverT {
+  id: string;
+  wine: CartItemT;
+  detail: ProfileT;
+  address_1: string;
+  address_2: string;
 }
 
 export interface BasketT {
@@ -605,7 +632,6 @@ export interface PaymentMethodT {
   card_type: string;
   is_default: boolean;
 }
-
 
 export interface WineParent {
   /** Unique identifier */

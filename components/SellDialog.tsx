@@ -14,7 +14,7 @@ import { CartItemT } from "@/lib/types";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
 import { Label } from "./ui/label";
-import { AlertCircle, Minus, Plus } from "lucide-react";
+import { AlertCircle, Minus, Plus, PoundSterlingIcon } from "lucide-react";
 import { Input } from "./ui/input";
 import { useRare } from "@/context/RareContext";
 import { v4 as uuidv4 } from "uuid";
@@ -109,9 +109,10 @@ export default function SellDialog({ item }: { item: CartItemT }) {
       >
         <Button
           disabled={item.status !== "In Bond" ? true : false}
-          className="bg-red-800 w-full border-2 border-red-800 hover:bg-red-700 text-white"
+          className="bg-red-800 w-full h-full flex items-center justify-center border-2 border-red-800 hover:bg-red-700 text-white"
         >
-          Sell
+          <PoundSterlingIcon></PoundSterlingIcon>
+          <Label className="text-white">Sell</Label>
         </Button>
       </DialogTrigger>
       <DialogContent>

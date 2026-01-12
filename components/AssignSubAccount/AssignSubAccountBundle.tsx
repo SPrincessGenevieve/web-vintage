@@ -20,7 +20,7 @@ import { usePortfolio } from "@/context/PortfolioContext";
 import { toast } from "sonner";
 import { useWineCellar } from "@/context/WineCellarContext";
 
-export default function AssignSubAccount({ data }: { data: CartItemT }) {
+export default function AssignSubAccountBundle({ data }: { data: CartItemT }) {
   const { subAccounts, addSubAccount } = useSubAccount();
   const { updatePortfolioItem } = usePortfolio();
   const { updateWineCellarItem } = useWineCellar();
@@ -37,7 +37,7 @@ export default function AssignSubAccount({ data }: { data: CartItemT }) {
       : 0;
 
   const total =
-    Number(data.stock_wine_vintage?.market_value) *
+    Number(data.basket?.market_value) *
     data.case_size *
     data.quantity;
 
@@ -76,11 +76,11 @@ export default function AssignSubAccount({ data }: { data: CartItemT }) {
           <div className="flex flex-col w-full">
             <div className="flex w-full p-4 items-center justify-center">
               <Image
-                src={data.images[0]}
+                src={data.basket?.image ?? ""}
                 alt=""
                 width={400}
                 height={400}
-                className="h-full w-auto"
+                className="h-full rounded-2xl w-auto"
               ></Image>
             </div>
             <div>
