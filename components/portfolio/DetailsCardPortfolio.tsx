@@ -67,7 +67,7 @@ export default function DetailsCardPortfolio({
               Purchase Price
             </Label>
             <Label variant="h2" className="text-primary-brown">
-              £ {Number(purchase_price.toFixed(2)).toLocaleString()}
+              £ {Number(Number(purchase_price).toFixed(2)).toLocaleString()}
             </Label>
           </div>
           <div className="w-1/2 flex flex-col">
