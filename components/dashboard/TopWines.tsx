@@ -49,7 +49,11 @@ export default function TopWines() {
             {top5ProfitLost.map((item, index) => {
               const stock = item.stock_wine_vintage;
               const basket = item.basket;
-              const img = item.basket === null ? item.images[0] : basket?.image;
+              const image = Array.isArray(item.images)
+                ? item.images[0]
+                : item.images;
+
+              console.log("DATA: ", item);
 
               console.log("P&L: ", item.profit_lost_by_percent);
 
@@ -66,7 +70,7 @@ export default function TopWines() {
                       width={400}
                       height={400}
                       className="h-20 w-auto rounded-2xl object-contain"
-                      src={img ?? ""}
+                      src={image ?? ""}
                     />
                   </div>
 
