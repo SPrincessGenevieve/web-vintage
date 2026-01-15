@@ -94,7 +94,7 @@ export function AssetsByRegion() {
           <div className="w-full flex flex-col items-end">
             <div className="max-w-70 legend-cont w-full flex flex-col gap-1">
               {chartData.map((item, index) => (
-                <div className="flex items-center gap-4">
+                <div key={index} className="flex items-center gap-4">
                   <div
                     style={{ backgroundColor: `${item.fill}` }}
                     className={`w-2 h-2  rounded-full`}

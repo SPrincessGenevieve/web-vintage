@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { CalendarIcon } from "lucide-react";
-
+import { DayPicker } from "react-day-picker";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
@@ -73,7 +73,7 @@ export function MonthYearPicker({
             selected={internalDate}
             onSelect={handleSelect}
             className={className}
-            defaultView="year" // shows year first for easy month selection
+            // defaultView="year" // shows year first for easy month selection
           />
         </PopoverContent>
       </Popover>
