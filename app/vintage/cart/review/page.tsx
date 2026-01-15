@@ -89,9 +89,43 @@ export default function Review() {
     payment_method.find((c) => c.is_default)?.last_code || "account-bal"
   );
 
+  const generateProfitLoss = (id: string, purchasePrice: number) => {
+    const KEY = `pl_${id}`;
+    const now = Date.now();
+    const DAY = 1000 * 60 * 60 * 24;
+
+    const cached = localStorage.getItem(KEY);
+
+    if (cached) {
+      const data = JSON.parse(cached);
+
+      // keep value if less than 24 hours old
+      if (now - data.timestamp < DAY) {
+        return data.value;
+      }
+    }
+
+    // generate new values
+    const percentage = Number((Math.random() * 40 - 15).toFixed(2));
+    const value = Number(((purchasePrice * percentage) / 100).toFixed(2));
+
+    const result = {
+      profit_loss_value: value,
+      profit_loss_percent: percentage,
+    };
+
+    localStorage.setItem(
+      KEY,
+      JSON.stringify({ value: result, timestamp: now })
+    );
+
+    return result;
+  };
+
   const handleCheckout = () => {
     setLoading(true);
     console.log("CLICKED SUMMARY: ", cart_summary[0].investment_id);
+
     try {
       cart_summary.forEach((item) => {
         const isChecked = checkedItems[item.id?.toString()] ?? true; // default true if undefined
@@ -106,6 +140,12 @@ export default function Review() {
         const image = item.basket?.image ?? item.images?.[0] ?? null;
 
         const portfolioId = uuidv4();
+
+        const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
+          portfolioId,
+          item.purchase_price
+        );
+
         const dataEntry = {
           id: portfolioId,
           case_size: item.case_size,
@@ -138,6 +178,8 @@ export default function Review() {
           rp_tasting_notes: item.rp_tasting_notes,
           wine_parent: item.wine_parent,
           holding_year: item.holding_year,
+          profit_lost: profit_loss_value,
+          profit_lost_by_percent: profit_loss_percent,
         };
 
         console.log("CART BASKET ITEMS: ", dataEntry);

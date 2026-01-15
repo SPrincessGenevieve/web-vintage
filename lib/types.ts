@@ -343,6 +343,8 @@ export interface DeliverT {
   detail: ProfileT;
   address_1: string;
   address_2: string;
+  status: string;
+  fee: number;
 }
 
 export interface BasketT {

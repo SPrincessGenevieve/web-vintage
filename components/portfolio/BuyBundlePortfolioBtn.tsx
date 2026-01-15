@@ -43,6 +43,10 @@ export default function BuyBundlePortfolioBtn({ item }: { item: CartItemT }) {
       label: "Grapes",
       value: item.grapes !== "" ? item.grapes : item.wine_parent.grapes ?? "",
     },
+    {
+      label: "Purchase Price",
+      value: `£ ${item.basket?.market_value.toLocaleString()}`
+    }
   ];
 
   return (
@@ -64,7 +68,7 @@ export default function BuyBundlePortfolioBtn({ item }: { item: CartItemT }) {
                 variant="h1"
                 className="text-primary-brown text-[25px] font-bold"
               >
-                £{Number(item.basket?.market_value).toLocaleString()}
+                £{Number(item.purchase_price).toLocaleString()}
               </Label>
             </div>
             <div className="flex justify-between w-full gap-4">

@@ -503,24 +503,24 @@ export default function Portfolio() {
                         <div className="w-full gap-2 flex flex-col items-center justify-center">
                           <Label
                             className={`${
-                              profit_loss_value > 0
+                              item.profit_lost ?? 0 > 0
                                 ? "text-green-500"
                                 : "text-red-500"
                             }`}
                           >
                             £{" "}
                             {Number(
-                              profit_loss_value.toFixed()
+                              item.profit_lost?.toFixed()
                             ).toLocaleString()}
                           </Label>
                           <Label
                             className={`text-white px-2 py-1 rounded-[5px] ${
-                              profit_loss_value > 0
+                              item.profit_lost ?? 0 > 0
                                 ? "bg-green-500/30"
                                 : "bg-red-500/30"
                             }`}
                           >
-                            {profit_loss_percent}%
+                            {item.profit_lost_by_percent}%
                           </Label>
                         </div>
                       </TableCell>

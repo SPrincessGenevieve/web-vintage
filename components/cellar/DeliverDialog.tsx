@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { CartItemT, SubAccountType } from "@/lib/types";
+import { CartItemT, DeliverT, SubAccountType } from "@/lib/types";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
@@ -19,13 +19,15 @@ import { useSubAccount } from "@/context/SubAccountContext";
 import { default_profile } from "@/lib/default_profile";
 import { Form } from "../ui/form";
 import { InputFormField } from "../ui/InputFormField";
-import { SimpleDropdownInput } from "../ui/simple-dropdown-input";
-import { CalendarFormField } from "../ui/CalendarFormField";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Spinner } from "../ui/spinner";
 import Image from "next/image";
 import { Card, CardContent } from "../ui/card";
+import { Table, TableCell, TableRow } from "../ui/table";
+import { ChevronLeft } from "lucide-react";
+import PaymentMethodOption from "../PaymentMethodOption";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   first_name: z.string().min(2, { message: "This field is required." }),
@@ -41,37 +43,15 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const base64ToFile = (
-  base64?: string,
-  filename = "image.png"
-): File | undefined => {
-  if (!base64) return undefined;
-
-  // If it's already a File URL or normal URL, don't convert
-  if (!base64.startsWith("data:")) return undefined;
-
-  const parts = base64.split(",");
-  if (parts.length !== 2) return undefined;
-
-  const mimeMatch = parts[0].match(/data:(.*?);base64/);
-  if (!mimeMatch) return undefined;
-
-  const mime = mimeMatch[1];
-  const binary = atob(parts[1]);
-
-  const u8arr = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) {
-    u8arr[i] = binary.charCodeAt(i);
-  }
-
-  return new File([u8arr], filename, { type: mime });
-};
-
 export default function DeliverDialog({ item }: { item: CartItemT }) {
-  const { addToDelivery } = useDelivery();
+  const { delivery, addToDelivery } = useDelivery();
+  const VAT_RATE = 0.2;
+
   const [initialStep, setInitialStep] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const { subAccounts } = useSubAccount();
+  const [payload, setPayload] = useState<DeliverT>();
   const rawID = uuidv4();
   const delivery_id = `delivery-${rawID}`;
   const user_id = `user-${rawID}`;
@@ -93,20 +73,230 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
     },
   });
 
-  const fileToBase64 = (file: File) =>
-    new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
+  // Duty rate per litre of pure alcohol (for wine)
+  function getDutyRatePerLitrePureAlcohol(abv: number): number {
+    if (abv >= 8.5 && abv <= 22) return 29.54;
+    if (abv >= 3.5 && abv < 8.5) return 25.67;
+    return 0; // negligible duty below 3.5%
+  }
+
+  // Delivery cost (your existing logic)
+  function calculateDeliveryCost(
+    quantity: number,
+    caseSize: number,
+    bottleSizeCl: number
+  ): number {
+    const baseRate = (() => {
+      switch (caseSize) {
+        case 1:
+          return 20;
+        case 3:
+          return 15;
+        case 6:
+          return 10;
+        case 12:
+          return 8;
+        default:
+          return 0;
+      }
+    })();
+
+    const sizeSurcharge = (() => {
+      if (bottleSizeCl === 75) return 0;
+      if (bottleSizeCl === 150) return 5;
+      if (bottleSizeCl === 300) return 10;
+      if (bottleSizeCl === 600) return 20;
+      return 0;
+    })();
+
+    const costPerCase = baseRate + sizeSurcharge;
+    return quantity * costPerCase;
+  }
+
+  // Main calculation
+  function calculateWineCosts(item: {
+    quantity: number;
+    case_size: number;
+    bottle_size: "0750" | "1500" | "3000" | "6000";
+    abv: number; // alcohol % like 12.5
+    market_value: number; // £ per bottle
+  }) {
+    // Convert bottle size code to centilitres
+    const bottleSizeCl =
+      item.bottle_size === "0750"
+        ? 75
+        : item.bottle_size === "1500"
+        ? 150
+        : item.bottle_size === "3000"
+        ? 300
+        : item.bottle_size === "6000"
+        ? 600
+        : 0;
+
+    // Delivery cost
+    const deliveryCost = calculateDeliveryCost(
+      item.quantity,
+      item.case_size,
+      bottleSizeCl
+    );
+
+    // Wine product total (wine cost before duty/VAT)
+    const wineProductTotal =
+      item.market_value * (item.case_size * item.quantity);
+
+    // Duty calculation
+    const dutyRate = getDutyRatePerLitrePureAlcohol(item.abv);
+
+    // Litres of wine total (bottleSizeCl is cl)
+    const totalWineLitres =
+      (bottleSizeCl / 100) * item.case_size * item.quantity;
+
+    // Litres of pure alcohol
+    const pureAlcoholLitres = totalWineLitres * (item.abv / 100);
+
+    // Duty amount
+    const dutyAmount = dutyRate * pureAlcoholLitres;
+
+    // Subtotal before VAT (wine + duty + delivery)
+    const subTotalBeforeVAT = wineProductTotal + dutyAmount + deliveryCost;
+
+    // VAT amounts
+    const vatOnWineAndDuty = (wineProductTotal + dutyAmount) * VAT_RATE;
+    const vatOnDelivery = deliveryCost * VAT_RATE;
+
+    const totalVAT = vatOnWineAndDuty + vatOnDelivery;
+
+    // Total cost
+    const totalCost = subTotalBeforeVAT + totalVAT;
+
+    return {
+      deliveryCost,
+      wineProductTotal,
+      dutyAmount,
+      subTotalBeforeVAT,
+      vatOnWineAndDuty,
+      vatOnDelivery,
+      totalVAT,
+      totalCost,
+    };
+  }
+
+  const bottleSize = item.bottle_size;
+
+  const bottleSizeCl =
+    bottleSize === "0750"
+      ? 75
+      : bottleSize === "1500"
+      ? 150
+      : bottleSize === "3000"
+      ? 300
+      : bottleSize === "6000"
+      ? 600
+      : 0;
+
+  function parseABV(value: string | number): number {
+    if (typeof value === "number") return value;
+
+    // Remove % and spaces, split on "-"
+    const parts = value
+      .replace("%", "")
+      .split("-")
+      .map((p) => parseFloat(p.trim()));
+
+    // Return midpoint if range, else first number, else default
+    if (parts.length === 2) return (parts[0] + parts[1]) / 2;
+    if (!isNaN(parts[0])) return parts[0];
+    return 12.5; // fallback
+  }
+
+  const delivery_cost = calculateDeliveryCost(
+    item.quantity,
+    item.case_size,
+    bottleSizeCl
+  );
+
+  const market_value =
+    item.basket !== null
+      ? item.basket.market_value
+      : item.stock_wine_vintage?.market_value ?? 0;
+
+  const calculation_data = {
+    quantity: item.quantity,
+    case_size: item.case_size,
+    bottle_size: item.bottle_size as "0750" | "1500" | "3000" | "6000", // type assertion
+    abv: parseABV(item.alcohol_abv),
+    market_value: market_value, // £50 per bottle
+  };
+
+  const result = calculateWineCosts(calculation_data);
+  const formattedResult = Object.fromEntries(
+    Object.entries(result).map(([key, value]) => [
+      key,
+      // format number to 2 decimals and local string
+      typeof value === "number"
+        ? value.toLocaleString("en-GB", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+        : value,
+    ])
+  );
+
+  const wine_details_table = [
+    {
+      title: "Vintage",
+      value: item.vintage,
+    },
+    {
+      title: "Market Price",
+      value: `£ ${market_value.toLocaleString()}`,
+    },
+    {
+      title: "Cases",
+      value: item.quantity,
+    },
+    {
+      title: "Total",
+      value: `£ ${formattedResult.wineProductTotal}`,
+    },
+  ];
+
+  const summary_table = [
+    {
+      title: "Wine Product Total",
+      value: `£ ${formattedResult.wineProductTotal}`,
+    },
+    {
+      title: "Delivery Cost",
+      value: `£ ${delivery_cost}`,
+    },
+    {
+      title: "Duty (Alcohol Tax)",
+      value: `£ ${formattedResult.dutyAmount}`,
+    },
+    {
+      title: "Subtotal (Before VAT)",
+      value: `£ ${formattedResult.subTotalBeforeVAT}`,
+    },
+    {
+      title: "VAT (on Wine and Duty)",
+      value: `£ ${formattedResult.vatOnWineAndDuty}`,
+    },
+    {
+      title: "VAT (On Delivery)",
+      value: `£ ${formattedResult.vatOnDelivery}`,
+    },
+    {
+      title: "Total Cost",
+      value: `£ ${formattedResult.totalCost}`,
+    },
+  ];
 
   const onSubmit = async (values: FormValues) => {
     setLoading(true);
     try {
       setInitialStep(false);
-
-      addToDelivery({
+      const newPayload: DeliverT = {
         id: delivery_id,
         detail: {
           id: user_id,
@@ -130,20 +320,70 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
         wine: item,
         address_1: values.address_1,
         address_2: values.address_2,
-      });
+        fee: result.totalCost,
+        status: "Pending",
+      };
+
+      // Update state
+      setPayload(newPayload);
+
+      console.log("PAYLOAD: ", payload);
     } catch (error) {
     } finally {
       setLoading(false);
     }
   };
 
+  const handleDeliver = () => {
+    if (!payload) {
+      return;
+    }
+
+    const wine_id = payload.wine.id;
+
+    // Check if this wine already exists in delivery
+    const alreadyRequested = delivery.some((d) => d.wine?.id === wine_id);
+
+    if (alreadyRequested) {
+      toast.warning("This wine has already been requested.");
+      return;
+    }
+    addToDelivery(payload);
+
+    toast.success("Your delivery request has been received.");
+    form.reset({
+      first_name: activeAccount?.first_name || "",
+      last_name: activeAccount?.last_name || "",
+      email: default_profile.email || "",
+      phone: default_profile.phone || "",
+      postal_code: default_profile.postal_code || "",
+      country: default_profile.country || "",
+      address_1: "",
+      address_2: "",
+    });
+
+    setInitialStep(true);
+    setOpen(false);
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="w-full">
         <Button className="w-full">Deliver</Button>
       </DialogTrigger>
-      <DialogContent className="overflow-y-auto ">
+      <DialogContent className="overflow-y-auto max-h-[90%]">
         <DialogHeader>
+          {!initialStep && (
+            <div>
+              <Button
+                onClick={() => setInitialStep(true)}
+                variant={"ghost"}
+                className="w-12"
+              >
+                <ChevronLeft></ChevronLeft> Back
+              </Button>
+            </div>
+          )}
           <DialogTitle>
             {initialStep ? "Address Details" : "Delivery Summary"}
           </DialogTitle>
@@ -209,34 +449,77 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
               </form>
             </Form>
           ) : (
-            <div className="w-full">
+            <div className="w-full flex flex-col gap-4">
               <Card className="bg-primary-gray-500/70">
-                <CardContent className="bg-transparent flex items-center justify-center">
+                <CardContent className="bg-transparent flex gap-4 flex-col items-center justify-center">
                   <Image
                     alt=""
                     width={400}
                     height={400}
-                    className="w-40 h-50 object-contain"
+                    className="w-full h-full max-h-72 rounded-2xl object-contain"
                     src={
                       item.basket === null ? item.images[0] : item.basket.image
                     }
                   ></Image>
+                  <div className="w-full">
+                    <Label>
+                      {item.case_size}x{bottleSizeCl}cl
+                    </Label>
+                  </div>
                 </CardContent>
               </Card>
               <div>
-                <Label variant="h2" className="text-white">
-                  {item.wine_name}
-                </Label>
-                <div className="flex flex-col gap-2">
-                  <div className="w-full flex items-center justify-between">
-                    <Label>Vintage:</Label>
-                    <Label>{item.vintage}</Label>
-                  </div>
-                  <div className="w-full flex items-center justify-between">
-                    <Label>Cases:</Label>
-                    <Label>{item.quantity}</Label>
+                <div className="flex flex-col gap-4">
+                  <Label variant="h2" className="text-white">
+                    {item.wine_name}
+                  </Label>
+                  <div className=" bg-primary-gray-500/70 rounded-2xl p-2">
+                    <Table>
+                      {wine_details_table.map((item, index) => (
+                        <TableRow className="border-transparent">
+                          <TableCell className="w-45">
+                            <Label>{item.title}</Label>
+                          </TableCell>
+                          <TableCell>
+                            <div className="w-full flex items-center justify-end">
+                              <Label className="text-white font-medium">
+                                {item.value}
+                              </Label>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </Table>
                   </div>
                 </div>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <Label variant="h2" className="text-white">
+                  Fees Summary
+                </Label>
+                <div className=" bg-primary-gray-500/70 rounded-2xl p-2">
+                  <Table>
+                    {summary_table.map((item, index) => (
+                      <TableRow className="border-transparent">
+                        <TableCell className="w-45">
+                          <Label>{item.title}</Label>
+                        </TableCell>
+                        <TableCell>
+                          <div className="w-full flex items-center justify-end">
+                            <Label className="text-white font-medium">
+                              {item.value}
+                            </Label>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </Table>
+                </div>
+              </div>
+              <PaymentMethodOption></PaymentMethodOption>
+              <div className="flex w-full items-center justify-end">
+                <Button onClick={handleDeliver}>Proceed to Pay Now</Button>
               </div>
             </div>
           )}

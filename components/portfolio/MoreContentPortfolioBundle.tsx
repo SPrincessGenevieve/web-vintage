@@ -26,6 +26,7 @@ import { toast } from "sonner";
 import { useWineCellar } from "@/context/WineCellarContext";
 import { uuidv4 } from "zod";
 import GiftDialogBundle from "./gift/GiftDialogBundle";
+import AssignSubAccountBundle from "../AssignSubAccount/AssignSubAccountBundle";
 
 const items = [
   //   {
@@ -124,7 +125,8 @@ export default function MoreContentPortfolioBundle({
           {items.map((item, index) => (
             <DropdownMenuItem
               disabled={
-                data.status !== "In Bond" && data.status !== "Gift Request"
+                data.status !== "In Bond" &&
+                item.label !== "Assign to Sub-account"
               }
               key={index}
               onClick={() => {
@@ -154,7 +156,10 @@ export default function MoreContentPortfolioBundle({
                 Are you sure you want to cancel your gift?
               </Label>
               <div className="w-full flex gap-2 justify-end">
-                <Button onClick={handleCancelGift} className="bg-red-700 text-white hover:bg-red-700/50">
+                <Button
+                  onClick={handleCancelGift}
+                  className="bg-red-700 text-white hover:bg-red-700/50"
+                >
                   Yes, cancel
                 </Button>
                 <Button onClick={() => setOpen(false)} variant={"outline"}>
@@ -172,7 +177,7 @@ export default function MoreContentPortfolioBundle({
             <></>
           )}
           {select === "Assign to Sub-account" && (
-            <AssignSubAccount data={data}></AssignSubAccount>
+            <AssignSubAccountBundle data={data}></AssignSubAccountBundle>
           )}
         </DialogContent>
       </Dialog>

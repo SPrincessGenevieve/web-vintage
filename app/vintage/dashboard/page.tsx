@@ -6,36 +6,7 @@ import DeliveryHistoryTable from "@/components/dashboard/DeliveryHistoryTable";
 import TopWines from "@/components/dashboard/TopWines";
 import TotalDepositCases from "@/components/dashboard/TotalDepositCases";
 import { PortfolioChart } from "@/components/PortfolioChart";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { Label } from "@/components/ui/label";
-import React from "react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
-
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--chart-1)",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
-  },
-} satisfies ChartConfig;
 
 export default function Dashboard() {
   return (

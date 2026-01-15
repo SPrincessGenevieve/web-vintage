@@ -100,15 +100,15 @@ export const portfolio_default: CartItemT[] = [
         "Napa Valley is one of the world’s most prestigious wine regions, stretching 35 miles between the Vacas and Mayacamas mountain ranges. Its global acclaim stems from its ideal terroir—notably its climate and soils—for cultivating premium Cabernet Sauvignon. The region's proximity to San Francisco attracts millions of wine tourists annually. Napa's reputation was solidified by its victory over French wines in the 1976 Paris Judgment. Pioneers like George C. Yount, Charles Krug, and Robert Mondavi shaped its modern wine industry. While Cabernet Sauvignon dominates, varieties like Merlot, Zinfandel, Chardonnay, and Sauvignon Blanc also thrive.",
       winery:
         "Harlan Estate is a prestigious Napa Valley winery located in the Oakville AVA, renowned for its Cabernet Sauvignon-based wines. Founded in 1984 by Bill Harlan, the estate spans 240 acres, with 40 acres under vine, primarily Cabernet Sauvignon with Merlot, Cabernet Franc, and Petit Verdot. Its flagship wine debuted in 1990, gaining global acclaim with multiple 100-point scores from critics. Harlan Estate’s second wine, The Maiden, offers a more approachable expression. Winemaking emphasizes gentle extraction and aging in French oak for 24–26 months.",
-      images: [
-        "https://d18vt6ndh4jzvp.cloudfront.net/media/HarlanEstate.png",
-      ],
+      images: ["https://d18vt6ndh4jzvp.cloudfront.net/media/HarlanEstate.png"],
       oldest_vintage: 2000,
       maximum_price: 8200.0,
       annual_production: 2000,
       default_case_size: 3,
     },
     holding_year: "3",
+    profit_lost: 4471,
+    profit_lost_by_percent: 14.53,
   },
   {
     id: "b771646b-c0dd-45f5-8e23-6e874902a206",
@@ -217,6 +217,8 @@ export const portfolio_default: CartItemT[] = [
       default_case_size: 6,
     },
     holding_year: "2",
+    profit_lost: 724,
+    profit_lost_by_percent: 4,
   },
   {
     id: "7d86dde1-6e4a-4418-9c9e-916aeffc1f86",
@@ -325,6 +327,8 @@ export const portfolio_default: CartItemT[] = [
       default_case_size: 6,
     },
     holding_year: "1",
+    profit_lost: -24902,
+    profit_lost_by_percent: 9.63,
   },
   {
     id: "cffeac65-cd30-47b9-97a5-0112b0eab7da",
@@ -665,5 +669,7 @@ export const portfolio_default: CartItemT[] = [
       sub_header: "The Pinnacle Collection of Bordeaux’s Most Iconic Estates",
     },
     holding_year: "5",
+    profit_lost: -24902,
+    profit_lost_by_percent: 9.63,
   },
 ];

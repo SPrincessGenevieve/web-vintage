@@ -1,15 +1,23 @@
 "use client";
 
+import EntertainmentDialog from "@/components/concierge/EntertainmentDialog";
+import SpecialRequestDialog from "@/components/concierge/SpecialRequestDialog";
+import SportingEventsDialog from "@/components/concierge/SportingEventsDialog";
+import WineEventsDialog from "@/components/concierge/WineEventsDialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { event_list } from "@/lib/concierge/events";
 import { concierge_list } from "@/lib/selection";
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 export default function Concierge() {
+  const [open, setOpen] = useState(false);
+  const [activeDialog, setActiveDialog] = useState<string | null>(null);
+
   const formatDate = (date: string | Date) => {
     return new Date(date).toLocaleDateString("en-US", {
       month: "long",
@@ -43,6 +51,10 @@ export default function Concierge() {
                 </Label>
                 <Label className="text-primary-brown">{item.location}</Label>
               </div>
+              <div className="h-full py-4">
+                <Label className="text-white">{item.description}</Label>
+              </div>
+
               <Button className="bg-primary-gray-400 text-white">
                 More Details
               </Button>
@@ -60,64 +72,91 @@ export default function Concierge() {
       <div className="w-full concierge-bottom gap-4 h-[40vh] scroll-area overflow-x-auto flex">
         <div className="h-full card-cont w-full gap-4 flex justify-between">
           {concierge_list.map((item, index) => (
-            <Card
-              className={`w-[42vh] card-inner-cont h-full ${
-                index === 0
-                  ? "bg-primary-brown"
-                  : index === 1
-                  ? "bg-primary-green"
-                  : index === 2
-                  ? "bg-primary-red-300"
-                  : index === 3
-                  ? "bg-primary-gray-400"
-                  : ""
-              } p-0 border-0`}
+            <Dialog
+              key={item.title}
+              open={activeDialog === item.title}
+              onOpenChange={(isOpen) =>
+                setActiveDialog(isOpen ? item.title : null)
+              }
             >
-              <CardContent className="bg-transparent border border-transparent transition ease-in-out duration-300 hover:border hover:border-primary-brown h-full p-0 flex flex-col justify-between">
-                <div className="h-full flex flex-col">
-                  <Image
-                    src={item.image}
-                    width={400}
-                    height={400}
-                    className="rounded-t-[14px] h-42 object-cover w-full"
-                    alt=""
-                  ></Image>
-                  <div className="p-2">
-                    <Label
-                      variant="h1"
-                      className={`${
-                        index === 0 ? "text-black" : "text-primary-brown"
-                      }`}
-                    >
-                      {item.title}
-                    </Label>
-                    <Label
-                      className={`${
-                        index === 0 ? "text-black" : "text-primary-brown"
-                      }`}
-                    >
-                      {item.desc}
-                    </Label>
-                  </div>
-                </div>
-                <div className="p-2 w-full">
-                  <Button
-                    className={`w-full ${
-                      index === 0 &&
-                      "bg-primary-gray-400 text-white hover:bg-primary-gray-400/30"
-                    }`}
-                  >
-                    {index === 0
-                      ? "Request Wine"
+              <DialogTrigger className="w-full">
+                <Card
+                  className={`w-[42vh] card-inner-cont h-full ${
+                    index === 0
+                      ? "bg-primary-brown"
                       : index === 1
-                      ? "Browse Event"
+                      ? "bg-primary-green"
                       : index === 2
-                      ? "Plan Event"
-                      : "Request Wine"}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                      ? "bg-primary-red-300"
+                      : index === 3
+                      ? "bg-primary-gray-400"
+                      : ""
+                  } p-0 border-0`}
+                >
+                  <CardContent className="bg-transparent border border-transparent transition ease-in-out duration-300 hover:border hover:border-primary-brown h-full p-0 flex flex-col justify-between">
+                    <div className="h-full flex flex-col">
+                      <Image
+                        src={item.image}
+                        width={400}
+                        height={400}
+                        className="rounded-t-[14px] h-42 object-cover w-full"
+                        alt=""
+                      ></Image>
+                      <div className="p-2">
+                        <Label
+                          variant="h1"
+                          className={`${
+                            index === 0 ? "text-black" : "text-primary-brown"
+                          }`}
+                        >
+                          {item.title}
+                        </Label>
+                        <div>
+                          <Label
+                            className={` w-full text-left ${
+                              index === 0 ? "text-black" : "text-primary-brown"
+                            }`}
+                          >
+                            {item.desc}
+                          </Label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-2 w-full">
+                      <Button
+                        className={`w-full ${
+                          index === 0 &&
+                          "bg-primary-gray-400 text-white hover:bg-primary-gray-400/30"
+                        }`}
+                      >
+                        {index === 0
+                          ? "Request Wine"
+                          : index === 1
+                          ? "Browse Event"
+                          : index === 2
+                          ? "Plan Event"
+                          : "Request Wine"}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </DialogTrigger>
+              <DialogContent className="max-h-[90%] overflow-auto">
+                {item.title === "Special Request" ? (
+                  <SpecialRequestDialog
+                    onClick={() => setActiveDialog(null)}
+                  ></SpecialRequestDialog>
+                ) : item.title === "Sporting Events" ? (
+                  <SportingEventsDialog></SportingEventsDialog>
+                ) : item.title === "Entertainment" ? (
+                  <EntertainmentDialog
+                    onClick={() => setActiveDialog(null)}
+                  ></EntertainmentDialog>
+                ) : (
+                  <WineEventsDialog></WineEventsDialog>
+                )}
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
       </div>

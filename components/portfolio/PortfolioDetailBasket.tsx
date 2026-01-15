@@ -151,7 +151,7 @@ export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
                       <div className="flex justify-between items-center">
                         <Label>Market Value:</Label>
                         <Label className="text-white">
-                          £ {Number(item.basket?.market_value).toLocaleString()}
+                          £ {Number(item.purchase_price).toLocaleString()}
                         </Label>
                       </div>
                     </div>

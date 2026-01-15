@@ -178,6 +178,7 @@ export default function DrawerBundlePortfolioBuy({
                 onClick={() => setQuantityData(quantityData + 1)}
                 variant={"ghost"}
                 className="p-0 m-0 h-5"
+                disabled={quantityData === 1 && true}
               >
                 <Plus className="text-green-600"></Plus>
               </Button>

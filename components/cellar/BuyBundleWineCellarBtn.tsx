@@ -17,6 +17,7 @@ import SellDialog from "../SellDialog";
 import BuyDialog from "../BuyDialog";
 import SellBundleDialog from "../portfolio/Bundle/SellBundleDialog";
 import BuyBundleDialog from "../BuyDialog";
+import DeliverDialog from "./DeliverDialog";
 
 export default function BuyBundleWineCellarBtn({ item }: { item: CartItemT }) {
   const bottle =
@@ -43,6 +44,10 @@ export default function BuyBundleWineCellarBtn({ item }: { item: CartItemT }) {
       label: "Grapes",
       value: item.grapes !== "" ? item.grapes : item.wine_parent.grapes ?? "",
     },
+    {
+      label: "Purchase Price",
+      value: `£ ${item.basket?.market_value.toLocaleString()}`,
+    },
   ];
 
   return (
@@ -64,7 +69,7 @@ export default function BuyBundleWineCellarBtn({ item }: { item: CartItemT }) {
                 variant="h1"
                 className="text-primary-brown text-[25px] font-bold"
               >
-                £{Number(item.basket?.market_value).toLocaleString()}
+                £ {Number(item.basket?.market_value).toLocaleString()}
               </Label>
             </div>
             <div className="flex flex-col w-full gap-2">
@@ -86,7 +91,7 @@ export default function BuyBundleWineCellarBtn({ item }: { item: CartItemT }) {
         </div>
 
         <div className="gap-2 p-2 py-4 border-t border-primary-brown/50 rounded-b-[14px] flex flex-col bg-primary-gray-400">
-          <Button className="w-full">Deliver</Button>
+          <DeliverDialog item={item}></DeliverDialog>
         </div>
       </CardContent>
     </Card>

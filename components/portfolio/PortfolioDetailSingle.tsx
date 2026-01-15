@@ -101,7 +101,7 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
               holding_years={item.holding_year ?? ""}
               name={item.wine_name}
               quantity={item.quantity}
-              purchase_price={item.purchase_price}
+              purchase_price={item.stock_wine_vintage?.market_value ?? 0}
               profit_loss={profit_loss_value}
               profit_loss_percent={profit_loss_percent}
               status={item.status}
@@ -165,10 +165,7 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
                   variant="h1"
                   className="text-primary-brown text-[25px] font-bold"
                 >
-                  £
-                  {Number(
-                    item.stock_wine_vintage?.market_value
-                  ).toLocaleString()}
+                  £ {Number(item.purchase_price).toLocaleString()}
                 </Label>
               </div>
             </div>

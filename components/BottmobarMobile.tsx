@@ -5,6 +5,13 @@ import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
 import { Label } from "./ui/label";
+import { useCart } from "@/context/CartContext";
+import { useCartSummary } from "@/context/CartSummary";
+import { useDelivery } from "@/context/DeliveryContext";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { useRare } from "@/context/RareContext";
+import { useSubAccount } from "@/context/SubAccountContext";
+import { useWineCellar } from "@/context/WineCellarContext";
 
 export default function BottombarMobile() {
   const [activeTab, setActiveTab] = useState("");
@@ -13,6 +20,14 @@ export default function BottombarMobile() {
   const pathname = usePathname();
   const path = pathname.split("/vintage/")[1];
 
+  const { clearCart } = useCart();
+  const { clearCartSummary } = useCartSummary();
+  const { clearDelivery } = useDelivery();
+  const { clearPortfolio } = usePortfolio();
+  const { clearRare } = useRare();
+  const { subAccounts, addSubAccount, clearSubAccounts } = useSubAccount();
+  const { clearWineCellar } = useWineCellar();
+
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
     router.push(link);
@@ -20,6 +35,12 @@ export default function BottombarMobile() {
 
   const handleLogout = () => {
     setLoading(true);
+    clearCart();
+    clearCartSummary();
+    clearDelivery();
+    clearPortfolio();
+    clearRare();
+    clearWineCellar();
     router.push("/");
   };
 
@@ -47,7 +68,13 @@ export default function BottombarMobile() {
                 color={item.value === activeTab ? "#9C513E" : "white"}
               ></item.icon>
             )}
-            <Label className={`text-[10px] ${item.value === activeTab ? "text-[#c5674f]" : "text-white"}`}>{item.label}</Label>
+            <Label
+              className={`text-[10px] ${
+                item.value === activeTab ? "text-[#c5674f]" : "text-white"
+              }`}
+            >
+              {item.label}
+            </Label>
           </Button>
         ))}
       </div>

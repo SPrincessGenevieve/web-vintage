@@ -30,12 +30,16 @@ export function DeliveryProvider({ children }: { children: React.ReactNode }) {
   }, [delivery]);
 
   const addToDelivery = (newItem: DeliverT) => {
+    if (!newItem?.id) {
+      console.warn("Cannot add delivery item without id:", newItem);
+      return;
+    }
+
     setDelivery((prev) => {
       const current = Array.isArray(prev) ? prev : [];
 
       const index = current.findIndex((item) => item.id === newItem.id);
 
-      // ✅ Replace existing item with fresh data
       if (index !== -1) {
         const updated = [...current];
         updated[index] = newItem;

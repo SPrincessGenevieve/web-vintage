@@ -99,7 +99,7 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
             <DetailsCardWineCellar
               name={item.wine_name}
               quantity={item.quantity}
-              purchase_price={item.purchase_price}
+              purchase_price={item.stock_wine_vintage?.market_value ?? 0}
               profit_loss={profit_loss_value}
               profit_loss_percent={profit_loss_percent}
               status={item.status}
@@ -173,7 +173,7 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
                 >
                   £
                   {Number(
-                    item.stock_wine_vintage?.market_value
+                    item.purchase_price
                   ).toLocaleString()}
                 </Label>
               </div>

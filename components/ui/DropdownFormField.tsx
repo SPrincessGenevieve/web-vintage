@@ -40,7 +40,7 @@ export function DropdownFormField({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="flex flex-col gap-4 w-full">
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Select

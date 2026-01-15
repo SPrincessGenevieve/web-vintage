@@ -119,7 +119,7 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
           {items.map((item, index) => (
             <DropdownMenuItem
               disabled={
-                data.status !== "In Bond" && data.status !== "Gift Request"
+                data.status !== "In Bond" && item.label !== "Assign to Sub-account"
               }
               key={index}
               onClick={() => {
@@ -135,7 +135,10 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
               </Label>
             </DropdownMenuItem>
           ))}
-          <DropdownMenuItem onClick={handleAssignToWineCellar}>
+          <DropdownMenuItem
+            disabled={data.status !== "In Bond"}
+            onClick={handleAssignToWineCellar}
+          >
             <TextIcon className="text-primary-brown"></TextIcon>
             <Label className="text-white">Assign to Wine Cellar</Label>
           </DropdownMenuItem>

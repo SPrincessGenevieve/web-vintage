@@ -10,6 +10,12 @@ import { LogOut } from "lucide-react";
 import { Spinner } from "./ui/spinner";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import { useCartSummary } from "@/context/CartSummary";
+import { useDelivery } from "@/context/DeliveryContext";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { useRare } from "@/context/RareContext";
+import { useSubAccount } from "@/context/SubAccountContext";
+import { useWineCellar } from "@/context/WineCellarContext";
 export default function SidebarWeb() {
   const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,6 +23,12 @@ export default function SidebarWeb() {
   const pathname = usePathname();
   const path = pathname.split("/vintage/")[1];
   const { clearCart } = useCart();
+  const { clearCartSummary } = useCartSummary();
+  const { clearDelivery } = useDelivery();
+  const { clearPortfolio } = usePortfolio();
+  const { clearRare } = useRare();
+  const { subAccounts, addSubAccount, clearSubAccounts } = useSubAccount();
+  const { clearWineCellar } = useWineCellar();
 
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
@@ -26,6 +38,11 @@ export default function SidebarWeb() {
   const handleLogout = () => {
     setLoading(true);
     clearCart();
+    clearCartSummary();
+    clearDelivery();
+    clearPortfolio();
+    clearRare();
+    clearWineCellar();
     router.push("/");
   };
 

@@ -11,6 +11,7 @@ import { Label } from "../ui/label";
 import TabDeatils from "../marketplace/TabDetails";
 import MoreContentWineCellarBundle from "./MoreContentWineCellarBundle";
 import BuyBundleWineCellarBtn from "./BuyBundleWineCellarBtn";
+import DeliverDialog from "./DeliverDialog";
 
 export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
   const pathname = usePathname();
@@ -87,6 +88,7 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
             </div>
 
             <div>
+
               <MoreContentWineCellarBundle
                 data={item}
               ></MoreContentWineCellarBundle>
@@ -145,7 +147,7 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
                       <div className="flex justify-between items-center">
                         <Label>Market Value:</Label>
                         <Label className="text-white">
-                          £ {Number(item.basket?.market_value).toLocaleString()}
+                          £ {Number(item.purchase_price).toLocaleString()}
                         </Label>
                       </div>
                     </div>

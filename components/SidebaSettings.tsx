@@ -37,6 +37,12 @@ import AddSubAccount from "./settings/sub-account/AddSubAccount";
 import Image from "next/image";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import UpdateSubAccount from "./settings/sub-account/UpdateSubAccount";
+import { useCartSummary } from "@/context/CartSummary";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { useRare } from "@/context/RareContext";
+import { useDelivery } from "@/context/DeliveryContext";
+import { useWineCellar } from "@/context/WineCellarContext";
+import { useUserContext } from "@/context/UserContext";
 
 export default function SidebarSettings() {
   const [activeTab, setActiveTab] = useState("");
@@ -45,7 +51,12 @@ export default function SidebarSettings() {
   const pathname = usePathname();
   const path = pathname.split("/vintage/settings/")[1];
   const { clearCart } = useCart();
+  const { clearCartSummary } = useCartSummary();
+  const { clearDelivery } = useDelivery();
+  const { clearPortfolio } = usePortfolio();
+  const { clearRare } = useRare();
   const { subAccounts, addSubAccount, clearSubAccounts } = useSubAccount();
+  const { clearWineCellar } = useWineCellar();
 
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
@@ -55,6 +66,11 @@ export default function SidebarSettings() {
   const handleLogout = () => {
     setLoading(true);
     clearCart();
+    clearCartSummary();
+    clearDelivery();
+    clearPortfolio();
+    clearRare();
+    clearWineCellar();
     router.push("/");
   };
 

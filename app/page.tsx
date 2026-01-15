@@ -18,6 +18,8 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputFormField } from "@/components/ui/InputFormField";
+import { usePortfolio } from "@/context/PortfolioContext";
+import { portfolio_default } from "@/lib/default_portfolio";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -32,6 +34,7 @@ export default function Login() {
   const [open, setOpen] = useState(register_success);
   const [registerLoad, setRegisterLoad] = useState(false);
   const [loginLoad, setLoginLoad] = useState(false);
+  const { portfolio, clearPortfolio, addToPortfolio } = usePortfolio();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema), // ✅ Connect Zod schema
@@ -52,6 +55,7 @@ export default function Login() {
 
   const handleLogin = (data: FormValues) => {
     setLoginLoad(true);
+    portfolio_default.forEach((item) => addToPortfolio(item));
     router.push("/vintage/dashboard");
   };
 

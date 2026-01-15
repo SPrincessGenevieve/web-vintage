@@ -87,6 +87,10 @@ export default function WineCellar() {
   const [loadingID, setLoadingID] = useState("");
   const { subAccounts, addSubAccount } = useSubAccount();
   const [search, setSearch] = useState("");
+  const [selectedVintage, setSelectedVintage] = useState(0);
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [selectedSort, setSelectedSort] = useState("");
+  const [countFilter, setCountFilter] = useState(0);
 
   const activeSubAccount = subAccounts.find((s) => s.is_active);
 
@@ -116,9 +120,6 @@ export default function WineCellar() {
       filteredWineCellar.filter((item) => item?.fromm).map((item) => item.fromm)
     )
   );
-  const [selectedVintage, setSelectedVintage] = useState(0);
-  const [selectedRegion, setSelectedRegion] = useState("");
-  const [selectedSort, setSelectedSort] = useState("");
 
   const handleDel = () => {
     clearWineCellar();
@@ -171,7 +172,6 @@ export default function WineCellar() {
     return result;
   };
 
-  const [countFilter, setCountFilter] = useState(0);
 
   useEffect(() => {
     if (selectedRegion !== "" && selectedVintage === 0) {
