@@ -68,6 +68,10 @@ export default function AssignSubAccount({ data }: { data: CartItemT }) {
     );
   };
 
+  console.log("DATA: ", data);
+
+  const image = Array.isArray(data.images) ? data.images[0] : data.images;
+
   return (
     <div className="flex flex-col gap-4">
       <Label variant="h1">Allocate to which sub-account?</Label>
@@ -76,7 +80,7 @@ export default function AssignSubAccount({ data }: { data: CartItemT }) {
           <div className="flex flex-col w-full">
             <div className="flex w-full p-4 items-center justify-center">
               <Image
-                src={data.images[0]}
+                src={image}
                 alt=""
                 width={400}
                 height={400}
