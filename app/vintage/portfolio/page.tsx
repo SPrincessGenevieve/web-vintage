@@ -295,7 +295,7 @@ export default function Portfolio() {
 
   return (
     <div className="w-full h-full flex flex-col gap-4 overflow-y-auto">
-      <Button onClick={handleDel}>Delete</Button>
+      {/* <Button onClick={handleDel}>Delete</Button> */}
       <div className="w-full flex gap-4 items-center justify-center">
         <Input
           placeholder="Search by wine name"
