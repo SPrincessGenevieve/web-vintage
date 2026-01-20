@@ -103,7 +103,7 @@ export default function SellBundleDialog({ item }: { item: CartItemT }) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
         disabled={item.status !== "In Bond" ? true : false}
-        className="w-full h-full"
+        className="w-1/2 h-full"
       >
         <Button
           disabled={item.status !== "In Bond" ? true : false}

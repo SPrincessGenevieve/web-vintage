@@ -55,7 +55,7 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
 
     localStorage.setItem(
       KEY,
-      JSON.stringify({ value: result, timestamp: now })
+      JSON.stringify({ value: result, timestamp: now }),
     );
 
     return result;
@@ -63,7 +63,7 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
 
   const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
     String(item.id),
-    item.purchase_price
+    item.purchase_price,
   );
 
   console.log("DETAIL DATA: ", item);
@@ -80,7 +80,7 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
         </Button>
       </div>
 
-      <div className="flex gap-4 h-[35%]">
+      <div className="market-l1-l1 flex gap-4 h-[35%]">
         <Card className="">
           <CardContent>
             <div>
@@ -108,26 +108,9 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
           </CardContent>
         </Card>
       </div>
-      <div className="flex items-center justify-between">
-        {tabs.map((item, index) => (
-          <div key={index} className="flex w-full">
-            <Button
-              onClick={() => setActiveTab(item)}
-              variant={"ghost"}
-              className={`w-full border-b-2 ${
-                activeTab === item
-                  ? "border-white text-white font-semibold"
-                  : "border-primary-brown/30"
-              } rounded-none`}
-            >
-              {item}
-            </Button>
-          </div>
-        ))}
-      </div>
 
       {/* PERFORMANCE */}
-      <div className="w-full flex justify-between gap-4">
+      <div className="market-l1-l1 w-full flex justify-between gap-4">
         <Card className="w-full">
           <CardContent className="flex h-full">
             <div className="w-full h-full flex flex-col items-center justify-center">
@@ -136,8 +119,8 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
                   Number(release_price) > 0
                     ? "text-green-500"
                     : Number(release_price) < 0
-                    ? "text-red-500"
-                    : "text-gray-400"
+                      ? "text-red-500"
+                      : "text-gray-400"
                 }`}
                 variant="h1"
               >
@@ -148,7 +131,7 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
           </CardContent>
         </Card>
 
-        <Card className="w-full max-w-[300px] p-0 m-0 bg-primary-gray-400">
+        <Card className="w-full max-w-[300px] market_buy_cont p-0 m-0 bg-primary-gray-400">
           <CardContent className="flex bg-transparent p-0">
             <div className="flex flex-col w-full items-end gap-4">
               <div className="flex justify-between items-center w-full gap-2 rounded-t-[14px] bg-primary-gray-500/50 border-b border-primary-brown/50 p-4">
@@ -171,18 +154,33 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
                   variant="h1"
                   className="text-primary-brown text-[25px] font-bold"
                 >
-                  £
-                  {Number(
-                    item.purchase_price
-                  ).toLocaleString()}
+                  £{Number(item.purchase_price).toLocaleString()}
                 </Label>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
-
-      <Card className="h-full w-full">
+      <div className="flex items-center justify-between">
+        {tabs.map((item, index) => (
+          <div key={index} className="flex w-full">
+            <Button
+              onClick={() => setActiveTab(item)}
+              variant={"ghost"}
+              className={`w-full border-b-2 ${
+                activeTab === item
+                  ? "border-white text-white font-semibold"
+                  : "border-primary-brown/30"
+              } rounded-none`}
+            >
+              {item}
+            </Button>
+          </div>
+        ))}
+      </div>
+      <Card
+        className={`${activeTab === "Performance" ? "" : "h-full"} w-full flex`}
+      >
         <CardContent className="h-full overflow-y-auto">
           {activeTab === "Performance" && (
             <WineCellarDetailChart

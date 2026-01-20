@@ -59,7 +59,7 @@ export default function BuyBundleBtnRare({ data, market_value }: { data: WineRar
           </div>
           <div className="flex justify-between w-full gap-4">
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex w-full justify-between gap-2 border-2 border-primary-brown rounded-[10px] p-2">
+              <DropdownMenuTrigger className="flex w-1/2 justify-between gap-2 border-2 border-primary-brown rounded-[10px] p-2">
                 <Label className="text-primary-brown font-bold text-center flex items-center justify-center w-full">
                   {/* {selectedVintage} */}---
                 </Label>
@@ -72,7 +72,7 @@ export default function BuyBundleBtnRare({ data, market_value }: { data: WineRar
             <DrawerRareBundleBuy
               type={"special-bundle"}
               trigger={
-                <Button className="bg-primary-brown textblack hover:text-black border-2 border-transparent h-10 hover:border-primary-brown">
+                <Button className="bg-primary-brown w-1/2 textblack hover:text-black border-2 border-transparent h-10 hover:border-primary-brown">
                   <ShoppingBasket /> Buy this vintage
                 </Button>
               }

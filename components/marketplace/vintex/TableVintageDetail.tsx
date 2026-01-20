@@ -133,9 +133,9 @@ export default function TableVintageDetail() {
   };
 
   const handleVintageDetail = (vintage: number) => {
-    console.log("VINTAGE: ", vintage);
     router.push(`${trimmedPath}/${vintage}`);
   };
+
 
   return (
     <div className="flex flex-col gap-4 h-full">
@@ -168,7 +168,7 @@ export default function TableVintageDetail() {
                     <>
                       <Button
                         onClick={handleNotify}
-                        className="absolute top-0 right-0"
+                        className="absolute top-2 right-0"
                         variant={"ghost"}
                       >
                         <Bell></Bell>
@@ -258,7 +258,7 @@ export default function TableVintageDetail() {
                           >
                             {item?.vintage}
                             {item?.is_very_special && <Star></Star>}
-                            {item?.is_unavailable && <WineOff></WineOff>}
+                            {item?.is_unavailable === true && <WineOff></WineOff>}
                           </DropdownMenuItem>
                         ))}
                       </DropdownMenuContent>

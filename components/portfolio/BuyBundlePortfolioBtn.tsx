@@ -50,7 +50,7 @@ export default function BuyBundlePortfolioBtn({ item }: { item: CartItemT }) {
   ];
 
   return (
-    <Card className="w-full border-primary-brown/50 p-0 max-w-[300px] bg-primary-gray-400/70">
+    <Card className="w-full border-primary-brown/50 p-0 bundle-buy-cont max-w-[300px] bg-primary-gray-400/70">
       <CardContent className="p-0 flex flex-col justify-between h-full bg-transparent">
         <div className="flex p-2 w-full items-center justify-center gap-4 h-full  rounded-t-[14px]">
           {/* <div className="w-full">
@@ -76,7 +76,7 @@ export default function BuyBundlePortfolioBtn({ item }: { item: CartItemT }) {
               <DrawerBundlePortfolioBuy
                 item={item}
                 trigger={
-                  <Button className="bg-primary-brown textblack hover:text-black border-2 border-transparent h-10 hover:border-primary-brown">
+                  <Button className="bg-primary-brown w-1/2 textblack hover:text-black border-2 border-transparent h-10 hover:border-primary-brown">
                     <ShoppingBasket /> Buy this vintage
                   </Button>
                 }

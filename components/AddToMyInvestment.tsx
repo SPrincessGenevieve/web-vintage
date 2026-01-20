@@ -115,9 +115,9 @@ export default function AddToMyInvestment() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
+      {/* <DialogTrigger>
         <Button>Add to My Investment</Button>
-      </DialogTrigger>
+      </DialogTrigger> */}
       <DialogContent className="overflow-y-auto max-h-[90%]">
         {/* <Label>Current STEP: {currentStep}</Label> */}
         <div className="absolute">

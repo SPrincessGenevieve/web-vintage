@@ -30,6 +30,18 @@ import { CartItemT } from "@/lib/types";
 import { toast } from "sonner";
 import { useSubAccount } from "@/context/SubAccountContext";
 import { v4 as uuidv4 } from "uuid";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import { useUserContext } from "@/context/UserContext";
+import { useCartSummary } from "@/context/CartSummary";
+import { useRouter } from "next/navigation";
 
 export interface DrawerBundlePortfolioT {
   trigger: React.ReactNode;
@@ -40,30 +52,33 @@ export default function DrawerBundlePortfolioBuy({
   trigger,
   item,
 }: DrawerBundlePortfolioT) {
-  const { addToCart } = useCart(); // Access the global add function
+  const { addToCart, setCheckedItems } = useCart(); // Access the global add function
   const { subAccounts } = useSubAccount();
   const bottle_size = item.bottle_size;
   const bottle =
     bottle_size === "0750"
       ? 75
       : bottle_size === "1500"
-      ? 150
-      : bottle_size === "3000"
-      ? 300
-      : bottle_size === "6000"
-      ? 600
-      : 0;
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedVintage, setSelectedVintage] = useState("---");
+        ? 150
+        : bottle_size === "3000"
+          ? 300
+          : bottle_size === "6000"
+            ? 600
+            : 0;
+  const [open, setOpen] = useState(false);
+  const [photoRequest, setPhotoRequest] = useState<boolean | null>(null);
   const [quantityData, setQuantityData] = useState(1);
   const [selectedCaseSize, setSelectedCaseSize] = useState(
-    `${item.case_size}x${bottle}cl`
+    `${item.case_size}x${bottle}cl`,
   );
+  const { setUserDetails } = useUserContext();
+  const { addToCartSummary, clearCartSummary } = useCartSummary();
+  const router = useRouter();
 
   const total =
     Number(item.basket?.market_value) * item.case_size * quantityData;
 
-  const handleAddToBasket = () => {
+  const handleAddToBasket = (puchase_type: string, photo_req: boolean) => {
     const portID = uuidv4();
     const today = new Date().toISOString().split("T")[0];
     const newItem: CartItemT = {
@@ -75,7 +90,7 @@ export default function DrawerBundlePortfolioBuy({
       images: item.images,
       is_special_volumes: false,
       is_available: true,
-      photo_request: false,
+      photo_request: photo_req,
       location: "portfolio",
       stock_wine_vintage: null,
       basket: item.basket,
@@ -100,10 +115,40 @@ export default function DrawerBundlePortfolioBuy({
       wine_parent: item.wine_parent,
     };
 
-    addToCart(newItem);
-    console.log("DATA RSULT: ", newItem);
-    toast.success("Wine added to cart");
-    location.reload();
+    const newTotal =
+      Number(newItem.basket?.market_value) *
+      newItem.case_size *
+      newItem.quantity;
+
+    if (photo_req) {
+      setUserDetails({
+        cart_total: newTotal + 16.99,
+      });
+    } else {
+      setUserDetails({
+        cart_total: newTotal,
+      });
+    }
+
+    if (puchase_type === "buy") {
+      setOpen(false);
+      setUserDetails({
+        cart_total: photo_req ? newTotal + 16.99 : newTotal,
+      });
+      addToCart(newItem);
+      setCheckedItems((prev) => ({
+        ...prev,
+        [newItem.id]: true, // safely update Record<string, boolean>
+      }));
+      addToCartSummary(newItem);
+      router.refresh();
+      router.push("/vintage/cart/review");
+    } else if (puchase_type === "add") {
+      addToCart(newItem);
+
+      toast.success("Wine added to cart");
+      location.reload();
+    }
   };
 
   return (
@@ -178,7 +223,6 @@ export default function DrawerBundlePortfolioBuy({
                 onClick={() => setQuantityData(quantityData + 1)}
                 variant={"ghost"}
                 className="p-0 m-0 h-5"
-                disabled={quantityData === 1 && true}
               >
                 <Plus className="text-green-600"></Plus>
               </Button>
@@ -193,8 +237,51 @@ export default function DrawerBundlePortfolioBuy({
         </div>
 
         <SheetFooter>
-          <Button variant={"outline"}>Buy Now</Button>
-          <Button onClick={handleAddToBasket}>Add to Basket</Button>
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger className="w-full">
+              <Button className="w-full" variant={"outline"}>
+                Buy Now
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>
+                  Would like to request photo on your wine purchase?
+                </DialogTitle>
+                <DialogDescription className="flex w-full gap-2">
+                  <Label>Photo Request Fee:</Label>
+                  <Label className="font-semibold text-green-500">
+                    £ 16.99
+                  </Label>
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <Button
+                  onClick={() => {
+                    setPhotoRequest(false);
+                    handleAddToBasket("buy", false);
+                  }}
+                  className="w-32"
+                  variant={"outline"}
+                >
+                  No
+                </Button>
+
+                <Button
+                  className="w-32"
+                  onClick={() => {
+                    setPhotoRequest(true);
+                    handleAddToBasket("buy", true);
+                  }}
+                >
+                  Yes
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          <Button onClick={() => handleAddToBasket("add", false)}>
+            Add to Basket
+          </Button>
         </SheetFooter>
       </SheetContent>
     </Sheet>

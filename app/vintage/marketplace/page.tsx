@@ -102,7 +102,7 @@ export default function Marketplace() {
   useEffect(() => {
     setCount(
       (selectedFilter !== "all" ? 1 : 0) +
-        (selectedCategory !== "vint-ex" ? 1 : 0)
+        (selectedCategory !== "vint-ex" ? 1 : 0),
     );
   }, [selectedCategory, selectedFilter]);
 
@@ -111,10 +111,10 @@ export default function Marketplace() {
       selectedCategory === "vint-ex"
         ? vintex
         : selectedCategory === "special-volumes"
-        ? special_volume
-        : selectedCategory === "special-bundle"
-        ? special_bundle
-        : rare;
+          ? special_volume
+          : selectedCategory === "special-bundle"
+            ? special_bundle
+            : rare;
 
     const filtered = source.filter((wine: any) => {
       const wineData = wine.wine_vintage_details || wine;
@@ -279,7 +279,10 @@ export default function Marketplace() {
       </div>
       {selectedCategory === "rare" ? (
         <>
-        <CardWineRare item={currentData} type={selectedCategory}></CardWineRare>
+          <CardWineRare
+            item={currentData}
+            type={selectedCategory}
+          ></CardWineRare>
         </>
       ) : (
         <CardWine item={currentData} type={selectedCategory} />

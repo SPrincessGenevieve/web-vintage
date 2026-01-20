@@ -108,6 +108,7 @@ const header_list = [
 ];
 
 export default function Portfolio() {
+  const [loadData, setLoadData] = useState(true);
   const { portfolio, clearPortfolio, addToPortfolio } = usePortfolio();
   const { subAccounts, addSubAccount } = useSubAccount();
   const [search, setSearch] = useState("");
@@ -118,7 +119,7 @@ export default function Portfolio() {
   const filteredPortfolio = React.useMemo(() => {
     if (!activeSubAccount) return [];
     return portfolio.filter(
-      (item) => item.sub_account.id === activeSubAccount.id
+      (item) => item.sub_account.id === activeSubAccount.id,
     );
   }, [portfolio, activeSubAccount]);
 
@@ -134,14 +135,14 @@ export default function Portfolio() {
     new Set(
       filteredPortfolio
         .filter((item) => item?.vintage && item.vintage !== 0)
-        .map((item) => item.vintage)
-    )
+        .map((item) => item.vintage),
+    ),
   );
 
   const region_list = Array.from(
     new Set(
-      filteredPortfolio.filter((item) => item?.fromm).map((item) => item.fromm)
-    )
+      filteredPortfolio.filter((item) => item?.fromm).map((item) => item.fromm),
+    ),
   );
   const [selectedVintage, setSelectedVintage] = useState(0);
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -179,7 +180,7 @@ export default function Portfolio() {
 
     localStorage.setItem(
       KEY,
-      JSON.stringify({ value: result, timestamp: now })
+      JSON.stringify({ value: result, timestamp: now }),
     );
 
     return result;
@@ -214,7 +215,7 @@ export default function Portfolio() {
   const getMarketValue = (item: any) => {
     return item.basket !== null
       ? item.basket.market_value
-      : item.stock_wine_vintage?.market_value ?? 0;
+      : (item.stock_wine_vintage?.market_value ?? 0);
   };
 
   const displayPortfolio = React.useMemo(() => {
@@ -224,7 +225,7 @@ export default function Portfolio() {
     if (search.trim() !== "") {
       const keyword = search.toLowerCase();
       data = data.filter((item) =>
-        item.wine_name.toLowerCase().includes(keyword)
+        item.wine_name.toLowerCase().includes(keyword),
       );
     }
 
@@ -243,11 +244,11 @@ export default function Portfolio() {
       data.sort((a, b) => {
         const plA = generateProfitLoss(
           String(a.id),
-          a.purchase_price
+          a.purchase_price,
         ).profit_loss_value;
         const plB = generateProfitLoss(
           String(b.id),
-          b.purchase_price
+          b.purchase_price,
         ).profit_loss_value;
 
         const mvA = getMarketValue(a);
@@ -290,272 +291,293 @@ export default function Portfolio() {
   useEffect(() => {
     if (portfolio.length === 0) {
       portfolio_default.forEach((item) => addToPortfolio(item));
+    } else {
+      setLoadData(false);
     }
   }, [portfolio.length]);
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 overflow-y-auto">
-      {/* <Button onClick={handleDel}>Delete</Button> */}
-      <div className="w-full flex gap-4 items-center justify-center">
-        <Input
-          placeholder="Search by wine name"
-          className="bg-primary-gray-400"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        ></Input>
-        <Button variant={"outline"} className="mt-2">
-          <Download></Download> Excel
-        </Button>
-      </div>
-      <div className="flex w-full justify-between">
-        <div className="flex gap-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="relative">
-              {selectedSort !== "" && (
-                <div className="absolute flex items-center justify-center w-4 h-4 bg-[#ff8c00bc] rounded-full -top-1 left-0">
-                  <Label className="text-white text-[10px] font-bold">1</Label>
-                </div>
-              )}
-              <Button variant={"outline"}>
-                <ArrowUpDown size={20} /> Sort
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel className="text-primary-brown">
-                Sort by
-              </DropdownMenuLabel>
-              {sort.map((item, index) => (
-                <DropdownMenuCheckboxItem
-                  onCheckedChange={() => setSelectedSort(item.value)}
-                  checked={item.value === selectedSort}
-                  key={index}
-                >
-                  {item.label}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="relative">
-              {countFilter > 0 && (
-                <div className="absolute flex items-center justify-center w-4 h-4 bg-[#ff8c00bc] rounded-full -top-1 left-0">
-                  <Label className="text-white text-[10px] font-bold">
-                    {countFilter}
-                  </Label>
-                </div>
-              )}
-              <Button variant={"outline"}>
-                <Funnel size={20} /> Filter
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel className="text-primary-brown">
-                Filter by Vintage
-              </DropdownMenuLabel>
-              {vintage_list.map((item, index) => (
-                <DropdownMenuCheckboxItem
-                  onCheckedChange={() => setSelectedVintage(item ?? 0)}
-                  checked={item === selectedVintage}
-                  key={index}
-                >
-                  {item}
-                </DropdownMenuCheckboxItem>
-              ))}
-              <DropdownMenuSeparator className="bg-primary-brown/30"></DropdownMenuSeparator>
-              <DropdownMenuLabel className="text-primary-brown">
-                Filter by Region
-              </DropdownMenuLabel>
-              {region_list.map((item, index) => (
-                <DropdownMenuCheckboxItem
-                  onCheckedChange={() => setSelectedRegion(item ?? "")}
-                  checked={item === selectedRegion}
-                  key={index}
-                >
-                  {item}
-                </DropdownMenuCheckboxItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          {(countFilter > 0 || selectedSort !== "") && (
-            <Button variant="outline" onClick={clearFilter}>
-              <ListRestart />
-            </Button>
-          )}
+    <div className="w-full h-full">
+      <div className="w-full h-full flex flex-col gap-4 overflow-y-auto">
+        {/* <Button onClick={handleDel}>Delete</Button> */}
+        <div className="w-full flex gap-4 items-center justify-center">
+          <Input
+            placeholder="Search by wine name"
+            className="bg-primary-gray-400"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          ></Input>
+          <Button variant={"outline"} className="mt-2">
+            <Download></Download> Excel
+          </Button>
         </div>
-        <div className="flex gap-4">
-          <AddToMyInvestment></AddToMyInvestment>
-        </div>
-      </div>
-      <Card className={`overflow-y-auto relative gap-0 h-[90%]`}>
-        {filteredPortfolio.length === 0 ? (
-          <div className="w-full h-full flex-col flex items-center justify-center gap-4">
-            <Trash className="text-primary-brown" size={40}></Trash>
-            <Label variant="h1" className="text-[18px]">
-              Your Portfolio is empty
-            </Label>
-            <Button onClick={() => router.push("/vintage/marketplace")}>
-              <Wine></Wine>
-              Shop Marketplace
-            </Button>
+        <div className="flex w-full justify-between">
+          <div className="flex gap-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="relative">
+                {selectedSort !== "" && (
+                  <div className="absolute flex items-center justify-center w-4 h-4 bg-[#ff8c00bc] rounded-full -top-1 left-0">
+                    <Label className="text-white text-[10px] font-bold">
+                      1
+                    </Label>
+                  </div>
+                )}
+                <Button variant={"outline"}>
+                  <ArrowUpDown size={20} /> Sort
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel className="text-primary-brown">
+                  Sort by
+                </DropdownMenuLabel>
+                {sort.map((item, index) => (
+                  <DropdownMenuCheckboxItem
+                    onCheckedChange={() => setSelectedSort(item.value)}
+                    checked={item.value === selectedSort}
+                    key={index}
+                  >
+                    {item.label}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="relative">
+                {countFilter > 0 && (
+                  <div className="absolute flex items-center justify-center w-4 h-4 bg-[#ff8c00bc] rounded-full -top-1 left-0">
+                    <Label className="text-white text-[10px] font-bold">
+                      {countFilter}
+                    </Label>
+                  </div>
+                )}
+                <Button variant={"outline"}>
+                  <Funnel size={20} /> Filter
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel className="text-primary-brown">
+                  Filter by Vintage
+                </DropdownMenuLabel>
+                {vintage_list.map((item, index) => (
+                  <DropdownMenuCheckboxItem
+                    onCheckedChange={() => setSelectedVintage(item ?? 0)}
+                    checked={item === selectedVintage}
+                    key={index}
+                  >
+                    {item}
+                  </DropdownMenuCheckboxItem>
+                ))}
+                <DropdownMenuSeparator className="bg-primary-brown/30"></DropdownMenuSeparator>
+                <DropdownMenuLabel className="text-primary-brown">
+                  Filter by Region
+                </DropdownMenuLabel>
+                {region_list.map((item, index) => (
+                  <DropdownMenuCheckboxItem
+                    onCheckedChange={() => setSelectedRegion(item ?? "")}
+                    checked={item === selectedRegion}
+                    key={index}
+                  >
+                    {item}
+                  </DropdownMenuCheckboxItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            {(countFilter > 0 || selectedSort !== "") && (
+              <Button variant="outline" onClick={clearFilter}>
+                <ListRestart />
+              </Button>
+            )}
           </div>
+          <div className="flex gap-4">
+            <AddToMyInvestment></AddToMyInvestment>
+          </div>
+        </div>
+
+        {loadData ? (
+          <Card className="w-full h-full">
+            <CardContent className="w-full h-full gap-4 flex flex-col items-center justify-center">
+              <Spinner></Spinner>
+              <Label className="text-primary-brown">Loading Portfolio...</Label>
+            </CardContent>
+          </Card>
         ) : (
-          <CardContent className="flex h-full flex-col min-w-400">
-            <Table className="rounded-2xl">
-              <TableHeader>
-                <TableRow className="border-primary-brown/30">
-                  {header_list.map((item) => (
-                    <TableCell className="text-white/30">
-                      <div className="w-full flex items-center justify-center">
-                        <Label className="">{item}</Label>
-                      </div>
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHeader>
-              <TableBody className="w-full rounded-2xl">
-                {displayPortfolio.map((item, index) => {
-                  const id = String(item.id);
-                  const { profit_loss_value, profit_loss_percent } =
-                    generateProfitLoss(id, item.purchase_price);
-                  const market_val =
-                    item.basket !== null
-                      ? item.basket.market_value
-                      : item.stock_wine_vintage?.market_value;
-
-                  const bottle = item.bottle_size;
-
-                  return (
-                    <TableRow
-                      onClick={() => handleDetail(String(item.id))}
-                      className="border-primary-brown/30 rounded-2xl relative"
-                    >
-                      <TableCell className="max-w-[300px]">
-                        {loadingID === item.id && (
-                          <div className="absolute bg-primary-gray-500/30 w-[99%] h-30 flex items-center justify-center">
-                            <Spinner className="h-10 w-10 text-primary-brown"></Spinner>
+          <Card className={`overflow-y-auto relative gap-0 h-[90%]`}>
+            {filteredPortfolio.length === 0 ? (
+              <div className="w-full h-full flex-col flex items-center justify-center gap-4">
+                <Trash className="text-primary-brown" size={40}></Trash>
+                <Label variant="h1" className="text-[18px]">
+                  Your Portfolio is empty
+                </Label>
+                <Button onClick={() => router.push("/vintage/marketplace")}>
+                  <Wine></Wine>
+                  Shop Marketplace
+                </Button>
+              </div>
+            ) : (
+              <CardContent className="flex h-full flex-col min-w-400">
+                <Table className="rounded-2xl">
+                  <TableHeader>
+                    <TableRow className="border-primary-brown/30">
+                      {header_list.map((item) => (
+                        <TableCell className="text-white/30">
+                          <div className="w-full flex items-center justify-center">
+                            <Label className="">{item}</Label>
                           </div>
-                        )}
-                        <div className="flex gap-4">
-                          <Image
-                            alt=""
-                            width={400}
-                            height={400}
-                            className="rounded-2xl w-40 h-30 object-contain"
-                            src={
-                              Array.isArray(item.images)
-                                ? item.images[0]
-                                : item.images
-                            }
-                          />
-                          <div className="flex flex-col justify-center">
-                            <Label variant="h2" className="text-primary-brown">
-                              {item.wine_name}
-                            </Label>
-                            <div className="flex items-center">
-                              <Label>{item.fromm}</Label>
-                              {item.basket === null && (
-                                <>
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody className="w-full rounded-2xl">
+                    {displayPortfolio.map((item, index) => {
+                      const id = String(item.id);
+                      const { profit_loss_value, profit_loss_percent } =
+                        generateProfitLoss(id, item.purchase_price);
+                      const market_val =
+                        item.basket !== null
+                          ? item.basket.market_value
+                          : item.stock_wine_vintage?.market_value;
+
+                      const bottle = item.bottle_size;
+
+                      return (
+                        <TableRow
+                          onClick={() => handleDetail(String(item.id))}
+                          className="border-primary-brown/30 rounded-2xl relative"
+                        >
+                          <TableCell className="max-w-[300px]">
+                            {loadingID === item.id && (
+                              <div className="absolute bg-primary-gray-500/30 w-[99%] h-30 flex items-center justify-center">
+                                <Spinner className="h-10 w-10 text-primary-brown"></Spinner>
+                              </div>
+                            )}
+                            <div className="flex gap-4">
+                              <Image
+                                alt=""
+                                width={400}
+                                height={400}
+                                className="rounded-2xl w-40 h-30 object-contain"
+                                src={
+                                  Array.isArray(item.images)
+                                    ? item.images[0]
+                                    : item.images
+                                }
+                              />
+                              <div className="flex flex-col justify-center">
+                                <Label
+                                  variant="h2"
+                                  className="text-primary-brown"
+                                >
+                                  {item.wine_name}
+                                </Label>
+                                <div className="flex items-center">
+                                  <Label>{item.fromm}</Label>
+                                  {item.basket === null && (
+                                    <>
+                                      <Dot className="text-white"></Dot>
+                                      <Label>{item?.vintage}</Label>
+                                    </>
+                                  )}
                                   <Dot className="text-white"></Dot>
-                                  <Label>{item?.vintage}</Label>
-                                </>
-                              )}
-                              <Dot className="text-white"></Dot>
-                              <Label>
-                                {item.case_size}x
-                                {bottle === "0750"
-                                  ? 75
-                                  : bottle === "1500"
-                                  ? 150
-                                  : bottle === "3000"
-                                  ? 300
-                                  : bottle === "6000"
-                                  ? 600
-                                  : 0}
-                                cl
+                                  <Label>
+                                    {item.case_size}x
+                                    {bottle === "0750"
+                                      ? 75
+                                      : bottle === "1500"
+                                        ? 150
+                                        : bottle === "3000"
+                                          ? 300
+                                          : bottle === "6000"
+                                            ? 600
+                                            : 0}
+                                    cl
+                                  </Label>
+                                </div>
+                              </div>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="w-full flex justify-center">
+                              <Label className="text-white">
+                                {item.quantity}
                               </Label>
                             </div>
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="w-full flex justify-center">
-                          <Label className="text-white">{item.quantity}</Label>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="w-full flex justify-center">
-                          <Label className="text-white">
-                            £{" "}
-                            {Number(
-                              item.purchase_price.toFixed(2)
-                            ).toLocaleString()}
-                          </Label>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="w-full flex justify-center">
-                          <Label className="text-white">
-                            £ {market_val?.toLocaleString()}
-                          </Label>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="w-full gap-2 flex flex-col items-center justify-center">
-                          <Label
-                            className={`${
-                              item.profit_lost ?? 0 > 0
-                                ? "text-green-500"
-                                : "text-red-500"
-                            }`}
-                          >
-                            £{" "}
-                            {Number(
-                              item.profit_lost?.toFixed()
-                            ).toLocaleString()}
-                          </Label>
-                          <Label
-                            className={`text-white px-2 py-1 rounded-[5px] ${
-                              item.profit_lost ?? 0 > 0
-                                ? "bg-green-500/30"
-                                : "bg-red-500/30"
-                            }`}
-                          >
-                            {item.profit_lost_by_percent}%
-                          </Label>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="w-full flex justify-center">
-                          <Label className="text-white">
-                            {item.holding_year} Year/s
-                          </Label>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="w-full flex justify-center">
-                          <Label
-                            className={`rounded-[5px] px-2 py-0.5 font-semibold ${
-                              item.status === "Buy Request"
-                                ? "bg-primary-brown text-black"
-                                : item.status === "Awaiting Arrival"
-                                ? "bg-red-900  text-white"
-                                : item.status === "Gift Request"
-                                ? "bg-pink-800  text-white"
-                                : "text-white bg-[#8A6B47]"
-                            }`}
-                          >
-                            {item.status}
-                          </Label>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </CardContent>
+                          </TableCell>
+                          <TableCell>
+                            <div className="w-full flex justify-center">
+                              <Label className="text-white">
+                                £{" "}
+                                {Number(
+                                  item.purchase_price.toFixed(2),
+                                ).toLocaleString()}
+                              </Label>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="w-full flex justify-center">
+                              <Label className="text-white">
+                                £ {market_val?.toLocaleString()}
+                              </Label>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="w-full gap-2 flex flex-col items-center justify-center">
+                              <Label
+                                className={`${
+                                  (item.profit_lost ?? 0 > 0)
+                                    ? "text-green-500"
+                                    : "text-red-500"
+                                }`}
+                              >
+                                £{" "}
+                                {Number(
+                                  item.profit_lost?.toFixed(),
+                                ).toLocaleString()}
+                              </Label>
+                              <Label
+                                className={`text-white px-2 py-1 rounded-[5px] ${
+                                  (item.profit_lost ?? 0 > 0)
+                                    ? "bg-green-500/30"
+                                    : "bg-red-500/30"
+                                }`}
+                              >
+                                {item.profit_lost_by_percent}%
+                              </Label>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="w-full flex justify-center">
+                              <Label className="text-white">
+                                {item.holding_year} Year/s
+                              </Label>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="w-full flex justify-center">
+                              <Label
+                                className={`rounded-[5px] px-2 py-0.5 font-semibold ${
+                                  item.status === "Buy Request"
+                                    ? "bg-primary-brown text-black"
+                                    : item.status === "Awaiting Arrival"
+                                      ? "bg-red-900  text-white"
+                                      : item.status === "Gift Request"
+                                        ? "bg-pink-800  text-white"
+                                        : "text-white bg-[#8A6B47]"
+                                }`}
+                              >
+                                {item.status}
+                              </Label>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            )}
+          </Card>
         )}
-      </Card>
+      </div>
     </div>
   );
 }

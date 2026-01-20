@@ -29,36 +29,36 @@ export default function Concierge() {
   return (
     <div className="w-full h-full concierge-cont overflow-y-auto flex flex-col gap-4 justify-between">
       <Label variant="h2">Most Traiding Event</Label>
-      <div className="w-full concierge-top gap-4 h-[40vh] scroll-area overflow-x-auto flex">
-        <div className="h-full flex justify-start">
+      <div className="w-full scroll-area  flex">
+        <div className="flex justify-start overflow-x-auto gap-2">
           {event_list.slice(0, 5).map((item, index) => (
-            <div
-              className={`w-[36vh] shrink-0 justify-between flex flex-col h-full p-2 px-4 hover:bg-primary-gray-400/30 border-r border-primary-brown/30`}
-            >
-              <div>
-                <Image
-                  src={item.image}
-                  alt=""
-                  width={400}
-                  height={400}
-                  className="object-cover h-35 rounded-2xl"
-                ></Image>
-                <Label variant="h2" className="text-primary-brown">
-                  {item.title}
-                </Label>
-                <Label className="text-white">
-                  {formatDate(item.start_date)} — {formatDate(item.end_date)}
-                </Label>
-                <Label className="text-primary-brown">{item.location}</Label>
-              </div>
-              <div className="h-full py-4">
-                <Label className="text-white">{item.description}</Label>
-              </div>
+            <Card className="bg-primary-gray-600">
+              <CardContent className="max-w-[350px] min-w-[300px] h-full bg-transparent flex flex-col justify-between">
+                <div>
+                  <Image
+                    src={item.image}
+                    alt=""
+                    width={400}
+                    height={400}
+                    className="object-cover h-35 rounded-2xl"
+                  ></Image>
+                  <Label variant="h2" className="text-primary-brown">
+                    {item.title}
+                  </Label>
+                  <Label className="text-white">
+                    {formatDate(item.start_date)} — {formatDate(item.end_date)}
+                  </Label>
+                  <Label className="text-primary-brown">{item.location}</Label>
+                  <div className="py-4">
+                    <Label className="text-white">{item.description}</Label>
+                  </div>
+                </div>
 
-              <Button className="bg-primary-gray-400 text-white">
-                More Details
-              </Button>
-            </div>
+                <Button className="bg-primary-gray-400 text-white">
+                  More Details
+                </Button>
+              </CardContent>
+            </Card>
           ))}
           <div className="shrink-0">
             <Button className="h-full text-white hover:bg-primary-gray-400 bg-transparent">
@@ -70,7 +70,7 @@ export default function Concierge() {
       </div>
 
       <div className="w-full concierge-bottom gap-4 h-[40vh] scroll-area overflow-x-auto flex">
-        <div className="h-full card-cont w-full gap-4 flex justify-between">
+        <div className="h-full card-cont gap-4 flex">
           {concierge_list.map((item, index) => (
             <Dialog
               key={item.title}
@@ -81,16 +81,16 @@ export default function Concierge() {
             >
               <DialogTrigger className="w-full">
                 <Card
-                  className={`w-[42vh] card-inner-cont h-full ${
+                  className={`w-full min-w-[300px] card-inner-cont h-full ${
                     index === 0
                       ? "bg-primary-brown"
                       : index === 1
-                      ? "bg-primary-green"
-                      : index === 2
-                      ? "bg-primary-red-300"
-                      : index === 3
-                      ? "bg-primary-gray-400"
-                      : ""
+                        ? "bg-primary-green"
+                        : index === 2
+                          ? "bg-primary-red-300"
+                          : index === 3
+                            ? "bg-primary-gray-400"
+                            : ""
                   } p-0 border-0`}
                 >
                   <CardContent className="bg-transparent border border-transparent transition ease-in-out duration-300 hover:border hover:border-primary-brown h-full p-0 flex flex-col justify-between">
@@ -132,10 +132,10 @@ export default function Concierge() {
                         {index === 0
                           ? "Request Wine"
                           : index === 1
-                          ? "Browse Event"
-                          : index === 2
-                          ? "Plan Event"
-                          : "Request Wine"}
+                            ? "Browse Event"
+                            : index === 2
+                              ? "Plan Event"
+                              : "Request Wine"}
                       </Button>
                     </div>
                   </CardContent>

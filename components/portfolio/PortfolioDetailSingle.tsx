@@ -12,6 +12,7 @@ import DetailsCardPortfolio from "./DetailsCardPortfolio";
 import MoreContentPortfolio from "./MoreContentPortfolio";
 import SellDialog from "../SellDialog";
 import BuyDialog from "../BuyDialog";
+import DrawerPortfolioBuy from "./DrawerPortfolioBuy";
 
 export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
   const router = useRouter();
@@ -56,7 +57,7 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
 
     localStorage.setItem(
       KEY,
-      JSON.stringify({ value: result, timestamp: now })
+      JSON.stringify({ value: result, timestamp: now }),
     );
 
     return result;
@@ -64,7 +65,7 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
 
   const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
     String(item.id),
-    item.purchase_price
+    item.purchase_price,
   );
 
   console.log("DETAIL DATA: ", item);
@@ -81,7 +82,7 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
         </Button>
       </div>
 
-      <div className="flex gap-4 h-[35%]">
+      <div className="market-l1-l1 flex gap-4 h-[35%]">
         <Card className="">
           <CardContent>
             <div>
@@ -111,6 +112,63 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
           </CardContent>
         </Card>
       </div>
+
+      {/* PERFORMANCE */}
+      <div className="market-l1-l1 w-full flex justify-between gap-4">
+        <Card className="w-full">
+          <CardContent className="flex h-full">
+            <div className="w-full h-full flex flex-col items-center justify-center">
+              <Label
+                className={`text-[18px] md:text-lg font-poppins-medium ${
+                  Number(release_price) > 0
+                    ? "text-green-500"
+                    : Number(release_price) < 0
+                      ? "text-red-500"
+                      : "text-gray-400"
+                }`}
+                variant="h1"
+              >
+                {formattedReleasePrice}
+              </Label>
+              <Label>Lifetime Performance</Label>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="w-full max-w-[300px] market_buy_cont p-0 m-0 bg-primary-gray-400">
+          <CardContent className="flex bg-transparent p-0">
+            <div className="flex flex-col w-full items-end gap-4">
+              <div className="flex justify-center items-center w-full gap-2 rounded-t-[14px] bg-primary-gray-500/50 border-b border-primary-brown/50 p-4">
+                <SellDialog item={item}></SellDialog>
+                <DrawerPortfolioBuy
+                  item={item}
+                  bottle_size={item.bottle_size}
+                  trigger={
+                    <Button
+                      disabled={item.status !== "In Bond" ? true : false}
+                      className="border-2 border-primary-brown hover:border-primary-brown  w-1/2"
+                    >
+                      Buy More
+                    </Button>
+                  }
+                  type={""}
+                ></DrawerPortfolioBuy>
+              </div>
+
+              <div className="flex flex-col items-end p-2">
+                <Label className="text-primary-brown">Market Value</Label>
+                <Label
+                  variant="h1"
+                  className="text-primary-brown text-[25px] font-bold"
+                >
+                  £ {Number(item.purchase_price).toLocaleString()}
+                </Label>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       <div className="flex items-center justify-between">
         {tabs.map((item, index) => (
           <div key={index} className="flex w-full">
@@ -129,51 +187,9 @@ export default function PortfolioDetailSingle({ item }: { item: CartItemT }) {
         ))}
       </div>
 
-      {/* PERFORMANCE */}
-      <div className="w-full flex justify-between gap-4">
-        <Card className="w-full">
-          <CardContent className="flex h-full">
-            <div className="w-full h-full flex flex-col items-center justify-center">
-              <Label
-                className={`text-[18px] md:text-lg font-poppins-medium ${
-                  Number(release_price) > 0
-                    ? "text-green-500"
-                    : Number(release_price) < 0
-                    ? "text-red-500"
-                    : "text-gray-400"
-                }`}
-                variant="h1"
-              >
-                {formattedReleasePrice}
-              </Label>
-              <Label>Lifetime Performance</Label>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="w-full max-w-[300px] p-0 m-0 bg-primary-gray-400">
-          <CardContent className="flex bg-transparent p-0">
-            <div className="flex flex-col w-full items-end gap-4">
-              <div className="flex justify-center items-center w-full gap-2 rounded-t-[14px] bg-primary-gray-500/50 border-b border-primary-brown/50 p-4">
-                <SellDialog item={item}></SellDialog>
-                <BuyDialog item={item}></BuyDialog>
-              </div>
-
-              <div className="flex flex-col items-end p-2">
-                <Label className="text-primary-brown">Market Value</Label>
-                <Label
-                  variant="h1"
-                  className="text-primary-brown text-[25px] font-bold"
-                >
-                  £ {Number(item.purchase_price).toLocaleString()}
-                </Label>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <Card className="h-full w-full">
+      <Card
+        className={`${activeTab === "Performance" ? "" : "h-full"} w-full flex`}
+      >
         <CardContent className="h-full overflow-y-auto">
           {activeTab === "Performance" && (
             <PortfolioDetailChart

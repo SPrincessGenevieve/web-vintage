@@ -51,12 +51,12 @@ export default function MarketplaceDetailChart({
     bottle_size === "0750"
       ? 75
       : bottle_size === "1500"
-      ? 150
-      : bottle_size === "3000"
-      ? 300
-      : bottle_size === "6000"
-      ? 600
-      : 0;
+        ? 150
+        : bottle_size === "3000"
+          ? 300
+          : bottle_size === "6000"
+            ? 600
+            : 0;
 
   const [selectedFilter, setSelectedFilter] = useState("Max");
   const lwin11Data = data_points.find((item) => item.lwin11 === lwin11)?.data;
@@ -105,8 +105,6 @@ export default function MarketplaceDetailChart({
   }, [selectedFilter, lwin11Data]);
 
   const filterBtn = ["YTD", "6m", "3yrs", "5yrs", "Max"];
-
-  console.log("VINTAGE: ", data)
 
   return (
     <div className="p-4 flex flex-col gap-4">

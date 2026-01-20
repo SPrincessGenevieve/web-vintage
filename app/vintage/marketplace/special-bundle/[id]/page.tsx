@@ -75,7 +75,7 @@ export default function SpecialBundleDetail() {
                   </div>
                 ))}
               </div>
-              <div className="h-full overflow-y-auto">
+              <div className="h-full flex overflow-y-auto max-h-50">
                 {activeTab === "Overview" && (
                   <TabDeatils
                     title="Overview"

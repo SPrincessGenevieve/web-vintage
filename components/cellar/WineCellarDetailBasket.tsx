@@ -33,72 +33,75 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
           <ChevronLeft></ChevronLeft>Back
         </Button>
       </div>
-      <div className="flex gap-4 min-h-[32%]">
-        <Card className="">
-          <CardContent className="flex h-full items-center justify-center">
+      <div className="flex gap-4 min-h-[32%] bundle-l1">
+        <Card className="px-2">
+          <CardContent className="flex bg-black h-full items-center justify-center">
             <Image
               alt=""
               width={400}
               height={400}
               src={imgSrc}
-              className={`h-full w-auto rounded-xl max-w-[600px] transition-all duration-300 object-contain`}
+              className={`h-full max-h-52 w-auto rounded-xl max-w-[600px] transition-all duration-300 object-contain`}
             ></Image>
           </CardContent>
         </Card>
-        <Card className="w-full">
-          <CardContent className="p-4 flex justify-between h-full">
-            <div>
-              <Label
-                variant="h1"
-                className="text-primary-brown pb-2 w-full border-b-2 border-primary-brown/30"
-              >
-                {item.wine_name}
-              </Label>
-              <div className="flex items-center justify-between">
-                {tabs.map((item, index) => (
-                  <div key={index} className="flex w-full">
-                    <Button
-                      onClick={() => setActiveTab(item)}
-                      variant={"ghost"}
-                      className={`w-full border-b-2 ${
-                        activeTab === item
-                          ? "border-white text-white font-semibold"
-                          : "border-primary-brown/30"
-                      } rounded-none`}
-                    >
-                      {item}
-                    </Button>
-                  </div>
-                ))}
+        <div className="bundle-l1-l1 flex gap-4">
+          <Card className="w-full">
+            <CardContent className="p-4 flex flex-col justify-between h-full ">
+              <div>
+                <Label
+                  variant="h1"
+                  className="text-primary-brown pb-2 w-full border-b-2 border-primary-brown/30"
+                >
+                  {item.wine_name}
+                </Label>
+                <div className="flex items-center justify-between">
+                  {tabs.map((item, index) => (
+                    <div key={index} className="flex w-full">
+                      <Button
+                        onClick={() => setActiveTab(item)}
+                        variant={"ghost"}
+                        className={`w-full border-b-2 ${
+                          activeTab === item
+                            ? "border-white text-white font-semibold"
+                            : "border-primary-brown/30"
+                        } rounded-none`}
+                      >
+                        {item}
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+                <div className="h-full flex overflow-y-auto max-h-50">
+                  {activeTab === "Overview" && (
+                    <TabDeatils
+                      title="Overview"
+                      desc={item.winery}
+                    ></TabDeatils>
+                  )}
+                  {activeTab === "Region" && (
+                    <TabDeatils title="Region" desc={item.region}></TabDeatils>
+                  )}
+                  {activeTab === "Grapes" && (
+                    <TabDeatils
+                      title="Grapes"
+                      desc={item.grape_variety}
+                    ></TabDeatils>
+                  )}
+                </div>
               </div>
-              <div className="h-full">
-                {activeTab === "Overview" && (
-                  <TabDeatils title="Overview" desc={item.winery}></TabDeatils>
-                )}
-                {activeTab === "Region" && (
-                  <TabDeatils title="Region" desc={item.region}></TabDeatils>
-                )}
-                {activeTab === "Grapes" && (
-                  <TabDeatils
-                    title="Grapes"
-                    desc={item.grape_variety}
-                  ></TabDeatils>
-                )}
+
+              <div className="absolute top-0 right-0">
+                <MoreContentWineCellarBundle
+                  data={item}
+                ></MoreContentWineCellarBundle>
               </div>
-            </div>
-
-            <div>
-
-              <MoreContentWineCellarBundle
-                data={item}
-              ></MoreContentWineCellarBundle>
-            </div>
-          </CardContent>
-        </Card>
-
-        <BuyBundleWineCellarBtn item={item}></BuyBundleWineCellarBtn>
+            </CardContent>
+          </Card>
+          <BuyBundleWineCellarBtn item={item}></BuyBundleWineCellarBtn>
+        </div>
       </div>
-      <div className="w-full h-[58%]">
+      <div className="w-full h-[58%] min-h-100 bundle-l2">
         <Card className="w-full h-full overflow-x-auto">
           <CardContent className="flex flex-nowrap gap-2 h-full ">
             {item.basket_items !== null &&
@@ -107,7 +110,7 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
                   key={index}
                   onClick={() =>
                     router.push(
-                      `/vintage/marketplace/vint-ex/${item2.wine_parent_id}/${item2.wine_vintage.id}/${item2.wine_vintage.vintage}`
+                      `/vintage/marketplace/vint-ex/${item2.wine_parent_id}/${item2.wine_vintage.id}/${item2.wine_vintage.vintage}`,
                     )
                   }
                   className="w-[300px] shrink-0 p-4 hover:bg-primary-gray-500/50 transition ease-in-out"
@@ -135,12 +138,12 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
                           {item2.basket_bottle_size === "0750"
                             ? 75
                             : item2.basket_bottle_size === "1500"
-                            ? 150
-                            : item2.basket_bottle_size === "3000"
-                            ? 300
-                            : item2.basket_bottle_size === "6000"
-                            ? 600
-                            : 0}
+                              ? 150
+                              : item2.basket_bottle_size === "3000"
+                                ? 300
+                                : item2.basket_bottle_size === "6000"
+                                  ? 600
+                                  : 0}
                           cl
                         </Label>
                       </div>

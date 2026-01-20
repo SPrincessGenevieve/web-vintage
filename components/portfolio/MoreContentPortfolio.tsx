@@ -145,7 +145,7 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
         </DropdownMenuContent>
       </DropdownMenu>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="overflow-y-auto">
+        <DialogContent className="overflow-y-auto max-h-[90%]">
           {select === "Gift" && data.status === "Gift Request" ? (
             <div className="flex flex-col gap-4">
               <Label variant="h1">

@@ -401,11 +401,14 @@ input[type="date"] {
   .vintage-cont {
     width: 100%;
   }
-  .bundle-l1-l2{
+  .bundle-l1-l2 {
     flex-direction: column-reverse;
   }
-  .bundle-buy-cont{
+  .bundle-buy-cont {
     max-width: 100%;
+  }
+  .bundle-l1-l1 {
+    flex-direction: column;
   }
 }
 

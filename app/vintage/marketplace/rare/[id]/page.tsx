@@ -150,7 +150,7 @@ export default function RareDetail() {
         fromm: data.fromm,
         purchase_date: "",
         purchase_price: purchase_price,
-        status: "In Bonding",
+        status: "In Bond",
         sub_account: subAccounts[0],
         bottle_size:
           item.basket_details !== null

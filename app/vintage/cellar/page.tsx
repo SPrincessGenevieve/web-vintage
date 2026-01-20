@@ -84,6 +84,7 @@ const header_list = [
 export default function WineCellar() {
   const { wineCellar, clearWineCellar, addToWineCellar } = useWineCellar();
   const router = useRouter();
+  const [loadData, setLoadData] = useState(true)
   const [loadingID, setLoadingID] = useState("");
   const { subAccounts, addSubAccount } = useSubAccount();
   const [search, setSearch] = useState("");
@@ -272,6 +273,8 @@ export default function WineCellar() {
     selectedRegion,
     selectedSort,
   ]);
+
+  
 
   return (
     <div className="w-full h-full flex flex-col gap-4 overflow-y-auto">

@@ -45,7 +45,8 @@ export default function CardWine({ item, type }: vintageT) {
     }
 
     if (url) {
-      window.open(url, "_blank");
+      // window.open(url, "_blank");
+      router.push(url)
     }
   };
 
@@ -61,7 +62,6 @@ export default function CardWine({ item, type }: vintageT) {
         {data.length > 0 ? (
           data.map((rawItem: any, index: number) => {
             const wine = rawItem.wine_vintage_details || rawItem;
-            console.log("RAW: ", rawItem);
 
             return (
               <Card

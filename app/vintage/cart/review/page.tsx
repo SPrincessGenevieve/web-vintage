@@ -85,6 +85,8 @@ export default function Review() {
     },
   ];
 
+  console.log("CART TOTAL: ", cart_total)
+
   const [selectedPayment, setSelectedPayment] = React.useState(
     payment_method.find((c) => c.is_default)?.last_code || "account-bal"
   );

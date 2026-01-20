@@ -122,9 +122,7 @@ export const StepBankTranserStep2 = ({
       </div>
 
       <div className="w-full gap-2 flex flex-col items-center justify-center">
-        <Label>
-          Click <strong>Done</strong> once you’ve copied the reference code.
-        </Label>
+        <Label>Click Done once you’ve copied the reference code.</Label>
         <Button onClick={onClickDone} className="w-full">
           Done
         </Button>
@@ -182,7 +180,7 @@ export const StepBankTranserStep4 = ({
   onChange,
   open,
   onOpenChange,
-  onClickClose
+  onClickClose,
 }: {
   onClick: () => void;
   onClickClose: () => void;
@@ -309,8 +307,8 @@ export const SuccessDeposit = ({
         What to Expect Next
       </Label>
       <div className="w-full flex">
-        <div className="flex flex-col gap-4 relative w-[70%] items-center justify-between">
-          <div className="h-[90%] absolute w-1 left-4 bg-primary-brown z-5"></div>
+        <div className="flex flex-col gap-4 relative w-[90%] items-center justify-between">
+          <div className="h-[80%] absolute w-1 left-4 bg-primary-brown z-5"></div>
           {steps.map((item, index) => (
             <div className="z-10">
               <div key={index} className="flex">

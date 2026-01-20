@@ -66,7 +66,7 @@ export default function CardWineRare({ item, type }: vintageT) {
               <>
                 {data.map((rawItem: RareCardT, index: number) => {
                   const wine = rawItem.wine_vintage_details || rawItem;
-                  console.log("RAW: ", rawItem);
+                  
                   const srcImg =
                     rawItem?.basket_details?.image ?? // 1️⃣ use basket_details image if it exists
                     rawItem?.wine_parent?.images?.[0] ?? // 3️⃣ fallback to wine_parent.images
@@ -209,7 +209,6 @@ export default function CardWineRare({ item, type }: vintageT) {
               <>
                 {dataBundle.map((rawItem: RareCardT, index: number) => {
                   const wine = rawItem.wine_vintage_details || rawItem;
-                  console.log("RAW: ", rawItem);
                   const srcImg =
                     rawItem?.basket_details?.image ?? // 1️⃣ use basket_details image if it exists
                     rawItem?.wine_parent?.images?.[0] ?? // 3️⃣ fallback to wine_parent.images
