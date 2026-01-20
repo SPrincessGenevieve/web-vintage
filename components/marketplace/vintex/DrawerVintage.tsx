@@ -68,12 +68,12 @@ export default function DrawerVintage({
     bottle_size === "0750"
       ? 75
       : bottle_size === "1500"
-      ? 150
-      : bottle_size === "3000"
-      ? 300
-      : bottle_size === "6000"
-      ? 600
-      : 0;
+        ? 150
+        : bottle_size === "3000"
+          ? 300
+          : bottle_size === "6000"
+            ? 600
+            : 0;
   const { subAccounts } = useSubAccount();
   const router = useRouter();
   const { setUserDetails } = useUserContext();
@@ -88,7 +88,7 @@ export default function DrawerVintage({
   const [open, setOpen] = useState(false);
 
   const rawData: VintexResultsT[] = result_data.filter(
-    (item): item is VintexResultsT => item.vintage === Number(selectedVintage)
+    (item): item is VintexResultsT => item.vintage === Number(selectedVintage),
   );
 
   const data: VintexResultsT | undefined = rawData[0];
@@ -96,26 +96,27 @@ export default function DrawerVintage({
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     result_data?.[selectedIndex]?.available_case_size?.length > 0
       ? `${result_data[selectedIndex].available_case_size[0]}x${bottle}cl`
-      : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
+      : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`,
   );
   const [caseSize, setCaseSize] = useState(
     result_data?.[selectedIndex]?.available_case_size?.length > 0
       ? result_data[selectedIndex].available_case_size[0]
-      : default_case_size_list?.[0] ?? 1
+      : (default_case_size_list?.[0] ?? 1),
   );
   const total =
     Number(result_data[selectedIndex]?.market_value) * caseSize * quantityData;
+  const marketVal = !total ? 0 : total;
 
   useEffect(() => {
     setSelectedCaseSize(
       result_data[selectedIndex]?.available_case_size.length > 0
         ? `${result_data[selectedIndex].available_case_size[0]}x${bottle}cl`
-        : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`
+        : `${default_case_size_list?.[0] ?? 1}x${bottle}cl`,
     );
     setCaseSize(
       result_data[selectedIndex]?.available_case_size.length > 0
         ? result_data[selectedIndex].available_case_size[0]
-        : default_case_size_list?.[0] ?? 1
+        : (default_case_size_list?.[0] ?? 1),
     );
   }, [selectedVintage]);
 
@@ -298,7 +299,7 @@ export default function DrawerVintage({
                         >
                           {item}x{bottle}cl
                         </DropdownMenuCheckboxItem>
-                      )
+                      ),
                     )
                   : (default_case_size_list ?? []).map((item, index) => (
                       <DropdownMenuCheckboxItem
@@ -337,7 +338,7 @@ export default function DrawerVintage({
           <div className="flex justify-between">
             <Label className="text-primary-brown">Market Value</Label>
             <Label variant="h1" className="text-white">
-              £{Number(total.toFixed(0)).toLocaleString()}
+              £{Number(marketVal.toFixed(0)).toLocaleString()}
             </Label>
           </div>
         </div>

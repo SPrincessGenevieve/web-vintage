@@ -278,7 +278,9 @@ export default function Marketplace() {
         )}
       </div>
       {selectedCategory === "rare" ? (
+        <>
         <CardWineRare item={currentData} type={selectedCategory}></CardWineRare>
+        </>
       ) : (
         <CardWine item={currentData} type={selectedCategory} />
       )}

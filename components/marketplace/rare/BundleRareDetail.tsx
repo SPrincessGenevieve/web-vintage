@@ -23,30 +23,30 @@ export default function BundleRareDetail({
   market_value: number;
 }) {
   const router = useRouter();
-    const tabs = ["Overview", "Region", "Grapes"];
-    const [activeTab, setActiveTab] = useState("Overview");
+  const tabs = ["Overview", "Region", "Grapes"];
+  const [activeTab, setActiveTab] = useState("Overview");
 
   const imgSrc =
     dataType === "vintex"
       ? data.wine_parent?.images?.[0]
-      : item.basket_details?.image ?? "";
+      : (item.basket_details?.image ?? "");
 
-const bundle_parent_data = item.basket_details
-const bundle_items_data = item.basket_items ?? []
+  const bundle_parent_data = item.basket_details;
+  const bundle_items_data = item.basket_items ?? [];
 
-console.log("")
+  console.log("");
 
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto justify-between">
-      <div className="flex gap-4 min-h-[32%]">
-        <Card className="">
-          <CardContent className="flex h-full items-center justify-center">
+      <div className="flex gap-4 bundle-l1 min-h-[32%]">
+        <Card className="px-2">
+          <CardContent className="flex bg-black h-full items-center justify-center">
             <Image
               alt=""
               width={400}
               height={400}
               src={imgSrc}
-              className={`h-full w-auto rounded-xl max-w-[600px] transition-all duration-300 object-contain`}
+              className={`h-full max-h-52 w-auto rounded-xl max-w-[600px] transition-all duration-300 object-contain`}
             ></Image>
           </CardContent>
         </Card>
@@ -77,27 +77,39 @@ console.log("")
             </div>
             <div className="h-full">
               {activeTab === "Overview" && (
-                <TabDeatils title="Overview" desc={bundle_parent_data?.winery ?? ""}></TabDeatils>
+                <TabDeatils
+                  title="Overview"
+                  desc={bundle_parent_data?.winery ?? ""}
+                ></TabDeatils>
               )}
               {activeTab === "Region" && (
-                <TabDeatils title="Region" desc={bundle_parent_data?.region ?? ""}></TabDeatils>
+                <TabDeatils
+                  title="Region"
+                  desc={bundle_parent_data?.region ?? ""}
+                ></TabDeatils>
               )}
               {activeTab === "Grapes" && (
-                <TabDeatils title="Grapes" desc={bundle_parent_data?.grapes ?? ""}></TabDeatils>
+                <TabDeatils
+                  title="Grapes"
+                  desc={bundle_parent_data?.grapes ?? ""}
+                ></TabDeatils>
               )}
             </div>
           </CardContent>
         </Card>
-        <BuyBundleBtnRare market_value={market_value} data={data}></BuyBundleBtnRare>
+        <BuyBundleBtnRare
+          market_value={market_value}
+          data={data}
+        ></BuyBundleBtnRare>
       </div>
-      <div className="w-full h-[58%]">
+      <div className="w-full h-[58%] min-h-100 bundle-l2">
         <Card className="w-full h-full overflow-x-auto">
           <CardContent className="flex flex-nowrap gap-2 h-full">
             {bundle_items_data.map((item, index) => (
               <Card
                 onClick={() =>
                   router.push(
-                    `/vintage/marketplace/vint-ex/${item.wine_parent_id}/${item.wine_vintage.id}/${item.wine_vintage.vintage}`
+                    `/vintage/marketplace/vint-ex/${item.wine_parent_id}/${item.wine_vintage.id}/${item.wine_vintage.vintage}`,
                   )
                 }
                 key={index}
@@ -126,12 +138,12 @@ console.log("")
                         {item.basket_bottle_size === "0750"
                           ? 75
                           : item.basket_bottle_size === "1500"
-                          ? 150
-                          : item.basket_bottle_size === "3000"
-                          ? 300
-                          : item.basket_bottle_size === "6000"
-                          ? 600
-                          : 0}
+                            ? 150
+                            : item.basket_bottle_size === "3000"
+                              ? 300
+                              : item.basket_bottle_size === "6000"
+                                ? 600
+                                : 0}
                         cl
                       </Label>
                     </div>
@@ -140,7 +152,7 @@ console.log("")
                       <Label className="text-white">
                         £{" "}
                         {Number(
-                          item.wine_vintage.market_value
+                          item.wine_vintage.market_value,
                         ).toLocaleString()}
                       </Label>
                     </div>

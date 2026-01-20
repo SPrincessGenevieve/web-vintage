@@ -27,7 +27,7 @@ export function WineImage({ src, type }: { src?: string; type?: string }) {
         if (ratio > 1.3 || ratio < 0.75) setUseContain(true);
       }}
       className={`${
-        type === "special-bundle" ? "rounded-2xl" : "h-[100px] w-full"
+        type === "special-bundle" ? "rounded-2xl h-full" : "h-[100px] w-full"
       } transition-all duration-300 object-contain`}
     />
   );

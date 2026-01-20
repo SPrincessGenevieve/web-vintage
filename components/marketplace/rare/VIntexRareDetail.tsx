@@ -24,7 +24,7 @@ export default function VintexRareDetail({
   const tabs = ["Performance", "Overview", "Region", "Grapes"];
   const [activeTab, setActiveTab] = useState("Performance");
   const release_price = item?.wine_vintage_details?.release_price ?? "";
-  console.log("DATA: ", item)
+  console.log("DATA: ", item);
   const formattedReleasePrice =
     release_price && !isNaN(Number(release_price))
       ? Number(release_price) > 0
@@ -32,10 +32,10 @@ export default function VintexRareDetail({
         : `${release_price}%`
       : "";
 
-  const imgSrc = item.wine_parent.images[0]
+  const imgSrc = item.wine_parent.images[0];
   return (
     <div className="flex flex-col gap-4 h-full">
-      <div className="flex gap-4 h-[35%]">
+      <div className="market-l1-l1 flex gap-4 h-[35%]">
         <Card className="">
           <CardContent>
             <div>
@@ -54,52 +54,35 @@ export default function VintexRareDetail({
             <DetailsCard
               name={
                 item.basket_details === null
-                  ? item.wine_parent?.name ?? ""
-                  : item.basket_details?.name ?? ""
+                  ? (item.wine_parent?.name ?? "")
+                  : (item.basket_details?.name ?? "")
               }
               alcohol_abv={
                 item.basket_details === null
-                  ? item.wine_parent?.alcohol_abv ?? ""
+                  ? (item.wine_parent?.alcohol_abv ?? "")
                   : "0.00%"
               }
               blend={
                 item.basket_details === null
-                  ? item.wine_parent?.blend ?? ""
+                  ? (item.wine_parent?.blend ?? "")
                   : "---"
               }
               grapes={
                 item.basket_details === null
-                  ? item.wine_parent?.grapes ?? ""
-                  : item.wine_parent.grapes ?? ""
+                  ? (item.wine_parent?.grapes ?? "")
+                  : (item.wine_parent.grapes ?? "")
               }
               ownership={
                 item.basket_details === null
-                  ? item.wine_parent?.ownership ?? ""
+                  ? (item.wine_parent?.ownership ?? "")
                   : "---"
               }
             ></DetailsCard>
           </CardContent>
         </Card>
       </div>
-      <div className="flex items-center justify-between">
-        {tabs.map((item, index) => (
-          <div key={index} className="flex w-full">
-            <Button
-              onClick={() => setActiveTab(item)}
-              variant={"ghost"}
-              className={`w-full border-b-2 ${
-                activeTab === item
-                  ? "border-white text-white font-semibold"
-                  : "border-primary-brown/30"
-              } rounded-none`}
-            >
-              {item}
-            </Button>
-          </div>
-        ))}
-      </div>
 
-      <div className="w-full flex justify-between gap-4">
+      <div className="market-l1-l1 w-full flex justify-between gap-4">
         <Card className="w-full">
           <CardContent className="flex h-full">
             <div className="w-full h-full flex flex-col items-center justify-center">
@@ -108,8 +91,8 @@ export default function VintexRareDetail({
                   Number(item.wine_vintage_details?.release_price) > 0
                     ? "text-green-500"
                     : Number(item.wine_vintage_details?.release_price) < 0
-                    ? "text-red-500"
-                    : "text-gray-400"
+                      ? "text-red-500"
+                      : "text-gray-400"
                 }`}
                 variant="h1"
               >
@@ -120,11 +103,11 @@ export default function VintexRareDetail({
           </CardContent>
         </Card>
 
-        <Card className="w-full max-w-[300px] bg-primary-brown">
+        <Card className="w-full max-w-[300px] market_buy_cont bg-primary-brown">
           <CardContent className="flex bg-transparent">
             <div className="flex flex-col w-full items-end gap-4">
               <div className="flex justify-end w-full gap-4">
-                <div className="flex items-center min-w-28 justify-center gap-2 border-2 border-black rounded-[10px] p-2">
+                <div className="flex items-center w-1/2 min-w-28 justify-center gap-2 border-2 border-black rounded-[10px] p-2">
                   <Label className="text-black font-bold">
                     {item.basket_details === null
                       ? item.wine_vintage_details?.vintage
@@ -134,7 +117,7 @@ export default function VintexRareDetail({
                 <DrawerBuyRare
                   type="rare"
                   trigger={
-                    <Button className="bg-primary-gray-500 text-primary-brown hover:text-black border-2 border-transparent h-10 hover:border-black">
+                    <Button className="w-1/2 bg-primary-gray-500 text-primary-brown hover:text-black border-2 border-transparent h-10 hover:border-black">
                       <ShoppingBasket /> Buy this vintage
                     </Button>
                   }
@@ -157,7 +140,25 @@ export default function VintexRareDetail({
           </CardContent>
         </Card>
       </div>
-      <Card className="h-full w-full">
+
+      <div className="flex items-center justify-between">
+        {tabs.map((item, index) => (
+          <div key={index} className="flex w-full">
+            <Button
+              onClick={() => setActiveTab(item)}
+              variant={"ghost"}
+              className={`w-full border-b-2 ${
+                activeTab === item
+                  ? "border-white text-white font-semibold"
+                  : "border-primary-brown/30"
+              } rounded-none`}
+            >
+              {item}
+            </Button>
+          </div>
+        ))}
+      </div>
+      <Card className={`${activeTab === "Performance" ? "" : "h-full"} w-full flex`}>
         <CardContent className="h-full overflow-y-auto">
           {activeTab === "Performance" && (
             <RareChart
@@ -165,7 +166,7 @@ export default function VintexRareDetail({
               lwin11={
                 item.basket_details
                   ? ""
-                  : item.wine_vintage_details?.lwin11 ?? ""
+                  : (item.wine_vintage_details?.lwin11 ?? "")
               }
               lifetime_performance={formattedReleasePrice}
               data={item}
@@ -176,8 +177,8 @@ export default function VintexRareDetail({
               title="Overflow"
               desc={
                 item.basket_details === null
-                  ? item.wine_parent?.winery ?? ""
-                  : item.basket_details?.winery ?? ""
+                  ? (item.wine_parent?.winery ?? "")
+                  : (item.basket_details?.winery ?? "")
               }
             ></TabDeatils>
           )}
@@ -186,8 +187,8 @@ export default function VintexRareDetail({
               title="Region"
               desc={
                 item.basket_details === null
-                  ? item.wine_parent?.region ?? ""
-                  : item.basket_details?.region ?? ""
+                  ? (item.wine_parent?.region ?? "")
+                  : (item.basket_details?.region ?? "")
               }
             ></TabDeatils>
           )}
@@ -196,8 +197,8 @@ export default function VintexRareDetail({
               title="Grapes"
               desc={
                 item.basket_details === null
-                  ? item.wine_parent?.grape_variety ?? ""
-                  : item.basket_details?.grape_variety ?? ""
+                  ? (item.wine_parent?.grape_variety ?? "")
+                  : (item.basket_details?.grape_variety ?? "")
               }
             ></TabDeatils>
           )}

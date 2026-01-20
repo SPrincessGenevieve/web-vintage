@@ -45,7 +45,7 @@ export default function BuyBundleBtn({ data }: BuyT) {
   ];
 
   return (
-    <Card className="w-full border-primary-brown/50 p-0 max-w-[300px] bg-primary-gray-400/70">
+    <Card className="w-full border-primary-brown/50 p-0 bundle-buy-cont max-w-[300px] bg-primary-gray-400/70">
       <CardContent className="p-0 flex flex-col justify-between h-full bg-transparent">
         <div className="flex p-2 flex-col w-full items-end gap-4 h-full  rounded-t-[14px]">
           <div className="flex flex-col items-end">
@@ -61,7 +61,7 @@ export default function BuyBundleBtn({ data }: BuyT) {
           </div>
           <div className="flex justify-between w-full gap-4">
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex w-full justify-between gap-2 border-2 border-primary-brown rounded-[10px] p-2">
+              <DropdownMenuTrigger className="flex w-1/2 justify-between gap-2 border-2 border-primary-brown rounded-[10px] p-2">
                 <Label className="text-primary-brown font-bold text-center flex items-center justify-center w-full">
                   {/* {selectedVintage} */}---
                 </Label>
@@ -74,7 +74,7 @@ export default function BuyBundleBtn({ data }: BuyT) {
             <DrawerBundleBuy
               type={"special-bundle"}
               trigger={
-                <Button className="bg-primary-brown textblack hover:text-black border-2 border-transparent h-10 hover:border-primary-brown">
+                <Button className="bg-primary-brown  w-1/2 textblack hover:text-black border-2 border-transparent h-10 hover:border-primary-brown">
                   <ShoppingBasket /> Buy this vintage
                 </Button>
               }

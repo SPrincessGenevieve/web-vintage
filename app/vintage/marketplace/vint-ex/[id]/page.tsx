@@ -49,32 +49,28 @@ export default function VintExDetail() {
           <ChevronLeft></ChevronLeft>Back
         </Button>
       </div>
-      <div className="flex gap-4 h-[35%]">
-        <Card className="">
-          <CardContent>
-            <div>
-              <Image
-                alt=""
-                width={400}
-                height={400}
-                src={data.wine_details.images[0]}
-                onLoadingComplete={(img) => {
-                  const ratio = img.naturalWidth / img.naturalHeight;
+      <div className="flex market-l1-l1 gap-4 h-[35%]">
+        <Card className="max-h-auto min-h-auto p-0">
+          <CardContent className="flex items-center justify-center max-h-70 max-w-300 w-auto">
+            <Image
+              alt=""
+              width={400}
+              height={400}
+              src={data.wine_details.images[0]}
+              onLoadingComplete={(img) => {
+                const ratio = img.naturalWidth / img.naturalHeight;
 
-                  // tweak threshold if needed
-                  if (ratio > 1.3 || ratio < 0.75) {
-                    setUseContain(true);
-                  }
-                }}
-                className={`h-auto max-h-[280px] w-[360px] transition-all duration-300 ${
-                  useContain ? "object-contain" : "object-contain"
-                }`}
-              ></Image>
-            </div>
+                // tweak threshold if needed
+                if (ratio > 1.3 || ratio < 0.75) {
+                  setUseContain(true);
+                }
+              }}
+              className={`h-full w-auto max-w-[360px] object-contain`}
+            ></Image>
           </CardContent>
         </Card>
         <Card className="w-full">
-          <CardContent className="p-4 flex flex-col justify-between h-full">
+          <CardContent className="p-4 flex flex-col gap-2 justify-between h-full">
             <DetailsCard
               name={data.wine_details.name}
               alcohol_abv={data.wine_details.alcohol_abv ?? ""}

@@ -15,7 +15,7 @@ import { data_points } from "@/lib/wine_data/data_points";
 
 interface MarketplaceChartT {
   lwin11: string;
-  lifetime_performance: string;
+  vintage: number;
   data: VintexDetailsT;
   result: VintexResultsT[];
 }
@@ -38,7 +38,7 @@ const chartConfig = {
 
 export default function MarketplaceDetailChart({
   lwin11,
-  lifetime_performance,
+  vintage,
   data,
   result,
 }: MarketplaceChartT) {
@@ -106,10 +106,12 @@ export default function MarketplaceDetailChart({
 
   const filterBtn = ["YTD", "6m", "3yrs", "5yrs", "Max"];
 
+  console.log("VINTAGE: ", data)
+
   return (
     <div className="p-4 flex flex-col gap-4">
       <Label variant="h1">
-        {ParentWineName}, {item?.vintage ?? 0}, {case_size}x{bottle}cl
+        {ParentWineName}, {item?.vintage ?? vintage}, {case_size}x{bottle}cl
       </Label>
       <div className="flex w-full bg-black/20 p-2 mb-4 rounded-2xl">
         {filterBtn.map((item, index) => (

@@ -57,7 +57,7 @@ export default function CardWine({ item, type }: vintageT) {
         data.length < 5 ? "" : "h-full"
       } overflow-y-auto relative`}
     >
-      <CardContent className="flex h-full flex-wrap  marketplace-cont">
+      <CardContent className={`flex h-full flex-wrap  ${type === "special-bundle" ? "" : "marketplace-cont"}`}>
         {data.length > 0 ? (
           data.map((rawItem: any, index: number) => {
             const wine = rawItem.wine_vintage_details || rawItem;

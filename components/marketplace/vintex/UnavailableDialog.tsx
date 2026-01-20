@@ -32,12 +32,12 @@ export default function UnavailableDialog({
           information.
         </DialogDescription>
         <DialogDescription className="flex gap-2 items-center">
-          Tap the <Bell size={14}></Bell> to get notified once this wine becomes
+          Tap the bell icon to get notified once this wine becomes
           available again.
         </DialogDescription>
         <DialogFooter>
           <DialogClose>
-            <Button>Close</Button>
+            <Button className="w-full">Close</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

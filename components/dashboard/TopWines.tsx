@@ -45,7 +45,7 @@ export default function TopWines() {
             <Label>You don't have any wines in your portfolio yet</Label>
           </div>
         ) : (
-          <>
+          <div className="overflow-x-auto">
             {top5ProfitLost.map((item, index) => {
               const stock = item.stock_wine_vintage;
               const basket = item.basket;
@@ -131,7 +131,7 @@ export default function TopWines() {
                 </div>
               );
             })}
-          </>
+          </div>
         )}
         <div></div>
       </CardContent>

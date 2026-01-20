@@ -389,3 +389,29 @@ input[type="date"] {
 .hover\:animation-pause:hover {
   animation-play-state: paused;
 }
+
+@media (max-width: 990px) {
+  .market-l1-l1 {
+    flex-direction: column;
+    height: auto;
+  }
+  .market_buy_cont {
+    max-width: 100%;
+  }
+  .vintage-cont {
+    width: 100%;
+  }
+  .bundle-l1-l2{
+    flex-direction: column-reverse;
+  }
+  .bundle-buy-cont{
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1490px) {
+  .bundle-l1 {
+    flex-direction: column;
+    min-height: fit-content;
+  }
+}

@@ -15,13 +15,14 @@ export default function DeliveryHistoryTable() {
 
   return (
     <Card className="w-full h-full">
-      <CardContent className="overflow-auto min-w-[700px]">
+      <CardContent className="overflow-auto">
         <Label variant="h2">Delivery History</Label>
 
-        <div className="mt-4">
+        <div className="mt-4 flex items-center justify-center">
           {delivery.length === 0 ? (
           <div className="pt-4 gap-4 flex flex-col items-center justify-center">
-            <Image
+            <div className="flex">
+              <Image
               alt="delivery"
               src={
                 "https://staging.vintage-associates.com/assets/assets/images/delivery-empty.4138fafeac2ab4dc924d9f2ddff26506.png"
@@ -30,6 +31,7 @@ export default function DeliveryHistoryTable() {
               height={400}
               className="w-32 h-auto"
             ></Image>
+            </div>
             <Button
               onClick={() => router.push("/vintage/concierge")}
               variant={"outline"}

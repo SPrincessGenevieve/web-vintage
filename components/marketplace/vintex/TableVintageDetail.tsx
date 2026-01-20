@@ -58,7 +58,7 @@ export default function TableVintageDetail() {
     const wineItem = wineVintex[wineFromUrl];
 
     const hasVintage = wineItem?.results?.some(
-      (r) => r.vintage.toString() === vintageFromUrl
+      (r) => r.vintage.toString() === vintageFromUrl,
     );
 
     if (wineItem && hasVintage) {
@@ -90,7 +90,7 @@ export default function TableVintageDetail() {
   useEffect(() => {
     if (isEmpty) {
       toast.warning(
-        `This wine is no longer available for individual purchase on Vint-Ex. It is only available as part of a bundle.`
+        `This wine is no longer available for individual purchase on Vint-Ex. It is only available as part of a bundle.`,
       );
       router.back();
     }
@@ -112,7 +112,7 @@ export default function TableVintageDetail() {
         name: "",
         drinking_window: "",
       },
-    [data, vintageFromUrl]
+    [data, vintageFromUrl],
   );
 
   const [open, setOpen] = useState(item?.is_unavailable ?? false);
@@ -155,14 +155,14 @@ export default function TableVintageDetail() {
         </div>
       ) : isEmpty === false ? (
         <>
-          <div className="flex gap-4 h-[35%]">
+          <div className="market-l1-l1 flex gap-4 h-[35%]">
             <UnavailableDialog
               open={open}
               setOpen={setOpen}
             ></UnavailableDialog>
 
-            <Card className="relative p-0">
-              <CardContent className="p-0">
+            <Card className="max-h-auto min-h-auto p-0">
+              <CardContent className="flex items-center justify-center max-h-70 max-w-300 w-auto">
                 <div className="flex relative items-center p-2">
                   {item?.is_unavailable && (
                     <>
@@ -212,25 +212,8 @@ export default function TableVintageDetail() {
               </CardContent>
             </Card>
           </div>
-          <div className="flex items-center justify-between">
-            {tabs.map((item, index) => (
-              <div key={index} className="flex w-full">
-                <Button
-                  onClick={() => setActiveTab(item)}
-                  variant={"ghost"}
-                  className={`w-full border-b-2 ${
-                    activeTab === item
-                      ? "border-white text-white font-semibold"
-                      : "border-primary-brown/30"
-                  } rounded-none`}
-                >
-                  {item}
-                </Button>
-              </div>
-            ))}
-          </div>
 
-          <div className="w-full flex justify-between gap-4">
+          <div className="market-l1-l1 w-full flex justify-between gap-4">
             <Card className="w-full">
               <CardContent className="flex h-full">
                 <div className="w-full h-full flex flex-col items-center justify-center">
@@ -239,8 +222,8 @@ export default function TableVintageDetail() {
                       Number(item?.release_price) > 0
                         ? "text-green-500"
                         : Number(item?.release_price) < 0
-                        ? "text-red-500"
-                        : "text-gray-400"
+                          ? "text-red-500"
+                          : "text-gray-400"
                     }`}
                     variant="h1"
                   >
@@ -251,7 +234,7 @@ export default function TableVintageDetail() {
               </CardContent>
             </Card>
 
-            <Card className="w-full max-w-[300px] bg-primary-brown">
+            <Card className="w-full max-w-[300px] market_buy_cont bg-primary-brown">
               <CardContent className="flex bg-transparent">
                 <div className="flex flex-col w-full items-end gap-4">
                   <div className="flex justify-between w-full gap-4">
@@ -319,12 +302,29 @@ export default function TableVintageDetail() {
               </CardContent>
             </Card>
           </div>
+          <div className="flex items-center justify-between">
+            {tabs.map((item, index) => (
+              <div key={index} className="flex w-full">
+                <Button
+                  onClick={() => setActiveTab(item)}
+                  variant={"ghost"}
+                  className={`w-full border-b-2 ${
+                    activeTab === item
+                      ? "border-white text-white font-semibold"
+                      : "border-primary-brown/30"
+                  } rounded-none`}
+                >
+                  {item}
+                </Button>
+              </div>
+            ))}
+          </div>
           <Card className="h-full w-full">
             <CardContent className="h-full  overflow-y-auto">
               {activeTab === "Performance" && (
                 <MarketplaceDetailChart
                   lwin11={item?.lwin11}
-                  lifetime_performance={formattedReleasePrice}
+                  vintage={item.vintage}
                   data={data as VintexDetailsT}
                   result={data?.results}
                 ></MarketplaceDetailChart>
