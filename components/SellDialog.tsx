@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { Button } from "./ui/button";
-import { CartItemT } from "@/lib/types";
+import { ActivitiesT, CartItemT } from "@/lib/types";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
 import { Label } from "./ui/label";
@@ -22,20 +22,23 @@ import { Spinner } from "./ui/spinner";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { today } from "@/lib/today";
+import { useActivities } from "@/context/ActivitiesContext";
 
 export default function SellDialog({ item }: { item: CartItemT }) {
   const { addToRare } = useRare();
+  const { addToActivities } = useActivities();
   const { removeFromPortfolio } = usePortfolio();
   const bottle_size =
     item.bottle_size === "0750"
       ? 75
       : item.bottle_size === "1500"
-      ? 150
-      : item.bottle_size === "3000"
-      ? 300
-      : item.bottle_size === "6000"
-      ? 600
-      : 0;
+        ? 150
+        : item.bottle_size === "3000"
+          ? 300
+          : item.bottle_size === "6000"
+            ? 600
+            : 0;
 
   const [quantity, setQuantity] = useState(item.quantity);
   const [open, setOpen] = useState(false);
@@ -86,9 +89,26 @@ export default function SellDialog({ item }: { item: CartItemT }) {
         basket_details: null,
         basket_items: null,
       });
+      const activity_payload: ActivitiesT = {
+        id: `activity-sell-${uuidv4()}`,
+        type: "Trading",
+        date: today,
+        action: "Sell Request",
+        detail: {
+          wine_name: item.wine_name,
+          status: "Complete",
+          vintage: item.vintage,
+          quantity: item.quantity,
+          case_size: item.case_size,
+          details_wine: item,
+          purchase_price: item.stock_wine_vintage?.market_value ?? 0,
+          bottle_size: item.bottle_size,
+        },
+      };
+      addToActivities(activity_payload);
       removeFromPortfolio(item.id);
       toast.success(
-        "Your wine has been sold successfully! Check it out in the Marketplace under Trending Wines."
+        "Your wine has been sold successfully! Check it out in the Marketplace under Trending Wines.",
       );
       router.push("/vintage/portfolio");
     } catch (error) {
@@ -138,7 +158,7 @@ export default function SellDialog({ item }: { item: CartItemT }) {
                       alt=""
                       width={400}
                       height={400}
-                      className="h-full w-auto rounded-2xl"
+                      className="h-full max-h-[20vh] w-auto rounded-2xl"
                     ></Image>
                   </div>
                   <div>
@@ -189,7 +209,7 @@ export default function SellDialog({ item }: { item: CartItemT }) {
                   onChange={(e) => {
                     const val = Number(e.target.value);
                     setQuantity(
-                      val < 1 ? 1 : val > item.quantity ? item.quantity : val
+                      val < 1 ? 1 : val > item.quantity ? item.quantity : val,
                     );
                   }}
                   min={1}

@@ -23,7 +23,6 @@ export default function PortfolioDetail() {
     }
   }, [id, portfolio]);
 
-  console.log("DATA: ", data);
 
   return (
     <div className="w-full h-full">

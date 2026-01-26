@@ -43,6 +43,9 @@ import { useRare } from "@/context/RareContext";
 import { useDelivery } from "@/context/DeliveryContext";
 import { useWineCellar } from "@/context/WineCellarContext";
 import { useUserContext } from "@/context/UserContext";
+import { useEventSport } from "@/context/EventSportContext";
+import { useEventWine } from "@/context/EventWineContext";
+import { useActivities } from "@/context/ActivitiesContext";
 
 export default function SidebarSettings() {
   const [activeTab, setActiveTab] = useState("");
@@ -55,8 +58,11 @@ export default function SidebarSettings() {
   const { clearDelivery } = useDelivery();
   const { clearPortfolio } = usePortfolio();
   const { clearRare } = useRare();
+  const { clearEventSport } = useEventSport();
   const { subAccounts, addSubAccount, clearSubAccounts } = useSubAccount();
   const { clearWineCellar } = useWineCellar();
+  const { clearEventWine } = useEventWine();
+  const { clearActivities } = useActivities()
 
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
@@ -71,6 +77,10 @@ export default function SidebarSettings() {
     clearPortfolio();
     clearRare();
     clearWineCellar();
+    clearEventSport();
+    clearEventWine();
+    clearActivities()
+    localStorage.removeItem("daily-random");
     router.push("/");
   };
 

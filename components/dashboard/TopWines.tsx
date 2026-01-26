@@ -53,10 +53,6 @@ export default function TopWines() {
                 ? item.images[0]
                 : item.images;
 
-              console.log("DATA: ", item);
-
-              console.log("P&L: ", item.profit_lost_by_percent);
-
               return (
                 <div
                   key={item.investment_id ?? index}

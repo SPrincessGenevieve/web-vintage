@@ -23,12 +23,12 @@ export default function BuyBundlePortfolioBtn({ item }: { item: CartItemT }) {
     item.bottle_size === "0750"
       ? 75
       : item.bottle_size === "1500"
-      ? 150
-      : item.bottle_size === "3000"
-      ? 300
-      : item.bottle_size === "6000"
-      ? 600
-      : 0;
+        ? 150
+        : item.bottle_size === "3000"
+          ? 300
+          : item.bottle_size === "6000"
+            ? 600
+            : 0;
 
   const details = [
     {
@@ -41,12 +41,12 @@ export default function BuyBundlePortfolioBtn({ item }: { item: CartItemT }) {
     },
     {
       label: "Grapes",
-      value: item.grapes !== "" ? item.grapes : item.wine_parent.grapes ?? "",
+      value: item.grapes !== "" ? item.grapes : (item.wine_parent.grapes ?? ""),
     },
     {
       label: "Purchase Price",
-      value: `£ ${item.basket?.market_value.toLocaleString()}`
-    }
+      value: `£ ${item.basket?.market_value.toLocaleString()}`,
+    },
   ];
 
   return (

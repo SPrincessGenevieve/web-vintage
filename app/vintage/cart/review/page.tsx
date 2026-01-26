@@ -25,6 +25,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { Spinner } from "@/components/ui/spinner";
 import { v4 as uuidv4 } from "uuid";
 import { useRare } from "@/context/RareContext";
+import { useActivities } from "@/context/ActivitiesContext";
+import { ActivitiesT } from "@/lib/types";
+import { today } from "@/lib/today";
 
 export default function Review() {
   const router = useRouter();
@@ -39,6 +42,7 @@ export default function Review() {
   const { cart, checkedItems, removeFromCart } = useCart();
   const { removeFromRare } = useRare();
   const { portfolio, addToPortfolio } = usePortfolio();
+  const { addToActivities, clearActivities, activities } = useActivities();
   const [photoReq, setPhotoReq] = useState(0);
   const pathname = usePathname();
   const [loading, setLoading] = useState(false);
@@ -85,10 +89,8 @@ export default function Review() {
     },
   ];
 
-  console.log("CART TOTAL: ", cart_total)
-
   const [selectedPayment, setSelectedPayment] = React.useState(
-    payment_method.find((c) => c.is_default)?.last_code || "account-bal"
+    payment_method.find((c) => c.is_default)?.last_code || "account-bal",
   );
 
   const generateProfitLoss = (id: string, purchasePrice: number) => {
@@ -118,7 +120,7 @@ export default function Review() {
 
     localStorage.setItem(
       KEY,
-      JSON.stringify({ value: result, timestamp: now })
+      JSON.stringify({ value: result, timestamp: now }),
     );
 
     return result;
@@ -145,7 +147,7 @@ export default function Review() {
 
         const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
           portfolioId,
-          item.purchase_price
+          item.purchase_price,
         );
 
         const dataEntry = {
@@ -184,8 +186,25 @@ export default function Review() {
           profit_lost_by_percent: profit_loss_percent,
         };
 
-        console.log("CART BASKET ITEMS: ", dataEntry);
+        const activity_payload: ActivitiesT = {
+          id: `activity-buy-${portfolioId}`,
+          type: "Trading",
+          date: today,
+          action: "Buy Request",
+          detail: {
+            wine_name: item.wine_name,
+            status: "Pending",
+            vintage: item.vintage,
+            quantity: item.quantity,
+            case_size: item.case_size,
+            purchase_price: item.purchase_price,
+            bottle_size: item.bottle_size,
+            details_wine: dataEntry,
+          },
+        };
+
         addToPortfolio(dataEntry);
+        addToActivities(activity_payload);
         removeFromCart(item.id);
         removeFromRare(Number(item.investment_id));
         delete checkedItems[item.id];
@@ -196,6 +215,10 @@ export default function Review() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleClear = () => {
+    clearActivities();
   };
 
   useEffect(() => {

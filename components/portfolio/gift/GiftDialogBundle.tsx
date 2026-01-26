@@ -14,10 +14,14 @@ export default function GiftDialogBundle({
   data,
   close,
   gift,
+  email,
+  setEmail,
 }: {
   data: CartItemT;
   close: () => void;
   gift: () => void;
+  email: string;
+    setEmail: React.ChangeEventHandler<HTMLInputElement>;
 }) {
   const [quantity, setQuantity] = useState(data.quantity);
   const bottle_size =
@@ -58,7 +62,7 @@ export default function GiftDialogBundle({
                     alt=""
                     width={400}
                     height={400}
-                    className="h-full rounded-2xl w-auto"
+                    className="h-full max-h-[20vh] rounded-2xl w-auto"
                   ></Image>
                 </div>
                 <div>
@@ -92,7 +96,7 @@ export default function GiftDialogBundle({
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Input placeholder="example@gmail.com" label="Email"></Input>
+            <Input placeholder="example@gmail.com" value={email} onChange={setEmail} label="Email"></Input>
             <div>
               <Label>Quantity</Label>
               <div className="flex items-end gap-2">

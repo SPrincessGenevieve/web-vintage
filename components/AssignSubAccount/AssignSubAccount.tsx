@@ -68,7 +68,6 @@ export default function AssignSubAccount({ data }: { data: CartItemT }) {
     );
   };
 
-  console.log("DATA: ", data);
 
   const image = Array.isArray(data.images) ? data.images[0] : data.images;
 

@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { Plus } from "lucide-react";
 import { user_data } from "@/lib/wine_data/user";
 import { useRouter } from "next/navigation";
+import DepositDialog from "../DepositDialog";
 
 export default function CollectionPL() {
   const router = useRouter();
@@ -59,12 +60,7 @@ export default function CollectionPL() {
                 })}
               </Label>
             </div>
-            <Button
-              onClick={() => router.push("/vintage/settings/deposit")}
-              variant={"outline"}
-            >
-              <Plus></Plus>Deposit
-            </Button>
+            <DepositDialog></DepositDialog>
           </div>
         </div>
       </CardContent>

@@ -29,7 +29,6 @@ export default function VintExDetail() {
   const [activeTab, setActiveTab] = useState("Vintage");
   const tabs = ["Vintage", "Overview", "Region", "Grapes"];
 
-  console.log("DATA: ", data);
 
   // Don't use state for this if it's derived from 'data'
   // const [vintageList, setVintageList] = useState<VintageT[]>([]);

@@ -12,6 +12,7 @@ import TabDeatils from "../marketplace/TabDetails";
 import MoreContentWineCellarBundle from "./MoreContentWineCellarBundle";
 import BuyBundleWineCellarBtn from "./BuyBundleWineCellarBtn";
 import DeliverDialog from "./DeliverDialog";
+import { generateProfitLoss } from "./WineCellarDetailSingle";
 
 export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
   const pathname = usePathname();
@@ -21,7 +22,10 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
   const tabs = ["Overview", "Region", "Grapes"];
   const [activeTab, setActiveTab] = useState("Overview");
   const imgSrc = Array.isArray(item.images) ? item.images[0] : item.images;
-
+  const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
+    String(item.id),
+    item.purchase_price,
+  );
   return (
     <div className="flex flex-col gap-4 h-full overflow-y-auto justify-between">
       <div className=" flex relative justify-between w-full">
@@ -47,7 +51,7 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
         </Card>
         <div className="bundle-l1-l1 flex gap-4">
           <Card className="w-full">
-            <CardContent className="p-4 flex flex-col justify-between h-full ">
+            <CardContent className="p-4 relative flex flex-col justify-between h-full ">
               <div>
                 <Label
                   variant="h1"
@@ -93,6 +97,8 @@ export default function WineCellarDetailBasket({ item }: { item: CartItemT }) {
 
               <div className="absolute top-0 right-0">
                 <MoreContentWineCellarBundle
+                  profit_loss={profit_loss_value}
+                  profit_loss_percent={profit_loss_percent}
                   data={item}
                 ></MoreContentWineCellarBundle>
               </div>

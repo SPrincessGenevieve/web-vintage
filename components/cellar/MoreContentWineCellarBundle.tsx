@@ -21,12 +21,14 @@ import GiftDialog from "../portfolio/gift/GiftDialog";
 import AssignSubAccount from "../AssignSubAccount/AssignSubAccount";
 import { useParams, useRouter } from "next/navigation";
 import { usePortfolio } from "@/context/PortfolioContext";
-import { CartItemT } from "@/lib/types";
+import { ActivitiesT, CartItemT } from "@/lib/types";
 import { toast } from "sonner";
 import { useWineCellar } from "@/context/WineCellarContext";
 import { uuidv4 } from "zod";
 import GiftDialogBundle from "../portfolio/gift/GiftDialogBundle";
 import AssignSubAccountBundle from "../AssignSubAccount/AssignSubAccountBundle";
+import { numericId, today } from "@/lib/today";
+import { useActivities } from "@/context/ActivitiesContext";
 
 const items = [
   //   {
@@ -45,24 +47,48 @@ const items = [
 
 export default function MoreContentWineCellarBundle({
   data,
+  profit_loss,
+  profit_loss_percent,
 }: {
   data: CartItemT;
+  profit_loss: number;
+  profit_loss_percent: number;
 }) {
   const router = useRouter();
   const [select, setSelect] = useState("");
   const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const { addToActivities } = useActivities();
   const params = useParams();
   const id = params.id as string; // {wine}
-  const { portfolio,  addToPortfolio } = usePortfolio();
+  const { portfolio, addToPortfolio } = usePortfolio();
   const { removeFromWineCellar, updateWineCellarItem } = useWineCellar();
 
   const handleGift = () => {
     setOpen(false);
+    const activity_payload: ActivitiesT = {
+      id: `activity-deliver-bundle-${uuidv4()}`,
+      type: "Trading",
+      date: today,
+      action: "Gift Request",
+      gift_email: email,
+      detail: {
+        wine_name: data.wine_name,
+        status: "Pending",
+        details_wine: data,
+        vintage: data.vintage,
+        quantity: data.quantity,
+        case_size: data.case_size,
+        purchase_price: data.stock_wine_vintage?.market_value ?? 0,
+        bottle_size: data.bottle_size,
+      },
+    };
+    addToActivities(activity_payload);
     updateWineCellarItem(data.id, {
       status: "Gift Request", // or whatever your gifted status value is
     });
     toast.success(
-      "Your wine has been gifted successfully. Awaiting confirmation from the recipient."
+      "Your wine has been gifted successfully. Awaiting confirmation from the recipient.",
     );
   };
 
@@ -97,6 +123,8 @@ export default function MoreContentWineCellarBundle({
       location: "portfolio",
       bottle_size: data.bottle_size,
       vintage: data.vintage,
+      profit_lost: profit_loss,
+      profit_lost_by_percent: profit_loss_percent,
       alcohol_abv: data.alcohol_abv,
       blend: data.blend,
       grapes: data.grapes,
@@ -123,9 +151,7 @@ export default function MoreContentWineCellarBundle({
         <DropdownMenuContent>
           {items.map((item, index) => (
             <DropdownMenuItem
-              disabled={
-                data.status !== "In Bond" && data.status !== "Gift Request"
-              }
+              disabled={data.status !== "In Bond"}
               key={index}
               onClick={() => {
                 setSelect(item.label);
@@ -135,7 +161,7 @@ export default function MoreContentWineCellarBundle({
               <item.icon className="text-primary-brown"></item.icon>
               <Label className="text-white">
                 {data.status === "Gift Request" && item.label === "Gift"
-                  ? "Cancel Gift"
+                  ? "Gift Requested"
                   : item.label}
               </Label>
             </DropdownMenuItem>
@@ -154,7 +180,10 @@ export default function MoreContentWineCellarBundle({
                 Are you sure you want to cancel your gift?
               </Label>
               <div className="w-full flex gap-2 justify-end">
-                <Button onClick={handleCancelGift} className="bg-red-700 text-white hover:bg-red-700/50">
+                <Button
+                  onClick={handleCancelGift}
+                  className="bg-red-700 text-white hover:bg-red-700/50"
+                >
                   Yes, cancel
                 </Button>
                 <Button onClick={() => setOpen(false)} variant={"outline"}>
@@ -164,6 +193,8 @@ export default function MoreContentWineCellarBundle({
             </div>
           ) : select === "Gift" && data.status !== "Gift Request" ? (
             <GiftDialogBundle
+              email={email}
+              setEmail={(e) => setEmail(e.target.value)}
               gift={handleGift}
               close={() => setOpen(false)}
               data={data}

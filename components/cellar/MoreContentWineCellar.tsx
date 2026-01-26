@@ -46,13 +46,22 @@ const items = [
   },
 ];
 
-export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
+export default function MoreContentWineCellar({
+  data,
+  profit_loss,
+  profit_loss_percent,
+}: {
+  data: CartItemT;
+  profit_loss: number;
+  profit_loss_percent: number;
+}) {
   const router = useRouter();
   const [select, setSelect] = useState("");
   const [open, setOpen] = useState(false);
   const params = useParams();
   const id = params.id as string; // {wine}
   const { removeFromWineCellar } = useWineCellar();
+  const [email, setEmail] = useState("");
   const { addToPortfolio } = usePortfolio();
 
   const handleGift = () => {
@@ -62,6 +71,7 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
   };
 
   const handleAssignToWineCellar = () => {
+
     addToPortfolio({
       id: data.id,
       case_size: data.case_size,
@@ -86,13 +96,15 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
       vintage: data.vintage,
       alcohol_abv: data.alcohol_abv,
       blend: data.blend,
+      profit_lost: profit_loss,
+      profit_lost_by_percent: profit_loss_percent,
       grapes: data.grapes,
       ownership: data.ownership,
       winery: data.winery,
       region: data.region,
       grape_variety: data.grape_variety,
       rp_tasting_notes: data.rp_tasting_notes,
-      wine_parent: data.wine_parent
+      wine_parent: data.wine_parent,
     });
     removeFromWineCellar(data.id);
     toast.success("Wine has been successfully moved to Wine Cellar.");
@@ -133,6 +145,8 @@ export default function MoreContentWineCellar({ data }: { data: CartItemT }) {
               gift={handleGift}
               close={() => setOpen(false)}
               data={data}
+              email={email}
+              setEmail={(e) => setEmail(e.target.value)}
             ></GiftDialog>
           )}
           {select === "Assign to Wine Cellar" && (

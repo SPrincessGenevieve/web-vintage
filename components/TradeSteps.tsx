@@ -131,7 +131,7 @@ export const StepBankTranserStep2 = ({
   );
 };
 
-export const StepBankTranserStep3 = ({ onClick }: { onClick: () => void }) => {
+export const StepBankTranserStep3 = ({ onClick, reference_code }: { onClick: () => void, reference_code: string }) => {
   return (
     <div className="flex flex-col gap-4">
       <Label variant="h1">Transfer the funds</Label>
@@ -153,7 +153,7 @@ export const StepBankTranserStep3 = ({ onClick }: { onClick: () => void }) => {
             <div>
               <Label>Account Name: Elvin Mootoosamy</Label>
               <Label>Account Number: 15945146</Label>
-              <Label>Sort Code: 04-00-75</Label>
+              <Label>Sort Code: {reference_code}</Label>
             </div>
           </div>
           <div className="mt-4 w-full flex items-center justify-center">
@@ -184,10 +184,10 @@ export const StepBankTranserStep4 = ({
 }: {
   onClick: () => void;
   onClickClose: () => void;
-  value: number;
+  value: number | string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  open: boolean;
-  onOpenChange: (e: boolean) => void;
+  open?: boolean;
+  onOpenChange?: (e: boolean) => void;
 }) => {
   return (
     <div className="flex flex-col gap-4">
@@ -199,7 +199,7 @@ export const StepBankTranserStep4 = ({
           value={value}
           onChange={onChange}
           type="number"
-          className=""
+          className="text-center"
           label="Amount (GBP)"
           placeholder="e.g. 100"
         ></Input>
@@ -232,17 +232,18 @@ export const CardDeposit = ({
   close,
   confirm,
 }: {
-  open: boolean;
-  value: number;
+  open?: boolean;
+  value: number | string;
   onClick: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onOpenChange: (e: boolean) => void;
+  onOpenChange?: (e: boolean) => void;
   close: () => void;
-  confirm: () => void;
+  confirm?: () => void;
 }) => {
   return (
     <div className="flex flex-col gap-4">
       <Input
+        className="text-center"
         value={value}
         onChange={onChange}
         type="number"
@@ -250,7 +251,7 @@ export const CardDeposit = ({
         label="Deposit Amount (£)"
       ></Input>
       <PaymentMethodOption></PaymentMethodOption>
-      <Button onClick={onClick}>Deposit 1</Button>
+      <Button onClick={onClick}>Deposit</Button>
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent>
           <div>
@@ -267,6 +268,31 @@ export const CardDeposit = ({
           </div>
         </DialogContent>
       </Dialog>
+    </div>
+  );
+};
+
+export const CardDepositDashboard = ({
+  onClick,
+  value,
+  onChange,
+}: {
+  value: number;
+  onClick: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
+  return (
+    <div className="flex flex-col gap-4">
+      <Input
+        value={value}
+        onChange={onChange}
+        className="text-center"
+        type="number"
+        placeholder="Enter amount"
+        label="Deposit Amount (£)"
+      ></Input>
+      <PaymentMethodOption></PaymentMethodOption>
+      <Button onClick={onClick}>Deposit</Button>
     </div>
   );
 };

@@ -30,8 +30,10 @@ import { Card, CardContent } from "../ui/card";
 const formSchema = z.object({
   wine_upload: z
     .any()
-    .refine((file) => file instanceof File, { message: "Please upload a file" })
-    .refine((file: File) => file.size <= 5_000_000, {
+    .refine((file): file is File => file instanceof File, {
+      message: "Please upload a file",
+    })
+    .refine((file) => !file || file.size <= 5_000_000, {
       message: "File size must be ≤ 5MB",
     }),
   wine_name: z.string().min(2, { message: "This field is required." }),

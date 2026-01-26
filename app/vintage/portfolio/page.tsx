@@ -43,32 +43,6 @@ import { useSubAccount } from "@/context/SubAccountContext";
 import { default_sub_account } from "@/lib/default_sub_account";
 import AddSubAccount from "@/components/settings/sub-account/AddSubAccount";
 
-const filter = [
-  {
-    label: "All",
-    value: "all",
-  },
-  {
-    label: "Bordeaux",
-    value: "bordeaux",
-  },
-  {
-    label: "Burgundy",
-    value: "burgundy",
-  },
-  {
-    label: "Champagne",
-    value: "champagne",
-  },
-  {
-    label: "Italy",
-    value: "italy",
-  },
-  {
-    label: "California",
-    value: "california",
-  },
-];
 
 const sort = [
   {
@@ -429,9 +403,6 @@ export default function Portfolio() {
                   </TableHeader>
                   <TableBody className="w-full rounded-2xl">
                     {displayPortfolio.map((item, index) => {
-                      const id = String(item.id);
-                      const { profit_loss_value, profit_loss_percent } =
-                        generateProfitLoss(id, item.purchase_price);
                       const market_val =
                         item.basket !== null
                           ? item.basket.market_value
@@ -528,19 +499,25 @@ export default function Portfolio() {
                                     : "text-red-500"
                                 }`}
                               >
-                                £{" "}
-                                {Number(
-                                  item.profit_lost?.toFixed(),
-                                ).toLocaleString()}
+                                {" "}
+                                {!item.profit_lost
+                                  ? ""
+                                  : `£${Number(
+                                      item.profit_lost?.toFixed(),
+                                    ).toLocaleString()}`}
                               </Label>
                               <Label
                                 className={`text-white px-2 py-1 rounded-[5px] ${
                                   (item.profit_lost ?? 0 > 0)
                                     ? "bg-green-500/30"
-                                    : "bg-red-500/30"
+                                    : !item.profit_lost
+                                      ? ""
+                                      : "bg-red-500/30"
                                 }`}
                               >
-                                {item.profit_lost_by_percent}%
+                                {!item.profit_lost_by_percent
+                                  ? "---"
+                                  : `${item.profit_lost_by_percent}%`}
                               </Label>
                             </div>
                           </TableCell>

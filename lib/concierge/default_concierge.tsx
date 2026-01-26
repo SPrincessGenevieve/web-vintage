@@ -1,0 +1,16 @@
+export const event_default = {
+  id: 0,
+  event_highlights: [],
+  joined: false,
+  image: "",
+  title: "",
+  description: "",
+  guest: "",
+  location: "",
+  tag: "",
+  event_type: "",
+  start_date: "",
+  end_date: "",
+  display_date: "",
+  is_display_date: false,
+};

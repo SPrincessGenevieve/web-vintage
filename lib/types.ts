@@ -691,3 +691,121 @@ export interface WineParent {
   is_assortment?: boolean;
   sub_header?: string;
 }
+
+export interface EventHighlightsT {
+  id: number;
+  highlights: string;
+  event: number;
+}
+
+export interface eventT {
+  id: number;
+  event_highlights: EventHighlightsT[];
+  joined: boolean;
+  image: string;
+  title: string;
+  description: string;
+  guest: string;
+  location: string | null;
+  tag: string;
+  event_type: string;
+  start_date: string;
+  end_date: string;
+  display_date: string;
+  is_display_date: boolean;
+}
+
+export interface InsightsBodyT {
+  type: string;
+  content?: string;
+  caption?: string;
+  url?: string;
+  style?: string;
+  items?: string[];
+}
+
+export interface InsightsT {
+  id: number;
+  image_header: string;
+  title: string;
+  description: string;
+  body: InsightsBodyT[];
+  image_footer: string;
+}
+
+export interface IndiciesChartPointT {
+  id: number;
+  date: string;
+  value: string;
+}
+
+export interface IndiciesChartDataT {
+  yearly: IndiciesChartPointT[];
+  monthly: IndiciesChartPointT[];
+}
+
+export interface IndiciesT {
+  id: number;
+  name: string;
+  description: string;
+  is_processed: boolean;
+  current_value: string;
+  mom: string;
+  ytd: string;
+  one_years: string;
+  two_years: string;
+  five_years: string;
+  chart_data: IndiciesChartDataT;
+  lifetime_performance: number;
+}
+
+export interface StorageInviteT {
+  id: number;
+  title: string;
+  date: string;
+  time: string;
+  capacity: number;
+  joined: boolean;
+}
+
+export interface ActivitiesDetailT {
+  wine_name: string;
+  status: string;
+  vintage: string | number;
+  quantity: number;
+  case_size: number;
+  purchase_price: number;
+  bottle_size: string;
+  details_wine?: CartItemT;
+}
+
+export interface ActivitiesT {
+  id: string | number;
+  type: string;
+  date: string;
+  date_cancelled?: string;
+  action: string;
+  detail?: ActivitiesDetailT;
+  delivery_detail?: DeliverT;
+  fees_summary?: {
+    wine_product_total: string;
+    delivery_cost: number;
+    duty: string;
+    sub_total_before_tax: string;
+    vat_wine_and_futy: string;
+    vat_delivery: string;
+    total_cost: string;
+  };
+  gift_email?: string;
+  depost_detail?: {
+    deposit_type: string;
+    deposit_amount: number;
+    bank_name?: string;
+    bank_number?: string;
+    bank_reference_code?: string;
+    card_last_num?: string;
+    card_name?: string;
+    deposit_status?: string;
+    card_image?: string;
+  };
+}

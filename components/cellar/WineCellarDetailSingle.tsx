@@ -13,10 +13,40 @@ import WineCellarDetailChart from "./WineCellarDetailChart";
 import MoreContentWineCellar from "./MoreContentWineCellar";
 import DeliverDialog from "./DeliverDialog";
 
+export const generateProfitLoss = (id: string, purchasePrice: number) => {
+  const KEY = `pl_${id}`;
+  const now = Date.now();
+  const DAY = 1000 * 60 * 60 * 24;
+
+  const cached = localStorage.getItem(KEY);
+
+  if (cached) {
+    const data = JSON.parse(cached);
+
+    // keep value if less than 24 hours old
+    if (now - data.timestamp < DAY) {
+      return data.value;
+    }
+  }
+
+  // generate new values
+  const percentage = Number((Math.random() * 40 - 15).toFixed(2));
+  const value = Number(((purchasePrice * percentage) / 100).toFixed(2));
+
+  const result = {
+    profit_loss_value: value,
+    profit_loss_percent: percentage,
+  };
+
+  localStorage.setItem(KEY, JSON.stringify({ value: result, timestamp: now }));
+
+  return result;
+};
+
 export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Performance");
-  const imgSrc = item.images[0];
+  const imgSrc = item.wine_parent.images[0];
   const tabs = ["Performance", "Overview", "Region", "Grapes"];
 
   const release_price = item.stock_wine_vintage?.release_price;
@@ -27,39 +57,6 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
         ? `+${release_price}%`
         : `${release_price}%`
       : "";
-
-  const generateProfitLoss = (id: string, purchasePrice: number) => {
-    const KEY = `pl_${id}`;
-    const now = Date.now();
-    const DAY = 1000 * 60 * 60 * 24;
-
-    const cached = localStorage.getItem(KEY);
-
-    if (cached) {
-      const data = JSON.parse(cached);
-
-      // keep value if less than 24 hours old
-      if (now - data.timestamp < DAY) {
-        return data.value;
-      }
-    }
-
-    // generate new values
-    const percentage = Number((Math.random() * 40 - 15).toFixed(2));
-    const value = Number(((purchasePrice * percentage) / 100).toFixed(2));
-
-    const result = {
-      profit_loss_value: value,
-      profit_loss_percent: percentage,
-    };
-
-    localStorage.setItem(
-      KEY,
-      JSON.stringify({ value: result, timestamp: now }),
-    );
-
-    return result;
-  };
 
   const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
     String(item.id),
@@ -137,7 +134,11 @@ export default function WineCellarDetailSingle({ item }: { item: CartItemT }) {
               <div className="flex justify-between items-center w-full gap-2 rounded-t-[14px] bg-primary-gray-500/50 border-b border-primary-brown/50 p-4">
                 <DeliverDialog item={item}></DeliverDialog>
                 <div className="relative flex items-center justify-center w-[10%] h-full">
-                  <MoreContentWineCellar data={item}></MoreContentWineCellar>
+                  <MoreContentWineCellar
+                    data={item}
+                    profit_loss={profit_loss_value}
+                    profit_loss_percent={profit_loss_percent}
+                  ></MoreContentWineCellar>
                 </div>
 
                 {/* <Button className="bg-red-800 border-2 border-red-800 hover:bg-red-700 text-white w-1/2">

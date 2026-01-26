@@ -21,10 +21,13 @@ import GiftDialog from "./gift/GiftDialog";
 import AssignSubAccount from "../AssignSubAccount/AssignSubAccount";
 import { useParams, useRouter } from "next/navigation";
 import { usePortfolio } from "@/context/PortfolioContext";
-import { CartItemT } from "@/lib/types";
+import { ActivitiesT, CartItemT } from "@/lib/types";
 import { toast } from "sonner";
 import { useWineCellar } from "@/context/WineCellarContext";
 import { uuidv4 } from "zod";
+import { useActivities } from "@/context/ActivitiesContext";
+import { numericId, today } from "@/lib/today";
+import { useUserContext } from "@/context/UserContext";
 
 const items = [
   //   {
@@ -50,14 +53,41 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
   const { portfolio, removeFromPortfolio } = usePortfolio();
   const { addToWineCellar } = useWineCellar();
   const { updatePortfolioItem } = usePortfolio();
+  const { addToActivities } = useActivities();
+  const [email, setEmail] = useState("");
 
+  console.log("MARKET VALUE: ", data.purchase_price);
   const handleGift = () => {
+    if(email === ""){
+      toast.warning("Please provide an email.")
+      return
+    }
     setOpen(false);
+
+    const activity_payload: ActivitiesT = {
+      id: `activity-gift-${uuidv4()}`,
+      type: "Trading",
+      date: today,
+      action: "Gift Request",
+      gift_email: email,
+      detail: {
+        wine_name: data.wine_name,
+        status: "Pending",
+        details_wine: data,
+        vintage: data.vintage,
+        quantity: data.quantity,
+        case_size: data.case_size,
+        purchase_price: data.purchase_price ?? 0,
+        bottle_size: data.bottle_size,
+      },
+    };
+
     updatePortfolioItem(data.id, {
       status: "Gift Request", // or whatever your gifted status value is
     });
+    addToActivities(activity_payload);
     toast.success(
-      "Your wine has been gifted successfully. Awaiting confirmation from the recipient."
+      "Your wine has been gifted successfully. Awaiting confirmation from the recipient.",
     );
   };
 
@@ -93,6 +123,7 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
       bottle_size: data.bottle_size,
       vintage: data.vintage,
       alcohol_abv: data.alcohol_abv,
+      holding_year: data.holding_year,
       blend: data.blend,
       grapes: data.grapes,
       ownership: data.ownership,
@@ -119,7 +150,8 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
           {items.map((item, index) => (
             <DropdownMenuItem
               disabled={
-                data.status !== "In Bond" && item.label !== "Assign to Sub-account"
+                data.status !== "In Bond" &&
+                item.label !== "Assign to Sub-account"
               }
               key={index}
               onClick={() => {
@@ -130,7 +162,7 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
               <item.icon className="text-primary-brown"></item.icon>
               <Label className="text-white">
                 {data.status === "Gift Request" && item.label === "Gift"
-                  ? "Cancel Gift"
+                  ? "Gift Requested"
                   : item.label}
               </Label>
             </DropdownMenuItem>
@@ -165,6 +197,8 @@ export default function MoreContentPortfolio({ data }: { data: CartItemT }) {
             </div>
           ) : select === "Gift" && data.status !== "Gift Request" ? (
             <GiftDialog
+              email={email}
+              setEmail={(e) => setEmail(e.target.value)}
               gift={handleGift}
               close={() => setOpen(false)}
               data={data}

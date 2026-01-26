@@ -189,6 +189,9 @@ input[type="date"] {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
+  .book-cont{
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 @media (max-width: 1540px) {
@@ -197,6 +200,30 @@ input[type="date"] {
   }
   .card-inner-cont {
     width: 35vh;
+  }
+  .insight-header-bottom {
+    width: 100%;
+  }
+  .insight-header-top {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1425px) {
+.sheet-chart{
+  display: contents;
+}
+.card-filter-cont{
+  display: none;
+}
+.index-name-cont{
+  max-width:130px;
+}
+}
+
+@media (max-width: 1150px) {
+  .insight-header-cont {
+    flex-direction: column;
   }
 }
 
@@ -219,11 +246,33 @@ input[type="date"] {
     overflow-y: hidden;
     height: 100%;
   }
+}
+
+@media (max-width: 1245px) {
   .dashboard-main-cont {
     flex-direction: column;
+    height: 100vh;
+  }
+  .insight-b-img {
+    border-radius: 10px;
+  }
+  .insight-t-img-cont {
+    border-radius: 10px;
+    max-width: 200px;
+    width: 100%;
+  }
+  .insight-t-img {
+    border-radius: 10px;
+  }
+  .portfolio-dash-chart {
+    height: 100%;
   }
 }
+
 @media (max-width: 795px) {
+  .insight-t-img-cont {
+    max-width: 100%;
+  }
   .region-cont {
     flex-direction: column;
     align-items: center;
@@ -264,10 +313,10 @@ input[type="date"] {
     margin-bottom: 50px;
   }
   .concierge-top {
-    height: 45vh;
+    min-height: 45vh;
   }
   .concierge-bottom {
-    height: 55vh;
+    min-height: 45vh;
   }
   .vintage-sub-count {
     height: 94%;
@@ -275,9 +324,6 @@ input[type="date"] {
   }
   .vintage-layout-main {
     justify-content: start;
-  }
-  .portfolio-dash-chart {
-    height: 100%;
   }
 }
 

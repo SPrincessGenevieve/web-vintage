@@ -46,6 +46,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { generateHoldingYear } from "../special-volume/DrawerBuy";
+import { useActivities } from "@/context/ActivitiesContext";
 
 export interface DrawerVintageT {
   result_data: VintexResultsT[];
@@ -78,6 +79,7 @@ export default function DrawerVintage({
   const router = useRouter();
   const { setUserDetails } = useUserContext();
   const { addToCart, setCheckedItems, checkedItems } = useCart();
+  const { addToActivities } = useActivities();
   const { addToCartSummary, clearCartSummary } = useCartSummary();
   const default_vintage = result_data.find((v) => !v.is_unavailable)?.vintage;
   const default_index = result_data.findIndex((v) => !v.is_unavailable);

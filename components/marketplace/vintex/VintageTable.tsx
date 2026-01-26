@@ -44,7 +44,6 @@ export default function VintageTable({
       : 75;
 
   const handleVintageDetail = ( wine_id: number, vintage: number) => {
-    console.log("VINTAGE: ", wine_id)
     router.push(`/vintage/marketplace/vint-ex/${id}/${wine_id}/${vintage}`);
   };
 

@@ -10,7 +10,6 @@ import { Checkbox } from "../ui/checkbox";
 
 export default function SummaryDetailWine() {
   const { cart_summary } = useCartSummary();
-  console.log("CART: ", cart_summary);
 
   return (
     <div className="flex flex-col gap-4">

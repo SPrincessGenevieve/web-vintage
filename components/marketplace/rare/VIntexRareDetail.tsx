@@ -24,7 +24,6 @@ export default function VintexRareDetail({
   const tabs = ["Performance", "Overview", "Region", "Grapes"];
   const [activeTab, setActiveTab] = useState("Performance");
   const release_price = item?.wine_vintage_details?.release_price ?? "";
-  console.log("DATA: ", item);
   const formattedReleasePrice =
     release_price && !isNaN(Number(release_price))
       ? Number(release_price) > 0
@@ -158,7 +157,9 @@ export default function VintexRareDetail({
           </div>
         ))}
       </div>
-      <Card className={`${activeTab === "Performance" ? "" : "h-full"} w-full flex`}>
+      <Card
+        className={`${activeTab === "Performance" ? "" : "h-full"} w-full flex`}
+      >
         <CardContent className="h-full overflow-y-auto">
           {activeTab === "Performance" && (
             <RareChart

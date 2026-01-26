@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
-import { CartItemT, DeliverT, SubAccountType } from "@/lib/types";
+import { ActivitiesT, CartItemT, DeliverT, SubAccountType } from "@/lib/types";
 import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
@@ -28,6 +28,9 @@ import { Table, TableCell, TableRow } from "../ui/table";
 import { ChevronLeft } from "lucide-react";
 import PaymentMethodOption from "../PaymentMethodOption";
 import { toast } from "sonner";
+import { useActivities } from "@/context/ActivitiesContext";
+import { numericId, today } from "@/lib/today";
+import { useWineCellar } from "@/context/WineCellarContext";
 
 const formSchema = z.object({
   first_name: z.string().min(2, { message: "This field is required." }),
@@ -45,9 +48,11 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function DeliverDialog({ item }: { item: CartItemT }) {
   const { delivery, addToDelivery } = useDelivery();
+  const { updateWineCellarItem } = useWineCellar();
   const VAT_RATE = 0.2;
 
   const [initialStep, setInitialStep] = useState(true);
+  const { addToActivities } = useActivities();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { subAccounts } = useSubAccount();
@@ -84,7 +89,7 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
   function calculateDeliveryCost(
     quantity: number,
     caseSize: number,
-    bottleSizeCl: number
+    bottleSizeCl: number,
   ): number {
     const baseRate = (() => {
       switch (caseSize) {
@@ -126,18 +131,18 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
       item.bottle_size === "0750"
         ? 75
         : item.bottle_size === "1500"
-        ? 150
-        : item.bottle_size === "3000"
-        ? 300
-        : item.bottle_size === "6000"
-        ? 600
-        : 0;
+          ? 150
+          : item.bottle_size === "3000"
+            ? 300
+            : item.bottle_size === "6000"
+              ? 600
+              : 0;
 
     // Delivery cost
     const deliveryCost = calculateDeliveryCost(
       item.quantity,
       item.case_size,
-      bottleSizeCl
+      bottleSizeCl,
     );
 
     // Wine product total (wine cost before duty/VAT)
@@ -187,12 +192,12 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
     bottleSize === "0750"
       ? 75
       : bottleSize === "1500"
-      ? 150
-      : bottleSize === "3000"
-      ? 300
-      : bottleSize === "6000"
-      ? 600
-      : 0;
+        ? 150
+        : bottleSize === "3000"
+          ? 300
+          : bottleSize === "6000"
+            ? 600
+            : 0;
 
   function parseABV(value: string | number): number {
     if (typeof value === "number") return value;
@@ -212,13 +217,13 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
   const delivery_cost = calculateDeliveryCost(
     item.quantity,
     item.case_size,
-    bottleSizeCl
+    bottleSizeCl,
   );
 
   const market_value =
     item.basket !== null
       ? item.basket.market_value
-      : item.stock_wine_vintage?.market_value ?? 0;
+      : (item.stock_wine_vintage?.market_value ?? 0);
 
   const calculation_data = {
     quantity: item.quantity,
@@ -239,7 +244,7 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
             maximumFractionDigits: 2,
           })
         : value,
-    ])
+    ]),
   );
 
   const wine_details_table = [
@@ -348,9 +353,48 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
       toast.warning("This wine has already been requested.");
       return;
     }
+
+    const activity_payload: ActivitiesT = {
+      id: `activity-deliver-${uuidv4()}`,
+      type: "Trading",
+      date: today,
+      action: "Deliver Request",
+      detail: {
+        wine_name: item.wine_name,
+        status: "Complete",
+        vintage: 0,
+        quantity: item.quantity,
+        case_size: item.case_size,
+        details_wine: item,
+        purchase_price:
+          item.basket !== null
+            ? (item.basket?.market_value ?? 0)
+            : (item.stock_wine_vintage?.market_value ?? 0),
+        bottle_size:
+          item.basket !== null
+            ? (item?.basket_items?.[0].basket_bottle_size ?? "")
+            : (item.bottle_size ?? ""),
+      },
+      fees_summary: {
+        wine_product_total: formattedResult.wineProductTotal,
+        delivery_cost: delivery_cost,
+        duty: formattedResult.dutyAmount,
+        sub_total_before_tax: formattedResult.subTotalBeforeVAT,
+        vat_wine_and_futy: formattedResult.vatOnWineAndDuty,
+        vat_delivery: formattedResult.vatOnDelivery,
+        total_cost: formattedResult.totalCost,
+      },
+      delivery_detail: payload,
+    };
+
     addToDelivery(payload);
+    addToActivities(activity_payload);
+    updateWineCellarItem(item.id, {
+      status: "Deliver Request",
+    });
 
     toast.success("Your delivery request has been received.");
+
     form.reset({
       first_name: activeAccount?.first_name || "",
       last_name: activeAccount?.last_name || "",
@@ -368,8 +412,16 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="w-full">
-        <Button className="w-full">Deliver</Button>
+      <DialogTrigger
+        disabled={item.status !== "In Bond" ? true : false}
+        className="w-full"
+      >
+        <Button
+          disabled={item.status !== "In Bond" ? true : false}
+          className="w-full"
+        >
+          Deliver
+        </Button>
       </DialogTrigger>
       <DialogContent className="overflow-y-auto max-h-[90%]">
         <DialogHeader>

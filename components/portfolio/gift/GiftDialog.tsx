@@ -14,7 +14,11 @@ export default function GiftDialog({
   data,
   close,
   gift,
+  email,
+  setEmail,
 }: {
+  email: string;
+  setEmail: React.ChangeEventHandler<HTMLInputElement>
   data: CartItemT;
   close: () => void;
   gift: () => void;
@@ -24,12 +28,12 @@ export default function GiftDialog({
     data.bottle_size === "0750"
       ? 75
       : data.bottle_size === "1500"
-      ? 150
-      : data.bottle_size === "3000"
-      ? 300
-      : data.bottle_size === "6000"
-      ? 600
-      : 0;
+        ? 150
+        : data.bottle_size === "3000"
+          ? 300
+          : data.bottle_size === "6000"
+            ? 600
+            : 0;
   const total =
     Number(data.stock_wine_vintage?.market_value) *
     data.case_size *
@@ -58,7 +62,7 @@ export default function GiftDialog({
                     alt=""
                     width={400}
                     height={400}
-                    className="h-full rounded-2xl w-auto"
+                    className="h-full max-h-[20vh] rounded-2xl w-auto"
                   ></Image>
                 </div>
                 <div>
@@ -92,7 +96,12 @@ export default function GiftDialog({
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <Input placeholder="example@gmail.com" label="Email"></Input>
+            <Input
+              placeholder="example@gmail.com"
+              value={email}
+              onChange={setEmail}
+              label="Email"
+            ></Input>
             <div>
               <Label>Quantity</Label>
               <div className="flex items-end gap-2">
@@ -111,7 +120,7 @@ export default function GiftDialog({
                   onChange={(e) => {
                     const val = Number(e.target.value);
                     setQuantity(
-                      val < 1 ? 1 : val > data.quantity ? data.quantity : val
+                      val < 1 ? 1 : val > data.quantity ? data.quantity : val,
                     );
                   }}
                   min={1}

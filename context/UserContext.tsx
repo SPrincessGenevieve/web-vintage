@@ -20,6 +20,10 @@ import {
 
 type UserContextType = {
   token: string;
+  activeFilterMarket: string;
+  activeRegionMarket: string;
+  activeSortMarket: string;
+  gift_email: string;
   sub_account_portfolio: SubAccountType;
   sub_account_wine_cellar: SubAccountType;
   register_success: boolean;
@@ -45,7 +49,7 @@ type UserContextType = {
   setUserDetails: (
     details:
       | Partial<UserContextType>
-      | ((prev: UserContextType) => Partial<UserContextType>)
+      | ((prev: UserContextType) => Partial<UserContextType>),
   ) => void;
   alertDialog: boolean;
   addPaymentMethod: (method: PaymentMethodT) => void;
@@ -54,7 +58,11 @@ type UserContextType = {
 };
 
 const defaultUserContext: UserContextType = {
+  activeFilterMarket: "",
+  activeRegionMarket: "",
+  activeSortMarket: "",
   alertDialog: false,
+  gift_email: "",
   token: "",
   balance: 1200,
   register_email: "",
@@ -92,7 +100,7 @@ const defaultUserContext: UserContextType = {
     relationship: "",
     image: "",
     birth_date: "",
-    is_active: false
+    is_active: false,
   },
   setUserDetails: () => {},
   addPaymentMethod: () => {},
@@ -108,7 +116,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const savedUserData = JSON.parse(
-      localStorage.getItem("userDetails") || "{}"
+      localStorage.getItem("userDetails") || "{}",
     );
     setUserDetailsState((prev) => ({ ...prev, ...savedUserData }));
   }, []);
@@ -116,7 +124,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const setUserDetails = (
     details:
       | Partial<UserContextType>
-      | ((prev: UserContextType) => Partial<UserContextType>)
+      | ((prev: UserContextType) => Partial<UserContextType>),
   ) => {
     const updatedUserDetails =
       typeof details === "function"

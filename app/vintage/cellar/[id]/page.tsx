@@ -23,7 +23,6 @@ export default function WineCellarDetail() {
     }
   }, [id, wineCellar]);
 
-  console.log("DATA: ", data);
 
   return (
     <div className="w-full h-full">

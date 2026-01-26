@@ -17,6 +17,7 @@ import { CartItemT, SpecialBundleT } from "@/lib/types";
 import BuyBundlePortfolioBtn from "./BuyBundlePortfolioBtn";
 import MoreContentPortfolio from "./MoreContentPortfolio";
 import MoreContentPortfolioBundle from "./MoreContentPortfolioBundle";
+import { useActivities } from "@/context/ActivitiesContext";
 
 export default function PortfolioDetailBasket({ item }: { item: CartItemT }) {
   const pathname = usePathname();

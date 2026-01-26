@@ -145,7 +145,6 @@ export default function Cart() {
     router.push("/vintage/cart/review");
   };
 
-  console.log("CART: ", cart);
 
   return (
     <div className="w-full h-full flex flex-col justify-between">
@@ -238,8 +237,6 @@ export default function Cart() {
                 (item.photo_request ? PHOTO_REQUEST_FEE : 0);
 
               const vintage = item.vintage;
-
-              console.log("VINTAGE: ", item);
 
               const imageSrc =
                 item.basket?.image ??

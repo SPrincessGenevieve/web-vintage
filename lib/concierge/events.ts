@@ -21,7 +21,7 @@ export const event_list = [
         event: 7,
       },
     ],
-    joined: true,
+    joined: false,
     image: "https://d18vt6ndh4jzvp.cloudfront.net/media/r2-min.png",
     title: "Vintage Associates VIP Wimbledon Experience 2026",
     description:
@@ -93,7 +93,7 @@ export const event_list = [
         event: 10,
       },
     ],
-    joined: true,
+    joined: false,
     image: "https://d18vt6ndh4jzvp.cloudfront.net/media/r5.jpg",
     title: "Vintage Associates VIP Monaco Grand Prix",
     description:
@@ -129,7 +129,7 @@ export const event_list = [
         event: 16,
       },
     ],
-    joined: true,
+    joined: false,
     image:
       "https://d18vt6ndh4jzvp.cloudfront.net/media/request_an_event_photo_FNgYhj1.png",
     title: "Plan My Event",
@@ -275,7 +275,7 @@ export const event_list = [
         event: 6,
       },
     ],
-    joined: true,
+    joined: false,
     image: "https://d18vt6ndh4jzvp.cloudfront.net/media/r1.jpg",
     title: "Vintage Associates VIP World Cup Experience 2026",
     description:
@@ -456,7 +456,7 @@ export const event_list = [
         event: 5,
       },
     ],
-    joined: true,
+    joined: false,
     image: "https://d18vt6ndh4jzvp.cloudfront.net/media/w4.jpg",
     title: "Burgundy Experience",
     description:

@@ -73,10 +73,33 @@ const sort = [{}];
 type CardType = "vint-ex" | "special-volumes" | "special-bundle" | "rare";
 
 export default function Marketplace() {
-  const { filter_market, setUserDetails } = useUserContext();
+  const { setUserDetails } = useUserContext();
   const { rare, addToRare, clearRare } = useRare();
-  const [selectedFilter, setSelectedFilter] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState<CardType>("vint-ex");
+  const [selectedFilter, setSelectedFilter] = useState(() => {
+    return localStorage.getItem("selectedFilter") ?? "all";
+  });
+
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    return localStorage.getItem("selectedCategory") ?? "vint-ex";
+  });
+
+  const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">(() => {
+    return (
+      (localStorage.getItem("sortOrder") as "none" | "asc" | "desc") ?? "none"
+    );
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selectedFilter", selectedFilter);
+  }, [selectedFilter]);
+
+  useEffect(() => {
+    localStorage.setItem("selectedCategory", selectedCategory);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    localStorage.setItem("sortOrder", sortOrder);
+  }, [sortOrder]);
 
   const [search, setSearch] = useState("");
   const [count, setCount] = useState(0);
@@ -88,8 +111,6 @@ export default function Marketplace() {
       setSelectedFilter("all");
     }
   };
-
-  const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
 
   useEffect(() => {
     rare_data.forEach((item) => addToRare(item));

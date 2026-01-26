@@ -84,7 +84,7 @@ const header_list = [
 export default function WineCellar() {
   const { wineCellar, clearWineCellar, addToWineCellar } = useWineCellar();
   const router = useRouter();
-  const [loadData, setLoadData] = useState(true)
+  const [loadData, setLoadData] = useState(true);
   const [loadingID, setLoadingID] = useState("");
   const { subAccounts, addSubAccount } = useSubAccount();
   const [search, setSearch] = useState("");
@@ -98,7 +98,7 @@ export default function WineCellar() {
   const filteredWineCellar = React.useMemo(() => {
     if (!activeSubAccount) return [];
     return wineCellar.filter(
-      (item) => item.sub_account.id === activeSubAccount.id
+      (item) => item.sub_account.id === activeSubAccount.id,
     );
   }, [wineCellar, activeSubAccount]);
 
@@ -112,14 +112,16 @@ export default function WineCellar() {
     new Set(
       filteredWineCellar
         .filter((item) => item?.vintage && item.vintage !== 0)
-        .map((item) => item.vintage)
-    )
+        .map((item) => item.vintage),
+    ),
   );
 
   const region_list = Array.from(
     new Set(
-      filteredWineCellar.filter((item) => item?.fromm).map((item) => item.fromm)
-    )
+      filteredWineCellar
+        .filter((item) => item?.fromm)
+        .map((item) => item.fromm),
+    ),
   );
 
   const handleDel = () => {
@@ -131,7 +133,7 @@ export default function WineCellar() {
     const now = new Date();
 
     const days = Math.floor(
-      (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
+      (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
     );
 
     if (days < 30) return `${days} Day/s`;
@@ -167,12 +169,11 @@ export default function WineCellar() {
 
     localStorage.setItem(
       KEY,
-      JSON.stringify({ value: result, timestamp: now })
+      JSON.stringify({ value: result, timestamp: now }),
     );
 
     return result;
   };
-
 
   useEffect(() => {
     if (selectedRegion !== "" && selectedVintage === 0) {
@@ -195,7 +196,7 @@ export default function WineCellar() {
   const getMarketValue = (item: any) => {
     return item.basket !== null
       ? item.basket.market_value
-      : item.stock_wine_vintage?.market_value ?? 0;
+      : (item.stock_wine_vintage?.market_value ?? 0);
   };
 
   const handleDetail = (id: string) => {
@@ -211,7 +212,7 @@ export default function WineCellar() {
     if (search.trim() !== "") {
       const keyword = search.toLowerCase();
       data = data.filter((item) =>
-        item.wine_name.toLowerCase().includes(keyword)
+        item.wine_name.toLowerCase().includes(keyword),
       );
     }
 
@@ -230,11 +231,11 @@ export default function WineCellar() {
       data.sort((a, b) => {
         const plA = generateProfitLoss(
           String(a.id),
-          a.purchase_price
+          a.purchase_price,
         ).profit_loss_value;
         const plB = generateProfitLoss(
           String(b.id),
-          b.purchase_price
+          b.purchase_price,
         ).profit_loss_value;
 
         const mvA = getMarketValue(a);
@@ -273,8 +274,6 @@ export default function WineCellar() {
     selectedRegion,
     selectedSort,
   ]);
-
-  
 
   return (
     <div className="w-full h-full flex flex-col gap-4 overflow-y-auto">
@@ -425,9 +424,9 @@ export default function WineCellar() {
                             height={400}
                             className="rounded-2xl w-40 h-30 object-contain"
                             src={
-                              item.basket === null
+                              Array.isArray(item.images)
                                 ? item.images[0]
-                                : item.basket.image
+                                : item.images
                             }
                           ></Image>
                           <div className="flex flex-col justify-center">
@@ -448,12 +447,12 @@ export default function WineCellar() {
                                 {bottle === "0750"
                                   ? 75
                                   : bottle === "1500"
-                                  ? 150
-                                  : bottle === "3000"
-                                  ? 300
-                                  : bottle === "6000"
-                                  ? 600
-                                  : 0}
+                                    ? 150
+                                    : bottle === "3000"
+                                      ? 300
+                                      : bottle === "6000"
+                                        ? 600
+                                        : 0}
                                 cl
                               </Label>
                             </div>
@@ -470,7 +469,7 @@ export default function WineCellar() {
                           <Label className="text-white">
                             £{" "}
                             {Number(
-                              item.purchase_price.toFixed(2)
+                              item.purchase_price.toFixed(2),
                             ).toLocaleString()}
                           </Label>
                         </div>
@@ -493,7 +492,7 @@ export default function WineCellar() {
                           >
                             £{" "}
                             {Number(
-                              profit_loss_value.toFixed()
+                              profit_loss_value.toFixed(),
                             ).toLocaleString()}
                           </Label>
                           <Label
@@ -521,8 +520,8 @@ export default function WineCellar() {
                               item.status === "Buy Request"
                                 ? "bg-primary-brown text-black"
                                 : item.status === "Awaiting Arrival"
-                                ? "bg-red-900  text-white"
-                                : "text-white bg-[#8A6B47]"
+                                  ? "bg-red-900  text-white"
+                                  : "text-white bg-[#8A6B47]"
                             }`}
                           >
                             {item.status}

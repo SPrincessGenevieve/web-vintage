@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import VintexRareDetail from "@/components/marketplace/rare/VIntexRareDetail";
 import BundleRareDetail from "@/components/marketplace/rare/BundleRareDetail";
 import { generateHoldingYear } from "@/components/marketplace/special-volume/DrawerBuy";
+import { generateProfitLoss } from "@/components/cellar/WineCellarDetailSingle";
 
 export default function RareDetail() {
   const { rare, removeFromRare } = useRare();
@@ -64,9 +65,15 @@ export default function RareDetail() {
       ? data.wine_parent?.images?.[0]
       : item.basket_details?.image ?? "";
 
+ 
+
   const handleRemoveWine = () => {
     try {
       const portfolioId = uuidv4();
+       const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
+      String(item.investment_id),
+      item.market_value,
+    );
 
       const data =
         item.basket_details !== null ? item.basket_details : item.wine_parent;
@@ -162,6 +169,8 @@ export default function RareDetail() {
         blend: item.wine_parent.blend ?? "",
         grapes: item.wine_parent.grapes ?? "",
         ownership: item.wine_parent.ownership ?? "",
+        profit_lost: profit_loss_value,
+        profit_lost_by_percent: profit_loss_percent,
         winery: item.wine_parent.winery ?? "",
         region: item.wine_parent.region ?? "",
         grape_variety: item.wine_parent.grape_variety ?? "",

@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { CartItemT } from "@/lib/types";
+import { ActivitiesT, CartItemT } from "@/lib/types";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { Label } from "@/components/ui/label";
@@ -22,20 +22,24 @@ import { Spinner } from "@/components/ui/spinner";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useActivities } from "@/context/ActivitiesContext";
+import { today } from "@/lib/today";
 
 export default function SellBundleDialog({ item }: { item: CartItemT }) {
   const { addToRare } = useRare();
+  const { addToActivities } = useActivities();
+
   const { removeFromPortfolio } = usePortfolio();
   const bottle_size =
     item.bottle_size === "0750"
       ? 75
       : item.bottle_size === "1500"
-      ? 150
-      : item.bottle_size === "3000"
-      ? 300
-      : item.bottle_size === "6000"
-      ? 600
-      : 0;
+        ? 150
+        : item.bottle_size === "3000"
+          ? 300
+          : item.bottle_size === "6000"
+            ? 600
+            : 0;
 
   const [quantity, setQuantity] = useState(item.quantity);
   const [open, setOpen] = useState(false);
@@ -84,9 +88,28 @@ export default function SellBundleDialog({ item }: { item: CartItemT }) {
         basket_details: item.basket,
         basket_items: item.basket_items,
       });
+
+      const activity_payload: ActivitiesT = {
+        id: `activity-sell-bundle-${uuidv4()}`,
+        type: "Trading",
+        date: today,
+        action: "Sell Request",
+        detail: {
+          wine_name: item.wine_name,
+          status: "Complete",
+          vintage: 0,
+          quantity: item.quantity,
+          details_wine: item,
+          case_size: item.case_size,
+          purchase_price: item.basket?.market_value ?? 0,
+          bottle_size: item?.basket_items?.[0].basket_bottle_size ?? "",
+        },
+      };
+
+      addToActivities(activity_payload);
       removeFromPortfolio(item.id);
       toast.success(
-        "Your wine has been sold successfully! Check it out in the Marketplace under Trending Wines."
+        "Your wine has been sold successfully! Check it out in the Marketplace under Trending Wines.",
       );
       router.push("/vintage/portfolio");
     } catch (error) {
@@ -136,7 +159,7 @@ export default function SellBundleDialog({ item }: { item: CartItemT }) {
                       alt=""
                       width={400}
                       height={400}
-                      className="h-full w-auto rounded-2xl"
+                      className="h-full  w-auto rounded-2xl"
                     ></Image>
                   </div>
                   <div>
@@ -187,7 +210,7 @@ export default function SellBundleDialog({ item }: { item: CartItemT }) {
                   onChange={(e) => {
                     const val = Number(e.target.value);
                     setQuantity(
-                      val < 1 ? 1 : val > item.quantity ? item.quantity : val
+                      val < 1 ? 1 : val > item.quantity ? item.quantity : val,
                     );
                   }}
                   min={1}
