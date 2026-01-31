@@ -361,7 +361,7 @@ export default function DeliverDialog({ item }: { item: CartItemT }) {
       action: "Deliver Request",
       detail: {
         wine_name: item.wine_name,
-        status: "Complete",
+        status: "Requested",
         vintage: 0,
         quantity: item.quantity,
         case_size: item.case_size,

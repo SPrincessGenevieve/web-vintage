@@ -28,6 +28,7 @@ import { useRare } from "@/context/RareContext";
 import { useActivities } from "@/context/ActivitiesContext";
 import { ActivitiesT } from "@/lib/types";
 import { today } from "@/lib/today";
+import DepositDialog from "@/components/DepositDialog";
 
 export default function Review() {
   const router = useRouter();
@@ -36,7 +37,7 @@ export default function Review() {
     cart_total,
     current_investment,
     payment_method,
-    balance,
+    account_bal,
     setUserDetails,
   } = useUserContext();
   const { cart, checkedItems, removeFromCart } = useCart();
@@ -232,12 +233,12 @@ export default function Review() {
   }, [portfolio]);
 
   return (
-    <div className="flex flex-col gap-4 h-full ">
+    <div className="relative flex flex-col gap-2 h-full  gap-4">
       <div className="w-full flex items-center justify-evenly p-2">
         <div
           id="back"
           onClick={() => router.back()}
-          className=" cursor-pointer flex gap-2 items-center"
+          className="cursor-pointer w-20 flex gap-2 items-center"
         >
           <ChevronLeft
             className="cursor-pointer text-white/70"
@@ -248,13 +249,10 @@ export default function Review() {
           </Label>
         </div>
         <CartProgress width={"w-full"} step={2}></CartProgress>
-        <div className="">
-          <Label className=""></Label>
-        </div>
       </div>
-      <div className="flex gap-4 w-full h-full ">
-        <div className="flex flex-col gap-4 h-full">
-          <Card className="w-100">
+      <div className="flex gap-4 w-full cart-review-cont h-[78vh]">
+        <div className="flex flex-col w-full max-w-100 card-main-cont gap-4 h-full">
+          <Card className="max-w-110 card-card-cont min-w-[300px] w-full">
             <CardContent className="flex flex-col gap-4 p-4">
               <CardHeader className="w-full flex flex-col items-center">
                 <CardTitle>
@@ -278,7 +276,7 @@ export default function Review() {
               </div>
             </CardContent>
           </Card>
-          <Card className="w-100 h-full  max-h-105 overflow-y-auto">
+          <Card className="max-w-110  card-card-cont min-w-[300px] w-full h-full payment-review-card max-h-80 overflow-y-auto">
             <CardContent className="flex h-full flex-col gap-4 p-4">
               <CardHeader className="w-full flex flex-col items-center">
                 <CardTitle>
@@ -365,14 +363,14 @@ export default function Review() {
               </Dialog>
             </CardContent>
           </Card>
-          <Card className="h-40 w-full overflow-y-auto">
+          <Card className="h-40 w-full overflow-y-hidden">
             <CardContent className="h-auto p-4">
               <CardHeader className="flex items-center justify-center">
                 <CardTitle>
                   <Label variant="h2">Use Balance</Label>
                 </CardTitle>
               </CardHeader>
-              {balance > cart_total ? (
+              {account_bal > cart_total ? (
                 <RadioGroup
                   value={selectedPayment}
                   onValueChange={(value) => {
@@ -386,7 +384,7 @@ export default function Review() {
                       }));
                     }
                   }}
-                  disabled={cart_total > balance ? true : false}
+                  disabled={cart_total > account_bal ? true : false}
                   className="flex justify-between items-center mt-2"
                 >
                   <div
@@ -408,7 +406,7 @@ export default function Review() {
                           className="text-primary-brown"
                           variant="h2"
                         >
-                          £ {balance.toLocaleString()}
+                          £ {account_bal.toLocaleString()}
                         </Label>
                         <Label
                           htmlFor="account-bal"
@@ -424,7 +422,7 @@ export default function Review() {
                 <div className="flex flex-col items-center gap-4 justify-center">
                   <div className="w-full flex justify-between">
                     <div className="w-full flex items-center">
-                      <Button className="w-1/2">Deposit</Button>
+                      <DepositDialog></DepositDialog>
                     </div>
                     <div className="flex w-full items-end flex-col">
                       <Label
@@ -432,7 +430,7 @@ export default function Review() {
                         className="text-primary-brown"
                         variant="h2"
                       >
-                        £ {balance.toLocaleString()}
+                        £ {account_bal.toLocaleString()}
                       </Label>
                       <Label
                         htmlFor="account-bal"
@@ -456,7 +454,7 @@ export default function Review() {
           </CardContent>
         </Card>
       </div>
-      <div className="flex gap-4 justify-end">
+      <div className="flex gap-4 h-[5%] justify-end">
         <Label variant="h1">Total: £ {initial_total.toLocaleString()}</Label>
         <Button onClick={handleCheckout}>
           {loading ? (

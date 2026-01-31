@@ -369,9 +369,9 @@ export default function Cart() {
         <Button onClick={handleCheckout}>
           <ShoppingBasket></ShoppingBasket>Checkout
         </Button>
-        <Button onClick={() => clearCartSummary()}>
+        {/* <Button onClick={() => clearCartSummary()}>
           <Trash></Trash>
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

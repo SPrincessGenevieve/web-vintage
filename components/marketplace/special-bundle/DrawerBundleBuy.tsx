@@ -79,7 +79,6 @@ export default function DrawerBundleBuy({
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     `${data.basket_details.case_size}x${bottle}cl`
   );
-  const [photoRequest, setPhotoRequest] = useState(false);
   const [open, setOpen] = useState(false);
   const { setUserDetails } = useUserContext();
   const { addToCartSummary, clearCartSummary } = useCartSummary();
@@ -103,7 +102,7 @@ export default function DrawerBundleBuy({
     images: data.basket_details.image,
     is_special_volumes: type === "special-volume" || type === "rare",
     is_available: true,
-    photo_request: photoRequest,
+    photo_request: false,
     location: "portfolio",
     stock_wine_vintage: null,
     basket: {
@@ -149,7 +148,16 @@ export default function DrawerBundleBuy({
 
   const today = new Date().toISOString().split("T")[0];
 
-  const newItemBuy: CartItemT = {
+  
+  const handleAddToBasket = () => {
+    addToCart(newItem);
+    console.log("DATA RSULT: ", newItem);
+    toast.success("Wine added to cart");
+    location.reload();
+  };
+  
+  const handleBuyWine = async (photoReq: boolean) => {
+    const newItemBuy: CartItemT = {
     id: newItem.id,
     case_size: newItem.case_size,
     quantity: newItem.quantity,
@@ -158,7 +166,7 @@ export default function DrawerBundleBuy({
     images: newItem.images,
     is_special_volumes: newItem.is_special_volumes,
     is_available: newItem.is_available,
-    photo_request: newItem.photo_request,
+    photo_request: photoReq,
     stock_wine_vintage: newItem.stock_wine_vintage,
     basket: {
       id: newItem.basket?.id ?? 0,
@@ -199,17 +207,9 @@ export default function DrawerBundleBuy({
     wine_parent: newItem.wine_parent,
   };
 
-  const handleAddToBasket = () => {
-    addToCart(newItem);
-    console.log("DATA RSULT: ", newItem);
-    toast.success("Wine added to cart");
-    location.reload();
-  };
-  
-  const handleBuyWine = async () => {
     setOpen(false);
     setUserDetails({
-      cart_total: photoRequest ? newTotal + 16.99 : newTotal,
+      cart_total: photoReq ? newTotal + 16.99 : newTotal,
     });
     addToCart(newItem);
     setCheckedItems((prev) => ({
@@ -328,8 +328,7 @@ export default function DrawerBundleBuy({
               <DialogFooter>
                 <Button
                   onClick={() => {
-                    setPhotoRequest(false);
-                    handleBuyWine();
+                    handleBuyWine(false);
                   }}
                   className="w-32"
                   variant={"outline"}
@@ -340,8 +339,7 @@ export default function DrawerBundleBuy({
                 <Button
                   className="w-32"
                   onClick={() => {
-                    setPhotoRequest(true);
-                    handleBuyWine();
+                    handleBuyWine(true);
                   }}
                 >
                   Yes

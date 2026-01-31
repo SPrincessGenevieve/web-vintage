@@ -46,6 +46,7 @@ import { useUserContext } from "@/context/UserContext";
 import { useEventSport } from "@/context/EventSportContext";
 import { useEventWine } from "@/context/EventWineContext";
 import { useActivities } from "@/context/ActivitiesContext";
+import { useBook } from "@/context/BookContext";
 
 export default function SidebarSettings() {
   const [activeTab, setActiveTab] = useState("");
@@ -63,6 +64,7 @@ export default function SidebarSettings() {
   const { clearWineCellar } = useWineCellar();
   const { clearEventWine } = useEventWine();
   const { clearActivities } = useActivities()
+    const { clearBook } = useBook()
 
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
@@ -79,9 +81,10 @@ export default function SidebarSettings() {
     clearWineCellar();
     clearEventSport();
     clearEventWine();
-    clearActivities()
+    clearActivities();
+    clearBook()
     localStorage.removeItem("daily-random");
-    router.push("/");
+    // router.push("/");
   };
 
   useEffect(() => {

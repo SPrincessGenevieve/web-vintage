@@ -92,6 +92,7 @@ export default function WineCellar() {
   const [selectedRegion, setSelectedRegion] = useState("");
   const [selectedSort, setSelectedSort] = useState("");
   const [countFilter, setCountFilter] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const activeSubAccount = subAccounts.find((s) => s.is_active);
 
@@ -101,6 +102,12 @@ export default function WineCellar() {
       (item) => item.sub_account.id === activeSubAccount.id,
     );
   }, [wineCellar, activeSubAccount]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 200);
+  }, [filteredWineCellar.length]);
 
   useEffect(() => {
     if (subAccounts.length === 0) {
@@ -364,22 +371,31 @@ export default function WineCellar() {
             </Button>
           )}
         </div>
-        <div className="flex gap-4">
+        {/* <div className="flex gap-4">
           <AddToMyInvestment></AddToMyInvestment>
-        </div>
+        </div> */}
       </div>
       <Card className={`overflow-y-auto relative gap-0 h-[90%]`}>
         {filteredWineCellar.length === 0 ? (
-          <div className="w-full h-full flex-col flex items-center justify-center gap-4">
-            <Trash className="text-primary-brown" size={40}></Trash>
-            <Label variant="h1" className="text-[18px]">
-              Your Wine Cellar is empty
-            </Label>
-            <Button onClick={() => router.push("/vintage/marketplace")}>
-              <Wine></Wine>
-              Shop Marketplace
-            </Button>
-          </div>
+          loading ? (
+            <div className="w-full h-full flex-col flex items-center justify-center gap-4">
+              <Spinner></Spinner>
+              <Label className="text-primary-brown">
+                Loading Wine Cellar...
+              </Label>
+            </div>
+          ) : (
+            <div className="w-full h-full flex-col flex items-center justify-center gap-4">
+              <Trash className="text-primary-brown" size={40}></Trash>
+              <Label variant="h1" className="text-[18px]">
+                Your Wine Cellar is empty
+              </Label>
+              <Button onClick={() => router.push("/vintage/marketplace")}>
+                <Wine></Wine>
+                Shop Marketplace
+              </Button>
+            </div>
+          )
         ) : (
           <CardContent className="flex h-full flex-col min-w-400">
             <Table className="rounded-2xl">

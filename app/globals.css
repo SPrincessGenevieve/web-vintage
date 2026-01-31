@@ -39,6 +39,7 @@
   --color-primary-gray-500: #121416;
   --color-primary-gray-600: #0d0d0e;
   --color-primary-brown: #c4ad93;
+  --color-primary-darkbrown: #8a6b47;
   --color-primary-red-100: #ff8a8a;
   --color-primary-red-200: #e32d23;
   --color-primary-red-300: #8c0000;
@@ -189,8 +190,22 @@ input[type="date"] {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
-  .book-cont{
+  .book-cont {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .cart-review-cont {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+  .payment-review-card {
+    max-height: none;
+    height: auto;
+  }
+  .card-card-cont {
+    max-width: 100%;
+  }
+  .card-main-cont {
+    max-width: 100%;
   }
 }
 
@@ -210,15 +225,15 @@ input[type="date"] {
 }
 
 @media (max-width: 1425px) {
-.sheet-chart{
-  display: contents;
-}
-.card-filter-cont{
-  display: none;
-}
-.index-name-cont{
-  max-width:130px;
-}
+  .sheet-chart {
+    display: contents;
+  }
+  .card-filter-cont {
+    display: none;
+  }
+  .index-name-cont {
+    max-width: 130px;
+  }
 }
 
 @media (max-width: 1150px) {
@@ -343,10 +358,10 @@ input[type="date"] {
   .dashboard-main-cont {
     height: auto;
   }
-  .credit-card-cont {
+  /* .credit-card-cont {
     width: 300px;
     height: 200px;
-  }
+  } */
   .card-name-cont {
     height: 10%;
   }

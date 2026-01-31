@@ -70,7 +70,6 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
 
   const [caseSize, setCaseSize] = useState(case_size);
   const total = Number(result.market_value) * caseSize * quantityData;
-  const [photoRequest, setPhotoRequest] = useState(false);
   const [open, setOpen] = useState(false);
   const { setUserDetails } = useUserContext();
   const { addToCartSummary, clearCartSummary } = useCartSummary();
@@ -160,7 +159,16 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
 
   const today = new Date().toISOString().split("T")[0];
 
-  const newItemBuy: CartItemT = {
+  
+
+  const handleAddToBasket = () => {
+    addToCart(newItem);
+    toast.success("Wine added to cart");
+    location.reload();
+  };
+
+  const handleBuyWine = async (photoReq: boolean) => {
+    const newItemBuy: CartItemT = {
     id: newItem.id,
     investment_id: newItem.investment_id,
     case_size: newItem.case_size,
@@ -170,7 +178,7 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
     images: newItem.images,
     is_special_volumes: newItem.is_special_volumes,
     is_available: newItem.is_available,
-    photo_request: newItem.photo_request,
+    photo_request: photoReq,
     stock_wine_vintage: newItem.stock_wine_vintage,
     basket: null,
     basket_items: null,
@@ -193,17 +201,9 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
     rp_tasting_notes: newItem.rp_tasting_notes,
     wine_parent: newItem.wine_parent,
   };
-
-  const handleAddToBasket = () => {
-    addToCart(newItem);
-    toast.success("Wine added to cart");
-    location.reload();
-  };
-
-  const handleBuyWine = async () => {
     setOpen(false);
     setUserDetails({
-      cart_total: photoRequest ? newTotal + 16.99 : newTotal,
+      cart_total: photoReq ? newTotal + 16.99 : newTotal,
     });
     addToCart(newItem);
     setCheckedItems((prev) => ({
@@ -307,8 +307,7 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
               <DialogFooter>
                 <Button
                   onClick={() => {
-                    setPhotoRequest(false);
-                    handleBuyWine();
+                    handleBuyWine(false);
                   }}
                   className="w-32"
                   variant={"outline"}
@@ -319,8 +318,7 @@ export default function DrawerBuyRare({ result, trigger, type }: DrawerRareT) {
                 <Button
                   className="w-32"
                   onClick={() => {
-                    setPhotoRequest(true);
-                    handleBuyWine();
+                    handleBuyWine(true);
                   }}
                 >
                   Yes

@@ -21,16 +21,18 @@ export default function BuyActivityDetail({ item, img }: BuyActivityDetailT) {
   const { updateActivitiesItem, activities } = useActivities();
   const { updatePortfolioItem } = usePortfolio();
   const activity = activities.find((a) => a.id === item.id);
-  const status = item.detail?.status;
+  const action = item.detail?.status;
+  const status = activity?.action;
+  const price = item.detail?.purchase_price ?? 0;
 
   return (
     <div className="flex flex-col gap-4">
       <Label className="text-primary-brown" variant="h1">
-        Buy Request
+        {status === "Buy Request" ? "Buy Request" : "In Bonding"}
       </Label>
       <div className="flex flex-col gap-2">
         <div
-          className={`rounded-2xl border border-primary-brown/30 overflow-hidden ${item.detail?.details_wine?.basket === null ? "" : "bg-black"} flex items-center justify-center`}
+          className={`rounded-2xl border border-primary-brown/30 overflow-hidden bg-black flex items-center justify-center`}
         >
           <Image
             src={img}
@@ -66,7 +68,7 @@ export default function BuyActivityDetail({ item, img }: BuyActivityDetailT) {
                 </TableCell>
                 <TableCell>
                   <Label className="text-white font-semibold">
-                    £ {item.detail?.purchase_price.toLocaleString()}
+                    £ {price.toLocaleString()}
                   </Label>
                 </TableCell>
               </TableRow>

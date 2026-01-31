@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/table";
 import { CustomTooltip } from "@/components/CustomTooltip";
 import { Brush, X } from "lucide-react";
+import Loading from "@/components/Loading";
 
 const colors = [
   "#f87171",
@@ -63,6 +64,7 @@ export default function Indicies() {
   const [indexFilter, setIndexFilter] = useState<string[]>([]);
   const [filteredData, setFilteredData] = useState<IndiciesT[]>([]);
   const [timeFilter, setTimeFilter] = useState("YTD");
+  const [loading, setLoading] = useState(true);
 
   // Load data
   useEffect(() => {
@@ -216,305 +218,327 @@ export default function Indicies() {
     );
   }, [data, selectedCategory]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 200);
+  }, [data.length]);
+
   return (
-    <div className="w-full h-full flex flex-col gap-4">
-      <Sheet>
-        <SheetTrigger className="sheet-chart hidden">
-          <Button>Filter</Button>
-        </SheetTrigger>
-        <SheetContent className="p-4">
-          <div>
-            <CardTitle className="flex justify-between">
-              <Label className="font-semibold text-white">Market Data</Label>
-            </CardTitle>
-            <div className="flex flex-col justify-between gap-2 mt-2 ml-4">
-              {category.map((item) => (
-                <div key={item} className="flex gap-2 items-start">
-                  <Checkbox
-                    id={item}
-                    checked={selectedCategory === item}
-                    onCheckedChange={() => {
-                      setSelectedCategory(item as "Indicies" | "Key UK Rates");
-                      setIndexFilter([]); // 🔥 reset selections when switching category
-                    }}
-                  />
-                  <Label htmlFor={item}>{item}</Label>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <CardTitle className="flex justify-between">
-              <Label className="font-semibold text-white">
-                Index Filter ({filteredData.length}/5)
-              </Label>
-              <div className="h-8">
-                {filteredData.length !== 0 && (
-                  <Button
-                    onClick={() => setIndexFilter([])}
-                    variant="ghost"
-                    disabled={indexFilter.length === 0}
-                    className="text-red-600"
-                  >
-                    Clear
-                  </Button>
-                )}
-              </div>
-            </CardTitle>
-            <div className="flex flex-col gap-2 p-4">
-              {visibleIndices.map((item) => (
-                <div key={item.name} className="flex gap-2 items-start">
-                  <Checkbox
-                    id={item.name}
-                    checked={indexFilter.includes(item.name)}
-                    onCheckedChange={(checked) => {
-                      setIndexFilter((prev) => {
-                        if (checked) {
-                          // Only add if under 5
-                          if (prev.length < 5) {
-                            return [...prev, item.name];
-                          } else {
-                            return prev; // ignore if already 5
-                          }
-                        } else {
-                          // Remove when unchecked
-                          return prev.filter((i) => i !== item.name);
-                        }
-                      });
-                    }}
-                  />
-                  <Label
-                    htmlFor={item.name}
-                    className={
-                      indexFilter.includes(item.name)
-                        ? "text-white"
-                        : "text-white/30"
-                    }
-                  >
-                    {item.name}
+    <>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <div className="w-full h-full flex flex-col gap-4">
+          <Sheet>
+            <SheetTrigger className="sheet-chart hidden">
+              <Button>Filter</Button>
+            </SheetTrigger>
+            <SheetContent className="p-4">
+              <div>
+                <CardTitle className="flex justify-between">
+                  <Label className="font-semibold text-white">
+                    Market Data
                   </Label>
-                </div>
-              ))}
-            </div>
-          </div>
-        </SheetContent>
-      </Sheet>
-      <div className="flex gap-2 h-full w-full max-h-[65vh]">
-        <Card className="h-full card-filter-cont">
-          <CardContent className="min-w-[300px] h-full">
-            <div>
-              <CardTitle className="flex justify-between">
-                <Label className="font-semibold text-white">Market Data</Label>
-              </CardTitle>
-              <div className="flex flex-col justify-between gap-2 mt-2 ml-4">
-                {category.map((item) => (
-                  <div key={item} className="flex gap-2 items-start">
-                    <Checkbox
-                      id={item}
-                      checked={selectedCategory === item}
-                      onCheckedChange={() => {
-                        setSelectedCategory(
-                          item as "Indicies" | "Key UK Rates",
-                        );
-                        setIndexFilter([]); // 🔥 reset selections when switching category
-                      }}
-                    />
-                    <Label htmlFor={item}>{item}</Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <CardTitle className="flex justify-between">
-                <Label className="font-semibold text-white">
-                  Index Filter ({filteredData.length}/5)
-                </Label>
-                <div className="h-8">
-                  {filteredData.length !== 0 && (
-                    <Button
-                      onClick={() => setIndexFilter([])}
-                      variant="ghost"
-                      disabled={indexFilter.length === 0}
-                      className="text-red-600"
-                    >
-                      Clear
-                    </Button>
-                  )}
-                </div>
-              </CardTitle>
-              <div className="flex flex-col gap-2 p-4">
-                {visibleIndices.map((item) => (
-                  <div key={item.name} className="flex gap-2 items-start">
-                    <Checkbox
-                      id={item.name}
-                      checked={indexFilter.includes(item.name)}
-                      onCheckedChange={(checked) => {
-                        setIndexFilter((prev) => {
-                          if (checked) {
-                            // Only add if under 5
-                            if (prev.length < 5) {
-                              return [...prev, item.name];
-                            } else {
-                              return prev; // ignore if already 5
-                            }
-                          } else {
-                            // Remove when unchecked
-                            return prev.filter((i) => i !== item.name);
-                          }
-                        });
-                      }}
-                    />
-                    <Label
-                      htmlFor={item.name}
-                      className={
-                        indexFilter.includes(item.name)
-                          ? "text-white"
-                          : "text-white/30"
-                      }
-                    >
-                      {item.name}
-                    </Label>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        <div className="px-2 w-full h-full flex flex-col gap-4">
-          <div className="flex gap-2 w-full h-[10%]">
-            {timeList.map((item) => (
-              <Button
-                key={item}
-                variant={item === timeFilter ? "default" : "outline"}
-                className="w-[60px] rounded-full"
-                onClick={() => setTimeFilter(item)}
-              >
-                {item}
-              </Button>
-            ))}
-          </div>
-          {filteredData.length === 0 ? (
-            <Card className="w-full h-full mt-2 bg-transparent">
-              <CardContent className="bg-transparent w-full h-full">
-                <div className="w-full h-full flex items-center justify-center">
-                  <Label>Select an Index Filter to display the chart.</Label>
-                </div>
-              </CardContent>
-            </Card>
-          ) : (
-            <Card
-              className={`w-full my-4 h-full max-h-[90%] overflow-x-auto bg-primary-gray-600`}
-            >
-              <CardContent className="w-full h-full items-center justify-center min-w-[700px]  bg-transparent ">
-                <div className="w-full h-full">
-                  <ChartContainer
-                    config={chartConfig}
-                    className="w-full flex h-full"
-                  >
-                    <ResponsiveContainer
-                      className={"w-full h-full flex rounded-2xl"}
-                    >
-                      <AreaChart
-                        data={chartData}
-                        className="h-full w-full flex"
-                      >
-                        <CartesianGrid vertical={false} />
-                        <XAxis dataKey="label" />
-                        <YAxis
-                          ticks={ticks}
-                          tickFormatter={(v) =>
-                            usePercentage ? `${Number(v).toFixed(1)}%` : v
-                          }
-                          domain={[ticks[0], ticks[ticks.length - 1]]}
-                        />
-                        <Tooltip
-                          content={
-                            <CustomTooltip usePercentage={usePercentage} />
-                          }
-                          cursor={{ strokeDasharray: "3 3" }}
-                        />
-                        {filteredData.map((item) => (
-                          <Area
-                            connectNulls
-                            key={item.name}
-                            type="monotone"
-                            dataKey={item.name}
-                            stroke={indexColorMap[item.name]}
-                            fill="none"
-                            strokeWidth={2}
-                            dot={false}
-                            activeDot={{ r: 4 }}
-                          />
-                        ))}
-                      </AreaChart>
-                    </ResponsiveContainer>
-                  </ChartContainer>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 h-full">
-        <Label className="text-white" variant="h2">
-          Index Table
-        </Label>
-        <div className="rounded-2xl overflow-hidden h-full w-full flex">
-          {filteredData.length === 0 ? (
-            <Card className="w-full h-full bg-primary-gray-600">
-              <CardContent className="h-full flex items-center justify-center bg-transparent">
-                <Label className="text-center">
-                  No data to display. Please select at least one index to view
-                  the table.
-                </Label>
-              </CardContent>
-            </Card>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow className="border-none bg-primary-brown">
-                  {header.map((item, index) => (
-                    <TableCell key={index}>
-                      <Label className="text-black font-semibold">{item}</Label>
-                    </TableCell>
+                </CardTitle>
+                <div className="flex flex-col justify-between gap-2 mt-2 ml-4">
+                  {category.map((item) => (
+                    <div key={item} className="flex gap-2 items-start">
+                      <Checkbox
+                        id={item}
+                        checked={selectedCategory === item}
+                        onCheckedChange={() => {
+                          setSelectedCategory(
+                            item as "Indicies" | "Key UK Rates",
+                          );
+                          setIndexFilter([]); // 🔥 reset selections when switching category
+                        }}
+                      />
+                      <Label htmlFor={item}>{item}</Label>
+                    </div>
                   ))}
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredData.map((item, i) => (
-                  <TableRow className="border-primary-brown/30">
-                    <TableCell className="index-name-cont">
-                      <div className="flex items-center gap-4">
-                        <div>
-                          <div
-                            style={{
-                              backgroundColor: indexColorMap[item.name],
-                            }}
-                            className={`w-4 h-4 rounded-[5px]`}
-                          ></div>
-                        </div>
-                        <Label className="whitespace-normal ">
+                </div>
+              </div>
+              <div>
+                <CardTitle className="flex justify-between">
+                  <Label className="font-semibold text-white">
+                    Index Filter ({filteredData.length}/5)
+                  </Label>
+                  <div className="h-8">
+                    {filteredData.length !== 0 && (
+                      <Button
+                        onClick={() => setIndexFilter([])}
+                        variant="ghost"
+                        disabled={indexFilter.length === 0}
+                        className="text-red-600"
+                      >
+                        Clear
+                      </Button>
+                    )}
+                  </div>
+                </CardTitle>
+                <div className="flex flex-col gap-2 p-4">
+                  {visibleIndices.map((item) => (
+                    <div key={item.name} className="flex gap-2 items-start">
+                      <Checkbox
+                        id={item.name}
+                        checked={indexFilter.includes(item.name)}
+                        onCheckedChange={(checked) => {
+                          setIndexFilter((prev) => {
+                            if (checked) {
+                              // Only add if under 5
+                              if (prev.length < 5) {
+                                return [...prev, item.name];
+                              } else {
+                                return prev; // ignore if already 5
+                              }
+                            } else {
+                              // Remove when unchecked
+                              return prev.filter((i) => i !== item.name);
+                            }
+                          });
+                        }}
+                      />
+                      <Label
+                        htmlFor={item.name}
+                        className={
+                          indexFilter.includes(item.name)
+                            ? "text-white"
+                            : "text-white/30"
+                        }
+                      >
+                        {item.name}
+                      </Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+          <div className="flex gap-2 h-full w-full max-h-[65vh]">
+            <Card className="h-full card-filter-cont">
+              <CardContent className="min-w-[300px] h-full">
+                <div>
+                  <CardTitle className="flex justify-between">
+                    <Label className="font-semibold text-white">
+                      Market Data
+                    </Label>
+                  </CardTitle>
+                  <div className="flex flex-col justify-between gap-2 mt-2 ml-4">
+                    {category.map((item) => (
+                      <div key={item} className="flex gap-2 items-start">
+                        <Checkbox
+                          id={item}
+                          checked={selectedCategory === item}
+                          onCheckedChange={() => {
+                            setSelectedCategory(
+                              item as "Indicies" | "Key UK Rates",
+                            );
+                            setIndexFilter([]); // 🔥 reset selections when switching category
+                          }}
+                        />
+                        <Label htmlFor={item}>{item}</Label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <CardTitle className="flex justify-between">
+                    <Label className="font-semibold text-white">
+                      Index Filter ({filteredData.length}/5)
+                    </Label>
+                    <div className="h-8">
+                      {filteredData.length !== 0 && (
+                        <Button
+                          onClick={() => setIndexFilter([])}
+                          variant="ghost"
+                          disabled={indexFilter.length === 0}
+                          className="text-red-600"
+                        >
+                          Clear
+                        </Button>
+                      )}
+                    </div>
+                  </CardTitle>
+                  <div className="flex flex-col gap-2 p-4">
+                    {visibleIndices.map((item) => (
+                      <div key={item.name} className="flex gap-2 items-start">
+                        <Checkbox
+                          id={item.name}
+                          checked={indexFilter.includes(item.name)}
+                          onCheckedChange={(checked) => {
+                            setIndexFilter((prev) => {
+                              if (checked) {
+                                // Only add if under 5
+                                if (prev.length < 5) {
+                                  return [...prev, item.name];
+                                } else {
+                                  return prev; // ignore if already 5
+                                }
+                              } else {
+                                // Remove when unchecked
+                                return prev.filter((i) => i !== item.name);
+                              }
+                            });
+                          }}
+                        />
+                        <Label
+                          htmlFor={item.name}
+                          className={
+                            indexFilter.includes(item.name)
+                              ? "text-white"
+                              : "text-white/30"
+                          }
+                        >
                           {item.name}
                         </Label>
                       </div>
-                    </TableCell>
-                    <TableCell>
-                      <Label>
-                        £ {Number(item.current_value).toLocaleString()}
-                      </Label>
-                    </TableCell>
-                    <TableCell>
-                      <Label>
-                        {Number(Number(item.mom) * 100).toFixed(0)}%
-                      </Label>
-                    </TableCell>
-                  </TableRow>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            <div className="px-2 w-full h-full flex flex-col gap-4">
+              <div className="flex gap-2 w-full h-[10%]">
+                {timeList.map((item) => (
+                  <Button
+                    key={item}
+                    variant={item === timeFilter ? "default" : "outline"}
+                    className="w-[60px] rounded-full"
+                    onClick={() => setTimeFilter(item)}
+                  >
+                    {item}
+                  </Button>
                 ))}
-              </TableBody>
-            </Table>
-          )}
+              </div>
+              {filteredData.length === 0 ? (
+                <Card className="w-full h-full mt-2 bg-transparent">
+                  <CardContent className="bg-transparent w-full h-full">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Label>
+                        Select an Index Filter to display the chart.
+                      </Label>
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card
+                  className={`w-full my-4 h-full max-h-[90%] overflow-x-auto bg-primary-gray-600`}
+                >
+                  <CardContent className="w-full h-full items-center justify-center min-w-[700px]  bg-transparent ">
+                    <div className="w-full h-full">
+                      <ChartContainer
+                        config={chartConfig}
+                        className="w-full flex h-full"
+                      >
+                        <ResponsiveContainer
+                          className={"w-full h-full flex rounded-2xl"}
+                        >
+                          <AreaChart
+                            data={chartData}
+                            className="h-full w-full flex"
+                          >
+                            <CartesianGrid vertical={false} />
+                            <XAxis dataKey="label" />
+                            <YAxis
+                              ticks={ticks}
+                              tickFormatter={(v) =>
+                                usePercentage ? `${Number(v).toFixed(1)}%` : v
+                              }
+                              domain={[ticks[0], ticks[ticks.length - 1]]}
+                            />
+                            <Tooltip
+                              content={
+                                <CustomTooltip usePercentage={usePercentage} />
+                              }
+                              cursor={{ strokeDasharray: "3 3" }}
+                            />
+                            {filteredData.map((item) => (
+                              <Area
+                                connectNulls
+                                key={item.name}
+                                type="monotone"
+                                dataKey={item.name}
+                                stroke={indexColorMap[item.name]}
+                                fill="none"
+                                strokeWidth={2}
+                                dot={false}
+                                activeDot={{ r: 4 }}
+                              />
+                            ))}
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </ChartContainer>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 h-full">
+            <Label className="text-white" variant="h2">
+              Index Table
+            </Label>
+            <div className="rounded-2xl overflow-hidden h-full w-full flex">
+              {filteredData.length === 0 ? (
+                <Card className="w-full h-full bg-primary-gray-600">
+                  <CardContent className="h-full flex items-center justify-center bg-transparent">
+                    <Label className="text-center">
+                      No data to display. Please select at least one index to
+                      view the table.
+                    </Label>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-none bg-primary-brown">
+                      {header.map((item, index) => (
+                        <TableCell key={index}>
+                          <Label className="text-black font-semibold">
+                            {item}
+                          </Label>
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredData.map((item, i) => (
+                      <TableRow className="border-primary-brown/30">
+                        <TableCell className="index-name-cont">
+                          <div className="flex items-center gap-4">
+                            <div>
+                              <div
+                                style={{
+                                  backgroundColor: indexColorMap[item.name],
+                                }}
+                                className={`w-4 h-4 rounded-[5px]`}
+                              ></div>
+                            </div>
+                            <Label className="whitespace-normal ">
+                              {item.name}
+                            </Label>
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <Label>
+                            £ {Number(item.current_value).toLocaleString()}
+                          </Label>
+                        </TableCell>
+                        <TableCell>
+                          <Label>
+                            {Number(Number(item.mom) * 100).toFixed(0)}%
+                          </Label>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

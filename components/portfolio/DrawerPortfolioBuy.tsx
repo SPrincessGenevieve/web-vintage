@@ -90,7 +90,6 @@ export default function DrawerPortfolioBuy({
           : bottle_size === "6000"
             ? 600
             : 0;
-  const [photoRequest, setPhotoRequest] = useState<boolean | null>(null);
   const [open, setOpen] = useState(false);
   const { setUserDetails } = useUserContext();
   const [selectedVintage, setSelectedVintage] = useState(item?.vintage);
@@ -113,7 +112,7 @@ export default function DrawerPortfolioBuy({
     images: parent.images,
     is_special_volumes: false,
     is_available: false,
-    photo_request: photoRequest === true ? true : false,
+    photo_request: false,
     stock_wine_vintage: item.stock_wine_vintage,
     basket: null,
     basket_items: null,
@@ -151,7 +150,6 @@ export default function DrawerPortfolioBuy({
 
   const handleBuyWine = (photo_req: boolean) => {
     console.log("BUY WINE");
-    setPhotoRequest(photo_req);
     setOpen(!open);
     if (photo_req) {
       setUserDetails({
@@ -290,7 +288,6 @@ export default function DrawerPortfolioBuy({
               <DialogFooter>
                 <Button
                   onClick={() => {
-                    setPhotoRequest(false);
                     handleBuyWine(false);
                   }}
                   className="w-32"
@@ -302,7 +299,6 @@ export default function DrawerPortfolioBuy({
                 <Button
                   className="w-32"
                   onClick={() => {
-                    setPhotoRequest(true);
                     handleBuyWine(true);
                   }}
                 >

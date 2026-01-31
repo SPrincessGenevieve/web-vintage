@@ -22,6 +22,7 @@ import { useUserContext } from "@/context/UserContext";
 import { useRare } from "@/context/RareContext";
 import CardWineBundle from "@/components/marketplace/CardWineRare";
 import CardWineRare from "@/components/marketplace/CardWineRare";
+import Intro from "@/components/marketplace/build-portfolio/Intro";
 
 const filter = [
   {
@@ -260,11 +261,7 @@ export default function Marketplace() {
             )}
           </Button>
         </div>
-        <Button>
-          <Label className="text-black text-[12px]">
-            <ChartPie></ChartPie>Build Portfolio
-          </Label>
-        </Button>
+        <Intro></Intro>
       </div>
       <div className="flex gap-2">
         {selectedCategory !== "vint-ex" && (

@@ -75,7 +75,7 @@ export default function DeliveryTable() {
                 <Label>{item.address_1}</Label>
               </TableCell>
               <TableCell>
-                <div className="bg-orange-700 flex p-1 rounded-[5px] items-center justify-center text-white font-medium text-center">
+                <div className="bg-orange-700 flex p-1 rounded-full px-2 items-center justify-center text-white font-medium text-center">
                   <Label className="text-white font-semibold">
                     {item.status === "Pending" ? "Requested" : item.status}
                   </Label>

@@ -1,5 +1,5 @@
 export interface SubAccountType {
-  id: string;
+  id: string | number;
   first_name: string;
   last_name: string;
   relationship: string;
@@ -272,6 +272,63 @@ export interface DefaultVintageT {
     is_flagged: boolean;
     flagged_price: null | number;
   };
+}
+
+export interface WineParent {
+  /** Unique identifier */
+  id: number;
+
+  /** LWIN7 code */
+  lwin7?: string;
+
+  /** Wine name */
+  name: string;
+
+  /** Origin */
+  fromm?: string;
+  region?: string;
+  region_of_appellation?: string;
+
+  /** Wine type */
+  red_wine?: string;
+
+  /** Grapes & blend */
+  grapes?: string;
+  grape_variety?: string;
+  blend?: string;
+
+  /** Food pairing */
+  pair_with?: string;
+
+  /** Wine production info */
+  winery?: string;
+  annual_production?: number;
+  default_case_size?: number;
+  case_size?: number;
+  special_id?: number | null;
+
+  /** Vintage info */
+  vintage?: number | null;
+  oldest_vintage?: number;
+
+  /** Price & market value */
+  price?: number;
+  market_value?: number;
+  maximum_price?: number;
+
+  /** Wine properties */
+  alcohol_abv?: string;
+  sweetness?: string;
+  maturation?: string;
+  ownership?: string;
+  closure_type?: string;
+
+  /** Images */
+  images?: any; // from WineRareParentT / SpecialBundleParentT
+
+  /** Special bundle info */
+  is_assortment?: boolean;
+  sub_header?: string;
 }
 
 export interface VintexDetailsT {
@@ -635,62 +692,6 @@ export interface PaymentMethodT {
   is_default: boolean;
 }
 
-export interface WineParent {
-  /** Unique identifier */
-  id: number;
-
-  /** LWIN7 code */
-  lwin7?: string;
-
-  /** Wine name */
-  name: string;
-
-  /** Origin */
-  fromm?: string;
-  region?: string;
-  region_of_appellation?: string;
-
-  /** Wine type */
-  red_wine?: string;
-
-  /** Grapes & blend */
-  grapes?: string;
-  grape_variety?: string;
-  blend?: string;
-
-  /** Food pairing */
-  pair_with?: string;
-
-  /** Wine production info */
-  winery?: string;
-  annual_production?: number;
-  default_case_size?: number;
-  case_size?: number;
-  special_id?: number | null;
-
-  /** Vintage info */
-  vintage?: number | null;
-  oldest_vintage?: number;
-
-  /** Price & market value */
-  price?: number;
-  market_value?: number;
-  maximum_price?: number;
-
-  /** Wine properties */
-  alcohol_abv?: string;
-  sweetness?: string;
-  maturation?: string;
-  ownership?: string;
-  closure_type?: string;
-
-  /** Images */
-  images?: any; // from WineRareParentT / SpecialBundleParentT
-
-  /** Special bundle info */
-  is_assortment?: boolean;
-  sub_header?: string;
-}
 
 export interface EventHighlightsT {
   id: number;
@@ -769,13 +770,13 @@ export interface StorageInviteT {
 }
 
 export interface ActivitiesDetailT {
-  wine_name: string;
-  status: string;
-  vintage: string | number;
-  quantity: number;
-  case_size: number;
-  purchase_price: number;
-  bottle_size: string;
+  wine_name?: string;
+  status?: string;
+  vintage?: string | number;
+  quantity?: number;
+  case_size?: number;
+  purchase_price?: number;
+  bottle_size?: string;
   details_wine?: CartItemT;
 }
 
@@ -808,4 +809,16 @@ export interface ActivitiesT {
     deposit_status?: string;
     card_image?: string;
   };
+}
+
+export interface PortfolioBuilderList{
+
+}
+
+export interface PortfolioBuilder {
+  id: string;
+  investment?: number;
+  holding_period?: string;
+  region?: string[];
+  wine_list?: CartItemT[]
 }

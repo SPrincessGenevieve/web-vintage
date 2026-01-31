@@ -34,7 +34,7 @@ export default function RareDetail() {
 
   const tabs = ["Performance", "Overview", "Region", "Grapes"];
   const rareDict = Object.fromEntries(
-    rare.map((item) => [String(item.investment_id), item])
+    rare.map((item) => [String(item.investment_id), item]),
   ) as Record<string, WineRareResultsT>;
 
   const data = rareDict[id];
@@ -63,24 +63,26 @@ export default function RareDetail() {
   const imgSrc =
     dataType === "vintex"
       ? data.wine_parent?.images?.[0]
-      : item.basket_details?.image ?? "";
-
- 
+      : (item.basket_details?.image ?? "");
 
   const handleRemoveWine = () => {
     try {
       const portfolioId = uuidv4();
-       const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
-      String(item.investment_id),
-      item.market_value,
-    );
+      const { profit_loss_value, profit_loss_percent } = generateProfitLoss(
+        String(item.investment_id),
+        item.market_value,
+      );
 
       const data =
         item.basket_details !== null ? item.basket_details : item.wine_parent;
-      const price = data.market_value ?? 0;
+      // const price = data.market_value ?? 0;
+      const price =
+        item?.basket_details !== null
+          ? Number(item?.basket_details?.market_value ?? 0)
+          : Number(item?.wine_vintage_details?.market_value ?? 0);
 
-      const purchase_price = price * item.case_size * item.quantity;
-
+      const purchase_price =
+        price * Number(item?.case_size ?? 0) * Number(item?.quantity ?? 0);
       addToPortfolio({
         id: portfolioId,
         case_size: item.case_size,
@@ -161,8 +163,8 @@ export default function RareDetail() {
         sub_account: subAccounts[0],
         bottle_size:
           item.basket_details !== null
-            ? item?.basket_items?.[0].basket_bottle_size ?? ""
-            : item.wine_vintage_details?.bottle_size ?? "",
+            ? (item?.basket_items?.[0].basket_bottle_size ?? "")
+            : (item.wine_vintage_details?.bottle_size ?? ""),
 
         location: "Portfolio",
         alcohol_abv: item.wine_parent.alcohol_abv ?? "",
@@ -177,11 +179,11 @@ export default function RareDetail() {
         rp_tasting_notes:
           item.basket_details === null
             ? ""
-            : item.wine_vintage_details?.rp_tasting_notes ?? "",
+            : (item.wine_vintage_details?.rp_tasting_notes ?? ""),
         wine_parent: item.wine_parent,
         vintage:
           item.basket_details === null
-            ? item.wine_vintage_details?.vintage ?? 0
+            ? (item.wine_vintage_details?.vintage ?? 0)
             : 0,
         holding_year: generateHoldingYear(String(item.investment_id)) ?? "",
       });

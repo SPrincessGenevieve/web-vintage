@@ -11,6 +11,10 @@ interface CartContextType {
   >;
   addToCart: (item: CartItemT) => void;
   clearCart: () => void;
+  updateCartItem: (
+    id: string | number,
+    updates: Partial<CartItemT>,
+  ) => void;
   removeFromCart: (id: string | number) => void;
   togglePhotoRequest: (id: string | number, value: boolean) => void;
 }
@@ -61,13 +65,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const addToCart = (newItem: CartItemT) => {
     setCart((prev) => {
       const existing = prev.find(
-        (item) => item.id === newItem.id && item.case_size === newItem.case_size
+        (item) =>
+          item.id === newItem.id && item.case_size === newItem.case_size,
       );
       if (existing) {
         return prev.map((item) =>
           item === existing
             ? { ...item, quantity: item.quantity + newItem.quantity }
-            : item
+            : item,
         );
       }
       return [...prev, newItem];
@@ -90,7 +95,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     });
 
     const savedQuantities = JSON.parse(
-      localStorage.getItem("cart_quantities") || "{}"
+      localStorage.getItem("cart_quantities") || "{}",
     );
     delete savedQuantities[id];
     localStorage.setItem("cart_quantities", JSON.stringify(savedQuantities));
@@ -109,9 +114,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const togglePhotoRequest = (id: string | number, value: boolean) => {
     setCart((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, photo_request: value } : item
-      )
+        item.id === id ? { ...item, photo_request: value } : item,
+      ),
     );
+  };
+
+  const updateCartItem = (
+    id: string | number,
+    updates: Partial<CartItemT>,
+  ) => {
+    setCheckedItems((prev) => {
+      const updated = { ...prev };
+      delete updated[id];
+      return updated;
+    });
   };
 
   return (
@@ -120,6 +136,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         cart,
         checkedItems,
         setCheckedItems,
+        updateCartItem,
         addToCart,
         clearCart,
         removeFromCart,

@@ -43,7 +43,7 @@ export default function GiftActivityDetail({ item, img }: GiftActivityDetailT) {
       </Label>
       <div className="flex flex-col gap-2">
         <div
-          className={`rounded-2xl border border-primary-brown/30 overflow-hidden ${item.detail?.details_wine?.basket === null ? "" : "bg-black"} flex items-center justify-center`}
+          className={`rounded-2xl border border-primary-brown/30 overflow-hidden bg-black flex items-center justify-center`}
         >
           <Image
             src={img}

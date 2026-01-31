@@ -287,7 +287,7 @@ export default function Concierge() {
             {Array.from({ length: 4 }).map((_, index) => (
               <Skeleton
                 key={index}
-                className="w-full min-w-[300px] card-inner-cont h-full bg-primary-gray-400"
+                className="h-100 min-w-75 w-full bg-primary-gray-400 flex flex-col justify-between"
               />
             ))}
           </div>

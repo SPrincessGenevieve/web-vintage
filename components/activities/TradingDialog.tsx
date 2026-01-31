@@ -49,6 +49,8 @@ export default function TradingDialog({ open, onOpenChange, item }: GeneralT) {
     switch (contentDetail) {
       case "Buy Request":
         return <BuyActivityDetail item={item} img={img}></BuyActivityDetail>;
+      case "In Bond":
+        return <BuyActivityDetail item={item} img={img}></BuyActivityDetail>;
       case "Sell Request":
         return <SellActivityDetail item={item} img={img}></SellActivityDetail>;
       case "Deliver Request":

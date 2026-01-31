@@ -1,3 +1,5 @@
+import { VintExCardT } from "../types";
+
 export const vintex = [
   {
     id: 77,

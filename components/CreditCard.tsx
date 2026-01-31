@@ -65,7 +65,7 @@ export default function CreditCard() {
 
   const handleSave = () => {
     setLoading(true);
-    if (!cardNum || !exp  || !cardName) {
+    if (!cardNum || !exp || !cardName) {
       toast.error("All fields are requried.");
       setLoading(false);
       return;
@@ -86,16 +86,24 @@ export default function CreditCard() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="w-full flex flex-col  h-65 p-4 bg-linear-to-r from-primary-gray-500/30 to-primary-gray-600 credit-card-cont rounded-2xl border border-primary-brown/30">
+      <div className="w-full flex flex-col h-auto p-4 py-8 bg-linear-to-r from-primary-gray-500/30 to-primary-gray-600 credit-card-cont rounded-2xl border border-primary-brown/30">
         <div className="h-[20%] card-name-cont flex items-start justify-end w-full">
           <Label className="text-white" variant="h2">
             {cardName}
           </Label>
         </div>
         <div className="h-[60%] w-full flex flex-col">
-          <Image src={"/chip.png"} alt="" width={400} height={400} className="w-18 h-12"></Image>
+          <div className="max-w-18 max-h-12 flex">
+            <Image
+              src={"/chip.png"}
+              alt=""
+              width={400}
+              height={400}
+              className="w-full h-full"
+            ></Image>
+          </div>
           <div className="flex mt-4 gap-4">
-            <Label variant="h1" className="text-white font-thin">
+            <Label variant="h1" className="text-white text-[2.5vh] font-thin">
               {cardNum || "1234 5678 9123 4567"}
             </Label>
           </div>
@@ -111,7 +119,9 @@ export default function CreditCard() {
                   <Label className="text-white font-thin">{cvc}</Label>
                 </div>
               </div>
-              <Label className="text-white font-thin uppercase">{owner || "JOHN DOE"}</Label>
+              <Label className="text-white font-thin uppercase">
+                {owner || "JOHN DOE"}
+              </Label>
             </div>
             <div className="h-full flex items-end">
               {cardLogo && (

@@ -10,11 +10,13 @@ interface InputProps extends React.ComponentProps<"input"> {
   label?: string; // optional label prop
   open?: boolean;
   securityOff?: boolean;
+  classNameLabel?: string;
 }
 
 function Input({
   label,
   className,
+  classNameLabel,
   open,
   securityOff = false,
   type = "text",
@@ -29,7 +31,7 @@ function Input({
 
   return (
     <div className="w-full flex flex-col gap-2">
-      <Label>{label}</Label>
+      <Label className={classNameLabel}>{label}</Label>
       <div className="w-full relative">
         {securityOff && (
           <Button

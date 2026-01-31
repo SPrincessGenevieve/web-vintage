@@ -20,6 +20,7 @@ import { Control } from "react-hook-form";
 
 interface DropdownFormFieldProps {
   name: string;
+  classNameLabel?: string;
   control: Control<any>;
   label: string;
   placeholder?: string;
@@ -29,6 +30,7 @@ interface DropdownFormFieldProps {
 
 export function DropdownFormField({
   name,
+  classNameLabel,
   control,
   label,
   placeholder,
@@ -41,7 +43,7 @@ export function DropdownFormField({
       name={name}
       render={({ field }) => (
         <FormItem className="flex flex-col gap-4 w-full">
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className={classNameLabel}>{label}</FormLabel>
           <FormControl>
             <Select
               value={field.value}

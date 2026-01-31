@@ -42,7 +42,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useSubAccount } from "@/context/SubAccountContext";
 import { default_sub_account } from "@/lib/default_sub_account";
 import AddSubAccount from "@/components/settings/sub-account/AddSubAccount";
-
+import { useActivities } from "@/context/ActivitiesContext";
 
 const sort = [
   {
@@ -83,7 +83,9 @@ const header_list = [
 
 export default function Portfolio() {
   const [loadData, setLoadData] = useState(true);
-  const { portfolio, clearPortfolio, addToPortfolio } = usePortfolio();
+  const { activities, updateActivitiesItem } = useActivities();
+  const { portfolio, clearPortfolio, addToPortfolio, updatePortfolioItem } =
+    usePortfolio();
   const { subAccounts, addSubAccount } = useSubAccount();
   const [search, setSearch] = useState("");
   const router = useRouter();
@@ -269,6 +271,33 @@ export default function Portfolio() {
       setLoadData(false);
     }
   }, [portfolio.length]);
+
+  const pending_wine = portfolio.filter(
+    (item) => item.status === "Buy Request",
+  );
+  const await_wine = portfolio.filter(
+    (item) => item.status === "Awaiting Arrival",
+  );
+
+  useEffect(() => {
+    if (portfolio.length !== 0) {
+      setTimeout(() => {
+        pending_wine.forEach((item) =>
+          updatePortfolioItem(item.id, {
+            status: "Awaiting Arrival",
+          }),
+        );
+
+        setTimeout(() => {
+          await_wine.forEach((item) =>
+            updatePortfolioItem(item.id, {
+              status: "In Bond",
+            }),
+          );
+        });
+      }, 3000);
+    }
+  });
 
   return (
     <div className="w-full h-full">

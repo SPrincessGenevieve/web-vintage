@@ -19,6 +19,8 @@ import { useWineCellar } from "@/context/WineCellarContext";
 import { useEventSport } from "@/context/EventSportContext";
 import { useEventWine } from "@/context/EventWineContext";
 import { useActivities } from "@/context/ActivitiesContext";
+import { useBook } from "@/context/BookContext";
+
 export default function SidebarWeb() {
   const [activeTab, setActiveTab] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,9 +34,11 @@ export default function SidebarWeb() {
   const { clearRare } = useRare();
   const { subAccounts, addSubAccount, clearSubAccounts } = useSubAccount();
   const { clearWineCellar } = useWineCellar();
-  const { clearEventSport } = useEventSport()
-  const { clearEventWine } = useEventWine()
-  const { clearActivities } = useActivities()
+  const { clearEventSport } = useEventSport();
+  const { clearEventWine } = useEventWine();
+  const { clearActivities } = useActivities();
+  const { clearBook } = useBook();
+
   const handleTabs = (label: string, link: string) => {
     setActiveTab(label);
     router.push(link);
@@ -49,10 +53,11 @@ export default function SidebarWeb() {
     clearRare();
     clearWineCellar();
     clearEventSport();
-    clearEventWine()
-    clearActivities()
+    clearEventWine();
+    clearActivities();
+    clearBook();
     localStorage.removeItem("daily-random");
-    router.push("/");
+    // router.push("/");
   };
 
   useEffect(() => {

@@ -86,7 +86,6 @@ export default function DrawerVintage({
   const [selectedIndex, setSelectedIndex] = useState(default_index);
   const [selectedVintage, setSelectedVintage] = useState(default_vintage);
   const [quantityData, setQuantityData] = useState(1);
-  const [photoRequest, setPhotoRequest] = useState(false);
   const [open, setOpen] = useState(false);
 
   const rawData: VintexResultsT[] = result_data.filter(
@@ -171,50 +170,48 @@ export default function DrawerVintage({
 
   const today = new Date().toISOString().split("T")[0];
 
-  const newItemBuy: CartItemT = {
-    id: newItem.id,
-    case_size: newItem.case_size,
-    quantity: newItem.quantity,
-    stock_wine_vintage: newItem.stock_wine_vintage,
-    user_investment_wine_vintage: newItem.user_investment_wine_vintage,
-    short_description: newItem.short_description,
-    images: newItem.images,
-    is_special_volumes: false,
-    basket: newItem.basket,
-    basket_items: newItem.basket_items,
-    is_available: true,
-    photo_request: photoRequest,
-    wine_name: newItem.wine_name,
-    fromm: newItem.fromm,
-    purchase_date: today,
-    purchase_price: newTotal,
-    status: "Buy Request",
-    sub_account: subAccounts[0],
-    location: "portfolio",
-    bottle_size: newItem.bottle_size,
-    vintage: newItem.vintage,
-    alcohol_abv: newItem.alcohol_abv,
-    blend: newItem.blend,
-    grapes: newItem.grapes,
-    ownership: newItem.ownership,
-    winery: newItem.winery,
-    region: newItem.region,
-    grape_variety: newItem.grape_variety,
-    rp_tasting_notes: newItem.rp_tasting_notes,
-    wine_parent: newItem.wine_parent,
-    holding_year: generateHoldingYear(String(data?.id)),
-  };
-
   const handleAddToBasket = () => {
     addToCart(newItem);
     toast.success("Wine added to cart");
     location.reload();
   };
 
-  const handleBuyWine = () => {
-    console.log("BUY WINE");
+  const handleBuyWine = (photoReq: boolean) => {
+    const newItemBuy: CartItemT = {
+      id: newItem.id,
+      case_size: newItem.case_size,
+      quantity: newItem.quantity,
+      stock_wine_vintage: newItem.stock_wine_vintage,
+      user_investment_wine_vintage: newItem.user_investment_wine_vintage,
+      short_description: newItem.short_description,
+      images: newItem.images,
+      is_special_volumes: false,
+      basket: newItem.basket,
+      basket_items: newItem.basket_items,
+      is_available: true,
+      photo_request: photoReq,
+      wine_name: newItem.wine_name,
+      fromm: newItem.fromm,
+      purchase_date: today,
+      purchase_price: newTotal,
+      status: "Buy Request",
+      sub_account: subAccounts[0],
+      location: "portfolio",
+      bottle_size: newItem.bottle_size,
+      vintage: newItem.vintage,
+      alcohol_abv: newItem.alcohol_abv,
+      blend: newItem.blend,
+      grapes: newItem.grapes,
+      ownership: newItem.ownership,
+      winery: newItem.winery,
+      region: newItem.region,
+      grape_variety: newItem.grape_variety,
+      rp_tasting_notes: newItem.rp_tasting_notes,
+      wine_parent: newItem.wine_parent,
+      holding_year: generateHoldingYear(String(data?.id)),
+    };
     setOpen(!open);
-    if (photoRequest) {
+    if (photoReq) {
       setUserDetails({
         cart_total: newTotal + 16.99,
       });
@@ -367,8 +364,7 @@ export default function DrawerVintage({
               <DialogFooter>
                 <Button
                   onClick={() => {
-                    setPhotoRequest(false);
-                    handleBuyWine();
+                    handleBuyWine(false);
                   }}
                   className="w-32"
                   variant={"outline"}
@@ -379,8 +375,7 @@ export default function DrawerVintage({
                 <Button
                   className="w-32"
                   onClick={() => {
-                    setPhotoRequest(true);
-                    handleBuyWine();
+                    handleBuyWine(true);
                   }}
                 >
                   Yes

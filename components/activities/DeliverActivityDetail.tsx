@@ -117,7 +117,7 @@ export default function DeliverActivityDetail({
       </Label>
       <div className="flex flex-col gap-2">
         <div
-          className={`rounded-2xl border border-primary-brown/30 overflow-hidden ${item.detail?.details_wine?.basket === null ? "" : "bg-black"} flex items-center justify-center`}
+          className={`rounded-2xl border border-primary-brown/30 overflow-hidden bg-black flex items-center justify-center`}
         >
           <Image
             src={img}
@@ -147,9 +147,12 @@ export default function DeliverActivityDetail({
                             <TableCell>
                               <Label>{item.title}</Label>
                             </TableCell>
+
                             <TableCell>
                               <div className="w-full flex justify-end items-center">
-                                <Label className={`px-2 rounded-2xl ${item.value === "Complete" ? "text-white bg-green-600" : "text-white"} font-semibold`}>
+                                <Label
+                                  className={`px-2 rounded-2xl ${item.value === "Complete" ? "text-white bg-green-600" : item.value === "Requested" ? "bg-orange-700 text-white" : "text-white"} font-semibold`}
+                                >
                                   {item.value}
                                 </Label>
                               </div>

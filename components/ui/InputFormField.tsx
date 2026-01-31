@@ -11,12 +11,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Control } from "react-hook-form";
+import { Label } from "./label";
 
 interface InputFormFieldProps {
   name: string;
   control: Control<any>;
   label: string;
   placeholder?: string;
+  classNameLabel?: string;
   type?: string;
   onChange?: (value: string) => void; // <-- added
 }
@@ -26,6 +28,7 @@ export function InputFormField({
   control,
   label,
   placeholder,
+  classNameLabel,
   type = "text",
   onChange,
 }: InputFormFieldProps) {
@@ -34,8 +37,8 @@ export function InputFormField({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="relative w-full">
-          <FormLabel>{label}</FormLabel>
+        <FormItem className="">
+          <FormLabel className={classNameLabel}>{label}</FormLabel>
           <FormControl>
             <Input
               {...field}

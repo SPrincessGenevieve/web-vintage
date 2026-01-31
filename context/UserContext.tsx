@@ -19,7 +19,9 @@ import {
 } from "react";
 
 type UserContextType = {
+  account_bal: number;
   token: string;
+  total_quantity: number;
   activeFilterMarket: string;
   activeRegionMarket: string;
   activeSortMarket: string;
@@ -58,6 +60,8 @@ type UserContextType = {
 };
 
 const defaultUserContext: UserContextType = {
+  total_quantity: 0,
+  account_bal: 0,
   activeFilterMarket: "",
   activeRegionMarket: "",
   activeSortMarket: "",

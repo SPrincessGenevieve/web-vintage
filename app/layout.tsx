@@ -15,6 +15,7 @@ import { EventSportProvider } from "@/context/EventSportContext";
 import { EventWineProvider } from "@/context/EventWineContext";
 import { BookProvider } from "@/context/BookContext";
 import { ActivitiesProvider } from "@/context/ActivitiesContext";
+import { PortfolioBuilderProvider } from "@/context/BuildPortfolioContext";
 
 const poppins = Poppins({
   variable: "--font-poppins-sans",
@@ -54,9 +55,11 @@ export default function RootLayout({
                         <EventWineProvider>
                           <BookProvider>
                             <ActivitiesProvider>
-                              <WineCellarProvider>
-                                {children}
-                              </WineCellarProvider>
+                              <PortfolioBuilderProvider>
+                                <WineCellarProvider>
+                                  {children}
+                                </WineCellarProvider>
+                              </PortfolioBuilderProvider>
                             </ActivitiesProvider>
                           </BookProvider>
                         </EventWineProvider>

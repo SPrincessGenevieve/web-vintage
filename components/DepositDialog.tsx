@@ -1,20 +1,9 @@
 import React, { memo, ReactNode, useEffect, useState } from "react";
-import {
-  CardDeposit,
-  CardDepositDashboard,
-  DepositOption,
-  StepBankTranserStep1,
-  StepBankTranserStep2,
-  StepBankTranserStep3,
-  StepBankTranserStep4,
-} from "./TradeSteps";
 import { toast } from "sonner";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Content } from "next/font/google";
 import { Button } from "./ui/button";
 import { Plus } from "lucide-react";
 import { Label } from "./ui/label";
-import { Input } from "./ui/input";
 import { ContentDialog } from "./ContentDialog ";
 import { v4 as uuidv4 } from "uuid";
 import { useActivities } from "@/context/ActivitiesContext";
@@ -24,7 +13,7 @@ import { useUserContext } from "@/context/UserContext";
 export default function DepositDialog() {
   const [content, setContent] = useState("Option");
   const { addToActivities } = useActivities();
-  const { payment_method } = useUserContext();
+  const { payment_method, account_bal, setUserDetails } = useUserContext();
   const [referenceCode, setReferenceCode] = useState(
     uuidv4().replace(/-/g, "").slice(0, 8).toUpperCase(),
   );
@@ -40,9 +29,9 @@ export default function DepositDialog() {
 
   useEffect(() => {
     const data = payment_method.filter((item) => item.is_default === true);
-    setCardName(data[0].card_type);
-    setDigit4(data[0].last_code);
-    setCardImg(data[0].img);
+    setCardName(data[0]?.card_type ?? "");
+    setDigit4(data[0]?.last_code ?? "");
+    setCardImg(data[0]?.img ?? "");
   }, [payment_method]);
 
   const handleCopy = async () => {
@@ -63,6 +52,16 @@ export default function DepositDialog() {
     if (amount <= 0 || isNaN(amount)) {
       toast.warning("Please enter a valid amount.");
       return;
+    }
+
+    if (type === "card") {
+      if(cardName === ""){
+        toast.warning("Please select a payment method.")
+        return
+      }
+      setUserDetails({
+        account_bal: account_bal + amount,
+      });
     }
     const payloadBank = {
       id: `activity-deposit-${uuidv4()}`,

@@ -6,7 +6,7 @@ export default function CartProgress({ step, width = "w-[80%]" }: { step: number
     <div className={`${width} flex items-center justify-evenly gap-2`}>
       {Array.from({ length: 3 }).map((item, index) => (
         <>
-          <div className="w-[10%] flex items-center justify-center">
+          <div className="w-[10%]flex items-center justify-center">
             <Label
               className={`${
                 step === index + 1
@@ -16,7 +16,7 @@ export default function CartProgress({ step, width = "w-[80%]" }: { step: number
                   : step > index + 1
                   ? "bg-primary-brown text-black"
                   : "bg-transparent text-primary-brown"
-              } w-7 h-7 border border-primary-brown font-bold rounded-full flex items-center justify-center text-center`}
+              } w-7 min-w-7 h-7 border border-primary-brown font-bold rounded-full flex items-center justify-center text-center`}
             >
               {index + 1}
             </Label>

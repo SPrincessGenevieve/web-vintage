@@ -1199,7 +1199,7 @@ export const Wine4 = {
       size: "NA",
       status: "NA",
       drinking_window: "NA",
-      market_value: "0.00",
+      market_value: "120.00",
       tags: "NA",
       processed_case: 1,
       bottle_size: "0750",
@@ -5962,7 +5962,7 @@ export const Wine11 = {
     winery:
       "Château d'Yquem, located in Bordeaux's Sauternes district, is renowned for producing the world’s most prestigious dessert wine. Rated as the only Premier Cru Supérieur in the 1855 Classification, it commands premium prices. The 103-hectare vineyard, planted with 75% Sémillon and 25% Sauvignon Blanc, benefits from ideal conditions for noble rot. Harvested by hand in multiple passes, its low yields result in intensely sweet, complex wines that age gracefully for decades. Yquem also produces a dry white wine, Y (\"Ygrek\"), blending Sauvignon Blanc and Sémillon.",
     images: [
-      "https://d18vt6ndh4jzvp.cloudfront.net/media/wine11.webp",
+      "https://d18vt6ndh4jzvp.cloudfront.net/media/Chateau_d_yquem.png",
       "https://d18vt6ndh4jzvp.cloudfront.net/media/wine11_80XPrVD.webp",
     ],
     oldest_vintage: 1986,

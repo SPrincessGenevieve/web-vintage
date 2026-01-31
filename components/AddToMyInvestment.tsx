@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -24,6 +24,10 @@ import {
   SuccessDeposit,
 } from "./TradeSteps";
 import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
+import { today } from "@/lib/today";
+import { useActivities } from "@/context/ActivitiesContext";
+import { useUserContext } from "@/context/UserContext";
 
 export default function AddToMyInvestment() {
   const router = useRouter();
@@ -31,11 +35,24 @@ export default function AddToMyInvestment() {
   const handleTradeMyself = () => {
     router.push("/vintage/marketplace");
   };
+  const { payment_method } = useUserContext();
   const [currentStep, setCurrentStep] = useState(1);
   const [amount, setAmount] = useState(0);
   const [openCard, setOpenCard] = useState(false);
   const [open, setOpen] = useState(false);
   const [openBank, setOpenBank] = useState(false);
+  const { addToActivities } = useActivities();
+  const [cardAmount, setCardAmount] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardImg, setCardImg] = useState("");
+  const [digit4, setDigit4] = useState("");
+
+  useEffect(() => {
+    const data = payment_method.filter((item) => item.is_default === true);
+    setCardName(data[0]?.card_type ?? "");
+    setDigit4(data[0]?.last_code ?? "");
+    setCardImg(data[0]?.img ?? "");
+  }, [payment_method]);
 
   const handleClickNo = () => {
     setCurrentStep(currentStep - 1);
@@ -67,6 +84,21 @@ export default function AddToMyInvestment() {
       toast.warning("Please enter an amount.");
       return;
     } else {
+      const payloadBank = {
+        id: `activity-deposit-${uuidv4()}`,
+        type: "General",
+        date: today,
+        action: "Deposit",
+        depost_detail: {
+          deposit_type: "bank",
+          deposit_status: "Pending",
+          deposit_amount: Number(amount),
+          bank_name: "Elvin Mootoosamy",
+          bank_number: "15945146",
+          bank_reference_code: referenceCode,
+        },
+      };
+      addToActivities(payloadBank);
       setOpenBank(true);
     }
   };
@@ -106,6 +138,27 @@ export default function AddToMyInvestment() {
   };
 
   const handleCardDeposit1 = () => {
+    console.log("CLICKED");
+    console.log("CARD: ", cardName);
+    if (!cardName) {
+      toast.warning("Please select a payment method.");
+      return;
+    }
+    const payloadBank = {
+      id: `activity-deposit-${uuidv4()}`,
+      type: "General",
+      date: today,
+      action: "Deposit",
+      depost_detail: {
+        deposit_status: "Complete",
+        deposit_type: "card",
+        deposit_amount: amount,
+        card_last_num: digit4,
+        card_name: cardName,
+        card_image: cardImg,
+      },
+    };
+    addToActivities(payloadBank);
     setCurrentStep(10);
   };
 
@@ -177,6 +230,7 @@ export default function AddToMyInvestment() {
             ></StepBankTranserStep2>
           ) : currentStep === 6 ? (
             <StepBankTranserStep3
+              reference_code={referenceCode}
               onClick={handleClickYes}
             ></StepBankTranserStep3>
           ) : currentStep === 7 ? (

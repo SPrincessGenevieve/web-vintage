@@ -15,6 +15,7 @@ import { useWineCellar } from "@/context/WineCellarContext";
 import { useEventWine } from "@/context/EventWineContext";
 import { useEventSport } from "@/context/EventSportContext";
 import { useActivities } from "@/context/ActivitiesContext";
+import { useBook } from "@/context/BookContext";
 
 export default function BottombarMobile() {
   const [activeTab, setActiveTab] = useState("");
@@ -30,6 +31,7 @@ export default function BottombarMobile() {
   const { clearEventWine } = useEventWine()
   const { clearEventSport } = useEventSport()
   const { clearRare } = useRare();
+  const { clearBook } = useBook()
   const { subAccounts, addSubAccount, clearSubAccounts } = useSubAccount();
   const { clearWineCellar } = useWineCellar();
   const { clearActivities } = useActivities()
@@ -50,8 +52,9 @@ export default function BottombarMobile() {
     clearEventWine()
     clearEventSport()
     clearActivities()
+    clearBook()
     localStorage.removeItem("daily-random");
-    router.push("/");
+    // router.push("/");
   };
 
   useEffect(() => {
